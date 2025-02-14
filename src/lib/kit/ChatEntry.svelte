@@ -19,7 +19,7 @@
 
     setInterval(() => {
         datenow = Date.now()
-    }, 2 * 1000)
+    }, 1.5 * 1000)
     
     function timeAgo() {
         const rtf = new Intl.RelativeTimeFormat("en", {
@@ -36,15 +36,15 @@
         const year = day / 365.242375;
 
         if(year >= 1) {
-            return rtf.format(Math.floor(-year), "year")
+            return rtf.format(Math.round(-year), "year")
         } else if(day >= 1) {
-            return rtf.format(Math.floor(-day), "day")
+            return rtf.format(Math.round(-day), "day")
         } else if (hour >= 1) {
-            return rtf.format(Math.floor(-hour), "hour")
+            return rtf.format(Math.round(-hour), "hour")
         } else if(minute >= 1) {
-            return rtf.format(Math.floor(-minute), "minute")
+            return rtf.format(Math.round(-minute), "minute")
         } else {
-            return rtf.format(Math.floor(-seconds), "second")
+            return rtf.format(Math.round(-seconds), "second")
         }
     }
 </script>
@@ -119,11 +119,7 @@
         flex-direction: column;
         justify-content: space-between;
     }
-    .pfp{
-        width: v.$elem-height;
-        height: v.$elem-height;
-        border-radius: 50%;
-    }
+
     .chatEntry{
         display: flex;
         flex-direction: row;

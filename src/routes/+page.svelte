@@ -5,6 +5,34 @@
     import ChatEntry from "$lib/kit/ChatEntry.svelte";
 	import Icon from "$lib/kit/Icon.svelte";
     import Textbox from "$lib/kit/Textbox.svelte";
+
+    let scrollContainer: HTMLDivElement | undefined;
+    let startX: number | undefined; 
+
+    function handleWheel(event: WheelEvent) {
+        event.preventDefault();
+
+        if (!scrollContainer) return; // Guard clause
+
+        const delta = Math.sign(event.deltaY);
+        const scrollSpeed = 150;
+
+        scrollContainer.scrollLeft += delta * scrollSpeed;
+    }
+
+    function handleTouchStart(e: TouchEvent) {
+        startX = e.touches.clientX;
+    }
+
+    function handleTouchMove(e: TouchEvent) {
+        if (!startX ||!scrollContainer) return;
+
+        const currentX = e.touches.clientX;
+        const diffX = startX - currentX;
+
+        scrollContainer.scrollLeft += diffX;
+        startX = currentX;
+    }
 </script>
 
 <div class="main">
@@ -19,7 +47,9 @@
                 <Button><Icon name="Camera/Video"/> Stories</Button>
                 <Button><Icon name="Search"/></Button>
             </div>
-            <div class="scroll-horiz">
+            <div class="scroll-horiz" bind:this={scrollContainer} on:wheel={handleWheel}
+            on:touchstart={handleTouchStart}
+            on:touchmove={handleTouchMove}>
                 <Button style={2}><Icon name="Star"/>balls 69</Button>
                 <Button style={2}><Icon name="Star"/>balls 69</Button>
                 <Button style={2}><Icon name="Star"/>balls 69</Button>
@@ -36,7 +66,7 @@
         <hr class="separator"/>
         <div class="chatEntries">
             <ChatEntry isFavorite={true}></ChatEntry>
-            <ChatEntry username={"Harold Bolz"}></ChatEntry>
+            <ChatEntry username={"Harry Bōlz"}></ChatEntry>
             <ChatEntry unreads={69}></ChatEntry>
             <ChatEntry timestamp={Date.now()}></ChatEntry>
             <ChatEntry></ChatEntry>
@@ -138,6 +168,7 @@
         padding-right: v.$spacing-def;
         padding-left: v.$spacing-def;
         height: v.$chip-height;
+        scroll-behavior: smooth;
     }
     .scroll-horiz::-webkit-scrollbar{
         width: none;
