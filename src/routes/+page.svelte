@@ -4,6 +4,7 @@
     import Button from "$lib/kit/Button.svelte";
     import ChatEntry from "$lib/kit/ChatEntry.svelte";
 	import Icon from "$lib/kit/Icon.svelte";
+    import Textbox from "$lib/kit/Textbox.svelte";
 </script>
 
 <div class="main">
@@ -34,10 +35,10 @@
         </div>
         <hr class="separator"/>
         <div class="chatEntries">
-            <ChatEntry></ChatEntry>
-            <ChatEntry></ChatEntry>
-            <ChatEntry></ChatEntry>
-            <ChatEntry></ChatEntry>
+            <ChatEntry isFavorite={true}></ChatEntry>
+            <ChatEntry username={"Harold Bolz"}></ChatEntry>
+            <ChatEntry unreads={69}></ChatEntry>
+            <ChatEntry timestamp={Date.now()}></ChatEntry>
             <ChatEntry></ChatEntry>
             <ChatEntry></ChatEntry>
             <ChatEntry></ChatEntry>
@@ -52,14 +53,73 @@
         </div>
     </div>
     <hr class="separator"/>
-    <div class="view"></div>
+    <div class="view">
+        <div class="viewTopBar">
+            <div class="chatNameContainer">
+                <div class="iconContainer">
+                    <Icon name="Chat"/>
+                </div>
+                <div class="chatName">
+                    <div>General</div>
+                    <div class="subtext">Negative Zero</div>
+                </div>
+            </div>
+            <div class="elements-horiz" style="gap: 10px">
+                <Button><Icon name="Pin/Angled"/></Button>
+                <Textbox placeholder="Search" icon="Search"></Textbox>
+                <Button><Icon name="Hamburger"/></Button>
+            </div>
+        </div>
+        <hr class="separator"/>
+    </div>
 </div>
 
 <style lang="scss">
     
     @use "$lib/style/colors.scss" as c;
     @use "$lib/style/variables.scss" as v;
-
+    
+    .subtext{
+        color: c.$text-50;
+    }
+    .chatName{
+        font-size: 16px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .chatNameContainer{
+        display: flex;
+        flex-direction: row;
+        gap: v.$spacing-def;
+    }
+    .iconContainer{
+        width: v.$elem-height;
+        height: v.$elem-height;
+        border: 1px;
+        border-color: c.$text-25;
+        border-style: solid;
+        border-radius: v.$corner-elem;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+    }
+    .viewTopBar{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        box-sizing: border-box;
+        padding: v.$spacing-def;
+    }
+    .view{
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
     .chatEntries{
         display: flex;
         flex-direction: column;
@@ -100,9 +160,5 @@
         width: 320px;
         display: flex;
         flex-direction: column;
-    }
-    .view{
-        height: 100%;
-        width: 100%;
     }
 </style>

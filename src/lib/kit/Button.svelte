@@ -1,5 +1,3 @@
-<!-- k -->
-<!-- gimme a sec, i'll give you ngrok -->
 <script lang="ts">
     let {style = 0, width = "max-content", action = () => {}, children} = $props()
 </script>

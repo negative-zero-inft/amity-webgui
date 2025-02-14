@@ -7,6 +7,15 @@ html {
     color: c.$text;
 }
 
+#body{
+    background-color: c.$bg;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    width: 100vw;
+    height: 100vh;
+}
 body{
     background-color: c.$bg;
     margin-top: 0px;

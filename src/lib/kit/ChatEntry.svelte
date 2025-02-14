@@ -1,22 +1,55 @@
 <script lang="ts">
     let {
-        unreads = 69,
-        isUnreads = false,
+        unreads = 0,
+        isUnreads = unreads != 0,
         username = "user",
         preview = "egg",
-        timestamp = "5 minutes ago",
+        timestamp = Date.parse("2025-01-01 00:02:00") as number,
         isFavorite = false,
         pfpLink = "src/lib/amity.png"
     } = $props()
-
+// btw for timestamp u could just snap datetime type.
     const _pfpLinkRETARD: string = "http://localhost:5173/src/lib/amity.png"; // you fucking retarded this doesn't work outside of localhost
 
     import check from "$lib/minicons/check.svg"
     import star from "$lib/minicons/star.svg"
-</script>
+	import Avatar from "./Avatar.svelte";
 
+    let datenow = $state(Date.now());
+
+    setInterval(() => {
+        datenow = Date.now()
+    }, 2 * 1000)
+    
+    function timeAgo() {
+        const rtf = new Intl.RelativeTimeFormat("en", {
+            numeric: "always",
+            style: "short"
+        })
+
+        const diff = datenow - timestamp
+        const second = diff / 1000
+        const seconds = second % 60
+        const minute = second / 60
+        const hour = minute / 60
+        const day = hour / 24
+        const year = day / 365.242375;
+
+        if(year >= 1) {
+            return rtf.format(Math.floor(-year), "year")
+        } else if(day >= 1) {
+            return rtf.format(Math.floor(-day), "day")
+        } else if (hour >= 1) {
+            return rtf.format(Math.floor(-hour), "hour")
+        } else if(minute >= 1) {
+            return rtf.format(Math.floor(-minute), "minute")
+        } else {
+            return rtf.format(Math.floor(-seconds), "second")
+        }
+    }
+</script>
 <button class="chatEntry">
-    <img class="pfp" src={pfpLink}/>
+    <Avatar {pfpLink} />
     <div class="info">
         <div class="line">
             <div class="horiz">
@@ -25,7 +58,7 @@
                     <img src={star} style="height: 10px;"/>
                 {/if}
             </div>
-            <div class="textPreview">{timestamp}</div>
+            <div class="textPreview">{timeAgo()}</div>
         </div>
         <div class="line">
             <div class="textPreview">{preview}</div>
@@ -51,7 +84,7 @@
         height: 16px;
         font-size: 10px;
         display: flex;
-        flex-align: center;
+        align-items: center;
     }
     .noUnreads{
         background-color: c.$text-50;
@@ -61,7 +94,7 @@
         height: 16px;
         font-size: 10px;
         display: flex;
-        flex-align: center;
+        align-items: center;
     }
     .horiz{
         display: flex;
