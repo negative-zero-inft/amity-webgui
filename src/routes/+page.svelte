@@ -101,6 +101,11 @@
             </div>
         </div>
         <hr class="separator"/>
+        <div class="chatView">я насрал в турбину самолета</div>
+        <hr class="separator"/>
+        <div class="viewBottomBar">
+            <Button><Icon name="Plus"/></Button>
+        </div>
     </div>
 </div>
 
@@ -109,6 +114,19 @@
     @use "$lib/style/colors.scss" as c;
     @use "$lib/style/variables.scss" as v;
     
+    .viewBottomBar{
+        display: flex;
+        flex-direction: row;
+        padding: v.$spacing-def;
+        gap: v.$spacing-def;
+    }
+    .chatView{
+        height: 100%;
+        width: 100%;
+        overflow: scroll;
+        display: flex;
+        flex-direction: column-reverse;
+    }
     .subtext{
         color: c.$text-50;
     }
