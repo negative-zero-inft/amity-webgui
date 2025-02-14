@@ -1,0 +1,40 @@
+$corner-window: 20px;
+$corner-elem: 10px;
+
+$spacing-def: 10px;
+$spacing-chip: 8px;
+$spacing-msg: 5px;
+$spacing-big: 16px;
+
+$elem-height: 36px;
+$chip-height: 32px;
+
+@mixin standard-text{
+
+    font-family: Atkinson Hyperlegible;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 15px;
+    letter-spacing: 2%;
+}
+
+@mixin header{
+    
+    font-family: Atkinson Hyperlegible;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 1%;
+}
+
+@mixin big-text{
+    
+    font-family: Atkinson Hyperlegible;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0%;
+}
