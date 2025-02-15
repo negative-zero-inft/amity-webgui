@@ -46,7 +46,7 @@
             padding-right: 10px; 
             padding-left: 10px;">
             <Button><Icon name="Hamburger" /></Button>
-            <Button><Icon name="Camera/Video"/> Stories</Button>
+            <Button><Icon name="Camera/Video"/>Stories</Button>
             <Button><Icon name="Search"/></Button>
         </div>
         <div class="scroll-horiz" bind:this={scrollContainer} onwheel={handleWheel}
@@ -86,9 +86,22 @@
 </div>
 
 <style lang="scss">
+
     @use "$lib/style/colors.scss" as c;
     @use "$lib/style/variables.scss" as v;
     
+    .storiespfps{
+        display: grid;
+        align-items: center;
+    }
+    .storiespfp{
+        grid-area: 1/1;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        outline: 2px;
+        outline-color: c.$clickable;
+    }
     .scroll-horiz{
         display: flex;
         flex-direction: row;
