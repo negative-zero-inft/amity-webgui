@@ -26,5 +26,6 @@
         width: var(--w);
         height: 100%;
         overflow: hidden;
+        flex-shrink: 0;
     }
 </style>

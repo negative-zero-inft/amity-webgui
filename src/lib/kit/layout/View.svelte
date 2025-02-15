@@ -1,4 +1,6 @@
 <script lang="ts">
+	import Button from "../Button.svelte";
+import ChatInfoSidebar from "./chatsidebars/ChatInfoSidebar.svelte";
 	import CloudStorageBar from "./chatsidebars/CloudStorageSidebar.svelte";
 	import CommandSidear from "./chatsidebars/CommandSidear.svelte";
 	import ContactsSidebar from "./chatsidebars/ContactsSidebar.svelte";
@@ -19,7 +21,7 @@
     <div class="subView">
         <CloudStorageBar></CloudStorageBar>
         <div class="userView">
-            <div class="chatView">я насрал в турбину самолета</div>
+            <div class="chatView"><Button style={2}>asdjikuajs</Button></div>
             <hr class="separator"/>
             <ViewBottomBar />
         </div>
@@ -30,6 +32,7 @@
         <EmojiSidebar></EmojiSidebar>
         <StickerSidebar></StickerSidebar>
         <GifsSidebar></GifsSidebar>
+        <ChatInfoSidebar></ChatInfoSidebar>
     </div>
     
 </div>

@@ -1,8 +1,23 @@
 <script lang="ts">
-    let {style = 0, width = "max-content", action = () => {}, children, id = ""} = $props()
+    let {
+        style = 0, 
+        /*
+        0 = default
+        1 = accent default
+        2 = selected
+        3 = destructive
+        4 = chip
+        5 = accent chip
+        6 = selected chip
+        */
+        width = "min-content", 
+        action = () => {}, 
+        children, 
+        id = ""
+    } = $props()
 </script>
 
-<button id={id} class="bv{style}" style="--w: {width}" 
+<button id={id} class="bv{style}" style="--w: {width};" 
     onclick={(e) => {
         action(e);
     }}
@@ -16,9 +31,33 @@
     button{
         white-space: nowrap;
         flex-direction: row !important;
+        width: var(--w);
     }
 
-    .bv3{
+    .bv2{
+        background-color: c.$accent-50;
+        border: solid;
+        color: c.$text;
+        border-color: c.$accent;
+        border-width: 1px;
+        border-radius: v.$corner-elem;
+        padding: v.$spacing-def;
+        padding-left: 9px;
+        padding-right: 9px;
+        box-sizing: border-box;
+        height: v.$elem-height;
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+    }
+    .bv2:hover{
+        background-color: c.$accent-80;
+    }
+    .bv2:active{
+        background-color: c.$accent;
+    }
+
+    .bv5{
         background-color: c.$accent;
         color: c.$text;
         border-radius: v.$corner-elem;
@@ -31,11 +70,11 @@
         @include v.standard-text();
     }
     
-    .bv3:hover{
+    .bv5:hover{
         background-color: c.$accent-80;
     }
 
-    .bv3:active{
+    .bv5:active{
         background-color: c.$accent-40;
     }
 
@@ -81,7 +120,7 @@
         background-color: c.$clicked;
     }
 
-    .bv2{
+    .bv4{
         background-color: c.$clickable;
         color: c.$text;
         border-radius: v.$corner-elem;
@@ -94,11 +133,11 @@
         @include v.standard-text();
     }
 
-    .bv2:hover{
+    .bv4:hover{
         background-color: c.$hover;
     }
 
-    .bv2:active{
+    .bv4:active{
         background-color: c.$clicked;
     }
 </style>

@@ -52,23 +52,13 @@
         <div class="scroll-horiz" bind:this={scrollContainer} onwheel={handleWheel}
         ontouchstart={handleTouchStart}
         ontouchmove={handleTouchMove}>
-            <Button style={2}><Icon name="Star"/>balls 69</Button>
-            <Button style={2}><Icon name="Star"/>balls 69</Button>
-            <Button style={2}><Icon name="Star"/>balls 69</Button>
-            <Button style={2}><Icon name="Star"/>balls 69</Button>
-            <Button style={2}><Icon name="Star"/>balls 69</Button>
-            <Button style={2}><Icon name="Star"/>balls 69</Button>
-            <Button style={2}><Icon name="Star"/>balls 69</Button>
-            <Button style={2}><Icon name="Star"/>balls 69</Button>
-            <Button style={2}><Icon name="Star"/>balls 69</Button>
-            <Button style={2}><Icon name="Star"/>balls 69</Button>
-            <Button style={2}><Icon name="Star"/>balls 69</Button>
+            <Button style={4}><Icon name="Star"/>balls 69</Button>
         </div>
     </div>
     <hr class="separator"/>
     <div class="chatEntries">
-        <ChatEntry isFavorite={true}></ChatEntry>
-        <ChatEntry username={"Harry Bōlz"}></ChatEntry>
+        <ChatEntry isSelected={true} isFavorite={true}></ChatEntry>
+        <ChatEntry isFavorite={true} username={"Harry Bōlz"}></ChatEntry>
         <ChatEntry unreads={69}></ChatEntry>
         <ChatEntry timestamp={Date.now()}></ChatEntry>
         <ChatEntry></ChatEntry>
@@ -115,10 +105,6 @@
     }
     .scroll-horiz::-webkit-scrollbar{
         width: none;
-    }
-    .elements-horiz{
-        display: flex;
-        flex-direction: row;
     }
     .sidebar-top{
         

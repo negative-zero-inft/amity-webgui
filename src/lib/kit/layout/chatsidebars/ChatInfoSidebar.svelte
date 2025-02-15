@@ -1,10 +1,10 @@
 <script lang="ts">
 
-    import { isEmojiBar } from "$lib/scripts/chatViews";
+    import { isChatInfo } from "$lib/scripts/chatViews";
     let animatedSidebar: number = 0;
 
     $: {
-        if($isEmojiBar){
+        if($isChatInfo){
             animatedSidebar = 320;
         }else{
             animatedSidebar = 0;
@@ -12,11 +12,11 @@
     }
 </script>
 
-{#if $isEmojiBar}
+{#if $isChatInfo}
     <hr class="separator"/>
 {/if}
 <div class="bar" style="--w: {animatedSidebar}px">
-    emoji
+    chat info
 </div>
 
 <style lang="scss">

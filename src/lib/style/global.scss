@@ -40,3 +40,13 @@ body{
     width: 100vw;
     overflow: hidden;
 }
+
+.elements-horiz{
+    display: flex;
+    flex-direction: row;
+}
+
+.elements-vert{
+    display: flex;
+    flex-direction: column;
+}

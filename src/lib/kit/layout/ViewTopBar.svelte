@@ -2,6 +2,13 @@
 	import Button from "../Button.svelte";
 	import Icon from "../Icon.svelte";
 	import Textbox from "../Textbox.svelte";
+
+    let {
+        chatName = "General",
+        subtitle = "Negative Zero"
+    } = $props()
+
+    import { isChatInfo, setActive } from "$lib/scripts/chatViews";
 </script>
 
 <div class="viewTopBar">
@@ -10,14 +17,18 @@
             <Icon name="Chat"/>
         </div>
         <div class="chatName">
-            <div>General</div>
-            <div class="subtext">Negative Zero</div>
+            <div>{chatName}</div>
+            <div class="subtext">{subtitle}</div>
         </div>
     </div>
     <div class="elements-horiz" style="gap: 10px"> 
         <Button><Icon name="Pin/Angled"/></Button>
         <Textbox placeholder="Search" icon="Search"></Textbox>
-        <Button><Icon name="Hamburger"/></Button>
+        {#if $isChatInfo}
+            <Button style={2} action={() =>{setActive("info")}}><Icon name="X"/></Button>
+        {:else}
+            <Button action={() =>{setActive("info")}}><Icon name="Hamburger"/></Button>
+        {/if}
     </div>
 </div>
 
@@ -58,10 +69,5 @@
         width: 100%;
         box-sizing: border-box;
         padding: v.$spacing-def;
-    }
-
-    .elements-horiz{
-        display: flex;
-        flex-direction: row;
     }
 </style>

@@ -3,28 +3,7 @@
 	import Icon from "../Icon.svelte";
     import Textbox from "../Textbox.svelte"
 
-    import { isEmojiBar, isCloudStorageBar, isCommandBar, isContactsBar, isGifBar, isMapBar, isPollBar, isStickerBar } from "$lib/scripts/chatViews";
-
-    const states = [
-        {id: "emoji", active: isEmojiBar},
-        {id: "contacts", active: isContactsBar},
-        {id: "gifs", active: isGifBar},
-        {id: "maps", active: isMapBar},
-        {id: "polls", active: isPollBar},
-        {id: "stickers", active: isStickerBar},
-        {id: "commands", active: isCommandBar}
-    ]
-
-    function setActive(id: string) {
-        states.forEach(item => {
-            if (item.id === id) {
-                item.active.update(v => !v);
-                console.log(`set ${item.id} active`)
-            } else {
-                item.active.set(false);
-            }
-        });
-    }
+    import { isCloudStorageBar, setActive } from "$lib/scripts/chatViews";
 </script>
 
 <div class="viewBottomBar">
