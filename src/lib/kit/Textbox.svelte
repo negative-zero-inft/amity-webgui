@@ -1,11 +1,9 @@
 <script lang="ts">
-    
-    export let width: string = "200px"; // string because i'm high
-    export let icon: string | null = null;
-    export let placeholder: string = "placeholder";
-    if(icon) icon = `../icons/${icon}.svg`;
+	import Icon from "./Icon.svelte";
 
-    let padding: number;
+    let { width = "200px", icon = null, placeholder = "placeholder"} = $props();
+
+    let padding: number = $state<number>(0);
     if(icon){
         padding = 36;
     }else{
@@ -15,7 +13,9 @@
 
 <div class="wrapper">
     {#if icon}
-        <img src={icon} class="icon" alt={icon}>
+        <span class="icon" >
+            <Icon name={icon}/>
+        </span>
     {/if}
     <input type="text" placeholder={placeholder} style="--w: {width}; --icon: {icon}; --padding: {padding}px"/>
 </div>
@@ -24,7 +24,7 @@
     @use "$lib/style/variables.scss" as v;
     @use "$lib/style/colors.scss" as c;
 
-    .icon{
+    .icon {
         width: 16px;
         left: 10px;
         top: 10px;
