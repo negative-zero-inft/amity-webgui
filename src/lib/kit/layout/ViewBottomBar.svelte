@@ -8,7 +8,7 @@
 
 <div class="viewBottomBar">
     {#if $isCloudStorageBar}
-        <Button action={() =>{isCloudStorageBar.set(false)}}><Icon name="X"/></Button>
+        <Button style={2} action={() =>{isCloudStorageBar.set(false)}}><Icon name="X"/></Button>
     {:else}
         <Button action={() =>{isCloudStorageBar.set(true)}}><Icon name="Plus"/></Button>
     {/if}
