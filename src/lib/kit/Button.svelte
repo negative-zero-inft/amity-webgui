@@ -42,10 +42,10 @@
         border-width: 1px;
         border-radius: v.$corner-elem;
         padding: v.$spacing-def;
-        padding-left: 7px;
-        padding-right: 7px;
+        padding-left: 9px;
+        padding-right: 9px;
         box-sizing: border-box;
-        height: v.$chip-height;
+        height: v.$elem-height;
         display: flex;
         align-items: center;
         flex-direction: row;
@@ -66,8 +66,8 @@
         border-width: 1px;
         border-radius: v.$corner-elem;
         padding: v.$spacing-chip;
-        padding-left: 9px;
-        padding-right: 9px;
+        padding-left: 7px;
+        padding-right: 7px;
         box-sizing: border-box;
         height: v.$chip-height;
         display: flex;
