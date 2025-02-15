@@ -7,6 +7,10 @@
 <div class="viewBottomBar">
     <Button><Icon name="Plus"/></Button>
     <Textbox placeholder="Message General" icon="Chat" width="100%"/>
+    <Button><Icon name="Smile"/></Button>
+    <Button><Icon name="Sticker"/></Button>
+    <Button><Icon name="Image"/></Button>
+    <Button><Icon name="Microphone"/></Button>
 </div>
 
 <style lang="scss">
