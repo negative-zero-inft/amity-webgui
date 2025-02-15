@@ -59,7 +59,7 @@
         padding-left: 6px;
         padding-right: 6px;
         height: 16px;
-        font-size: 10px !important;
+        font-size: 11px !important;
         display: flex;
         align-items: center;
         @include v.standard-text();
