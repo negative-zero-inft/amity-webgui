@@ -55,9 +55,6 @@
         display: flex;
     }
 
-    // pseudo element barely works idkS
-    // try making the input invisible and make div look like input bo
-    // hol on
     input:focus{
         border: solid;
         border-width: 2px;
