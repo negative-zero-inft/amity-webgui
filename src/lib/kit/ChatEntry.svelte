@@ -59,9 +59,10 @@
         padding-left: 6px;
         padding-right: 6px;
         height: 16px;
-        font-size: 10px;
+        font-size: 10px !important;
         display: flex;
         align-items: center;
+        @include v.standard-text();
     }
     .noUnreads{
         background-color: c.$text-50;
@@ -108,6 +109,7 @@
         border-radius: v.$corner-elem;
         border: none;
         color: c.$text;
+        @include v.standard-text();
     }
     .chatEntry0:hover{
         background-color: c.$hover;
@@ -130,6 +132,7 @@
         border-color: c.$accent;
         color: c.$text;
         box-sizing: border-box;
+        @include v.standard-text();
     }
     .chatEntry1:hover{
         background-color: c.$accent-80;

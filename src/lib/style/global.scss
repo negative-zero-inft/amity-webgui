@@ -7,6 +7,10 @@ html {
     color: c.$text;
 }
 
+:root{
+    @include v.standard-text();
+}
+
 #body{
     background-color: c.$bg;
     margin-top: 0px;

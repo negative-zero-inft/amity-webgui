@@ -46,6 +46,7 @@
         width: var(--w);
         background: none;
         box-sizing: border-box;
+        @include v.standard-text();
     }
 
     .wrapper{
