@@ -1,18 +1,9 @@
 <script lang="ts">
+	import EmojiSidebar from "./chatsidebars/EmojiSidebar.svelte";
+	import MapSidebar from "./chatsidebars/MapSidebar.svelte";
 	
     import ViewBottomBar from "./ViewBottomBar.svelte";
 	import ViewTopBar from "./ViewTopBar.svelte";
-
-    import { isEmojiBar } from "$lib/scripts/chatViews";
-    let animatedSidebar: number = 0;
-
-    $: {
-        if($isEmojiBar){
-            animatedSidebar = 320;
-        }else{
-            animatedSidebar = 0;
-        }
-    }
 
 </script>
 
@@ -25,23 +16,13 @@
             <hr class="separator"/>
             <ViewBottomBar />
         </div>
-        {#if $isEmojiBar}
-            <hr class="separator"/>
-        {/if}
-        <div class="emojiBar" style="--w: {animatedSidebar}px">
-        </div>
+        <EmojiSidebar></EmojiSidebar>
+        <MapSidebar></MapSidebar>
     </div>
     
 </div>
 
 <style lang="scss">
-
-    .emojiBar{
-        transition: 0.25s ease 0s;
-        width: var(--w);
-        height: 100%;
-        overflow: hidden;
-    }
 
     .userView{
         display: flex;

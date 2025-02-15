@@ -1,23 +1,42 @@
-<script>
+<script lang="ts">
 	import Button from "../Button.svelte";
 	import Icon from "../Icon.svelte";
     import Textbox from "../Textbox.svelte"
 
-    import { isEmojiBar } from "$lib/scripts/chatViews";
+    import { isEmojiBar, isCloudStorageBar, isCommandBar, isContactsBar, isGifBar, isMapBar, isPollBar, isStickerBar } from "$lib/scripts/chatViews";
 
-    const changeEmojiBarState = () =>{
-        isEmojiBar.update(v => !v)
-        console.log(isEmojiBar)
+    const states = [
+        {id: "emoji", active: isEmojiBar},
+        {id: "contacts", active: isContactsBar},
+        {id: "gifs", active: isGifBar},
+        {id: "maps", active: isMapBar},
+        {id: "polls", active: isPollBar},
+        {id: "stickers", active: isStickerBar},
+        {id: "commands", active: isCommandBar}
+    ]
+
+    function setActive(id: string) {
+        states.forEach(item => {
+            if (item.id === id) {
+                item.active.update(v => !v);
+                console.log(`set ${item.id} active`)
+            } else {
+                item.active.set(false);
+            }
+        });
     }
 </script>
 
 <div class="viewBottomBar">
-    <Button><Icon name="Plus"/></Button>
+    <Button ><Icon name="Plus"/></Button>
     <Textbox placeholder="Message General" icon="Chat" width="100%"/>
-    <Button action={changeEmojiBarState}><Icon name="Smile"/></Button>
-    <Button><Icon name="Sticker"/></Button>
-    <Button><Icon name="Image"/></Button>
-    <Button><Icon name="Microphone"/></Button>
+    <Button action={() =>{setActive("contacts")}}><Icon name="Users"/></Button>
+    <Button action={() =>{setActive("maps")}}><Icon name="Location"/></Button>
+    <Button action={() =>{setActive("polls")}}><Icon name="Equalizer"/></Button>
+    <Button action={() =>{setActive("commands")}}><Icon name="Terminal"/></Button>
+    <Button action={() =>{setActive("emoji")}}><Icon name="Smile"/></Button>
+    <Button action={() =>{setActive("stickers")}}><Icon name="Sticker"/></Button>
+    <Button action={() =>{setActive("gifs")}}><Icon name="Image"/></Button>
 </div>
 
 <style lang="scss">

@@ -1,8 +1,8 @@
 <script lang="ts">
-    let {style = 0, width = "max-content", action = () => {}, children} = $props()
+    let {style = 0, width = "max-content", action = () => {}, children, id = ""} = $props()
 </script>
 
-<button class="bv{style}" style="--w: {width}" 
+<button id={id} class="bv{style}" style="--w: {width}" 
     onclick={(e) => {
         action(e);
     }}
