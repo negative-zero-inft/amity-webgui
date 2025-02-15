@@ -42,18 +42,44 @@
         border-width: 1px;
         border-radius: v.$corner-elem;
         padding: v.$spacing-def;
-        padding-left: 9px;
-        padding-right: 9px;
+        padding-left: 7px;
+        padding-right: 7px;
         box-sizing: border-box;
-        height: v.$elem-height;
+        height: v.$chip-height;
         display: flex;
         align-items: center;
         flex-direction: row;
+        gap: v.$spacing-def;
+        @include v.standard-text();
     }
     .bv2:hover{
         background-color: c.$accent-80;
     }
     .bv2:active{
+        background-color: c.$accent;
+    }
+    .bv6{
+        background-color: c.$accent-50;
+        border: solid;
+        color: c.$text;
+        border-color: c.$accent;
+        border-width: 1px;
+        border-radius: v.$corner-elem;
+        padding: v.$spacing-chip;
+        padding-left: 9px;
+        padding-right: 9px;
+        box-sizing: border-box;
+        height: v.$chip-height;
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        gap: v.$spacing-def;
+        @include v.standard-text();
+    }
+    .bv6:hover{
+        background-color: c.$accent-80;
+    }
+    .bv6:active{
         background-color: c.$accent;
     }
 

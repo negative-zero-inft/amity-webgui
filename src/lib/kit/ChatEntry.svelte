@@ -134,6 +134,9 @@
     .chatEntry1:hover{
         background-color: c.$accent-80;
     }
+    .chatEntry1:active{
+        background-color: c.$accent;
+    }
     .chatEntry1 path{
         fill: c.$text-80;
     }

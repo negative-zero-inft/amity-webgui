@@ -52,6 +52,12 @@
         <div class="scroll-horiz" bind:this={scrollContainer} onwheel={handleWheel}
         ontouchstart={handleTouchStart}
         ontouchmove={handleTouchMove}>
+            <Button style={6}><Icon name="Star"/>balls 69</Button>
+            <Button style={4}><Icon name="Star"/>balls 69</Button>
+            <Button style={4}><Icon name="Star"/>balls 69</Button>
+            <Button style={4}><Icon name="Star"/>balls 69</Button>
+            <Button style={4}><Icon name="Star"/>balls 69</Button>
+            <Button style={4}><Icon name="Star"/>balls 69</Button>
             <Button style={4}><Icon name="Star"/>balls 69</Button>
         </div>
     </div>
