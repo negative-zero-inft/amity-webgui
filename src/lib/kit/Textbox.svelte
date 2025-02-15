@@ -10,7 +10,7 @@
     }
 </script>
 
-<div class="wrapper">
+<div class="wrapper" style="--w: {width}">
     {#if icon}
         <span class="icon" >
             <Icon name={icon}/>
