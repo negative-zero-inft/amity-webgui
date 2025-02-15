@@ -3,11 +3,10 @@
 
     let { width = "200px", icon = null, placeholder = "placeholder"} = $props();
 
-    let padding: number = $state<number>(0);
+    let padding: number = $state<number>(10);
+
     if(icon){
         padding = 36;
-    }else{
-        padding = 10;
     }
 </script>
 
@@ -29,6 +28,7 @@
         left: 10px;
         top: 10px;
         position: absolute;
+        cursor: text;
     }
 
     input {

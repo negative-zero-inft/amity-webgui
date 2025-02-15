@@ -4,7 +4,7 @@
         isUnreads = unreads != 0,
         username = "user",
         preview = "egg",
-        timestamp = Date.parse("2025-01-01 00:02:00") as number,
+        timestamp = Date.parse("2025-02-14 00:00:00") as number,
         isFavorite = false,
         pfpLink = "src/lib/amity.png"
     } = $props()
@@ -13,6 +13,7 @@
 
     import check from "$lib/minicons/check.svg"
     import star from "$lib/minicons/star.svg"
+	import { timeAgo } from "$lib/utils/timeAgo";
 	import Avatar from "./Avatar.svelte";
 
     let datenow = $state(Date.now());
@@ -20,33 +21,6 @@
     setInterval(() => {
         datenow = Date.now()
     }, 1.5 * 1000)
-    
-    function timeAgo() {
-        const rtf = new Intl.RelativeTimeFormat("en", {
-            numeric: "always",
-            style: "short"
-        })
-
-        const diff = datenow - timestamp
-        const second = diff / 1000
-        const seconds = second % 60
-        const minute = second / 60
-        const hour = minute / 60
-        const day = hour / 24
-        const year = day / 365.242375;
-
-        if(year >= 1) {
-            return rtf.format(Math.round(-year), "year")
-        } else if(day >= 1) {
-            return rtf.format(Math.round(-day), "day")
-        } else if (hour >= 1) {
-            return rtf.format(Math.round(-hour), "hour")
-        } else if(minute >= 1) {
-            return rtf.format(Math.round(-minute), "minute")
-        } else {
-            return rtf.format(Math.round(-seconds), "second")
-        }
-    }
 </script>
 <button class="chatEntry">
     <Avatar {pfpLink} />
@@ -55,17 +29,17 @@
             <div class="horiz">
                 <div>{username}</div>
                 {#if isFavorite}
-                    <img src={star} style="height: 10px;"/>
+                    <img src={star} style="height: 10px;" alt="#"/>
                 {/if}
             </div>
-            <div class="textPreview">{timeAgo()}</div>
+            <div class="textPreview">{timeAgo(timestamp, datenow)}</div>
         </div>
         <div class="line">
             <div class="textPreview">{preview}</div>
             {#if isUnreads}
                 <div class="unreads">{unreads}</div>
             {:else}
-                <div class="noUnreads"><img style="width: 12px" src={check}/></div>
+                <div class="noUnreads"><img style="width: 12px" src={check} alt="#"/></div>
             {/if}
         </div>
     </div>
