@@ -28,7 +28,11 @@
 </script>
 
 <div class="viewBottomBar">
-    <Button ><Icon name="Plus"/></Button>
+    {#if $isCloudStorageBar}
+        <Button action={() =>{isCloudStorageBar.set(false)}}><Icon name="X"/></Button>
+    {:else}
+        <Button action={() =>{isCloudStorageBar.set(true)}}><Icon name="Plus"/></Button>
+    {/if}
     <Textbox placeholder="Message General" icon="Chat" width="100%"/>
     <Button action={() =>{setActive("contacts")}}><Icon name="Users"/></Button>
     <Button action={() =>{setActive("maps")}}><Icon name="Location"/></Button>

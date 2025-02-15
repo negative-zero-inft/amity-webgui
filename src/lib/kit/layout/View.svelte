@@ -1,6 +1,12 @@
 <script lang="ts">
-	import EmojiSidebar from "./chatsidebars/EmojiSidebar.svelte";
+	import CloudStorageBar from "./chatsidebars/CloudStorageSidebar.svelte";
+	import CommandSidear from "./chatsidebars/CommandSidear.svelte";
+	import ContactsSidebar from "./chatsidebars/ContactsSidebar.svelte";
+    import EmojiSidebar from "./chatsidebars/EmojiSidebar.svelte";
+	import GifsSidebar from "./chatsidebars/GifsSidebar.svelte";
 	import MapSidebar from "./chatsidebars/MapSidebar.svelte";
+	import PollSidebar from "./chatsidebars/PollSidebar.svelte";
+	import StickerSidebar from "./chatsidebars/StickerSidebar.svelte";
 	
     import ViewBottomBar from "./ViewBottomBar.svelte";
 	import ViewTopBar from "./ViewTopBar.svelte";
@@ -11,13 +17,19 @@
     <ViewTopBar />
     <hr class="separator"/>
     <div class="subView">
+        <CloudStorageBar></CloudStorageBar>
         <div class="userView">
             <div class="chatView">я насрал в турбину самолета</div>
             <hr class="separator"/>
             <ViewBottomBar />
         </div>
-        <EmojiSidebar></EmojiSidebar>
+        <ContactsSidebar></ContactsSidebar>
         <MapSidebar></MapSidebar>
+        <PollSidebar></PollSidebar>
+        <CommandSidear></CommandSidear>
+        <EmojiSidebar></EmojiSidebar>
+        <StickerSidebar></StickerSidebar>
+        <GifsSidebar></GifsSidebar>
     </div>
     
 </div>
