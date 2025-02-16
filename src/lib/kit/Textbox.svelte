@@ -23,6 +23,7 @@
     @use "$lib/style/variables.scss" as v;
     @use "$lib/style/colors.scss" as c;
 
+
     .icon {
         width: 16px;
         height: 16px !important;
@@ -48,6 +49,14 @@
         background: none;
         box-sizing: border-box;
         @include v.standard-text();
+        transition: 0.25s;
+    }
+    input:hover{
+        border-width: 5px;
+    }
+    input:active{
+        transition: 0.1s;
+        border-width: 1px;
     }
 
     .wrapper{
@@ -59,7 +68,7 @@
 
     input:focus{
         border: solid;
-        border-width: 2px;
+        // border-width: 2px;
         border-color: c.$text-50;
         outline: none;
     }
