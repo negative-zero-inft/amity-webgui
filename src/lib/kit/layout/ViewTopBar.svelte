@@ -24,11 +24,7 @@
     <div class="elements-horiz" style="gap: 10px"> 
         <Button><Icon name="Pin/Angled"/></Button>
         <Textbox placeholder="Search" icon="Search"></Textbox>
-        {#if $isChatInfo}
-            <Button style={2} action={() =>{setActive("info")}}><Icon name="X"/></Button>
-        {:else}
-            <Button action={() =>{setActive("info")}}><Icon name="Hamburger"/></Button>
-        {/if}
+        <Button style={$isChatInfo ? 2 : 0} action={() =>{setActive("info")}}><Icon name={$isChatInfo ? "X" : "Hamburger"}/></Button>
     </div>
 </div>
 

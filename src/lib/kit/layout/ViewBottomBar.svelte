@@ -3,23 +3,19 @@
 	import Icon from "../Icon.svelte";
     import Textbox from "../Textbox.svelte"
 
-    import { isCloudStorageBar, setActive } from "$lib/scripts/chatViews";
+    import { isCloudStorageBar, isContactsBar, isMapBar, isPollBar, isCommandBar, isEmojiBar, isStickerBar, isGifBar, setActive } from "$lib/scripts/chatViews";
 </script>
 
 <div class="viewBottomBar">
-    {#if $isCloudStorageBar}
-        <Button style={2} action={() =>{isCloudStorageBar.set(false)}}><Icon name="X"/></Button>
-    {:else}
-        <Button action={() =>{isCloudStorageBar.set(true)}}><Icon name="Plus"/></Button>
-    {/if}
+    <Button style={$isCloudStorageBar ? 2 : 0} action={() =>{isCloudStorageBar.set(!$isCloudStorageBar)}}><Icon name={$isCloudStorageBar ? "X" : "Plus"}/></Button>
     <Textbox placeholder="Message General" icon="Chat" width="100%"/>
-    <Button action={() =>{setActive("contacts")}}><Icon name="Users"/></Button>
-    <Button action={() =>{setActive("maps")}}><Icon name="Location"/></Button>
-    <Button action={() =>{setActive("polls")}}><Icon name="equalizer"/></Button>
-    <Button action={() =>{setActive("commands")}}><Icon name="Terminal"/></Button>
-    <Button action={() =>{setActive("emoji")}}><Icon name="Smile"/></Button>
-    <Button action={() =>{setActive("stickers")}}><Icon name="StickyNotes"/></Button>
-    <Button action={() =>{setActive("gifs")}}><Icon name="Image"/></Button>
+    <Button style={$isContactsBar ? 2 : 0} action={() =>{setActive("contacts")}}><Icon name={$isContactsBar ? "X" : "Users"}/></Button>
+    <Button style={$isMapBar ? 2 : 0} action={() =>{setActive("maps")}}><Icon name={$isMapBar ? "X" : "Location"}/></Button>
+    <Button style={$isPollBar ? 2 : 0} action={() =>{setActive("polls")}}><Icon name={$isPollBar ? "X" : "equalizer"}/></Button>
+    <Button style={$isCommandBar ? 2 : 0} action={() =>{setActive("commands")}}><Icon name={$isCommandBar ? "X" : "Terminal"}/></Button>
+    <Button style={$isEmojiBar ? 2 : 0} action={() =>{setActive("emoji")}}><Icon name={$isEmojiBar ? "X" : "Smile"}/></Button>
+    <Button style={$isStickerBar ? 2 : 0} action={() =>{setActive("stickers")}}><Icon name={$isStickerBar ? "X" : "StickyNotes"}/></Button>
+    <Button style={$isGifBar ? 2 : 0} action={() =>{setActive("gifs")}}><Icon name={$isGifBar ? "X" : "Image"}/></Button>
 </div>
 
 <style lang="scss">
