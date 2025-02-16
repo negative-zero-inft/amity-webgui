@@ -32,6 +32,7 @@
         white-space: nowrap;
         flex-direction: row !important;
         width: var(--w);
+        justify-content: center;
     }
 
     .bv2{

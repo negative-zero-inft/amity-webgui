@@ -120,29 +120,20 @@
         <Button style={2}><Icon name="Star"></Icon></Button>
         <Button ><Icon name="Clock"></Icon></Button>
         <hr class="smallSeparator" style="height: 10px;">
-        <Button ><Emoji></Emoji></Button>
-        <Button ><Emoji></Emoji></Button>
-        <Button ><Emoji></Emoji></Button>
-        <Button ><Emoji></Emoji></Button>
-        <Button ><Emoji></Emoji></Button>
-        <Button ><Emoji></Emoji></Button>
-        <Button ><Emoji></Emoji></Button>
-        <Button ><Emoji></Emoji></Button>
-        <Button ><Emoji></Emoji></Button>
-        <Button ><Emoji></Emoji></Button>
-        <Button ><Emoji></Emoji></Button>
-        <Button ><Emoji></Emoji></Button>
-        <Button ><Emoji></Emoji></Button>
-        <Button ><Emoji></Emoji></Button>
-        <Button ><Emoji></Emoji></Button>
-        <Button ><Emoji></Emoji></Button>
-        <Button ><Emoji></Emoji></Button>
-        <Button ><Emoji></Emoji></Button>
-        <Button ><Emoji></Emoji></Button>
-        <Button ><Emoji></Emoji></Button>
-        <Button ><Emoji></Emoji></Button>
-        <Button ><Emoji></Emoji></Button>
-        <Button ><Emoji></Emoji></Button>
+        <Button width="36px"><Emoji></Emoji></Button>
+        <Button width="36px"><Emoji></Emoji></Button>
+        <Button width="36px"><Emoji></Emoji></Button>
+        <Button width="36px"><Emoji></Emoji></Button>
+        <Button width="36px"><Emoji></Emoji></Button>
+        <Button width="36px"><Emoji></Emoji></Button>
+        <Button width="36px"><Emoji></Emoji></Button>
+        <Button width="36px"><Emoji></Emoji></Button>
+        <Button width="36px"><Emoji></Emoji></Button>
+        <Button width="36px"><Emoji></Emoji></Button>
+        <Button width="36px"><Emoji></Emoji></Button>
+        <Button width="36px"><Emoji></Emoji></Button>
+        <Button width="36px"><Emoji></Emoji></Button>
+        <Button width="36px"><Emoji></Emoji></Button>
     </div>
 </div>
 
