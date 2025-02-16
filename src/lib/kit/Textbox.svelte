@@ -52,6 +52,7 @@
         transition: 0.25s;
     }
     input:hover{
+        padding-left: calc(var(--padding) - 5px);
         border-width: 5px;
     }
     input:active{
@@ -68,8 +69,9 @@
 
     input:focus{
         border: solid;
-        // border-width: 2px;
+        border-width: 2px;
         border-color: c.$text-50;
+        padding-left: calc(var(--padding) - 2px);
         outline: none;
     }
 </style>
