@@ -6,21 +6,24 @@
 
 <div class="avatars">
 	<span class="avatar">
-		<Avatar pfpLink={avatar1} --w="16px" --h="16px" />
+		<Avatar isOutline pfpLink={avatar1} --w="16px" --h="16px" />
 	</span>
 	{#if avatar2}
 		<span class="avatar">
-			<Avatar pfpLink={avatar2} --w="16px" --h="16px" />
+			<Avatar isOutline pfpLink={avatar2} --w="16px" --h="16px" />
 		</span>
 	{/if}
 	{#if avatar3}
 		<span class="avatar">
-			<Avatar pfpLink={avatar3} --w="16px" --h="16px" />
+			<Avatar isOutline pfpLink={avatar3} --w="16px" --h="16px" />
 		</span>
 	{/if}
 </div>
 
 <style lang="scss">
+	@use "$lib/style/colors.scss" as c;
+    @use "$lib/style/variables.scss" as v;
+
 	.avatars {
 		display: inline-flex;
 		flex-direction: row-reverse;
