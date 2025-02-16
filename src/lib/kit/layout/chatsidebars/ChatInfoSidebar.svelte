@@ -1,15 +1,16 @@
 <script lang="ts">
 
     import { isChatInfo } from "$lib/scripts/chatViews";
-    let animatedSidebar: number = 0;
-
-    $: {
+    let animatedSidebar: number = $state(0); // sveltic runes
+    
+    // the $: is being deprecated.
+    $effect(() => {
         if($isChatInfo){
             animatedSidebar = 320;
         }else{
             animatedSidebar = 0;
         }
-    }
+    })
 </script>
 
 {#if $isChatInfo}
