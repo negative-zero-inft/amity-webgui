@@ -15,7 +15,7 @@
     <Textbox placeholder="Message General" icon="Chat" width="100%"/>
     <Button action={() =>{setActive("contacts")}}><Icon name="Users"/></Button>
     <Button action={() =>{setActive("maps")}}><Icon name="Location"/></Button>
-    <Button action={() =>{setActive("polls")}}><Icon name="Equalizer"/></Button>
+    <Button action={() =>{setActive("polls")}}><Icon name="equalizer"/></Button>
     <Button action={() =>{setActive("commands")}}><Icon name="Terminal"/></Button>
     <Button action={() =>{setActive("emoji")}}><Icon name="Smile"/></Button>
     <Button action={() =>{setActive("stickers")}}><Icon name="Sticker"/></Button>
