@@ -148,9 +148,14 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        transition: 0.25s;
     }
     .centered:hover{
         transform: scale(1.5);
+    }
+    .centered:active{
+        transform: scale(0.75);
+        transition: 0.1s;
     }
 
     .emojiGrid{
