@@ -9,7 +9,7 @@ export default defineConfig({
 		sveltesvg({
 			includePaths: ["./src/lib/icons/"]
 		}),
-		sveltekitSprite()
+		sveltekitSprite({svgSource: "static/icons"})
 	],
 	server: {
 		allowedHosts: true
