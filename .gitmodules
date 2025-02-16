@@ -1,3 +1,3 @@
-[submodule "static/icons"]
-	path = static/icons
+[submodule "src/lib/sprite"]
+	path = src/lib/sprite
 	url = https://github.com/negative-zero-inft/Negative-Zero-Icons
