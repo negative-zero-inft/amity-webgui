@@ -25,6 +25,7 @@
 
     .icon {
         width: 16px;
+        height: 16px !important;
         left: 10px;
         top: 10px;
         position: absolute;

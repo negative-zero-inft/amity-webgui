@@ -21,7 +21,8 @@ import ChatInfoSidebar from "./chatsidebars/ChatInfoSidebar.svelte";
     <div class="subView">
         <CloudStorageBar></CloudStorageBar>
         <div class="userView">
-            <div class="chatView"><Button style={2}>asdjikuajs</Button></div>
+            <div class="chatView">
+            </div>
             <hr class="separator"/>
             <ViewBottomBar />
         </div>

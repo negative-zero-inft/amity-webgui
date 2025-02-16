@@ -2,4 +2,6 @@
     let {name = "-0"} = $props();
 </script>
 
-<img src="icons/{name}.svg" alt={name}>
+<svg style="width: 16px; height:16px;">
+    <use xlink:href="#svg--{name.replaceAll("/", "-")}" />
+</svg>
