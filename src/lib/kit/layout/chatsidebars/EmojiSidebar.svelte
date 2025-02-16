@@ -120,21 +120,20 @@
         <Button style={2}><Icon name="Star"></Icon></Button>
         <Button ><Icon name="Clock"></Icon></Button>
         <hr class="smallSeparator" style="height: 10px;">
-        <Button ><Icon name="Clock"></Icon></Button>
-        <Button ><Icon name="Clock"></Icon></Button>
-        <Button ><Icon name="Clock"></Icon></Button>
-        <Button ><Icon name="Clock"></Icon></Button>
-        <Button ><Icon name="Clock"></Icon></Button>
-        <Button ><Icon name="Clock"></Icon></Button>
-        <Button ><Icon name="Clock"></Icon></Button>
-        <Button ><Icon name="Clock"></Icon></Button>
-        <Button ><Icon name="Clock"></Icon></Button>
-        <Button ><Icon name="Clock"></Icon></Button>
-        <Button ><Icon name="Clock"></Icon></Button>
-        <Button ><Icon name="Clock"></Icon></Button>
-        <Button ><Icon name="Clock"></Icon></Button>
-        <Button ><Icon name="Clock"></Icon></Button>
-        <Button ><Icon name="Clock"></Icon></Button>
+        <Button width="36px"><Emoji></Emoji></Button>
+        <Button width="36px"><Emoji></Emoji></Button>
+        <Button width="36px"><Emoji></Emoji></Button>
+        <Button width="36px"><Emoji></Emoji></Button>
+        <Button width="36px"><Emoji></Emoji></Button>
+        <Button width="36px"><Emoji></Emoji></Button>
+        <Button width="36px"><Emoji></Emoji></Button>
+        <Button width="36px"><Emoji></Emoji></Button>
+        <Button width="36px"><Emoji></Emoji></Button>
+        <Button width="36px"><Emoji></Emoji></Button>
+        <Button width="36px"><Emoji></Emoji></Button>
+        <Button width="36px"><Emoji></Emoji></Button>
+        <Button width="36px"><Emoji></Emoji></Button>
+        <Button width="36px"><Emoji></Emoji></Button>
     </div>
 </div>
 
@@ -149,6 +148,14 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        transition: 0.25s;
+    }
+    .centered:hover{
+        transform: scale(1.5);
+    }
+    .centered:active{
+        transform: scale(0.75);
+        transition: 0.1s;
     }
 
     .emojiGrid{
