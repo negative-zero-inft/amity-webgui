@@ -120,21 +120,29 @@
         <Button style={2}><Icon name="Star"></Icon></Button>
         <Button ><Icon name="Clock"></Icon></Button>
         <hr class="smallSeparator" style="height: 10px;">
-        <Button ><Icon name="Clock"></Icon></Button>
-        <Button ><Icon name="Clock"></Icon></Button>
-        <Button ><Icon name="Clock"></Icon></Button>
-        <Button ><Icon name="Clock"></Icon></Button>
-        <Button ><Icon name="Clock"></Icon></Button>
-        <Button ><Icon name="Clock"></Icon></Button>
-        <Button ><Icon name="Clock"></Icon></Button>
-        <Button ><Icon name="Clock"></Icon></Button>
-        <Button ><Icon name="Clock"></Icon></Button>
-        <Button ><Icon name="Clock"></Icon></Button>
-        <Button ><Icon name="Clock"></Icon></Button>
-        <Button ><Icon name="Clock"></Icon></Button>
-        <Button ><Icon name="Clock"></Icon></Button>
-        <Button ><Icon name="Clock"></Icon></Button>
-        <Button ><Icon name="Clock"></Icon></Button>
+        <Button ><Emoji></Emoji></Button>
+        <Button ><Emoji></Emoji></Button>
+        <Button ><Emoji></Emoji></Button>
+        <Button ><Emoji></Emoji></Button>
+        <Button ><Emoji></Emoji></Button>
+        <Button ><Emoji></Emoji></Button>
+        <Button ><Emoji></Emoji></Button>
+        <Button ><Emoji></Emoji></Button>
+        <Button ><Emoji></Emoji></Button>
+        <Button ><Emoji></Emoji></Button>
+        <Button ><Emoji></Emoji></Button>
+        <Button ><Emoji></Emoji></Button>
+        <Button ><Emoji></Emoji></Button>
+        <Button ><Emoji></Emoji></Button>
+        <Button ><Emoji></Emoji></Button>
+        <Button ><Emoji></Emoji></Button>
+        <Button ><Emoji></Emoji></Button>
+        <Button ><Emoji></Emoji></Button>
+        <Button ><Emoji></Emoji></Button>
+        <Button ><Emoji></Emoji></Button>
+        <Button ><Emoji></Emoji></Button>
+        <Button ><Emoji></Emoji></Button>
+        <Button ><Emoji></Emoji></Button>
     </div>
 </div>
 
@@ -149,6 +157,9 @@
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+    .centered:hover{
+        transform: scale(1.5);
     }
 
     .emojiGrid{
