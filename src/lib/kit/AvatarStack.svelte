@@ -24,6 +24,9 @@
 	.avatars {
 		display: inline-flex;
 		flex-direction: row-reverse;
+		width: min-content;
+		align-items: center;
+		height: 16px;
 	}
 
 	.avatar {
@@ -31,6 +34,7 @@
 		border-radius: 50%;
 		overflow: hidden;
 		width: 60px;
+		height: 16px;
 
 		&:not(:last-child) {
 			margin-left: -50px;

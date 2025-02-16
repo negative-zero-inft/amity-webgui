@@ -126,7 +126,6 @@
 		flex-direction: column;
 	}
 
-<<<<<<< HEAD
     .avatarstack {
         display: inline-flex;
         gap: -2px;
@@ -175,14 +174,3 @@
         flex-grow: 1;
     }
 </style>
-=======
-	.chatEntries {
-		display: flex;
-		flex-direction: column;
-		gap: v.$spacing-def;
-		padding: v.$spacing-def;
-		overflow: scroll;
-		flex-grow: 1;
-	}
-</style>
->>>>>>> 5a26bd1d5eed08e8d575901781ce1d4b4f1a3bf6
