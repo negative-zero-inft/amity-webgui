@@ -23,7 +23,7 @@
     </div>
     <div class="elements-horiz" style="gap: 10px"> 
         <Button><Icon name="Pin/Angled"/></Button>
-        <Textbox placeholder="Search" icon="Search"></Textbox>
+        <Textbox width="208px" placeholder="Search" icon="Search"></Textbox>
         <Button style={$isChatInfo ? 2 : 0} action={() =>{setActive("info")}}><Icon name={$isChatInfo ? "X" : "Hamburger"}/></Button>
     </div>
 </div>
