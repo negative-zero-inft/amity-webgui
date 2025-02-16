@@ -1,42 +1,47 @@
 <script>
+	import Avatar from './Avatar.svelte';
 
-	import Avatar from "./Avatar.svelte";
-
-    let { avatar1 = "src/lib/amity.png", avatar2 = null, avatar3 = null} = $props()
+	let { avatar1 = 'src/lib/amity.png', avatar2 = null, avatar3 = null } = $props();
 </script>
 
 <div class="avatars">
-    <span class="avatar">
-          <Avatar pfpLink={avatar1} --w=16px --h=16px />
-    </span>
-    {#if avatar2}
-    <span class="avatar">
-        <Avatar pfpLink={avatar2} --w=16px --h=16px />
-    </span>
-    {/if}
-    {#if avatar3}
-    <span class="avatar">
-        <Avatar pfpLink={avatar3} --w=16px --h=16px/>
-    </span>
-    {/if}
+	<span class="avatar">
+		<Avatar pfpLink={avatar1} --w="16px" --h="16px" />
+	</span>
+	{#if avatar2}
+		<span class="avatar">
+			<Avatar pfpLink={avatar2} --w="16px" --h="16px" />
+		</span>
+	{/if}
+	{#if avatar3}
+		<span class="avatar">
+			<Avatar pfpLink={avatar3} --w="16px" --h="16px" />
+		</span>
+	{/if}
 </div>
 
 <style lang="scss">
+	.avatars {
+		display: inline-flex;
+		flex-direction: row-reverse;
+	}
 
-.avatars {
-  display: inline-flex;
-  flex-direction: row-reverse;
-}
+	.avatar {
+		position: relative;
+		border-radius: 50%;
+		overflow: hidden;
+		width: 60px;
 
-.avatar {
-  position: relative;
-  border-radius: 50%;
-  overflow: hidden;
-  width: 60px;
-}
+		&:not(:last-child) {
+			margin-left: -50px;
+		}
 
-.avatar:not(:last-child) {
-  margin-left: -50px;
-}
+		&:last-child {
+			margin-left: -10px;
+		}
 
+		&:first-child {
+			margin-right: -20px;
+		}
+	}
 </style>
