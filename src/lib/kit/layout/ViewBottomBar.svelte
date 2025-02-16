@@ -18,7 +18,7 @@
     <Button action={() =>{setActive("polls")}}><Icon name="equalizer"/></Button>
     <Button action={() =>{setActive("commands")}}><Icon name="Terminal"/></Button>
     <Button action={() =>{setActive("emoji")}}><Icon name="Smile"/></Button>
-    <Button action={() =>{setActive("stickers")}}><Icon name="Sticker"/></Button>
+    <Button action={() =>{setActive("stickers")}}><Icon name="StickyNotes"/></Button>
     <Button action={() =>{setActive("gifs")}}><Icon name="Image"/></Button>
 </div>
 
