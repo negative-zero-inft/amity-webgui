@@ -100,12 +100,15 @@
         display: flex;
         flex-direction: row;
         gap: v.$spacing-def;
-        overflow: scroll;
         scrollbar-width: none;  /* Firefox */
         padding-right: v.$spacing-def;
         padding-left: v.$spacing-def;
         height: v.$chip-height;
         scroll-behavior: smooth;
+        overflow-x: scroll;
+        overflow-y: visible;
+        padding-top: 5px;
+        padding-bottom: 5px;
     }
     .scroll-horiz::-webkit-scrollbar{
         width: none;
@@ -117,7 +120,8 @@
         padding: v.$spacing-def;
         padding-right: 0px;
         padding-left: 0px;
-        gap: v.$spacing-def;
+        gap: 5px;
+        padding-bottom: 5px;
     }
     .sidebar{
         height: 100%;

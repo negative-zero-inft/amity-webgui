@@ -53,6 +53,20 @@
     @use "$lib/style/variables.scss" as v;
     @use "$lib/style/colors.scss" as c;
 
+    button{
+        white-space: nowrap;
+        flex-direction: row !important;
+        width: var(--w);
+        justify-content: center;
+        transition: 0.25s;
+    }
+    button:hover{
+        transform: scale(1.1);
+    }
+    button:active{
+        transform: scale(0.9);
+    }
+
     .unreads{
         background-color: c.$accent-80;
         border-radius: v.$corner-elem;

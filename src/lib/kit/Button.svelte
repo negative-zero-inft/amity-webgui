@@ -33,6 +33,13 @@
         flex-direction: row !important;
         width: var(--w);
         justify-content: center;
+        transition: 0.25s;
+    }
+    button:hover{
+        transform: scale(1.1);
+    }
+    button:active{
+        transform: scale(0.9);
     }
 
     .bv2{

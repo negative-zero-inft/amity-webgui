@@ -55,10 +55,12 @@
     <hr class="separator"/>
 {/if}
 <div class="bar" style="--w: {animatedSidebar}px">
-    <div class="topBar">
-        <Textbox width="100%; background-color: black;" icon="Search" placeholder="Search emoji..."></Textbox>
-        <Button><Icon name="Plus"></Icon></Button>
-    </div>
+    {#if $isEmojiBar}        
+        <div class="topBar">
+            <Textbox width="100%; background-color: black;" icon="Search" placeholder="Search emoji..."></Textbox>
+            <Button><Icon name="Plus"></Icon></Button>
+        </div>
+    {/if}
     <!-- <hr class="separator"/> -->
     <div class="emojiList">
         <Label icon="Star" label="Favorites"></Label>
