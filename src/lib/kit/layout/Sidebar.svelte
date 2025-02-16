@@ -1,4 +1,5 @@
 <script lang="ts">
+	import AvatarStack from "../AvatarStack.svelte";
 	import Button from "../Button.svelte";
 	import ChatEntry from "../ChatEntry.svelte";
 	import Icon from "../Icon.svelte";
@@ -46,12 +47,15 @@
             padding-right: 10px; 
             padding-left: 10px;">
             <Button><Icon name="Hamburger" /></Button>
-            <Button><Icon name="Camera/Video"/>Stories</Button>
+            <Button>
+                <Icon name="Camera/Video"/>
+                <span class="avatarstack">
+                    Stories <AvatarStack avatar2={"guitar.png"} avatar3={"src/lib/amity.png"}/>
+                </span>
+            </Button>
             <Button><Icon name="Search"/></Button>
         </div>
-        <div class="scroll-horiz" bind:this={scrollContainer} onwheel={handleWheel}
-        ontouchstart={handleTouchStart}
-        ontouchmove={handleTouchMove}>
+        <div class="scroll-horiz" bind:this={scrollContainer} onwheel={handleWheel}>
             <Button style={6}><Icon name="Star"/>balls 69</Button>
             <Button style={4}><Icon name="Star"/>balls 69</Button>
             <Button style={4}><Icon name="Star"/>balls 69</Button>
@@ -85,19 +89,13 @@
 
     @use "$lib/style/colors.scss" as c;
     @use "$lib/style/variables.scss" as v;
-    
-    .storiespfps{
-        display: grid;
-        align-items: center;
+
+
+    .avatarstack {
+        display: inline-flex;
+        gap: -2px;
     }
-    .storiespfp{
-        grid-area: 1/1;
-        width: 16px;
-        height: 16px;
-        border-radius: 50%;
-        outline: 2px;
-        outline-color: c.$clickable;
-    }
+
     .scroll-horiz{
         display: flex;
         flex-direction: row;

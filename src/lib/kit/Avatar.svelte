@@ -8,8 +8,8 @@
     @use "$lib/style/variables.scss" as v;
 
     img {
-        width: v.$elem-height;
-        height: v.$elem-height;
+        width: var(--w,v.$elem-height);
+        height: var(--h, v.$elem-height);
         border-radius: 50%;
     }
 </style>
