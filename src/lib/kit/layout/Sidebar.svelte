@@ -17,7 +17,6 @@
 
 		scrollContainer.scrollLeft += delta * scrollSpeed;
 	}
-
 </script>
 
 <div class="sidebar">
@@ -89,10 +88,12 @@
 		padding-left: v.$spacing-def;
 		height: v.$chip-height;
 		scroll-behavior: smooth;
+
+		&::-webkit-scrollbar {
+			width: none;
+		}
 	}
-	.scroll-horiz::-webkit-scrollbar {
-		width: none;
-	}
+
 	.sidebar-top {
 		flex-direction: column;
 		display: flex;
@@ -101,6 +102,7 @@
 		padding-left: 0px;
 		gap: v.$spacing-def;
 	}
+
 	.sidebar {
 		height: 100%;
 		width: 320px;
@@ -108,51 +110,12 @@
 		flex-direction: column;
 	}
 
-    .avatarstack {
-        display: inline-flex;
-        gap: -2px;
-    }
-
-    .scroll-horiz{
-        display: flex;
-        flex-direction: row;
-        gap: v.$spacing-def;
-        scrollbar-width: none;  /* Firefox */
-        padding-right: v.$spacing-def;
-        padding-left: v.$spacing-def;
-        height: v.$chip-height;
-        scroll-behavior: smooth;
-        overflow-x: scroll;
-        overflow-y: visible;
-        padding-top: 5px;
-        padding-bottom: 5px;
-    }
-    .scroll-horiz::-webkit-scrollbar{
-        width: none;
-    }
-    .sidebar-top{
-        
-        flex-direction: column;
-        display: flex;
-        padding: v.$spacing-def;
-        padding-right: 0px;
-        padding-left: 0px;
-        gap: 5px;
-        padding-bottom: 5px;
-    }
-    .sidebar{
-        height: 100%;
-        width: 320px;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .chatEntries{
-        display: flex;
-        flex-direction: column;
-        gap: v.$spacing-def;
-        padding: v.$spacing-def;
-        overflow: scroll;
-        flex-grow: 1;
-    }
+	.chatEntries {
+		display: flex;
+		flex-direction: column;
+		gap: v.$spacing-def;
+		padding: v.$spacing-def;
+		overflow: scroll;
+		flex-grow: 1;
+	}
 </style>

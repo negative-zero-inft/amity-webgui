@@ -1,16 +1,16 @@
 <script lang="ts">
-    let {iconName = "star"} = $props();
+	let { iconName = 'star' } = $props();
 
-    const loadIcon = (iconName: string) => {
-        const icons = import.meta.glob('../miniicons/**/*.svg', { eager: true, query: '?url' });
-        console.log(icons);
-        return icons[`../miniicons/${iconName}.svg`]
-    };
+	const loadIcon = (iconName: string) => {
+		const icons = import.meta.glob('../miniicons/**/*.svg', { eager: true, query: '?url' });
+		console.log(icons);
+		return icons[`../miniicons/${iconName}.svg`];
+	};
 </script>
 
-<img src={loadIcon(iconName) as string} alt="#">
+<img src={loadIcon(iconName) as string} alt="#" />
+
+<!-- u won't know next when this will be used again-->
 
 <style lang="scss">
 </style>
-
-<!-- u won't know next when this will be used again-->

@@ -12,6 +12,13 @@
 	@use '$lib/style/variables.scss' as v;
 	@use '$lib/style/colors.scss' as c;
 
+	@mixin message {
+		max-width: 600px;
+		overflow-wrap: break-word;
+		width: max-content;
+		padding: v.$spacing-def;
+	}
+
 	.fullMessage {
 		display: flex;
 		flex-direction: row;
@@ -20,51 +27,41 @@
 
 	.message00 {
 		background-color: c.$clickable;
-		width: max-content;
-		padding: v.$spacing-def;
 		border-radius: 15px 15px 15px 5px;
-		max-width: 600px;
-		overflow-wrap: break-word;
-	}
-	.message00:hover {
-		background-color: c.$hover;
-	}
-	.message01:hover {
-		background-color: c.$hover;
+		@include message;
+
+		&:hover {
+			background-color: c.$hover;
+		}
 	}
 
 	.message10 {
 		background-color: c.$accent-40;
-		width: max-content;
-		padding: v.$spacing-def;
 		border-radius: 15px 15px 5px 15px;
-		max-width: 600px;
-		overflow-wrap: break-word;
+		@include message;
+
+		&:hover {
+			background-color: c.$accent-80;
+		}
 	}
 
 	.message01 {
 		background-color: c.$clickable;
-		width: max-content;
-		padding: v.$spacing-def;
 		border-radius: 5px 15px 15px 5px;
-		max-width: 600px;
-		overflow-wrap: break-word;
+		@include message;
+
+		&:hover {
+			background-color: c.$hover;
+		}
 	}
 
 	.message11 {
 		background-color: c.$accent-40;
-		width: max-content;
-		padding: v.$spacing-def;
 		border-radius: 15px 5px 5px 15px;
-		max-width: 600px;
-		overflow-wrap: break-word;
-	}
+		@include message;
 
-	.message10:hover {
-		background-color: c.$accent-80;
-	}
-
-	.message11:hover {
-		background-color: c.$accent-80;
+		&:hover {
+			background-color: c.$accent-80;
+		}
 	}
 </style>

@@ -38,3 +38,11 @@ $chip-height: 32px;
     line-height: normal;
     letter-spacing: 0%;
 }
+
+@mixin sidebar {
+    transition: 0.25s ease 0s;
+    width: var(--w);
+    height: 100%;
+    overflow: hidden;
+    flex-shrink: 0;
+}

@@ -21,8 +21,8 @@
 </div>
 
 <style lang="scss">
-	@use "$lib/style/colors.scss" as c;
-    @use "$lib/style/variables.scss" as v;
+	@use '$lib/style/colors.scss' as c;
+	@use '$lib/style/variables.scss' as v;
 
 	.avatars {
 		display: inline-flex;

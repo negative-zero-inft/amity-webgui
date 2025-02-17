@@ -1,31 +1,25 @@
 <script lang="ts">
+	import { isPollBar } from '$lib/scripts/chatViews';
+	let animatedSidebar: number = $state(0);
 
-    import { isPollBar } from "$lib/scripts/chatViews";
-    let animatedSidebar: number = 0;
-
-    $: {
-        if($isPollBar){
-            animatedSidebar = 320;
-        }else{
-            animatedSidebar = 0;
-        }
-    }
+	$effect(() => {
+		if ($isPollBar) {
+			animatedSidebar = 320;
+		} else {
+			animatedSidebar = 0;
+		}
+	});
 </script>
 
 {#if $isPollBar}
-    <hr class="separator"/>
+	<hr class="separator" />
 {/if}
-<div class="bar" style="--w: {animatedSidebar}px">
-    poll
-</div>
+<div class="bar" style="--w: {animatedSidebar}px">poll</div>
 
 <style lang="scss">
+	@use '$lib/style/variables.scss' as v;
 
-    .bar{
-        transition: 0.25s ease 0s;
-        width: var(--w);
-        height: 100%;
-        overflow: hidden;
-        flex-shrink: 0;
-    }
+	.bar {
+		@include v.sidebar;
+	}
 </style>
