@@ -64,26 +64,26 @@
     <div class="emojiList">
         <Label icon="Star" label="Favorites"></Label>
         <grid class="emojiGrid">
-            <img src="https://media.tenor.com/fW2_TC-J-1EAAAAj/letter-h-dance.gif" class="centered"/>
-            <img src="https://media.tenor.com/fW2_TC-J-1EAAAAj/letter-h-dance.gif" class="centered"/>
-            <img src="https://media.tenor.com/fW2_TC-J-1EAAAAj/letter-h-dance.gif" class="centered"/>
-            <img src="https://media.tenor.com/fW2_TC-J-1EAAAAj/letter-h-dance.gif" class="centered"/>
-            <img src="https://media.tenor.com/fW2_TC-J-1EAAAAj/letter-h-dance.gif" class="centered"/>
-            <img src="https://media.tenor.com/fW2_TC-J-1EAAAAj/letter-h-dance.gif" class="centered"/>
-            <img src="https://media.tenor.com/fW2_TC-J-1EAAAAj/letter-h-dance.gif" class="centered"/>
-            <img src="https://media.tenor.com/fW2_TC-J-1EAAAAj/letter-h-dance.gif" class="centered"/>
+            <img alt="gif" src="https://media.tenor.com/fW2_TC-J-1EAAAAj/letter-h-dance.gif" class="centered"/>
+            <img alt="gif" src="https://media.tenor.com/fW2_TC-J-1EAAAAj/letter-h-dance.gif" class="centered"/>
+            <img alt="gif" src="https://media.tenor.com/fW2_TC-J-1EAAAAj/letter-h-dance.gif" class="centered"/>
+            <img alt="gif" src="https://media.tenor.com/fW2_TC-J-1EAAAAj/letter-h-dance.gif" class="centered"/>
+            <img alt="gif" src="https://media.tenor.com/fW2_TC-J-1EAAAAj/letter-h-dance.gif" class="centered"/>
+            <img alt="gif" src="https://media.tenor.com/fW2_TC-J-1EAAAAj/letter-h-dance.gif" class="centered"/>
+            <img alt="gif" src="https://media.tenor.com/fW2_TC-J-1EAAAAj/letter-h-dance.gif" class="centered"/>
+            <img alt="gif" src="https://media.tenor.com/fW2_TC-J-1EAAAAj/letter-h-dance.gif" class="centered"/>
             <div class="moreButton"><Button><Icon name="More"></Icon>More</Button></div>
         </grid>
         <Label icon="Clock" label="Recent"></Label>
         <grid class="emojiGrid">
-            <img src="https://media.tenor.com/fW2_TC-J-1EAAAAj/letter-h-dance.gif" class="centered"/>
-            <img src="https://media.tenor.com/fW2_TC-J-1EAAAAj/letter-h-dance.gif" class="centered"/>
-            <img src="https://media.tenor.com/fW2_TC-J-1EAAAAj/letter-h-dance.gif" class="centered"/>
-            <img src="https://media.tenor.com/fW2_TC-J-1EAAAAj/letter-h-dance.gif" class="centered"/>
-            <img src="https://media.tenor.com/fW2_TC-J-1EAAAAj/letter-h-dance.gif" class="centered"/>
-            <img src="https://media.tenor.com/fW2_TC-J-1EAAAAj/letter-h-dance.gif" class="centered"/>
-            <img src="https://media.tenor.com/fW2_TC-J-1EAAAAj/letter-h-dance.gif" class="centered"/>
-            <img src="https://media.tenor.com/fW2_TC-J-1EAAAAj/letter-h-dance.gif" class="centered"/>
+            <img alt="gif" src="https://media.tenor.com/fW2_TC-J-1EAAAAj/letter-h-dance.gif" class="centered"/>
+            <img alt="gif" src="https://media.tenor.com/fW2_TC-J-1EAAAAj/letter-h-dance.gif" class="centered"/>
+            <img alt="gif" src="https://media.tenor.com/fW2_TC-J-1EAAAAj/letter-h-dance.gif" class="centered"/>
+            <img alt="gif" src="https://media.tenor.com/fW2_TC-J-1EAAAAj/letter-h-dance.gif" class="centered"/>
+            <img alt="gif" src="https://media.tenor.com/fW2_TC-J-1EAAAAj/letter-h-dance.gif" class="centered"/>
+            <img alt="gif" src="https://media.tenor.com/fW2_TC-J-1EAAAAj/letter-h-dance.gif" class="centered"/>
+            <img alt="gif" src="https://media.tenor.com/fW2_TC-J-1EAAAAj/letter-h-dance.gif" class="centered"/>
+            <img alt="gif" src="https://media.tenor.com/fW2_TC-J-1EAAAAj/letter-h-dance.gif" class="centered"/>
             <div class="moreButton"><Button><Icon name="More"></Icon>More</Button></div>
         </grid>
     </div>
@@ -127,10 +127,6 @@
         width: 100%; /* Or a specific width */
         height: max-content; /* Or a specific height */
     }
-    .smallSeparator{
-        color: c.$text-25;
-        margin: 0;
-    }
     .emojiList{
         width: 320px;
         height: calc(100vh - 6px - 56px);
@@ -143,21 +139,6 @@
         box-sizing: border-box;
         padding-top: 56px;
         gap: v.$spacing-def;
-    }
-    .bottomBar{
-        width: 320px;
-        padding: v.$spacing-def;
-        flex-shrink: 0;
-        height: 56px;
-        box-sizing: border-box;
-        background-color: c.$bg;
-        display: flex;
-        flex-direction: row;
-        gap: v.$spacing-def;
-        align-items: center;
-        overflow: scroll;
-        scroll-behavior: smooth;
-        padding-right: 60px;
     }
     .topBar{
         width: 320px;

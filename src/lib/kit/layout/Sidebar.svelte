@@ -18,24 +18,6 @@
 		scrollContainer.scrollLeft += delta * scrollSpeed;
 	}
 
-	function handleTouchStart(_e: TouchEvent) {
-		// e.touches.clientX doesn't exist
-		// therefore it's actually returns 0
-		// still somehow works?
-		startX = 0;
-	}
-
-	function handleTouchMove(_e: TouchEvent) {
-		if (!startX || !scrollContainer) return;
-
-		const currentX = 0;
-		const diffX = startX - currentX;
-
-		console.log(currentX);
-
-		scrollContainer.scrollLeft += diffX;
-		startX = currentX;
-	}
 </script>
 
 <div class="sidebar">
