@@ -222,6 +222,7 @@
         flex-direction: row;
         gap: v.$spacing-def;
         position: absolute;
+        right: 0;
     }
 
     .bar{
@@ -232,6 +233,5 @@
         flex-shrink: 0;
         display: flex;
         flex-direction: column;
-        right: 0;
     }
 </style>
