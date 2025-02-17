@@ -64,26 +64,26 @@
     <div class="emojiList">
         <Label icon="Star" label="Favorites"></Label>
         <grid class="emojiGrid">
-            <div class="centered"></div>
-            <div class="centered"></div>
-            <div class="centered"></div>
-            <div class="centered"></div>
-            <div class="centered"></div>
-            <div class="centered"></div>
-            <div class="centered"></div>
-            <div class="centered"></div>
+            <img src="https://media.tenor.com/fW2_TC-J-1EAAAAj/letter-h-dance.gif" class="centered"/>
+            <img src="https://media.tenor.com/fW2_TC-J-1EAAAAj/letter-h-dance.gif" class="centered"/>
+            <img src="https://media.tenor.com/fW2_TC-J-1EAAAAj/letter-h-dance.gif" class="centered"/>
+            <img src="https://media.tenor.com/fW2_TC-J-1EAAAAj/letter-h-dance.gif" class="centered"/>
+            <img src="https://media.tenor.com/fW2_TC-J-1EAAAAj/letter-h-dance.gif" class="centered"/>
+            <img src="https://media.tenor.com/fW2_TC-J-1EAAAAj/letter-h-dance.gif" class="centered"/>
+            <img src="https://media.tenor.com/fW2_TC-J-1EAAAAj/letter-h-dance.gif" class="centered"/>
+            <img src="https://media.tenor.com/fW2_TC-J-1EAAAAj/letter-h-dance.gif" class="centered"/>
             <div class="moreButton"><Button><Icon name="More"></Icon>More</Button></div>
         </grid>
         <Label icon="Clock" label="Recent"></Label>
         <grid class="emojiGrid">
-            <div class="centered"></div>
-            <div class="centered"></div>
-            <div class="centered"></div>
-            <div class="centered"></div>
-            <div class="centered"></div>
-            <div class="centered"></div>
-            <div class="centered"></div>
-            <div class="centered"></div>
+            <img src="https://media.tenor.com/fW2_TC-J-1EAAAAj/letter-h-dance.gif" class="centered"/>
+            <img src="https://media.tenor.com/fW2_TC-J-1EAAAAj/letter-h-dance.gif" class="centered"/>
+            <img src="https://media.tenor.com/fW2_TC-J-1EAAAAj/letter-h-dance.gif" class="centered"/>
+            <img src="https://media.tenor.com/fW2_TC-J-1EAAAAj/letter-h-dance.gif" class="centered"/>
+            <img src="https://media.tenor.com/fW2_TC-J-1EAAAAj/letter-h-dance.gif" class="centered"/>
+            <img src="https://media.tenor.com/fW2_TC-J-1EAAAAj/letter-h-dance.gif" class="centered"/>
+            <img src="https://media.tenor.com/fW2_TC-J-1EAAAAj/letter-h-dance.gif" class="centered"/>
+            <img src="https://media.tenor.com/fW2_TC-J-1EAAAAj/letter-h-dance.gif" class="centered"/>
             <div class="moreButton"><Button><Icon name="More"></Icon>More</Button></div>
         </grid>
     </div>
@@ -109,7 +109,6 @@
         align-items: center;
         justify-content: center;
         transition: 0.25s;
-        background-color: blue;
         border-radius: v.$corner-elem;
     }
     .centered:hover{
