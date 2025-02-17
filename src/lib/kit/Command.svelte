@@ -20,8 +20,8 @@
 	@use '$lib/style/colors.scss' as c;
 
 	img{
-		width: 36px;
-		height: 36px;
+		width: v.$elem-height;
+		height: v.$elem-height;
 	}
 	button {
 		white-space: nowrap;
@@ -49,6 +49,7 @@
 		padding: 0px;
 		padding-right: v.$spacing-def;
 		@include v.standard-text();
+		overflow: hidden;
 	}
 
 	.cmd:hover {
