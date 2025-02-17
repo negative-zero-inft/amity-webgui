@@ -1,5 +1,12 @@
 <script lang="ts">
+	import Button from '$lib/kit/Button.svelte';
+	import Sticker from '$lib/kit/Sticker.svelte';
+	import Icon from '$lib/kit/Icon.svelte';
+	import Label from '$lib/kit/Label.svelte';
+	import Textbox from '$lib/kit/Textbox.svelte';
+
 	import { isCommandBar } from '$lib/scripts/chatViews';
+	import Command from '$lib/kit/Command.svelte';
 	let animatedSidebar: number = $state(0);
 
 	$effect(() => {
@@ -14,10 +21,100 @@
 {#if $isCommandBar}
 	<hr class="separator" />
 {/if}
-<div class="bar" style="--w: {animatedSidebar}px">command</div>
+<div class="bar" style="--w: {animatedSidebar}px">
+	{#if $isCommandBar}
+		<div class="topBar">
+			<Textbox width="100%; background-color: black;" icon="Search" placeholder="Search commands..."
+			></Textbox>
+			<Button><Icon name="Plus"></Icon></Button>
+		</div>
+	{/if}
+	<!-- <hr class="separator"/> -->
+	<div class="emojiList">
+		<Label icon="Star" label="Favorites"></Label>
+		<grid class="emojiGrid">
+			<Command></Command>
+			<Command></Command>
+			<Command></Command>
+			<Command></Command>
+			<Command></Command>
+			<Button width="100%"><Icon name="More"></Icon>More</Button>
+		</grid>
+		<Label icon="Clock" label="Recent"></Label>
+		<grid class="emojiGrid">
+			<Command></Command>
+			<Command></Command>
+			<Command></Command>
+			<Command></Command>
+			<Command></Command>
+			<Button width="100%"><Icon name="More"></Icon>More</Button>
+		</grid>
+	</div>
+</div>
 
 <style lang="scss">
 	@use '$lib/style/variables.scss' as v;
+	@use '$lib/style/colors.scss' as c;
+
+	.moreButton {
+		width: 100%;
+		height: 70px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.centered {
+		width: 100%;
+		height: 70px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition: 0.25s;
+		border-radius: v.$corner-elem;
+	}
+	.centered:hover {
+		transform: scale(1.1);
+	}
+	.centered:active {
+		transform: scale(0.9);
+		transition: 0.1s;
+	}
+
+	.emojiGrid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr); /* 7 equal-width columns */
+		grid-template-rows: repeat(3, 1fr); /* 3 equal-height rows */
+		gap: v.$spacing-def; /* Initial gap, will be overridden */
+		width: 100%; /* Or a specific width */
+		height: max-content; /* Or a specific height */
+	}
+	.emojiList {
+		width: 320px;
+		height: calc(100vh - 6px - 56px);
+		display: flex;
+		flex-direction: column;
+		flex-shrink: 0;
+		overflow: auto;
+		scroll-behavior: smooth;
+		padding: v.$spacing-def;
+		box-sizing: border-box;
+		padding-top: 56px;
+		gap: v.$spacing-def;
+	}
+	.topBar {
+		width: 320px;
+		height: 56px;
+		box-sizing: border-box;
+		padding: v.$spacing-def;
+		flex-shrink: 0;
+		background: linear-gradient(to bottom, #000000ff 50%, #00000000);
+		display: flex;
+		flex-direction: row;
+		gap: v.$spacing-def;
+		position: absolute;
+		right: 0;
+	}
 
 	.bar {
 		@include v.sidebar;
