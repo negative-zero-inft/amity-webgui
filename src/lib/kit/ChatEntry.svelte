@@ -9,11 +9,8 @@
         pfpLink = "src/lib/amity.png",
         isSelected = false
     } = $props()
-// btw for timestamp u could just snap datetime type.
-    const _pfpLinkRETARD: string = "http://localhost:5173/src/lib/amity.png"; // you fucking retarded this doesn't work outside of localhost
 
     import check from "$lib/minicons/check.svg"
-    import star from "$lib/minicons/star.svg"
 	import { timeAgo } from "$lib/utils/timeAgo";
 	import Avatar from "./Avatar.svelte";
 
@@ -61,10 +58,10 @@
         transition: 0.25s;
     }
     button:hover{
-        transform: scale(1.1);
+        transform: scale(1.05);
     }
     button:active{
-        transform: scale(0.9);
+        transform: scale(0.95);
     }
 
     .unreads{
