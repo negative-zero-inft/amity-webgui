@@ -170,6 +170,7 @@
     }
     
     .defaultEmoji{
+        z-index: 2137;
         position: absolute;
         right: 0;
         height: 56px;
