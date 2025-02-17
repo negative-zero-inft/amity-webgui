@@ -232,5 +232,6 @@
         flex-shrink: 0;
         display: flex;
         flex-direction: column;
+        right: 0;
     }
 </style>
