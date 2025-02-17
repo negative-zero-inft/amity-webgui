@@ -1,31 +1,25 @@
 <script lang="ts">
+	import { isCloudStorageBar } from '$lib/scripts/chatViews';
+	let animatedSidebar: number = $state(0);
 
-    import { isCloudStorageBar } from "$lib/scripts/chatViews";
-    let animatedSidebar: number = 0;
-
-    $: {
-        if($isCloudStorageBar){
-            animatedSidebar = 320;
-        }else{
-            animatedSidebar = 0;
-        }
-    }
+	$effect(() => {
+		if ($isCloudStorageBar) {
+			animatedSidebar = 320;
+		} else {
+			animatedSidebar = 0;
+		}
+	});
 </script>
 
-<div class="bar" style="--w: {animatedSidebar}px">
-    cloud storage
-</div>
+<div class="bar" style="--w: {animatedSidebar}px">cloud storage</div>
 {#if $isCloudStorageBar}
-    <hr class="separator"/>
+	<hr class="separator" />
 {/if}
 
 <style lang="scss">
+	@use '$lib/style/variables.scss' as v;
 
-    .bar{
-        transition: 0.25s ease 0s;
-        width: var(--w);
-        height: 100%;
-        overflow: hidden;
-        flex-shrink: 0;
-    }
+	.bar {
+		@include v.sidebar;
+	}
 </style>

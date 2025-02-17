@@ -1,32 +1,26 @@
 <script lang="ts">
+	import { isChatInfo } from '$lib/scripts/chatViews';
+	let animatedSidebar: number = $state(0); // sveltic runes
 
-    import { isChatInfo } from "$lib/scripts/chatViews";
-    let animatedSidebar: number = $state(0); // sveltic runes
-    
-    // the $: is being deprecated.
-    $effect(() => {
-        if($isChatInfo){
-            animatedSidebar = 320;
-        }else{
-            animatedSidebar = 0;
-        }
-    })
+	// the $: is being deprecated.
+	$effect(() => {
+		if ($isChatInfo) {
+			animatedSidebar = 320;
+		} else {
+			animatedSidebar = 0;
+		}
+	});
 </script>
 
 {#if $isChatInfo}
-    <hr class="separator"/>
+	<hr class="separator" />
 {/if}
-<div class="bar" style="--w: {animatedSidebar}px">
-    chat info
-</div>
+<div class="bar" style="--w: {animatedSidebar}px">chat info</div>
 
 <style lang="scss">
+	@use '$lib/style/variables.scss' as v;
 
-    .bar{
-        transition: 0.25s ease 0s;
-        width: var(--w);
-        height: 100%;
-        overflow: hidden;
-        flex-shrink: 0;
-    }
+	.bar {
+		@include v.sidebar;
+	}
 </style>

@@ -17,11 +17,9 @@
 <div class="bar" style="--w: {animatedSidebar}px">Contacts</div>
 
 <style lang="scss">
+	@use '$lib/style/variables.scss' as v;
+
 	.bar {
-		transition: 0.25s ease 0s;
-		width: var(--w);
-		height: 100%;
-		overflow: hidden;
-		flex-shrink: 0;
+		@include v.sidebar;
 	}
 </style>

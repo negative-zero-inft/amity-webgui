@@ -6,15 +6,15 @@
 	import Textbox from '$lib/kit/Textbox.svelte';
 
 	import { isEmojiBar } from '$lib/scripts/chatViews';
-	let animatedSidebar: number = 0;
+	let animatedSidebar: number = $state(0);
 
-	$: {
+	$effect(() => {
 		if ($isEmojiBar) {
 			animatedSidebar = 320;
 		} else {
 			animatedSidebar = 0;
 		}
-	}
+	});
 
 	let scrollContainer: HTMLDivElement | undefined;
 	let startX: number | undefined;
@@ -207,12 +207,6 @@
 	}
 
 	.bar {
-		transition: 0.25s ease 0s;
-		width: var(--w);
-		height: 100%;
-		overflow: hidden;
-		flex-shrink: 0;
-		display: flex;
-		flex-direction: column;
+		@include v.sidebar;
 	}
 </style>
