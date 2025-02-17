@@ -17,7 +17,6 @@
 	});
 
 	let scrollContainer: HTMLDivElement | undefined;
-	let startX: number | undefined;
 
 	function handleWheel(event: WheelEvent) {
 		event.preventDefault();

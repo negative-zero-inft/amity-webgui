@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Button from '$lib/kit/Button.svelte';
-	import Sticker from '$lib/kit/Sticker.svelte';
+	import Emoji from '$lib/kit/Emoji.svelte';
 	import Icon from '$lib/kit/Icon.svelte';
 	import Label from '$lib/kit/Label.svelte';
 	import Textbox from '$lib/kit/Textbox.svelte';
@@ -16,6 +16,19 @@
 			animatedSidebar = 0;
 		}
 	});
+
+	let scrollContainer: HTMLDivElement | undefined;
+
+	function handleWheel(event: WheelEvent) {
+		event.preventDefault();
+
+		if (!scrollContainer) return; // Guard clause
+
+		const delta = Math.sign(event.deltaY);
+		const scrollSpeed = 150;
+
+		scrollContainer.scrollLeft += delta * scrollSpeed;
+	}
 </script>
 
 {#if $isCommandBar}
@@ -24,7 +37,7 @@
 <div class="bar" style="--w: {animatedSidebar}px">
 	{#if $isCommandBar}
 		<div class="topBar">
-			<Textbox width="100%; background-color: black;" icon="Search" placeholder="Search commands..."
+			<Textbox width="100%; background-color: black;" icon="Search" placeholder="Search apps & commands..."
 			></Textbox>
 			<Button><Icon name="Plus"></Icon></Button>
 		</div>
@@ -50,11 +63,42 @@
 			<Button width="100%"><Icon name="More"></Icon>More</Button>
 		</grid>
 	</div>
+	<hr class="separator" />
+	<div class="bottomBar" bind:this={scrollContainer} onwheel={handleWheel}>
+		<Button style={2}><Icon name="Star"></Icon></Button>
+		<Button><Icon name="Clock"></Icon></Button>
+		<hr class="smallSeparator" style="height: 10px;" />
+		<Command width="max-content" command="Zane"></Command>
+		<Command width="max-content" command="Zane"></Command>
+		<Command width="max-content" command="Zane"></Command>
+		<Command width="max-content" command="Zane"></Command>
+		<Command width="max-content" command="Zane"></Command>
+	</div>
 </div>
 
 <style lang="scss">
 	@use '$lib/style/variables.scss' as v;
 	@use '$lib/style/colors.scss' as c;
+
+	.smallSeparator {
+		color: c.$text-25;
+		margin: 0;
+	}
+
+	.bottomBar {
+		width: 320px;
+		padding: v.$spacing-def;
+		flex-shrink: 0;
+		height: 56px;
+		box-sizing: border-box;
+		background-color: c.$bg;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		gap: v.$spacing-def;
+		overflow: scroll;
+		scroll-behavior: smooth;
+	}
 
 	.moreButton {
 		width: 100%;
@@ -91,7 +135,7 @@
 	}
 	.emojiList {
 		width: 320px;
-		height: calc(100vh - 6px - 56px);
+		height: calc(100vh - 6px - 56px * 2);
 		display: flex;
 		flex-direction: column;
 		flex-shrink: 0;

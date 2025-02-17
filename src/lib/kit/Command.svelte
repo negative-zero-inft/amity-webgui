@@ -3,17 +3,18 @@
 		action = () => {},
 		id = '',
 		command = "test",
-		img = "src/lib/amity.png"
+		img = "src/lib/amity.png",
+		width = "100%"
 	} = $props();
 </script>
 
 <button
 	{id}
 	class="cmd"
+	style="width: {width};"
 	onclick={(e) => {
 		action(e);
-	}}><img alt="command" src={img}/>{command}</button
->
+	}}><img alt="command" src={img}/>{command}</button>
 
 <style lang="scss">
 	@use '$lib/style/variables.scss' as v;
@@ -26,7 +27,6 @@
 	button {
 		white-space: nowrap;
 		flex-direction: row !important;
-		width: 100%;
 		justify-content: flex-start;
 		transition: 0.25s;
 	}
@@ -36,8 +36,9 @@
 	button:active {
 		transform: scale(0.9);
 	}
-
+	
 	.cmd {
+		flex-shrink: 0;
 		background-color: c.$clickable;
 		color: c.$text;
 		border-radius: v.$corner-elem;
