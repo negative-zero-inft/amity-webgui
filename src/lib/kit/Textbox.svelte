@@ -35,7 +35,7 @@
 
     input {
         display: flex;
-        padding-left: var(--padding);
+        padding-left: calc(var(--padding) - 1px);
         justify-content: center;
         align-content: center;
         gap: v.$spacing-def;
