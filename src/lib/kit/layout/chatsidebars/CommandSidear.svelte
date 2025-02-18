@@ -96,31 +96,6 @@
 		scroll-behavior: smooth;
 	}
 
-	.moreButton {
-		width: 100%;
-		height: 70px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
-
-	.centered {
-		width: 100%;
-		height: 70px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		transition: 0.25s;
-		border-radius: v.$corner-elem;
-	}
-	.centered:hover {
-		transform: scale(1.1);
-	}
-	.centered:active {
-		transform: scale(0.9);
-		transition: 0.1s;
-	}
-
 	.emojiGrid {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr); /* 7 equal-width columns */
