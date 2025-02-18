@@ -37,7 +37,7 @@
 <div class="bar" style="--w: {animatedSidebar}px">
 	{#if $isContactsBar}
 		<div class="topBar">
-			<Textbox width="100%; background-color: black;" icon="Search" placeholder="Search apps & commands..."
+			<Textbox width="100%; background-color: black;" icon="Search" placeholder="Search contacts..."
 			></Textbox>
 			<Button><Icon name="Plus"></Icon></Button>
 		</div>
