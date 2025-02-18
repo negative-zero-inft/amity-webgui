@@ -36,6 +36,7 @@
 		width: var(--w);
 		justify-content: center;
 		transition: 0.25s;
+		flex-shrink: 0;
 	}
 	button:hover {
 		transform: scale(1.1);
