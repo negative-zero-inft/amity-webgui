@@ -87,7 +87,10 @@
 		padding-right: v.$spacing-def;
 		padding-left: v.$spacing-def;
 		height: v.$chip-height;
+		align-items: center;
 		scroll-behavior: smooth;
+		padding-bottom: 5px;
+		padding-top: 5px;
 
 		&::-webkit-scrollbar {
 			width: none;
@@ -113,8 +116,9 @@
 	.chatEntries {
 		display: flex;
 		flex-direction: column;
-		gap: v.$spacing-def;
+		gap: 5px;
 		padding: v.$spacing-def;
+		padding-bottom: 5px;
 		overflow: scroll;
 		flex-grow: 1;
 	}
