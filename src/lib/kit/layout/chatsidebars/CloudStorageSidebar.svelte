@@ -127,6 +127,7 @@
 
 	.smallSeparator {
 		color: c.$text-25;
+		border-color: c.$text-25;
 		margin: 0;
 	}
 
