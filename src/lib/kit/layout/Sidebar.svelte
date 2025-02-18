@@ -100,7 +100,7 @@
 	.sidebar-top {
 		flex-direction: column;
 		display: flex;
-		padding: v.$spacing-def;
+		padding: 5px;
 		padding-right: 0px;
 		padding-left: 0px;
 		padding-bottom: 5px;
@@ -117,7 +117,7 @@
 	.chatEntries {
 		display: flex;
 		flex-direction: column;
-		gap: 5px;
+		gap: v.$spacing-def;
 		padding: v.$spacing-def;
 		overflow: scroll;
 		flex-grow: 1;
