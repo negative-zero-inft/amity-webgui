@@ -39,7 +39,6 @@
 		<div class="topBar">
 			<Textbox width="100%; background-color: black;" icon="Search" placeholder="Search apps & commands..."
 			></Textbox>
-			<Button><Icon name="Plus"></Icon></Button>
 		</div>
 	{/if}
 	<!-- <hr class="separator"/> -->
