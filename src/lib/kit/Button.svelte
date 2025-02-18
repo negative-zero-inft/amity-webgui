@@ -11,6 +11,7 @@
         6 = selected chip
         */
 		width = 'min-content',
+		alignment = "center",
 		action = () => {},
 		children,
 		id = ''
@@ -20,7 +21,7 @@
 <button
 	{id}
 	class="bv{style}"
-	style="--w: {width};"
+	style="--w: {width}; --a: {alignment}"
 	onclick={(e) => {
 		action(e);
 	}}>{@render children?.()}</button
@@ -34,7 +35,7 @@
 		white-space: nowrap;
 		flex-direction: row !important;
 		width: var(--w);
-		justify-content: center;
+		justify-content: var(--a);
 		transition: 0.25s;
 		flex-shrink: 0;
 	}
