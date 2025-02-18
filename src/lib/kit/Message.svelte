@@ -12,7 +12,7 @@
 	@use '$lib/style/colors.scss' as c;
 
 	@mixin message {
-		max-width: 600px;
+		max-width: 500px;
 		overflow-wrap: break-word;
 		width: max-content;
 		padding: v.$spacing-def;
