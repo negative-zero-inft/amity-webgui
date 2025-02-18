@@ -100,11 +100,11 @@
 	.sidebar-top {
 		flex-direction: column;
 		display: flex;
-		padding: 5px;
+		padding: v.$spacing-def;
 		padding-right: 0px;
 		padding-left: 0px;
 		padding-bottom: 5px;
-		gap: v.$spacing-def;
+		gap: 5px;
 	}
 
 	.sidebar {
