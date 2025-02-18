@@ -31,9 +31,6 @@
 	}
 </script>
 
-{#if $isContactsBar}
-	<hr class="separator" />
-{/if}
 <div class="bar" style="--w: {animatedSidebar}px">
 	{#if $isContactsBar}
 		<div class="topBar">
@@ -155,7 +152,7 @@
 	}
 	.emojiList {
 		width: 320px;
-		height: calc(100vh - 6px - 56px * 2);
+		height: calc(100vh - 4px - 56px * 2);
 		display: flex;
 		flex-direction: column;
 		flex-shrink: 0;

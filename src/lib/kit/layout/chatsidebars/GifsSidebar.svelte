@@ -17,9 +17,6 @@
 	});
 </script>
 
-{#if $isGifBar}
-	<hr class="separator" />
-{/if}
 <div class="bar" style="--w: {animatedSidebar}px">
 	{#if $isGifBar}
 		<div class="topBar">

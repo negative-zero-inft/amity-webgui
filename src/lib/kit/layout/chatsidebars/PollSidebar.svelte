@@ -11,9 +11,6 @@
 	});
 </script>
 
-{#if $isPollBar}
-	<hr class="separator" />
-{/if}
 <div class="bar" style="--w: {animatedSidebar}px">poll</div>
 
 <style lang="scss">

@@ -18,16 +18,16 @@ export const states = [
     {id: "polls", active: isPollBar},
     {id: "stickers", active: isStickerBar},
     {id: "commands", active: isCommandBar},
-    {id: "info", active: isChatInfo}
+    {id: "info", active: isChatInfo},
+    {id: "cloud", active: isCloudStorageBar}
 ]
 
 export function setActive(id: string) {
     states.forEach(item => {
         if (item.id === id) {
             item.active.update(v => !v);
-            console.log(`set ${item.id} active`)
         } else {
             item.active.set(false);
         }
     });
-}
+}   

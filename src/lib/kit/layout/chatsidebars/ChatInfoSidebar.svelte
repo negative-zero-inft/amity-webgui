@@ -12,9 +12,6 @@
 	});
 </script>
 
-{#if $isChatInfo}
-	<hr class="separator" />
-{/if}
 <div class="bar" style="--w: {animatedSidebar}px">chat info</div>
 
 <style lang="scss">

@@ -22,6 +22,7 @@
 		<Button><Icon name="Pin/Angled" /></Button>
 		<Textbox width="208px" placeholder="Search" icon="Search"></Textbox>
 		<Button
+		width="36px"
 			style={$isChatInfo ? 2 : 0}
 			action={() => {
 				setActive('info');

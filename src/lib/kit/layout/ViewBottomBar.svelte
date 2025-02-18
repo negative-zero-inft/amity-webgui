@@ -12,55 +12,64 @@
 		isEmojiBar,
 		isStickerBar,
 		isGifBar,
-		setActive
+		setActive,
+
 	} from '$lib/scripts/chatViews';
 </script>
 
 <div class="viewBottomBar">
 	<Button
+		width="36px"
 		style={$isCloudStorageBar ? 2 : 0}
 		action={() => {
-			isCloudStorageBar.set(!$isCloudStorageBar);
+			setActive("cloud")
 		}}><Icon name={$isCloudStorageBar ? 'X' : 'Plus'} /></Button
 	>
 	<Textbox placeholder="Message General" icon="Chat" width="100%" />
 	<Button
+		width="36px"
 		style={$isContactsBar ? 2 : 0}
 		action={() => {
 			setActive('contacts');
 		}}><Icon name={$isContactsBar ? 'X' : 'Users'} /></Button
 	>
 	<Button
+		width="36px"
 		style={$isMapBar ? 2 : 0}
 		action={() => {
 			setActive('maps');
 		}}><Icon name={$isMapBar ? 'X' : 'Location'} /></Button
 	>
 	<Button
+		width="36px"
 		style={$isPollBar ? 2 : 0}
 		action={() => {
 			setActive('polls');
 		}}><Icon name={$isPollBar ? 'X' : 'Equalizer'} /></Button
 	>
 	<Button
+		width="36px"
 		style={$isCommandBar ? 2 : 0}
 		action={() => {
 			setActive('commands');
 		}}><Icon name={$isCommandBar ? 'X' : 'Terminal'} /></Button
 	>
 	<Button
+		width="36px"
 		style={$isEmojiBar ? 2 : 0}
 		action={() => {
 			setActive('emoji');
 		}}><Icon name={$isEmojiBar ? 'X' : 'Smile'} /></Button
 	>
 	<Button
+		width="36px"
 		style={$isStickerBar ? 2 : 0}
 		action={() => {
 			setActive('stickers');
 		}}><Icon name={$isStickerBar ? 'X' : 'StickyNotes'} /></Button
 	>
 	<Button
+		width="36px"
 		style={$isGifBar ? 2 : 0}
 		action={() => {
 			setActive('gifs');

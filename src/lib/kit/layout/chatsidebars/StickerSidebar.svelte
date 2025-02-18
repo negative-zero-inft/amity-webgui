@@ -18,7 +18,6 @@
 	}
 
 	let scrollContainer: HTMLDivElement | undefined;
-	let startX: number | undefined;
 
 	function handleWheel(event: WheelEvent) {
 		event.preventDefault();
@@ -30,30 +29,8 @@
 
 		scrollContainer.scrollLeft += delta * scrollSpeed;
 	}
-
-	function handleTouchStart(_e: TouchEvent) {
-		// e.touches.clientX doesn't exist
-		// therefore it's actually returns 0
-		// still somehow works?
-		startX = 0;
-	}
-
-	function handleTouchMove(_e: TouchEvent) {
-		if (!startX || !scrollContainer) return;
-
-		const currentX = 0;
-		const diffX = startX - currentX;
-
-		console.log(currentX);
-
-		scrollContainer.scrollLeft += diffX;
-		startX = currentX;
-	}
 </script>
 
-{#if $isStickerBar}
-	<hr class="separator" />
-{/if}
 <div class="bar" style="--w: {animatedSidebar}px">
 	{#if $isStickerBar}
 		<div class="topBar">
@@ -164,7 +141,7 @@
 	}
 	.emojiList {
 		width: 320px;
-		height: calc(100vh - 6px - 56px * 2);
+		height: calc(100vh - 4px - 56px * 2);
 		display: flex;
 		flex-direction: column;
 		flex-shrink: 0;

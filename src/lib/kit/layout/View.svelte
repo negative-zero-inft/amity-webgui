@@ -12,6 +12,17 @@
 	import PollSidebar from './chatsidebars/PollSidebar.svelte';
 	import StickerSidebar from './chatsidebars/StickerSidebar.svelte';
 
+	import {
+		isCloudStorageBar,
+		isContactsBar,
+		isMapBar,
+		isPollBar,
+		isCommandBar,
+		isEmojiBar,
+		isStickerBar,
+		isGifBar,
+	} from '$lib/scripts/chatViews';
+	
 	import ViewBottomBar from './ViewBottomBar.svelte';
 	import ViewTopBar from './ViewTopBar.svelte';
 </script>
@@ -48,6 +59,7 @@
 			<hr class="separator" />
 			<ViewBottomBar />
 		</div>
+		<hr class="separator" />
 		<ContactsSidebar></ContactsSidebar>
 		<MapSidebar></MapSidebar>
 		<PollSidebar></PollSidebar>

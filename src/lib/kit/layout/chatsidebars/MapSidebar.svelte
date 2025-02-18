@@ -11,9 +11,6 @@
 	});
 </script>
 
-{#if $isMapBar}
-	<hr class="separator" />
-{/if}
 <div class="bar" style="--w: {animatedSidebar}px">map</div>
 
 <style lang="scss">

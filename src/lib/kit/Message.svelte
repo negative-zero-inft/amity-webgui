@@ -1,5 +1,4 @@
 <script lang="ts">
-	import Avatar from './Avatar.svelte';
 
 	let { isSender = false, isClustered = false, children } = $props();
 </script>
