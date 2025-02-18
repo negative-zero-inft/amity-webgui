@@ -103,6 +103,7 @@
 		padding: v.$spacing-def;
 		padding-right: 0px;
 		padding-left: 0px;
+		padding-bottom: 5px;
 		gap: v.$spacing-def;
 	}
 
@@ -118,7 +119,6 @@
 		flex-direction: column;
 		gap: 5px;
 		padding: v.$spacing-def;
-		padding-bottom: 5px;
 		overflow: scroll;
 		flex-grow: 1;
 	}
