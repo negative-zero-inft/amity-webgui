@@ -43,7 +43,9 @@ body{
     border-color: c.$text-25;
     border-style: solid;
     margin: 0px !important;
-    border-width: 0.5px;
+    border-width: 1px;
+    border-bottom: 0px;
+    border-right: 0px;
 }
 
 .main{
