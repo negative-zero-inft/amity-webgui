@@ -14,8 +14,7 @@
 		alignment = "center",
 		action = () => {},
 		children,
-		id = '',
-		scale = 1
+		id = ''
 	} = $props();
 </script>
 
@@ -39,13 +38,12 @@
 		justify-content: var(--a);
 		transition: 0.25s;
 		flex-shrink: 0;
-		transform: scale(calc(var(--s) * 1));
 	}
 	button:hover {
-		transform: scale(calc(var(--s) * 1.1));
+		transform: scale(1.1);
 	}
 	button:active {
-		transform: scale(calc(var(--s) * 0.9));
+		transform: scale(0.9);
 	}
 
 	.bv2 {

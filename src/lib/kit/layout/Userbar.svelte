@@ -12,7 +12,19 @@
     <UserbarTop isExp={isExpanded}></UserbarTop>
     <hr class="separator"/>
     <div class="options">
-        <Button><Icon name="User"></Icon> Your profile</Button>
+        <div class="cluster">
+            <Button alignment="space-between" width="100%"><div class="elem-horiz"><Icon name="User"></Icon> Your profile</div><Icon name="Direction/Right"></Icon></Button>
+            <Button alignment="space-between" width="100%"><div class="elem-horiz"><Icon name="Users"></Icon> Your friends</div><Icon name="Direction/Right"></Icon></Button>
+            <Button alignment="space-between" width="100%"><div class="elem-horiz"><Icon name="Library"></Icon> Your things</div><Icon name="Direction/Right"></Icon></Button>
+        </div>
+        <div class="cluster">
+            <Button alignment="space-between" width="100%"><div class="elem-horiz"><Icon name="Bookmark"></Icon> Saved messages</div><Icon name="Direction/Right"></Icon></Button>
+            <Button alignment="space-between" width="100%"><div class="elem-horiz"><Icon name="Archive"></Icon> Archived chats</div><Icon name="Direction/Right"></Icon></Button>
+        </div>
+        <div class="cluster">
+            <Button alignment="space-between" width="100%"><div class="elem-horiz"><Icon name="Cloud"></Icon> About instance</div><Icon name="Direction/Right"></Icon></Button>
+            <Button alignment="space-between" width="100%"><div class="elem-horiz"><Icon name="List"></Icon> Amity changelog</div><Icon name="Direction/Right"></Icon></Button>
+        </div>
     </div>
 </div>
 
@@ -21,13 +33,28 @@
     @use '$lib/style/colors.scss' as c;
     @use '$lib/style/variables.scss' as v;
 
+    .elem-horiz{
+        display: flex;
+        gap: v.$spacing-def;
+        align-items: center;
+    }
+
     .options{
         display: flex;
 		flex-direction: column;
-		gap: v.$spacing-def;
-		padding: v.$spacing-def;
+		gap: 16px;
+		padding-top: v.$spacing-def;
+		padding-bottom: v.$spacing-def;
 		overflow-y: scroll;
 		flex-grow: 1;
+    }
+    .cluster{
+        display: flex;
+		flex-direction: column;
+		gap: v.$spacing-def;
+		padding-right: v.$spacing-def;
+		padding-left: v.$spacing-def;
+		overflow: visible;
     }
 
     .bar{
