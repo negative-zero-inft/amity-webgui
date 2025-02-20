@@ -23,7 +23,10 @@
 </script>
 
 <Userbar isExpanded={isUserBar}></Userbar>
-<div class="sidebar" style="--u: {$isUserBar ? 0.9 : 1}; --o: {$isUserBar ? 0.25 : 1}; --r: {$isUserBar ? 1 : 0}">
+<div
+	class="sidebar"
+	style="--u: {$isUserBar ? 0.9 : 1}; --o: {$isUserBar ? 0.25 : 1}; --r: {$isUserBar ? 1 : 0}"
+>
 	<div class="sidebar-top">
 		<div
 			class="elements-horiz"
@@ -33,7 +36,11 @@
             padding-right: 10px; 
             padding-left: 10px;"
 		>
-			<Button action={() =>{isUserBar.set(true)}}><Icon name="Hamburger" /></Button>
+			<Button
+				action={() => {
+					isUserBar.set(true);
+				}}><Icon name="Hamburger" /></Button
+			>
 			<Button>
 				<Icon name="Camera/Video" />
 				<span class="avatarstack">
@@ -95,10 +102,6 @@
 		scroll-behavior: smooth;
 		padding-bottom: 5px;
 		padding-top: 5px;
-
-		&::-webkit-scrollbar {
-			width: none;
-		}
 	}
 
 	.sidebar-top {
