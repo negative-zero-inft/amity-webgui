@@ -7,6 +7,7 @@
 </script>
 
 <div class="main">
+	<div style="width: 100%;"></div>
 	<div class="side">
 		<div class="logo">
 			<img style="width: 80px; height: 80px;" src={amy} alt="amy"/>
@@ -70,7 +71,7 @@
 		gap: 20px;
 	}
 	.side{
-		width: 100%;
+		width: 600px;
 		flex-grow: 1;
 		height: 100%;
 		padding-left: 100px;
@@ -80,6 +81,8 @@
 		align-items: flex-start;
 		flex-direction: column;
 		gap: 16px;
+		left: 0;
+		position: absolute;
 	}
 
 	.main {

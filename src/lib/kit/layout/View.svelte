@@ -114,7 +114,7 @@
 	.chatView {
 		height: 100%;
 		width: 100%;
-		overflow: scroll;
+		overflow-y: scroll;
 		display: flex;
 		flex-direction: column-reverse;
 		padding: v.$spacing-def;

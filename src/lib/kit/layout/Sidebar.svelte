@@ -1,11 +1,12 @@
 <script lang="ts">
+	import { writable } from 'svelte/store';
 	import AvatarStack from '../AvatarStack.svelte';
 	import Button from '../Button.svelte';
 	import ChatEntry from '../ChatEntry.svelte';
 	import Icon from '../Icon.svelte';
+	import Userbar from './Userbar.svelte';
 
 	let scrollContainer: HTMLDivElement | undefined;
-	let startX: number | undefined;
 
 	function handleWheel(event: WheelEvent) {
 		event.preventDefault();
@@ -17,9 +18,12 @@
 
 		scrollContainer.scrollLeft += delta * scrollSpeed;
 	}
+
+	export let isUserBar = writable<boolean>(false);
 </script>
 
-<div class="sidebar">
+<Userbar isExpanded={isUserBar}></Userbar>
+<div class="sidebar" style="--u: {$isUserBar ? 0.9 : 1}; --o: {$isUserBar ? 0.25 : 1}; --r: {$isUserBar ? 1 : 0}">
 	<div class="sidebar-top">
 		<div
 			class="elements-horiz"
@@ -29,7 +33,7 @@
             padding-right: 10px; 
             padding-left: 10px;"
 		>
-			<Button><Icon name="Hamburger" /></Button>
+			<Button action={() =>{isUserBar.set(true)}}><Icon name="Hamburger" /></Button>
 			<Button>
 				<Icon name="Camera/Video" />
 				<span class="avatarstack">
@@ -112,6 +116,10 @@
 		width: 320px;
 		display: flex;
 		flex-direction: column;
+		opacity: var(--o);
+		scale: var(--u);
+		transition: 0.25s;
+		transform: rotate3d(0, var(--r), 0, 90deg);
 	}
 
 	.chatEntries {
@@ -119,7 +127,7 @@
 		flex-direction: column;
 		gap: v.$spacing-def;
 		padding: v.$spacing-def;
-		overflow: scroll;
+		overflow-y: scroll;
 		flex-grow: 1;
 	}
 </style>
