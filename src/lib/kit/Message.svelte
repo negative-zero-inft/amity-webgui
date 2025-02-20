@@ -16,6 +16,7 @@
 		overflow-wrap: break-word;
 		width: max-content;
 		padding: v.$spacing-def;
+		transition: 0.25s;
 	}
 
 	.fullMessage {
