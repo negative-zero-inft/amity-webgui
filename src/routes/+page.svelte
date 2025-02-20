@@ -21,13 +21,19 @@
 			</div>
 		</div>
 		<div class="cta">
-			<Button width="200px" alignment="flex-start" style={1}>
-				<Icon name="List"></Icon>
-				Explore public instances
+			<Button width="230px" alignment="space-between" style={1}>
+				<div style="display: flex; gap: 10px; align-items: center;">
+					<Icon name="List"></Icon>
+					Explore public instances
+				</div>
+				<Icon name="Direction/Right"></Icon>
 			</Button>
-			<Button width="200px" alignment="flex-start">
-				<Icon name="Cloud"></Icon>
-				Host your own instance
+			<Button width="230px" alignment="space-between">
+				<div style="display: flex; gap: 10px; align-items: center;">
+					<Icon name="Cloud"></Icon>
+					Host your own instance
+				</div>
+				<Icon name="Direction/Right"></Icon>
 			</Button>
 		</div>
 	</div>
