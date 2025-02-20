@@ -9,7 +9,7 @@
 <div class="main">
 	<div class="side">
 		<div class="logo">
-			<img style="width: 116px height: 116px;" src={amy} alt="amy"/>
+			<img style="width: 80px; height: 80px;" src={amy} alt="amy"/>
 			Amity
 		</div>
 		<div class="slogan">
@@ -65,7 +65,7 @@
 		flex-direction: row;
 		font-size: 50px;
 		align-items: center;
-		gap: 25px;
+		gap: 20px;
 	}
 	.side{
 		width: 100%;
