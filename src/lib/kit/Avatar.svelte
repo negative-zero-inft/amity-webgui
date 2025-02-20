@@ -15,8 +15,8 @@
 		outline-offset: -0.5px;
 	}
 	img {
-		width: v.$elem-height;
-		height: v.$elem-height;
+		width: var(--w, v.$elem-height);
+		height: var(--h, v.$elem-height);
 		border-radius: 50%;
 		flex-shrink: 0;
 	}
