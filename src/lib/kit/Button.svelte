@@ -21,7 +21,7 @@
 <button
 	{id}
 	class="bv{style}"
-	style="--w: {width}; --a: {alignment}; --s: {scale}"
+	style="--w: {width}; --a: {alignment};"
 	onclick={(e) => {
 		action(e);
 	}}>{@render children?.()}</button

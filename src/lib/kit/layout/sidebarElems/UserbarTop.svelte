@@ -9,7 +9,7 @@
         isExp,
         username = "Alex",
         tag = "nrd@amity.neg-zero.com",
-        avatar = "src/lib/amity.png"
+        avatar = "src/lib/amity.png "
     } = $props()
 
 </script>
