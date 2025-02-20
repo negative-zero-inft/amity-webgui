@@ -58,7 +58,7 @@
 		width: 100%;
 		display: flex;
 		flex-direction: column;
-		gap: 16px;
+		gap: 5px;
 	}
 	.logo{
 		display: flex;
