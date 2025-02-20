@@ -1,8 +1,8 @@
 <script lang="ts">
-	let { pfpLink = 'src/lib/amity.png', isOutline = false } = $props();
+	let { pfpLink = 'src/lib/amity.png', isOutline = false, size = 36 } = $props();
 </script>
 
-<img class="a{Number(isOutline)}" src={pfpLink} alt="pfp" />
+<img class="a{Number(isOutline)}" src={pfpLink} alt="pfp" style="--w: {size}px;"/>
 
 <style lang="scss">
 	@use '$lib/style/colors.scss' as c;
@@ -16,8 +16,7 @@
 	}
 	img {
 		width: var(--w, v.$elem-height);
-		height: var(--h, v.$elem-height);
+		height: var(--w, v.$elem-height);
 		border-radius: 50%;
-		flex-shrink: 0;
 	}
 </style>

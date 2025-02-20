@@ -6,16 +6,16 @@
 
 <div class="avatars">
 	<span class="avatar">
-		<Avatar isOutline pfpLink={avatar1} --w="16px" --h="16px" />
+		<Avatar size={16} isOutline pfpLink={avatar1} />
 	</span>
 	{#if avatar2}
 		<span class="avatar">
-			<Avatar isOutline pfpLink={avatar2} --w="16px" --h="16px" />
+			<Avatar size={16} isOutline pfpLink={avatar2} />
 		</span>
 	{/if}
 	{#if avatar3}
 		<span class="avatar">
-			<Avatar isOutline pfpLink={avatar3} --w="16px" --h="16px" />
+			<Avatar size={16} isOutline pfpLink={avatar3} />
 		</span>
 	{/if}
 </div>
