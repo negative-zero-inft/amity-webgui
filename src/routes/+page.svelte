@@ -21,7 +21,9 @@
 			</div>
 		</div>
 		<div class="cta">
-			<Button width="230px" alignment="space-between" style={1}>
+			<Button action={() =>{
+				window.location.replace(window.location.toString() + "chat")
+			}} width="230px" alignment="space-between" style={1}>
 				<div style="display: flex; gap: 10px; align-items: center;">
 					<Icon name="List"></Icon>
 					Explore public instances
