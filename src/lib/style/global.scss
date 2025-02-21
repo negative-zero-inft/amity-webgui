@@ -9,6 +9,7 @@ html {
 
 :root{
     @include v.standard-text();
+    scrollbar-gutter: stable;
 }
 
 // this prevents svelte compoments from modifying body
@@ -71,18 +72,19 @@ body{
 
 
 ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
+    width: 5px;
+    overflow: visible;
 }
 
 ::-webkit-scrollbar-track {
     background: transparent;
+    width: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
     background: rgba(100, 100, 100, 0.4);
     border-radius: 5px;
-
+    width: 10px;
     &:hover {
         background: rgba(100, 100, 100, 0.6);
     }

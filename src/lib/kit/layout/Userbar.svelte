@@ -45,7 +45,7 @@
 		gap: 16px;
 		padding-top: v.$spacing-def;
 		padding-bottom: v.$spacing-def;
-		overflow-y: scroll;
+		overflow-y: auto;
 		flex-grow: 1;
     }
     .cluster{

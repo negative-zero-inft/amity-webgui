@@ -6,6 +6,8 @@
 	import Icon from '../Icon.svelte';
 	import Userbar from './Userbar.svelte';
 
+	import { isFirefox } from '$lib/scripts/isFirefox';
+
 	let scrollContainer: HTMLDivElement | undefined;
 
 	function handleWheel(event: WheelEvent) {
@@ -20,6 +22,7 @@
 	}
 
 	export let isUserBar = writable<boolean>(false);
+	console.log(isFirefox())
 </script>
 
 <Userbar isExpanded={isUserBar}></Userbar>
@@ -60,7 +63,7 @@
 		</div>
 	</div>
 	<hr class="separator" />
-	<div class="chatEntries">
+	<div class="chatEntries" style="--pr: {isFirefox() ? 10 : 5}px">
 		<ChatEntry isSelected={true} isFavorite={true}></ChatEntry>
 		<ChatEntry isFavorite={true} username={'Harry Bōlz'}></ChatEntry>
 		<ChatEntry unreads={69}></ChatEntry>
@@ -93,8 +96,7 @@
 		display: flex;
 		flex-direction: row;
 		gap: v.$spacing-def;
-		overflow: scroll;
-		scrollbar-width: none; /* Firefox */
+		overflow-x: scroll;
 		padding-right: v.$spacing-def;
 		padding-left: v.$spacing-def;
 		height: v.$chip-height;
@@ -102,6 +104,9 @@
 		scroll-behavior: smooth;
 		padding-bottom: 5px;
 		padding-top: 5px;
+		&::-webkit-scrollbar {
+			display: none;
+		}
 	}
 
 	.sidebar-top {
@@ -130,7 +135,9 @@
 		flex-direction: column;
 		gap: v.$spacing-def;
 		padding: v.$spacing-def;
-		overflow-y: scroll;
+		padding-right: var(--pr);
+		overflow-y: auto;
 		flex-grow: 1;
+		scrollbar-gutter: stable;
 	}
 </style>
