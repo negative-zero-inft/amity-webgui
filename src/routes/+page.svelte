@@ -1,7 +1,6 @@
 <script lang="ts">
-	import '$lib/style/global.scss';
-	import closeup from "../lib/closeup.png";
-	import amy from "../lib/amy.svg";
+	import closeup from '../lib/closeup.png';
+	import amy from '../lib/amy.svg';
 	import Button from '$lib/kit/Button.svelte';
 	import Icon from '$lib/kit/Icon.svelte';
 </script>
@@ -10,21 +9,25 @@
 	<div style="width: 100%;"></div>
 	<div class="side">
 		<div class="logo">
-			<img style="width: 80px; height: 80px;" src={amy} alt="amy"/>
+			<img style="width: 80px; height: 80px;" src={amy} alt="amy" />
 			Amity
 		</div>
 		<div class="slogan">
-			<div style="width: max-content; font-size: 36px;">
-				The chat app for everyone
-			</div>
+			<div style="width: max-content; font-size: 36px;">The chat app for everyone</div>
 			<div class="underslogan">
-				Amity is an open-source and decentralized chat app, allowing for anyone to freely connect with others. 
+				Amity is an open-source and decentralized chat app, allowing for anyone to freely connect
+				with others.
 			</div>
 		</div>
 		<div class="cta">
-			<Button action={() =>{
-				window.location.replace(window.location.toString() + "chat")
-			}} width="230px" alignment="space-between" style={1}>
+			<Button
+				action={() => {
+					window.location.replace(window.location.toString() + 'chat');
+				}}
+				width="230px"
+				alignment="space-between"
+				style={1}
+			>
 				<div style="display: flex; gap: 10px; align-items: center;">
 					<Icon name="List"></Icon>
 					Explore public instances
@@ -40,37 +43,37 @@
 			</Button>
 		</div>
 	</div>
-	<img class="closeup" src={closeup} alt="ui closeup"/>
+	<img class="closeup" src={closeup} alt="ui closeup" />
 </div>
 
 <style lang="scss">
 	@use '$lib/style/colors.scss' as c;
 	@use '$lib/style/variables.scss' as v;
 
-	.cta{
+	.cta {
 		display: flex;
 		flex-direction: column;
 		gap: 10px;
 	}
 
-	.underslogan{
+	.underslogan {
 		width: 100%;
 	}
-	.slogan{
+	.slogan {
 		@include v.big-text();
 		width: 100%;
 		display: flex;
 		flex-direction: column;
 		gap: 5px;
 	}
-	.logo{
+	.logo {
 		display: flex;
 		flex-direction: row;
 		font-size: 50px;
 		align-items: center;
 		gap: 20px;
 	}
-	.side{
+	.side {
 		width: 600px;
 		flex-grow: 1;
 		height: 100%;
@@ -94,12 +97,12 @@
 		height: 100vh;
 	}
 
-	.closeup{
+	.closeup {
 		height: 100vh;
 	}
 
-	.main{
+	.main {
 		// background: rgb(48, 0, 0);
-		background: radial-gradient(circle at 20% 20%, rgba(48,0,0,1) 0%, rgba(17,0,0,1) 50%);
+		background: radial-gradient(circle at 20% 20%, rgba(48, 0, 0, 1) 0%, rgba(17, 0, 0, 1) 50%);
 	}
 </style>
