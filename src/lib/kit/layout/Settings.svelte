@@ -2,6 +2,7 @@
 	import Button from '../Button.svelte';
 	import { isSettings } from '$lib/scripts/chatViews';
 	import Icon from '../Icon.svelte';
+	import Textbox from '../Textbox.svelte';
 
 </script>
 
@@ -27,25 +28,108 @@
 		opacity: {$isSettings ? "1" : "0"};
 		transform: {$isSettings ?  "translate(0, 0)" : "translate(calc(-50vw + 159px), calc(50vh - 28px))"};
 	">
-		<Button
-			action={() => {
-				isSettings.set(false);
-			}}><Icon name="X"></Icon></Button
-		>
+		<div class="sidebar">
+			<div class="sidebarTop">
+				<Button action={() => {isSettings.set(false);}}><Icon name="X"></Icon></Button>
+				<Textbox placeholder="Search settings..." icon="Search" width="100%"></Textbox>
+			</div>
+			<hr class="separator"/>
+			<div class="options">
+				<div class="cluster">
+					<Button style={2} scaleClick={0.95} scaleHover={1.05} alignment="space-between" width="100%"
+						><div class="elem-horiz"><Icon name="User"></Icon> Profile</div>
+						<Icon name="Direction/Right"></Icon></Button
+					>
+					<Button scaleClick={0.95} scaleHover={1.05} alignment="space-between" width="100%"
+						><div class="elem-horiz"><Icon name="Lock/Locked"></Icon> Security</div>
+						<Icon name="Direction/Right"></Icon></Button
+					>
+				</div>
+				<div class="cluster">
+					<Button scaleClick={0.95} scaleHover={1.05} alignment="space-between" width="100%"
+						><div class="elem-horiz"><Icon name="Paintbrush"></Icon> Customization</div>
+						<Icon name="Direction/Right"></Icon></Button
+					>
+					<Button scaleClick={0.95} scaleHover={1.05} alignment="space-between" width="100%"
+						><div class="elem-horiz"><Icon name="Folder/Default"></Icon> Folders</div>
+						<Icon name="Direction/Right"></Icon></Button
+					>
+					<Button scaleClick={0.95} scaleHover={1.05} alignment="space-between" width="100%"
+						><div class="elem-horiz"><Icon name="Translate"></Icon> Language</div>
+						<Icon name="Direction/Right"></Icon></Button
+					>
+				</div>
+				<div class="cluster">
+					<Button scaleClick={0.95} scaleHover={1.05} alignment="space-between" width="100%"
+						><div class="elem-horiz"><Icon name="Bell"></Icon> Notifications</div>
+						<Icon name="Direction/Right"></Icon></Button
+					>
+					<Button scaleClick={0.95} scaleHover={1.05} alignment="space-between" width="100%"
+						><div class="elem-horiz"><Icon name="HardDrive"></Icon> Data and storage</div>
+						<Icon name="Direction/Right"></Icon></Button
+					>
+					<Button scaleClick={0.95} scaleHover={1.05} alignment="space-between" width="100%"
+						><div class="elem-horiz"><Icon name="Display"></Icon> Devices</div>
+						<Icon name="Direction/Right"></Icon></Button
+					>
+				</div>
+			</div>
+		</div>
+		<hr class="separator"/>
 	</div>
 </div>
 
 <style lang="scss">
+
 	@use '$lib/style/variables.scss' as v;
 	@use '$lib/style/colors.scss' as c;
-	.settingWindow {
+
+	.elem-horiz {
+		display: flex;
+		gap: v.$spacing-def;
+		align-items: center;
+	}
+
+	.options {
+		width: 320px;
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+		padding-top: v.$spacing-def;
+		padding-bottom: v.$spacing-def;
+		overflow-y: auto;
+		overflow-x: hidden;
+		flex-grow: 1;
+	}
+	.cluster {
+		display: flex;
+		flex-direction: column;
+		gap: v.$spacing-def;
+		padding-right: v.$spacing-def;
+		padding-left: v.$spacing-def;
+		overflow: visible;
+	}
+
+	.sidebarTop{
+		display: flex;
+		gap: v.$spacing-def;
 		padding: v.$spacing-def;
+	}
+
+	.sidebar{
+		width: 320px;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.settingWindow {
 		background-color: c.$bg;
 		border-radius: v.$corner-window;
 		border: solid;
 		border-color: c.$text-25;
 		border-width: 1px;
 		transition: 0.25s;
+		display: flex;
 	}
 
 	.bg {
