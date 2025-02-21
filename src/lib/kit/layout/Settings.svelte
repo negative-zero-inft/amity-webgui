@@ -22,9 +22,10 @@
 	}}
 >
 	<div class="settingWindow" style="
-		width: {$isSettings ? "1200px" : "300px"}; 
-		height: {$isSettings ? "800px" : "36px"};
-		transform: {$isSettings ?  "translate(0, 0)" : "translate(calc(-50vw + 159px), calc(50vh - 28px))"} scale({$isSettings ? 1 : 0});
+		width: {$isSettings ? "calc(100vw - 700px)" : "300px"}; 
+		height: {$isSettings ? "calc(100vh - 150px)" : "36px"};
+		opacity: {$isSettings ? "1" : "0"};
+		transform: {$isSettings ?  "translate(0, 0)" : "translate(calc(-50vw + 159px), calc(50vh - 28px))"};
 	">
 		<Button
 			action={() => {
