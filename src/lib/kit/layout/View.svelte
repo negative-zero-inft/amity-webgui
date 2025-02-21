@@ -11,17 +11,6 @@
 	import MapSidebar from './chatsidebars/MapSidebar.svelte';
 	import PollSidebar from './chatsidebars/PollSidebar.svelte';
 	import StickerSidebar from './chatsidebars/StickerSidebar.svelte';
-
-	import {
-		isCloudStorageBar,
-		isContactsBar,
-		isMapBar,
-		isPollBar,
-		isCommandBar,
-		isEmojiBar,
-		isStickerBar,
-		isGifBar,
-	} from '$lib/scripts/chatViews';
 	
 	import ViewBottomBar from './ViewBottomBar.svelte';
 	import ViewTopBar from './ViewTopBar.svelte';
@@ -34,6 +23,69 @@
 		<CloudStorageBar></CloudStorageBar>
 		<div class="userView">
 			<div class="chatView">
+				<div class="clusterForeign">
+					<Avatar></Avatar>
+					<div class="clusterMessages">
+						<Message>skibidi toilet</Message>
+						<Message isClustered={true}
+							>skibidi toilet
+							asdihlas;udflu.oij;sduoilphasdfuopilhawsdfluoihbasdlofbasdbflkasdbflgikasdbvliasbdloivbasibvkijsdafbvgjknabsdfkhjv
+							bkjdafxbvhbasdfvjkhasdbvjkhasdbfdvgljkasdbfvkljh</Message
+						>
+					</div>
+				</div>
+				<div class="clusterOwn">
+					<div class="clusterMessages" style="align-items: flex-end">
+						<Message isSender={true}
+							>skibidi toilet
+							;jksfdhngluoij;fdgluijfsdnbluijfsdgluijbsdhnikbfhsdglikfhsdnklijsdfhlkivshndkligfsdhoikgsdfhbvuigzdxuhkfgbfsdxuvbsdhvhboikhsfdhbvoihsdvniuynsdcvoiuhasdvoijhnadxcouivbjhsvcxb
+							uibtvx,keshgj,kxlcyiur.,dkthikg9ifr0gol;4[wp;.r,t4iljo567vj6g87ridus5retreg78657h]</Message
+						>
+						<Message isClustered={true} isSender={true}>skibidi toilet</Message>
+					</div>
+				</div>
+				<div class="clusterForeign">
+					<Avatar></Avatar>
+					<div class="clusterMessages">
+						<Message>skibidi toilet</Message>
+						<Message isClustered={true}
+							>skibidi toilet
+							asdihlas;udflu.oij;sduoilphasdfuopilhawsdfluoihbasdlofbasdbflkasdbflgikasdbvliasbdloivbasibvkijsdafbvgjknabsdfkhjv
+							bkjdafxbvhbasdfvjkhasdbvjkhasdbfdvgljkasdbfvkljh</Message
+						>
+					</div>
+				</div>
+				<div class="clusterOwn">
+					<div class="clusterMessages" style="align-items: flex-end">
+						<Message isSender={true}
+							>skibidi toilet
+							;jksfdhngluoij;fdgluijfsdnbluijfsdgluijbsdhnikbfhsdglikfhsdnklijsdfhlkivshndkligfsdhoikgsdfhbvuigzdxuhkfgbfsdxuvbsdhvhboikhsfdhbvoihsdvniuynsdcvoiuhasdvoijhnadxcouivbjhsvcxb
+							uibtvx,keshgj,kxlcyiur.,dkthikg9ifr0gol;4[wp;.r,t4iljo567vj6g87ridus5retreg78657h]</Message
+						>
+						<Message isClustered={true} isSender={true}>skibidi toilet</Message>
+					</div>
+				</div>
+				<div class="clusterForeign">
+					<Avatar></Avatar>
+					<div class="clusterMessages">
+						<Message>skibidi toilet</Message>
+						<Message isClustered={true}
+							>skibidi toilet
+							asdihlas;udflu.oij;sduoilphasdfuopilhawsdfluoihbasdlofbasdbflkasdbflgikasdbvliasbdloivbasibvkijsdafbvgjknabsdfkhjv
+							bkjdafxbvhbasdfvjkhasdbvjkhasdbfdvgljkasdbfvkljh</Message
+						>
+					</div>
+				</div>
+				<div class="clusterOwn">
+					<div class="clusterMessages" style="align-items: flex-end">
+						<Message isSender={true}
+							>skibidi toilet
+							;jksfdhngluoij;fdgluijfsdnbluijfsdgluijbsdhnikbfhsdglikfhsdnklijsdfhlkivshndkligfsdhoikgsdfhbvuigzdxuhkfgbfsdxuvbsdhvhboikhsfdhbvoihsdvniuynsdcvoiuhasdvoijhnadxcouivbjhsvcxb
+							uibtvx,keshgj,kxlcyiur.,dkthikg9ifr0gol;4[wp;.r,t4iljo567vj6g87ridus5retreg78657h]</Message
+						>
+						<Message isClustered={true} isSender={true}>skibidi toilet</Message>
+					</div>
+				</div>
 				<div class="clusterForeign">
 					<Avatar></Avatar>
 					<div class="clusterMessages">
@@ -112,7 +164,7 @@
 	}
 
 	.chatView {
-		height: 100%;
+		height: calc(100vh - 56px * 2);
 		width: 100%;
 		overflow-y: scroll;
 		display: flex;
@@ -120,6 +172,7 @@
 		padding: v.$spacing-def;
 		gap: v.$spacing-def;
 		box-sizing: border-box;
+		padding-top: 10px;
 	}
 
 	.view {

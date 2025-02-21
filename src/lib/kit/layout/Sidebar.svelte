@@ -137,6 +137,7 @@
 		padding: v.$spacing-def;
 		padding-right: var(--pr);
 		overflow-y: auto;
+		overflow-x: hidden;
 		flex-grow: 1;
 		flex-shrink: none;
 		scrollbar-gutter: stable;

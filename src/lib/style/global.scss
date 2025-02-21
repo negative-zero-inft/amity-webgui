@@ -74,6 +74,11 @@ body{
 ::-webkit-scrollbar {
     width: 5px;
     overflow: visible;
+    opacity: 0;
+    &:hover{
+        opacity: 1;
+    }
+    transition: 0.25s;
 }
 
 ::-webkit-scrollbar-track {
