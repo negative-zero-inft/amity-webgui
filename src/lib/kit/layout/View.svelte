@@ -164,7 +164,7 @@
 	}
 
 	.chatView {
-		height: calc(100vh - 56px * 2);
+		height: calc(100vh - 4px - 56px * 2);
 		width: 100%;
 		overflow-y: scroll;
 		display: flex;

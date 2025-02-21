@@ -10,6 +10,8 @@ export const isCloudStorageBar = writable<boolean>(false);
 export const isStickerBar = writable<boolean>(false);
 export const isChatInfo = writable<boolean>(false);
 
+export const isSettings = writable<boolean>(false);
+
 export const states = [
     {id: "emoji", active: isEmojiBar},
     {id: "contacts", active: isContactsBar},

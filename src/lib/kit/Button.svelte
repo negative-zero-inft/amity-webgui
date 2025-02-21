@@ -14,14 +14,16 @@
 		alignment = "center",
 		action = () => {},
 		children,
-		id = ''
+		id = '',
+		scaleHover = 1.1,
+		scaleClick = 0.9
 	} = $props();
 </script>
 
 <button
 	{id}
 	class="bv{style}"
-	style="--w: {width}; --a: {alignment};"
+	style="--w: {width}; --a: {alignment}; --sh: {scaleHover}; --sc: {scaleClick}"
 	onclick={(e) => {
 		action(e);
 	}}>{@render children?.()}</button
@@ -40,10 +42,10 @@
 		flex-shrink: 0;
 	}
 	button:hover {
-		transform: scale(1.1);
+		transform: scale(var(--sh));
 	}
 	button:active {
-		transform: scale(0.9);
+		transform: scale(var(--sc));
 	}
 
 	.bv2 {

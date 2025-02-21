@@ -2,6 +2,7 @@
 	import Button from "../Button.svelte";
 	import Icon from "../Icon.svelte";
 	import UserbarTop from "./sidebarElems/UserbarTop.svelte";
+    import { isSettings } from "$lib/scripts/chatViews";
 
     let {
         isExpanded
@@ -13,17 +14,23 @@
     <hr class="separator"/>
     <div class="options">
         <div class="cluster">
-            <Button alignment="space-between" width="100%"><div class="elem-horiz"><Icon name="User"></Icon> Your profile</div><Icon name="Direction/Right"></Icon></Button>
-            <Button alignment="space-between" width="100%"><div class="elem-horiz"><Icon name="Users"></Icon> Your friends</div><Icon name="Direction/Right"></Icon></Button>
-            <Button alignment="space-between" width="100%"><div class="elem-horiz"><Icon name="Library"></Icon> Your things</div><Icon name="Direction/Right"></Icon></Button>
+            <Button scaleClick={0.95} scaleHover={1.05} alignment="space-between" width="100%"><div class="elem-horiz"><Icon name="User"></Icon> Your profile</div><Icon name="Direction/Right"></Icon></Button>
+            <Button scaleClick={0.95} scaleHover={1.05} alignment="space-between" width="100%"><div class="elem-horiz"><Icon name="Users"></Icon> Your friends</div><Icon name="Direction/Right"></Icon></Button>
+            <Button scaleClick={0.95} scaleHover={1.05} alignment="space-between" width="100%"><div class="elem-horiz"><Icon name="Library"></Icon> Your things</div><Icon name="Direction/Right"></Icon></Button>
         </div>
         <div class="cluster">
-            <Button alignment="space-between" width="100%"><div class="elem-horiz"><Icon name="Bookmark"></Icon> Saved messages</div><Icon name="Direction/Right"></Icon></Button>
-            <Button alignment="space-between" width="100%"><div class="elem-horiz"><Icon name="Archive"></Icon> Archived chats</div><Icon name="Direction/Right"></Icon></Button>
+            <Button scaleClick={0.95} scaleHover={1.05} alignment="space-between" width="100%"><div class="elem-horiz"><Icon name="Bookmark"></Icon> Saved messages</div><Icon name="Direction/Right"></Icon></Button>
+            <Button scaleClick={0.95} scaleHover={1.05} alignment="space-between" width="100%"><div class="elem-horiz"><Icon name="Archive"></Icon> Archived chats</div><Icon name="Direction/Right"></Icon></Button>
         </div>
         <div class="cluster">
-            <Button alignment="space-between" width="100%"><div class="elem-horiz"><Icon name="Cloud"></Icon> About instance</div><Icon name="Direction/Right"></Icon></Button>
-            <Button alignment="space-between" width="100%"><div class="elem-horiz"><Icon name="List"></Icon> Amity changelog</div><Icon name="Direction/Right"></Icon></Button>
+            <Button scaleClick={0.95} scaleHover={1.05} alignment="space-between" width="100%"><div class="elem-horiz"><Icon name="Cloud"></Icon> About instance</div><Icon name="Direction/Right"></Icon></Button>
+            <Button scaleClick={0.95} scaleHover={1.05} alignment="space-between" width="100%"><div class="elem-horiz"><Icon name="List"></Icon> Amity changelog</div><Icon name="Direction/Right"></Icon></Button>
+        </div>
+    </div>
+    <div class="bottomDock">
+        <hr class="separator"/>
+        <div style="padding: 10px;">
+            <Button action={() =>{isSettings.set(true)}} scaleClick={0.95} scaleHover={1.05} alignment="flex-start" width="100%"><Icon name="Settings"></Icon> Settings</Button>
         </div>
     </div>
 </div>
@@ -33,6 +40,15 @@
     @use '$lib/style/colors.scss' as c;
     @use '$lib/style/variables.scss' as v;
 
+    .bottomDock{
+        position: absolute;
+        bottom: 0;
+        height: 57px;
+        width: 320px;
+        display: flex;
+        flex-direction: column;
+        background-color: c.$bg;
+    }
     .elem-horiz{
         display: flex;
         gap: v.$spacing-def;
