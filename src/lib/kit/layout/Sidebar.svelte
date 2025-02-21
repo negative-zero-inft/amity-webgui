@@ -8,7 +8,7 @@
 
 	import { isFirefox } from '$lib/scripts/isFirefox';
 	import { setContext } from 'svelte';
-	import { isUserBar } from '$lib/scripts/variables';
+	import { isUserBar } from '$lib/scripts/chatViews';
 
 	let scrollContainer: HTMLDivElement | undefined;
 
