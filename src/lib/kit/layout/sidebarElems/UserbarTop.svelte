@@ -9,7 +9,8 @@
 		banner = 'src/lib/Jump.png',
 		username = 'Alex',
 		tag = 'nrd@amity.neg-zero.com',
-		avatar = 'src/lib/amity.png '
+		avatar = 'src/lib/amity.png',
+		notifCount
 	} = $props();
 
 	const isUserBar = getContext<Writable<boolean>>('isUserBar');
@@ -19,7 +20,7 @@
 	<img src={banner} class="banner" alt="banner" />
 	<div class="top">
 		<Button action={() => isUserBar.set(false)}><Icon name="Direction/Left"></Icon></Button>
-		<Button><Icon name="Bell"></Icon></Button>
+		<Button><Icon name="Bell"></Icon>{notifCount}</Button>
 	</div>
 	<div class="bottom">
 		<Avatar pfpLink={avatar}></Avatar>
