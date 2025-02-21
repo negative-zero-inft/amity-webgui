@@ -74,6 +74,7 @@
         box-sizing: border-box;
         flex-direction: column;
         justify-content: space-between;
+        flex-shrink: 0;
     }
 
 </style>

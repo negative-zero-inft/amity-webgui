@@ -138,6 +138,7 @@
 		padding-right: var(--pr);
 		overflow-y: auto;
 		flex-grow: 1;
+		flex-shrink: none;
 		scrollbar-gutter: stable;
 	}
 </style>

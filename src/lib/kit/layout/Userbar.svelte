@@ -40,12 +40,14 @@
     }
 
     .options{
+        width: 320px;
         display: flex;
 		flex-direction: column;
 		gap: 16px;
 		padding-top: v.$spacing-def;
 		padding-bottom: v.$spacing-def;
 		overflow-y: auto;
+        overflow-x: hidden;
 		flex-grow: 1;
     }
     .cluster{
