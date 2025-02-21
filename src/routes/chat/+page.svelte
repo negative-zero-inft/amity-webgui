@@ -7,9 +7,7 @@
 </script>
 
 <div class="main">
-	{#if $isSettings}
-		<Settings></Settings>
-	{/if}
+	<Settings></Settings>
 	<Sidebar />
 	<hr class="separator" />
 	<View />

@@ -2,10 +2,30 @@
 	import Button from '../Button.svelte';
 	import { isSettings } from '$lib/scripts/chatViews';
 	import Icon from '../Icon.svelte';
+
 </script>
 
-<div class="bg">
-	<div class="settingWindow">
+<!-- svelte-ignore a11y_click_events_have_key_events -->
+<!-- svelte-ignore a11y_no_static_element_interactions -->
+<div 
+	class="bg" 
+	style="
+		// opacity: {$isSettings ? 1 : 0}; 
+		pointer-events: {$isSettings ? "auto" : "none"};
+		--blur: {$isSettings ? 80 : 0}px;
+		background-color: {$isSettings ? "#00000040" : "#00000000" };
+	"
+	on:click={(e) =>{
+		if(e.target === e.currentTarget){
+			isSettings.set(false);
+		}
+	}}
+>
+	<div class="settingWindow" style="
+		width: {$isSettings ? "1200px" : "300px"}; 
+		height: {$isSettings ? "800px" : "36px"};
+		transform: {$isSettings ?  "translate(0, 0)" : "translate(calc(-50vw + 159px), calc(50vh - 28px))"} scale({$isSettings ? 1 : 0});
+	">
 		<Button
 			action={() => {
 				isSettings.set(false);
@@ -23,6 +43,8 @@
 		border-radius: v.$corner-window;
 		border: solid;
 		border-color: c.$text-25;
+		border-width: 1px;
+		transition: 0.25s;
 	}
 
 	.bg {
@@ -33,10 +55,11 @@
 		bottom: 0;
 		z-index: 6969696969;
 		background-color: c.$bg-25;
-		backdrop-filter: blur(80px);
-		-webkit-backdrop-filter: blur(80px);
+		backdrop-filter: blur(var(--blur));
+		-webkit-backdrop-filter: blur(var(--blur));
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		transition: 0.25s;
 	}
 </style>
