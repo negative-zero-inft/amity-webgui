@@ -23,7 +23,7 @@
 	}}
 >
 	<div class="settingWindow" style="
-		width: {$isSettings ? "calc(100vw - 700px)" : "300px"}; 
+		width: {$isSettings ? "1100px" : "300px"}; 
 		height: {$isSettings ? "calc(100vh - 150px)" : "36px"};
 		opacity: {$isSettings ? "1" : "0"};
 		transform: {$isSettings ?  "translate(0, 0)" : "translate(calc(-50vw + 159px), calc(50vh - 28px))"};
@@ -76,6 +76,12 @@
 			</div>
 		</div>
 		<hr class="separator"/>
+		<div class="settingsView">
+			<div class="userTop">
+				<img src="src/lib/Jump.png" class="banner" alt="banner" />
+
+			</div>
+		</div>
 	</div>
 </div>
 
@@ -83,6 +89,16 @@
 
 	@use '$lib/style/variables.scss' as v;
 	@use '$lib/style/colors.scss' as c;
+
+	.banner {
+		position: absolute;
+		left: 321px;
+		top: 0;
+		width: 779px;
+		height: 150px;
+		z-index: -1;
+		object-fit: cover;
+	}
 
 	.elem-horiz {
 		display: flex;
@@ -130,6 +146,7 @@
 		border-width: 1px;
 		transition: 0.25s;
 		display: flex;
+		overflow: hidden;
 	}
 
 	.bg {

@@ -63,6 +63,7 @@
 		width: 320px;
 		height: 150px;
 		z-index: -1;
+		object-fit: cover;
 	}
 	.barTop {
 		height: 150px;
