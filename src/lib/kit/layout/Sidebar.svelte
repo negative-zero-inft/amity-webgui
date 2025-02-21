@@ -7,6 +7,8 @@
 	import Userbar from './Userbar.svelte';
 
 	import { isFirefox } from '$lib/scripts/isFirefox';
+	import { setContext } from 'svelte';
+	import { isUserBar } from '$lib/scripts/variables';
 
 	let scrollContainer: HTMLDivElement | undefined;
 
@@ -21,11 +23,15 @@
 		scrollContainer.scrollLeft += delta * scrollSpeed;
 	}
 
-	export let isUserBar = writable<boolean>(false);
-	console.log(isFirefox())
+	setContext('isUserBar', isUserBar);
+
+	let isReallyFireFox = $state<boolean>(false);
+	$effect(() => {
+		isReallyFireFox = isFirefox();
+	});
 </script>
 
-<Userbar isExpanded={isUserBar}></Userbar>
+<Userbar />
 <div
 	class="sidebar"
 	style="--u: {$isUserBar ? 0.9 : 1}; --o: {$isUserBar ? 0.25 : 1}; --r: {$isUserBar ? 1 : 0}"
@@ -41,7 +47,7 @@
 		>
 			<Button
 				action={() => {
-					isUserBar.set(true);
+					$isUserBar = true;
 				}}><Icon name="Hamburger" /></Button
 			>
 			<Button>
@@ -63,7 +69,7 @@
 		</div>
 	</div>
 	<hr class="separator" />
-	<div class="chatEntries" style="--pr: {isFirefox() ? 10 : 5}px">
+	<div class="chatEntries" style="--pr: {isReallyFireFox ? 10 : 5}px">
 		<ChatEntry isSelected={true} isFavorite={true}></ChatEntry>
 		<ChatEntry isFavorite={true} username={'Harry Bōlz'}></ChatEntry>
 		<ChatEntry unreads={69}></ChatEntry>
