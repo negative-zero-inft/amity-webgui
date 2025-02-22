@@ -47,6 +47,46 @@
 	button:active {
 		transform: scale(var(--sc));
 	}
+	.bv3 {
+		background-color: c.$accent-10;
+		border: solid;
+		color: c.$text;
+		border-color: c.$accent;
+		border-width: 1px;
+		border-radius: v.$corner-elem;
+		padding: v.$spacing-def;
+		padding-left: 9px;
+		padding-right: 9px;
+		box-sizing: border-box;
+		height: v.$elem-height;
+		display: flex;
+		align-items: center;
+		flex-direction: row;
+		gap: v.$spacing-def;
+		@include v.standard-text();
+		background-image: linear-gradient(
+			-45deg,
+			transparent 25%,
+			rgba(255, 0, 0, 0.2) 25%,
+			rgba(255, 0, 0, 0.2) 75%,
+			transparent 75%,
+			transparent
+		);
+	}
+	.bv3:hover {
+		background-image: linear-gradient(
+			-45deg,
+			transparent 25%,
+			rgba(255, 0, 0, 0.5) 25%,
+			rgba(255, 0, 0, 0.5) 75%,
+			transparent 75%,
+			transparent
+		);
+		background-color: c.$accent-40;
+	}
+	.bv3:active {
+		background-color: c.$accent;
+	}
 
 	.bv2 {
 		background-color: c.$accent-50;

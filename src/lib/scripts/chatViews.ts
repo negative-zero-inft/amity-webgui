@@ -10,6 +10,8 @@ export const isCloudStorageBar = writable<boolean>(false);
 export const isStickerBar = writable<boolean>(false);
 export const isChatInfo = writable<boolean>(false);
 
+export const isRecording = writable<boolean>(false);
+
 export const isSettings = writable<boolean>(false);
 export const isUserBar = writable<boolean>(false);
 
