@@ -3,6 +3,7 @@
 	import Icon from "$lib/kit/Icon.svelte";
 	import Textbox from "$lib/kit/Textbox.svelte";
 	import { server } from "$lib/scripts/globalData";
+	import { errorValue, isError } from "$lib/scripts/loginWritables";
 
     let{
         isLogin 
@@ -18,8 +19,16 @@
     }
 
     const signInProcedure = async () =>{
-        if( !tag || !pass ) return // TODO: user-friendly error catcher 
-        if( !tag.match("@") ) return
+        if( !tag || !pass ){
+            isError.set(true)
+            errorValue.set("Please fill all spaces")
+            return
+        }
+        if( !tag.match("@") ){
+            isError.set(true)
+            errorValue.set("Please include the instance this user was created on")
+            return
+        }
 
         const response = await fetch(`http://${$server}/signin`, {
             method: "POST",

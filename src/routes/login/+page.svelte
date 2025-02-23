@@ -18,9 +18,13 @@
 		<LoginBox isLogin={isLogin}></LoginBox>
 		<SignupBox isLogin={isLogin}></SignupBox>
 	</div>
-	{#if $isError}
-		<div class="error"><Icon name="Warning"></Icon>{$errorValue}</div>
-	{/if}
+	<!-- {#if $isError} -->
+		<!-- svelte-ignore a11y_no_static_element_interactions -->
+		<!-- svelte-ignore a11y_click_events_have_key_events -->
+		<div onclick={()=>{isError.set(false)}} style="transform: scale({$isError ? "1" : "0"}); opacity: {$isError ? "1" : "0"};" class="error">
+			<Icon name="Warning"></Icon>{$errorValue}
+		</div>
+	<!-- {/if} -->
 
 	<img alt="Amy" class="amy" src={amy}/>
 </div>
@@ -30,10 +34,14 @@
 	@use '$lib/style/colors.scss' as c;
 	
 	.error{
+		overflow: hidden;
+		position: absolute;
+		bottom: 10px;
+		transition: 0.25s;
 		gap: v.$spacing-def;
 		font-size: 16px;
 		width: 320px;
-		height: 100px;
+		height: max-content;
 		padding: 10px;
 		display: flex;
 		box-sizing: border-box;
@@ -52,6 +60,10 @@
 			transparent 75%,
 			transparent
 		);
+		&:hover{
+			background-color: c.$accent-80;
+			scale: 1.1;
+		}
 	}
 
 	.amy{
