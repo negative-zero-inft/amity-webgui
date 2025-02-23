@@ -46,6 +46,17 @@
 				><div class="elem-horiz"><Icon name="List"></Icon> Amity changelog</div>
 				<Icon name="Direction/Right"></Icon></Button
 			>
+			<Button
+				action={()=>{
+					localStorage.removeItem("token")
+					window.location.replace("/login")
+				}}
+				style={3}
+				scaleClick={0.95}
+				scaleHover={1.05}
+				alignment="flex-start"
+				width="100%"><Icon name="Exit"></Icon> Log out</Button
+			>
 		</div>
 	</div>
 	<div class="bottomDock">

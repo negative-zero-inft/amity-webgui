@@ -11,6 +11,10 @@
 
 	let isLogin = writable<boolean>(true);
 
+	$effect(()=>{
+		if(localStorage.getItem("token")) window.location.replace("/chat")
+	})
+
 </script>
 
 <div class="loginBg">
