@@ -26,7 +26,7 @@
     <div class="inputs">
         <Textbox bind:value={tag} width="100%" icon="User" placeholder="User tag"></Textbox>
         <Textbox bind:value={pass} isPassword width="100%" icon="Lock/Locked" placeholder="Password"></Textbox>
-        <a href="https://skibidi.pneumonoultramicroscopicsilicovolcanoconiosis.space">Forgot your password?</a>
+        <a href="https://skibidi.pneumonoultramicroscopicsilicovolcanoconiosis.site">Forgot your password?</a>
     </div>
     <div class="buttons">
         <Button width="100%; flex-shrink: 1;" action={changeView}><Icon name="Plus"></Icon>Create account</Button>
