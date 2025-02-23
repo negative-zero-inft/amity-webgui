@@ -41,6 +41,12 @@
                 "Access-Control-Allow-Origin": "*"
             }
         })
+
+        if(await response.status != 200){
+            isError.set(true)
+            errorValue.set(await response.text())
+            return
+        }
         localStorage.setItem("token", await response.text())
 
         window.location.replace("/chat")
