@@ -51,18 +51,18 @@
 		box-sizing: border-box;
 		align-items: center;
 		justify-content: center;
-		background-color: c.$accent-t40;
+		background-color: c.$accent-t10;
 		border-radius: v.$corner-window;
 		border: solid;
 		border-width: 1px;
 		border-color: c.$accent;
 		background-image: repeating-linear-gradient(
 			-45deg,
-			transparent 25%,
-			rgba(255, 0, 0, 0.5) 25%,
-			rgba(255, 0, 0, 0.5) 75%,
-			transparent 75%,
-			transparent
+			transparent 15px,
+			rgba(255, 0, 0, 0.25) 15px,
+			rgba(255, 0, 0, 0.25) 35px,
+			transparent 35px,
+			transparent 55px /* added this so the pattern repeats seamlessly */
 		);
 		&:hover{
 			background-color: c.$accent-t80;
