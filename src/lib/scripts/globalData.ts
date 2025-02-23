@@ -20,7 +20,12 @@ export let user = writable<{
         name: string,
         secret: string
     }[],
-    chats: object[],
+    chats: {
+        id: {
+            id: string,
+            server: string
+        }
+    }[],
     chat_folders: {
         icon: string,
         name: string,
