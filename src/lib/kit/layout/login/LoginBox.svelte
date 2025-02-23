@@ -6,6 +6,15 @@
     let{
         isLogin 
     } = $props()
+
+    let tag:string | undefined = $state();
+    let pass:string | undefined = $state();
+    
+    const changeView = () =>{
+        isLogin.set(!$isLogin)
+        tag = ""
+        pass = ""
+    }
 </script>
 
 <div class="loginBox" style="
@@ -15,12 +24,12 @@
 ">
     <div class="title">Log in to Amity</div>
     <div class="inputs">
-        <Textbox width="100%" icon="User" placeholder="User tag"></Textbox>
-        <Textbox isPassword width="100%" icon="Lock/Locked" placeholder="Password"></Textbox>
+        <Textbox bind:value={tag} width="100%" icon="User" placeholder="User tag"></Textbox>
+        <Textbox bind:value={pass} isPassword width="100%" icon="Lock/Locked" placeholder="Password"></Textbox>
         <a href="https://skibidi.pneumonoultramicroscopicsilicovolcanoconiosis.space">Forgot your password?</a>
     </div>
     <div class="buttons">
-        <Button width="100%; flex-shrink: 1;" action={()=>{isLogin.set(!$isLogin)}}><Icon name="Plus"></Icon>Create account</Button>
+        <Button width="100%; flex-shrink: 1;" action={changeView}><Icon name="Plus"></Icon>Create account</Button>
         <Button width="100%; flex-shrink: 1;" style={1}><Icon name="Login"></Icon>Log in</Button>
     </div>
     <div class="oauthSeparator">

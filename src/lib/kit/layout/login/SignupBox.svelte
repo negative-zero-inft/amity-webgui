@@ -12,7 +12,7 @@
     let fpass:string | undefined = $state();
     let rpass:string | undefined = $state();
 
-    let signupProcedure = () =>{
+    const signupProcedure = () =>{
         if(!dname || !uname || !fpass || !rpass) return // TODO: user-friendly error catcher 
         if(fpass != rpass) return
         for (let i = 0; i < uname.length; i++) {
@@ -21,6 +21,14 @@
             }
         }
         console.log("skibidi")
+    }
+
+    const changeView = () =>{
+        isLogin.set(!$isLogin)
+        dname = ""
+        uname = ""
+        fpass = ""
+        rpass = ""
     }
 </script>
 
@@ -41,7 +49,7 @@
         >
     </div>
     <div class="buttons">
-        <Button width="100%; flex-shrink: 1;" action={()=>{isLogin.set(!$isLogin)}}><Icon name="Direction/Left"></Icon>Go back</Button>
+        <Button width="100%; flex-shrink: 1;" action={changeView}><Icon name="Direction/Left"></Icon>Go back</Button>
         <Button width="100%; flex-shrink: 1;" action={signupProcedure} style={1}><Icon name="Plus"></Icon>Create account</Button>
     </div>
 </div>
