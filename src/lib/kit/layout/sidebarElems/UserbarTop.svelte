@@ -1,10 +1,11 @@
 <script lang="ts">
 	import Avatar from '$lib/kit/Avatar.svelte';
-
 	import Button from '$lib/kit/Button.svelte';
 	import Icon from '$lib/kit/Icon.svelte';
 	import { getContext } from 'svelte';
 	import type { Writable } from 'svelte/store';
+	import { user } from '$lib/scripts/globalData';
+	
 	let {
 		banner = 'Jump.png',
 		username = 'Alex',

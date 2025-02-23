@@ -9,6 +9,7 @@
 	import { isFirefox } from '$lib/scripts/isFirefox';
 	import { setContext } from 'svelte';
 	import { isUserBar } from '$lib/scripts/chatViews';
+	import { user } from '$lib/scripts/globalData';
 
 	let scrollContainer: HTMLDivElement | undefined;
 
@@ -59,13 +60,10 @@
 			<Button><Icon name="Search" /></Button>
 		</div>
 		<div class="scroll-horiz" bind:this={scrollContainer} onwheel={handleWheel}>
-			<Button style={6}><Icon name="Star" />balls 69</Button>
-			<Button style={4}><Icon name="Star" />balls 69</Button>
-			<Button style={4}><Icon name="Star" />balls 69</Button>
-			<Button style={4}><Icon name="Star" />balls 69</Button>
-			<Button style={4}><Icon name="Star" />balls 69</Button>
-			<Button style={4}><Icon name="Star" />balls 69</Button>
-			<Button style={4}><Icon name="Star" />balls 69</Button>
+			<Button style={6}><Icon name="Chat" />All chats</Button>
+			{#each $user?.chat_folders || [] as child}
+				<Button style={4}><Icon name={child.icon} />{child.name}</Button>
+			{/each}
 		</div>
 	</div>
 	<hr class="separator" />
