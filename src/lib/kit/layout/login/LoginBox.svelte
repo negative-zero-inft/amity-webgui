@@ -2,6 +2,8 @@
     import Button from "$lib/kit/Button.svelte";
 	import Icon from "$lib/kit/Icon.svelte";
 	import Textbox from "$lib/kit/Textbox.svelte";
+	import { server } from "$lib/scripts/globalData";
+    import { userdata } from "$lib/scripts/globalData";
 
     let{
         isLogin 
@@ -14,6 +16,32 @@
         isLogin.set(!$isLogin)
         tag = ""
         pass = ""
+    }
+
+    const signInProcedure = async () =>{
+        if( !tag || !pass ) return // TODO: user-friendly error catcher 
+        if( !tag.match("@") ) return
+
+        const response = await fetch(`http://${$server}/signin`, {
+            method: "POST",
+            body: JSON.stringify({
+                tag: tag,
+                password: pass
+            }),
+            headers: {
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*"
+            }
+        })
+        userdata.set({
+            amityID: {
+                id: "",
+                server: ""
+            },
+            token: await response.text()
+        })
+
+        console.log($userdata)
     }
 </script>
 
@@ -30,7 +58,7 @@
     </div>
     <div class="buttons">
         <Button width="100%; flex-shrink: 1;" action={changeView}><Icon name="Plus"></Icon>Create account</Button>
-        <Button width="100%; flex-shrink: 1;" style={1}><Icon name="Login"></Icon>Log in</Button>
+        <Button action={signInProcedure} width="100%; flex-shrink: 1;" style={1}><Icon name="Login"></Icon>Log in</Button>
     </div>
     <div class="oauthSeparator">
         <hr style="width: 100%" class="separator"/>

@@ -36,10 +36,11 @@
                 method: "POST",
                 body: JSON.stringify(user),
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    "Access-Control-Allow-Origin": "*"
                 }
             })
-            return await response
+            return await response.status
         }
 
         const response = request()
