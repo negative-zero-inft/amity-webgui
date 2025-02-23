@@ -60,8 +60,12 @@
 ">
     <div class="title">Log in to Amity</div>
     <div class="inputs">
-        <Textbox bind:value={tag} width="100%" icon="User" placeholder="User tag"></Textbox>
-        <Textbox bind:value={pass} isPassword width="100%" icon="Lock/Locked" placeholder="Password"></Textbox>
+        <Textbox onkeydown={(e:any)=>{
+            if(e.key == "Enter") signInProcedure()
+        }} bind:value={tag} width="100%" icon="User" placeholder="User tag"></Textbox>
+        <Textbox onkeydown={(e:any)=>{
+            if(e.key == "Enter") signInProcedure()
+        }} bind:value={pass} isPassword width="100%" icon="Lock/Locked" placeholder="Password"></Textbox>
         <a href="https://skibidi.pneumonoultramicroscopicsilicovolcanoconiosis.site">Forgot your password?</a>
     </div>
     <div class="buttons">
