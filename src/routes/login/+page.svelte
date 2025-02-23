@@ -65,7 +65,7 @@
 			transparent 55px /* added this so the pattern repeats seamlessly */
 		);
 		&:hover{
-			background-color: c.$accent-t80;
+			background-color: c.$accent-t40;
 			scale: 1.1;
 		}
 	}
