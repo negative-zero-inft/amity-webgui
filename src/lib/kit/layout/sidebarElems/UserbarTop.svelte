@@ -41,7 +41,9 @@
 				{tag}
 			</div>
 		</div>
-		<Button><Icon name="Share/Alt"></Icon></Button>
+		<Button action={()=>{
+			navigator.clipboard.writeText(`https://${$user.id.server}/user/${$user.id.id}/info`)
+		}}><Icon name="Share/Alt"></Icon></Button>
 		<Button><Icon name="Switch"></Icon></Button>
 	</div>
 </div>
