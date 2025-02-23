@@ -4,6 +4,7 @@
 	import Textbox from "$lib/kit/Textbox.svelte";
 	import { server } from "$lib/scripts/globalData";
 	import { errorValue, isError } from "$lib/scripts/loginWritables";
+	import OAuth from "./OAuth.svelte";
 
     let{
         isLogin 
@@ -74,14 +75,14 @@
         <hr style="width: 100%" class="separator"/>
     </div>
     <div class="oauthGrid">
-        <Button width="100%; flex-shrink: 1;"><Icon name="Google"></Icon></Button>
-        <Button width="100%; flex-shrink: 1;"><Icon name="Apple"></Icon></Button>
-        <Button width="100%; flex-shrink: 1;"><Icon name="Objects"></Icon></Button>
-        <Button width="100%; flex-shrink: 1;"><Icon name="Discord"></Icon></Button>
-        <Button width="100%; flex-shrink: 1;"><Icon name="Telegram"></Icon></Button>
-        <Button width="100%; flex-shrink: 1;"><Icon name="Github"></Icon></Button>
-        <Button width="100%; flex-shrink: 1;"><Icon name="Mastodon"></Icon></Button>
-        <Button width="100%; flex-shrink: 1;">OSU</Button>
+        <OAuth name="google"><Icon name="Google"></Icon></OAuth>
+        <OAuth name="apple"><Icon name="Apple"></Icon></OAuth>
+        <OAuth name="objects"><Icon name="Objects"></Icon></OAuth>
+        <OAuth name="discord"><Icon name="Discord"></Icon></OAuth>
+        <OAuth name="telegram"><Icon name="Telegram"></Icon></OAuth>
+        <OAuth name="github"><Icon name="Github"></Icon></OAuth>
+        <OAuth name="mastodon"><Icon name="Mastodon"></Icon></OAuth>
+        <OAuth name="osu">OSU</OAuth>
     </div>
 </div>
 
