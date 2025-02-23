@@ -79,10 +79,18 @@
 ">
     <div class="title">Sign up for Amity</div>
     <div class="inputs">
-        <Textbox maxlength={64} bind:value={dname} width="100%" icon="Rename" placeholder="Display name"></Textbox>
-        <Textbox maxlength={32} bind:value={uname} width="100%" icon="User" placeholder="Username"></Textbox>
-        <Textbox isPassword maxlength={64} bind:value={fpass} width="100%" icon="Lock/Locked" placeholder="Password"></Textbox>
-        <Textbox isPassword maxlength={64} bind:value={rpass} width="100%" icon="Lock/Locked" placeholder="Repeat password"></Textbox>
+        <Textbox onkeydown={(e:any)=>{
+            if(e.key == "Enter") signupProcedure()
+        }} maxlength={64} bind:value={dname} width="100%" icon="Rename" placeholder="Display name"></Textbox>
+        <Textbox onkeydown={(e:any)=>{
+            if(e.key == "Enter") signupProcedure()
+        }} maxlength={32} bind:value={uname} width="100%" icon="User" placeholder="Username"></Textbox>
+        <Textbox onkeydown={(e:any)=>{
+            if(e.key == "Enter") signupProcedure()
+        }} isPassword maxlength={64} bind:value={fpass} width="100%" icon="Lock/Locked" placeholder="Password"></Textbox>
+        <Textbox onkeydown={(e:any)=>{
+            if(e.key == "Enter") signupProcedure()
+        }} isPassword maxlength={64} bind:value={rpass} width="100%" icon="Lock/Locked" placeholder="Repeat password"></Textbox>
         <Button scaleClick={0.95} scaleHover={1.05} alignment="space-between" width="100%"
             ><div class="elem-horiz"><Icon name="Cloud"></Icon> File server <div style="opacity: 0.5;">amycdn.neg-zero.com</div></div>
             <Icon name="Direction/Right"></Icon></Button

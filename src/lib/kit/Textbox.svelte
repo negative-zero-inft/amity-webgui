@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Icon from './Icon.svelte';
 
-	let { width = '200px', icon = null, placeholder = 'placeholder', value = $bindable<string>(), maxlength = 4000, isPassword = false } = $props();
+	let { width = '200px', icon = null, placeholder = 'placeholder', value = $bindable<string>(), maxlength = 4000, isPassword = false, onkeydown = ()=>{} } = $props();
 
 	let padding: number = $state<number>(10);
 
@@ -16,7 +16,7 @@
 			<Icon name={icon} />
 		</span>
 	{/if}
-	<input maxlength={maxlength} bind:value type={isPassword ? "password" : "text" } {placeholder} style="--w: {width}; --icon: {icon}; --padding: {padding}px" />
+	<input onkeydown={(e)=>{onkeydown(e)}} maxlength={maxlength} bind:value type={isPassword ? "password" : "text" } {placeholder} style="--w: {width}; --icon: {icon}; --padding: {padding}px" />
 </div>
 
 <style lang="scss">

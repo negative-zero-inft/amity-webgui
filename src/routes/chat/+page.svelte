@@ -3,6 +3,10 @@
 	import View from '$lib/kit/layout/View.svelte';
 	import Settings from '$lib/kit/layout/Settings.svelte';
 
+	$effect(()=>{
+		if(!localStorage.getItem("token")) window.location.replace("/login")
+	})
+
 </script>
 
 <div class="main">

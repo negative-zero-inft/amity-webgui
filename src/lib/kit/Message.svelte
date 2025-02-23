@@ -36,12 +36,12 @@
 	}
 
 	.message10 {
-		background-color: c.$accent-40;
+		background-color: c.$accent-t40;
 		border-radius: 15px 15px 5px 15px;
 		@include message;
 
 		&:hover {
-			background-color: c.$accent-80;
+			background-color: c.$accent-t80;
 		}
 	}
 
@@ -56,12 +56,12 @@
 	}
 
 	.message11 {
-		background-color: c.$accent-40;
+		background-color: c.$accent-t40;
 		border-radius: 15px 5px 5px 15px;
 		@include message;
 
 		&:hover {
-			background-color: c.$accent-80;
+			background-color: c.$accent-t80;
 		}
 	}
 </style>
