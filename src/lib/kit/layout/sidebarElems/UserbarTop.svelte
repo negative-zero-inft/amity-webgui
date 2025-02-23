@@ -6,10 +6,10 @@
 	import { getContext } from 'svelte';
 	import type { Writable } from 'svelte/store';
 	let {
-		banner = 'src/lib/Jump.png',
+		banner = 'Jump.png',
 		username = 'Alex',
 		tag = 'nrd@amity.neg-zero.com',
-		avatar = 'src/lib/amity.png',
+		avatar = 'amity.png',
 		notifCount
 	} = $props();
 

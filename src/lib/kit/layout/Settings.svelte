@@ -3,40 +3,51 @@
 	import { isSettings } from '$lib/scripts/chatViews';
 	import Icon from '../Icon.svelte';
 	import Textbox from '../Textbox.svelte';
-
 </script>
 
 <!-- svelte-ignore a11y_click_events_have_key_events -->
 <!-- svelte-ignore a11y_no_static_element_interactions -->
-<div 
-	class="bg" 
+<div
+	class="bg"
 	style="
 		// opacity: {$isSettings ? 1 : 0}; 
-		pointer-events: {$isSettings ? "auto" : "none"};
+		pointer-events: {$isSettings ? 'auto' : 'none'};
 		--blur: {$isSettings ? 80 : 0}px;
-		background-color: {$isSettings ? "#00000040" : "#00000000" };
+		background-color: {$isSettings ? '#00000040' : '#00000000'};
 	"
-	on:click={(e) =>{
-		if(e.target === e.currentTarget){
+	on:click={(e) => {
+		if (e.target === e.currentTarget) {
 			isSettings.set(false);
 		}
 	}}
 >
-	<div class="settingWindow" style="
-		width: {$isSettings ? "1100px" : "300px"}; 
-		height: {$isSettings ? "calc(100vh - 150px)" : "36px"};
-		opacity: {$isSettings ? "1" : "0"};
-		transform: {$isSettings ?  "translate(0, 0)" : "translate(calc(-50vw + 159px), calc(50vh - 28px))"};
-	">
+	<div
+		class="settingWindow"
+		style="
+		width: {$isSettings ? '1100px' : '300px'}; 
+		height: {$isSettings ? 'calc(100vh - 150px)' : '36px'};
+		opacity: {$isSettings ? '1' : '0'};
+		transform: {$isSettings ? 'translate(0, 0)' : 'translate(calc(-50vw + 159px), calc(50vh - 28px))'};
+	"
+	>
 		<div class="sidebar">
 			<div class="sidebarTop">
-				<Button action={() => {isSettings.set(false);}}><Icon name="X"></Icon></Button>
+				<Button
+					action={() => {
+						isSettings.set(false);
+					}}><Icon name="X"></Icon></Button
+				>
 				<Textbox placeholder="Search settings..." icon="Search" width="100%"></Textbox>
 			</div>
-			<hr class="separator"/>
+			<hr class="separator" />
 			<div class="options">
 				<div class="cluster">
-					<Button style={2} scaleClick={0.95} scaleHover={1.05} alignment="space-between" width="100%"
+					<Button
+						style={2}
+						scaleClick={0.95}
+						scaleHover={1.05}
+						alignment="space-between"
+						width="100%"
 						><div class="elem-horiz"><Icon name="User"></Icon> Profile</div>
 						<Icon name="Direction/Right"></Icon></Button
 					>
@@ -75,18 +86,16 @@
 				</div>
 			</div>
 		</div>
-		<hr class="separator"/>
+		<hr class="separator" />
 		<div class="settingsView">
 			<div class="userTop">
-				<img src="src/lib/Jump.png" class="banner" alt="banner" />
-
+				<img src="Jump.png" class="banner" alt="banner" />
 			</div>
 		</div>
 	</div>
 </div>
 
 <style lang="scss">
-
 	@use '$lib/style/variables.scss' as v;
 	@use '$lib/style/colors.scss' as c;
 
@@ -126,13 +135,13 @@
 		overflow: visible;
 	}
 
-	.sidebarTop{
+	.sidebarTop {
 		display: flex;
 		gap: v.$spacing-def;
 		padding: v.$spacing-def;
 	}
 
-	.sidebar{
+	.sidebar {
 		width: 320px;
 		display: flex;
 		flex-direction: column;

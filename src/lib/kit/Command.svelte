@@ -2,9 +2,9 @@
 	let {
 		action = () => {},
 		id = '',
-		command = "test",
-		img = "src/lib/amity.png",
-		width = "100%"
+		command = 'test',
+		img = 'amity.png',
+		width = '100%'
 	} = $props();
 </script>
 
@@ -14,13 +14,14 @@
 	style="width: {width};"
 	onclick={(e) => {
 		action(e);
-	}}><img alt="command" src={img}/>{command}</button>
+	}}><img alt="command" src={img} />{command}</button
+>
 
 <style lang="scss">
 	@use '$lib/style/variables.scss' as v;
 	@use '$lib/style/colors.scss' as c;
 
-	img{
+	img {
 		width: v.$elem-height;
 		height: v.$elem-height;
 	}
@@ -36,7 +37,7 @@
 	button:active {
 		transform: scale(0.9);
 	}
-	
+
 	.cmd {
 		flex-shrink: 0;
 		background-color: c.$clickable;

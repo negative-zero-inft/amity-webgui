@@ -1,7 +1,7 @@
 <script>
 	import Avatar from './Avatar.svelte';
 
-	let { avatar1 = 'src/lib/amity.png', avatar2 = null, avatar3 = null } = $props();
+	let { avatar1 = 'amity.png', avatar2 = null, avatar3 = null } = $props();
 </script>
 
 <div class="avatars">

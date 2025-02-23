@@ -53,7 +53,7 @@
 			<Button>
 				<Icon name="Camera/Video" />
 				<span class="avatarstack">
-					Stories <AvatarStack avatar2={'guitar.png'} avatar3={'src/lib/amity.png'} />
+					Stories <AvatarStack avatar2={'guitar.png'} avatar3={'amity.png'} />
 				</span>
 			</Button>
 			<Button><Icon name="Search" /></Button>

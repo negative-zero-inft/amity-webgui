@@ -6,7 +6,7 @@
 		preview = 'egg',
 		timestamp = Date.parse('2025-02-14 00:00:00') as number,
 		isFavorite = false,
-		pfpLink = 'src/lib/amity.png',
+		pfpLink = 'amity.png',
 		isSelected = false
 	} = $props();
 
