@@ -33,6 +33,7 @@
 		"vite": "^6.0.0"
 	},
 	"dependencies": {
+		"@castlenine/svelte-qrcode": "^2.3.0",
 		"@poppanator/sveltekit-svg": "^5.0.0",
 		"sass-embedded": "^1.85.0"
 	}

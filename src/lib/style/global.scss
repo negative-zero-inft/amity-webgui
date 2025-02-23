@@ -12,6 +12,10 @@ html {
     scrollbar-gutter: stable;
 }
 
+a{
+    color: c.$accent;
+}
+
 // this prevents svelte compoments from modifying body
 // #body{
 //     background-color: c.$bg;

@@ -10,7 +10,7 @@
 </script>
 
 <div class="bar" style="--w: {$isExpanded ? 320 : 0}px">
-	<UserbarTop />
+	<UserbarTop notifCount={0} />
 	<hr class="separator" />
 	<div class="options">
 		<div class="cluster">
