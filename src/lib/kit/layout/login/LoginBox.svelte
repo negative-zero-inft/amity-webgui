@@ -3,7 +3,6 @@
 	import Icon from "$lib/kit/Icon.svelte";
 	import Textbox from "$lib/kit/Textbox.svelte";
 	import { server } from "$lib/scripts/globalData";
-    import { userdata } from "$lib/scripts/globalData";
 
     let{
         isLogin 
@@ -33,15 +32,9 @@
                 "Access-Control-Allow-Origin": "*"
             }
         })
-        userdata.set({
-            amityID: {
-                id: "",
-                server: ""
-            },
-            token: await response.text()
-        })
+        localStorage.setItem("token", await response.text())
 
-        console.log($userdata)
+        window.location.replace("/chat")
     }
 </script>
 
