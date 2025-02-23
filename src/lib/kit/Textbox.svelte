@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Icon from './Icon.svelte';
 
-	let { width = '200px', icon = null, placeholder = 'placeholder' } = $props();
+	let { width = '200px', icon = null, placeholder = 'placeholder', value = $bindable<string>(), maxlength = 4000, isPassword = false } = $props();
 
 	let padding: number = $state<number>(10);
 
@@ -16,7 +16,7 @@
 			<Icon name={icon} />
 		</span>
 	{/if}
-	<input type="text" {placeholder} style="--w: {width}; --icon: {icon}; --padding: {padding}px" />
+	<input maxlength={maxlength} bind:value type={isPassword ? "password" : "text" } {placeholder} style="--w: {width}; --icon: {icon}; --padding: {padding}px" />
 </div>
 
 <style lang="scss">
@@ -31,6 +31,17 @@
 		position: absolute;
 		cursor: text;
 	}
+
+	input:-webkit-autofill,
+	input:-webkit-autofill:focus, 
+	input:-webkit-autofill:active{
+		-webkit-box-shadow: 0 0 0 30px #540000 inset !important;
+		border-color: c.$accent !important;
+		border-width: 1px;
+		-webkit-text-fill-color:white;
+		caret-color: white;
+	}
+
 
 	input {
 		display: flex;

@@ -16,7 +16,7 @@
     <div class="title">Log in to Amity</div>
     <div class="inputs">
         <Textbox width="100%" icon="User" placeholder="User tag"></Textbox>
-        <Textbox width="100%" icon="Lock/Locked" placeholder="Password"></Textbox>
+        <Textbox isPassword width="100%" icon="Lock/Locked" placeholder="Password"></Textbox>
         <a href="https://skibidi.pneumonoultramicroscopicsilicovolcanoconiosis.space">Forgot your password?</a>
     </div>
     <div class="buttons">

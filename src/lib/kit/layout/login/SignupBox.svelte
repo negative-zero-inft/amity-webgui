@@ -6,6 +6,22 @@
     let{
         isLogin 
     } = $props()
+
+    let dname:string | undefined = $state();
+    let uname:string | undefined = $state();
+    let fpass:string | undefined = $state();
+    let rpass:string | undefined = $state();
+
+    let signupProcedure = () =>{
+        if(!dname || !uname || !fpass || !rpass) return // TODO: user-friendly error catcher 
+        if(fpass != rpass) return
+        for (let i = 0; i < uname.length; i++) {
+            if (uname.charCodeAt(i) > 127) {
+                return
+            }
+        }
+        console.log("skibidi")
+    }
 </script>
 
 <div class="loginBox" style="
@@ -15,10 +31,10 @@
 ">
     <div class="title">Sign up for Amity</div>
     <div class="inputs">
-        <Textbox width="100%" icon="Rename" placeholder="Display name"></Textbox>
-        <Textbox width="100%" icon="User" placeholder="Username"></Textbox>
-        <Textbox width="100%" icon="Lock/Locked" placeholder="Password"></Textbox>
-        <Textbox width="100%" icon="Lock/Locked" placeholder="Repeat password"></Textbox>
+        <Textbox maxlength={64} bind:value={dname} width="100%" icon="Rename" placeholder="Display name"></Textbox>
+        <Textbox maxlength={32} bind:value={uname} width="100%" icon="User" placeholder="Username"></Textbox>
+        <Textbox isPassword maxlength={64} bind:value={fpass} width="100%" icon="Lock/Locked" placeholder="Password"></Textbox>
+        <Textbox isPassword maxlength={64} bind:value={rpass} width="100%" icon="Lock/Locked" placeholder="Repeat password"></Textbox>
         <Button scaleClick={0.95} scaleHover={1.05} alignment="space-between" width="100%"
             ><div class="elem-horiz"><Icon name="Cloud"></Icon> File server <div style="opacity: 0.5;">amycdn.neg-zero.com</div></div>
             <Icon name="Direction/Right"></Icon></Button
@@ -26,7 +42,7 @@
     </div>
     <div class="buttons">
         <Button width="100%; flex-shrink: 1;" action={()=>{isLogin.set(!$isLogin)}}><Icon name="Direction/Left"></Icon>Go back</Button>
-        <Button width="100%; flex-shrink: 1;" style={1}><Icon name="Plus"></Icon>Create account</Button>
+        <Button width="100%; flex-shrink: 1;" action={signupProcedure} style={1}><Icon name="Plus"></Icon>Create account</Button>
     </div>
 </div>
 
