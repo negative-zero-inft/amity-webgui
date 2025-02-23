@@ -2,6 +2,7 @@
     import Button from "$lib/kit/Button.svelte";
 	import Icon from "$lib/kit/Icon.svelte";
 	import Textbox from "$lib/kit/Textbox.svelte";
+	import { server } from "$lib/scripts/globalData";
 
     let{
         isLogin 
@@ -12,6 +13,8 @@
     let fpass:string | undefined = $state();
     let rpass:string | undefined = $state();
 
+    let fileserver = "amycdn.neg-zero.com"
+
     const signupProcedure = () =>{
         if(!dname || !uname || !fpass || !rpass) return // TODO: user-friendly error catcher 
         if(fpass != rpass) return
@@ -20,7 +23,28 @@
                 return
             }
         }
-        console.log("skibidi")
+        
+        const user = {
+            tag: uname,
+            password: rpass,
+            name: dname,
+            cdn: fileserver
+        }
+
+        const request = async () => {
+            const response = await fetch(`http://${$server}/register`, {
+                method: "POST",
+                body: JSON.stringify(user),
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+            return await response
+        }
+
+        const response = request()
+
+        console.log(response)
     }
 
     const changeView = () =>{
