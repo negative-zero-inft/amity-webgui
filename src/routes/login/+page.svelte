@@ -47,7 +47,7 @@
 		box-sizing: border-box;
 		align-items: center;
 		justify-content: center;
-		background-color: c.$accent-40;
+		background-color: c.$accent-t40;
 		border-radius: v.$corner-window;
 		border: solid;
 		border-width: 1px;
@@ -61,7 +61,7 @@
 			transparent
 		);
 		&:hover{
-			background-color: c.$accent-80;
+			background-color: c.$accent-t80;
 			scale: 1.1;
 		}
 	}
