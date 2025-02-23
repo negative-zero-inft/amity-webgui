@@ -3,6 +3,7 @@
 	import Icon from "$lib/kit/Icon.svelte";
 	import Textbox from "$lib/kit/Textbox.svelte";
 	import { server } from "$lib/scripts/globalData";
+	import { errorValue, isError } from "$lib/scripts/loginWritables";
 
     let{
         isLogin 
@@ -15,11 +16,22 @@
 
     let fileserver = "amycdn.neg-zero.com"
 
-    const signupProcedure = () =>{
-        if(!dname || !uname || !fpass || !rpass) return // TODO: user-friendly error catcher 
-        if(fpass != rpass) return
+    const signupProcedure = async () =>{
+        if(!dname || !uname || !fpass || !rpass){
+            console.log("a")
+            isError.set(true)
+            errorValue.set("Please fill all spaces")
+            return
+        }
+        if(fpass != rpass){
+            isError.set(true)
+            errorValue.set("Passwords don't match")
+            return
+        }
         for (let i = 0; i < uname.length; i++) {
-            if (uname.charCodeAt(i) > 127) {
+            if (uname.charCodeAt(i) > 127 || uname.charAt(i) == " " || uname.charAt(i) == "@") {
+                isError.set(true)
+                errorValue.set("Usernames can only contain ASCII characters and can't include the @ symbol or spaces")
                 return
             }
         }
@@ -31,21 +43,24 @@
             cdn: fileserver
         }
 
-        const request = async () => {
-            const response = await fetch(`http://${$server}/register`, {
-                method: "POST",
-                body: JSON.stringify(user),
-                headers: {
-                    "Content-Type": "application/json",
-                    "Access-Control-Allow-Origin": "*"
-                }
-            })
-            return await response.status
+        const response = await fetch(`http://${$server}/register`, {
+            method: "POST",
+            body: JSON.stringify(user),
+            headers: {
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*"
+            }
+        })
+
+        if(response.status == 200){
+            changeView()
+        }else{
+            let error:string = await response.text()
+            isError.set(true)
+            if(error.match("dup key")) return errorValue.set("This user already exists")
+            errorValue.set(error)
+            return
         }
-
-        const response = request()
-
-        console.log(response)
     }
 
     const changeView = () =>{

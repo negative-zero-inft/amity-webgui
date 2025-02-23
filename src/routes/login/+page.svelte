@@ -7,6 +7,7 @@
 	import LoginBox from "$lib/kit/layout/login/LoginBox.svelte";
 	import SignupBox from "$lib/kit/layout/login/SignupBox.svelte";
 	import { writable } from "svelte/store";
+	import { errorValue, isError } from "$lib/scripts/loginWritables";
 
 	let isLogin = writable<boolean>(true);
 
@@ -17,6 +18,9 @@
 		<LoginBox isLogin={isLogin}></LoginBox>
 		<SignupBox isLogin={isLogin}></SignupBox>
 	</div>
+	{#if $isError}
+		<div class="error"><Icon name="Warning"></Icon>{$errorValue}</div>
+	{/if}
 
 	<img alt="Amy" class="amy" src={amy}/>
 </div>
@@ -24,6 +28,31 @@
 <style lang="scss">
 	@use '$lib/style/variables.scss' as v;
 	@use '$lib/style/colors.scss' as c;
+	
+	.error{
+		gap: v.$spacing-def;
+		font-size: 16px;
+		width: 320px;
+		height: 100px;
+		padding: 10px;
+		display: flex;
+		box-sizing: border-box;
+		align-items: center;
+		justify-content: center;
+		background-color: c.$accent-40;
+		border-radius: v.$corner-window;
+		border: solid;
+		border-width: 1px;
+		border-color: c.$accent;
+		background-image: repeating-linear-gradient(
+			-45deg,
+			transparent 25%,
+			rgba(255, 0, 0, 0.5) 25%,
+			rgba(255, 0, 0, 0.5) 75%,
+			transparent 75%,
+			transparent
+		);
+	}
 
 	.amy{
 		position:fixed;
@@ -42,6 +71,7 @@
 		background: radial-gradient(#300000, #000000);
 		gap: v.$spacing-def;
 		overflow: hidden;
+		flex-direction: column;
 	}
 
 	.window {
