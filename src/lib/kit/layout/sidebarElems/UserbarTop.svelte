@@ -5,12 +5,20 @@
 	import { getContext } from 'svelte';
 	import type { Writable } from 'svelte/store';
 	import { user } from '$lib/scripts/globalData';
-	
+
+	let banner:string | undefined = $state()
+	let username:string | undefined = $state()
+	let tag:string | undefined = $state()
+	let avatar:string | undefined = $state()
+
+	$effect(()=>{
+		banner =  $user?.banner
+		username =  $user?.name
+		tag =  `${$user?.tag}@${$user.id.server}`
+		avatar =  $user?.avatar
+	})
+
 	let {
-		banner = 'Jump.png',
-		username = 'Alex',
-		tag = 'nrd@amity.neg-zero.com',
-		avatar = 'amity.png',
 		notifCount
 	} = $props();
 
