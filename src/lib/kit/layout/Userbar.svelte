@@ -105,7 +105,8 @@
 		padding-bottom: v.$spacing-def;
 		overflow-y: auto;
 		overflow-x: hidden;
-		flex-grow: 1;
+		height: 100%;
+		padding-bottom: 66px;
 	}
 	.cluster {
 		display: flex;

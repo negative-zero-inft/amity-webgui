@@ -64,25 +64,25 @@
 		flex-direction: row;
 		gap: v.$spacing-def;
 		@include v.standard-text();
-		background-image: linear-gradient(
+		background-image: repeating-linear-gradient(
 			-45deg,
-			transparent 25%,
-			rgba(255, 0, 0, 0.2) 25%,
-			rgba(255, 0, 0, 0.2) 75%,
-			transparent 75%,
-			transparent
+			transparent 15px,
+			rgba(255, 0, 0, 0.25) 15px,
+			rgba(255, 0, 0, 0.25) 35px,
+			transparent 35px,
+			transparent 55px /* added this so the pattern repeats seamlessly */
 		);
 	}
 	.bv3:hover {
-		background-image: linear-gradient(
-			-45deg,
-			transparent 25%,
-			rgba(255, 0, 0, 0.5) 25%,
-			rgba(255, 0, 0, 0.5) 75%,
-			transparent 75%,
-			transparent
-		);
 		background-color: c.$accent-t40;
+		background-image: repeating-linear-gradient(
+			-45deg,
+			transparent 15px,
+			rgba(255, 0, 0, 0.5) 15px,
+			rgba(255, 0, 0, 0.5) 35px,
+			transparent 35px,
+			transparent 55px /* added this so the pattern repeats seamlessly */
+		);
 	}
 	.bv3:active {
 		background-color: c.$accent;
