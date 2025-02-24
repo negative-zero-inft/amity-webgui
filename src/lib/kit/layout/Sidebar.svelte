@@ -82,6 +82,7 @@
 	<hr class="separator" />
 	<div class="chatEntriesContainer">
 		<div id="allChats" class="chatEntries" style="--pr: {isReallyFireFox ? 10 : 5}px">
+			<ChatEntry username="example" isSelected={true}></ChatEntry>
 			{#each $user?.chats || [] as child}
 				<!-- magic -->
 				<script lang="ts">
