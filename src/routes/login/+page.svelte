@@ -7,7 +7,7 @@
 	import SignupBox from "$lib/kit/layout/login/SignupBox.svelte";
 	import { writable } from "svelte/store";
 	import { errorValue, isError } from "$lib/scripts/loginWritables";
-	import { server } from "$lib/scripts/globalData";
+	import { server, isHttps, port } from "$lib/scripts/globalData";
 
 	let isLogin = writable<boolean>(true);
 
@@ -23,7 +23,7 @@
 		<SignupBox isLogin={isLogin}></SignupBox>
 	</div>
 
-	instance server: {$server}
+	instance server: http{$isHttps ? "s" : ""}://{$server}:{$port}
 
 	<!-- svelte-ignore a11y_no_static_element_interactions -->
 	<!-- svelte-ignore a11y_click_events_have_key_events -->
