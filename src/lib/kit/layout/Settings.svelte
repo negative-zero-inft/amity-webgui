@@ -3,6 +3,7 @@
 	import { isSettings } from '$lib/scripts/chatViews';
 	import Icon from '../Icon.svelte';
 	import Textbox from '../Textbox.svelte';
+	import { user } from '$lib/scripts/globalData';
 
 	let SW: HTMLElement;
 
@@ -94,7 +95,7 @@
 		<hr class="separator" />
 		<div class="settingsView">
 			<div class="userTop">
-				<img src="Jump.png" class="banner" alt="banner" />
+				<img src={$user?.banner} class="banner" alt="banner" />
 			</div>
 		</div>
 	</div>
@@ -158,7 +159,7 @@
 		border: solid;
 		border-color: c.$text-25;
 		border-width: 1px;
-		transition: 0.25s;
+		transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 		display: flex;
 		overflow: hidden;
 		position: absolute;
