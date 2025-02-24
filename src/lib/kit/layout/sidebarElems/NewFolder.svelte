@@ -91,7 +91,7 @@
         </div>
         <grid class="iconList">
             {#each icons || [] as child}
-				<Button style={(icon == child.substring(14, child.length - 4)) ? 6 : 4} action={()=>{
+				<Button width="36px; height: 36px;" style={(icon == child.substring(14, child.length - 4)) ? 6 : 4} action={()=>{
                     icon = child.substring(14, child.length - 4)
                     isIconPicker = false
                 }}><Icon name={child.substring(14, child.length - 4)} /></Button>
@@ -112,8 +112,8 @@
         padding-top: 56px;
         box-sizing: border-box;
         display: grid;
-        grid-template-columns: repeat(7, 36px); /* 7 equal-width columns */
-        gap: 5px;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 10px;
         overflow-y: scroll;
         overflow-x: hidden;
         background-color: c.$bg;
