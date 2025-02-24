@@ -7,6 +7,7 @@
 	import SignupBox from "$lib/kit/layout/login/SignupBox.svelte";
 	import { writable } from "svelte/store";
 	import { errorValue, isError } from "$lib/scripts/loginWritables";
+	import { server } from "$lib/scripts/globalData";
 
 	let isLogin = writable<boolean>(true);
 
@@ -21,13 +22,15 @@
 		<LoginBox isLogin={isLogin}></LoginBox>
 		<SignupBox isLogin={isLogin}></SignupBox>
 	</div>
-	<!-- {#if $isError} -->
-		<!-- svelte-ignore a11y_no_static_element_interactions -->
-		<!-- svelte-ignore a11y_click_events_have_key_events -->
-		<div onclick={()=>{isError.set(false)}} style="transform: scale({$isError ? "1" : "0"}); opacity: {$isError ? "1" : "0"};" class="error">
-			<Icon name="Warning"></Icon>{$errorValue}
-		</div>
-	<!-- {/if} -->
+
+	instance server: {$server}
+
+	<!-- svelte-ignore a11y_no_static_element_interactions -->
+	<!-- svelte-ignore a11y_click_events_have_key_events -->
+	<div onclick={()=>{isError.set(false)}} style="transform: scale({$isError ? "1" : "0"}); opacity: {$isError ? "1" : "0"};" class="error">
+		<Icon name="Warning"></Icon>{$errorValue}
+	</div>
+
 
 	<img alt="Amy" class="amy" src={amy}/>
 </div>

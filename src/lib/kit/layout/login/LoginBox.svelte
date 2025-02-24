@@ -71,7 +71,7 @@
     <div class="inputs">
         <Textbox onkeydown={(e:any)=>{
             if(e.key == "Enter") signInProcedure()
-        }} bind:value={tag} width="100%" icon="User" placeholder="User tag"></Textbox>
+        }} bind:value={tag} width="100%" icon="User" placeholder="username@instance"></Textbox>
         <Textbox onkeydown={(e:any)=>{
             if(e.key == "Enter") signInProcedure()
         }} bind:value={pass} isPassword width="100%" icon="Lock/Locked" placeholder="Password"></Textbox>
