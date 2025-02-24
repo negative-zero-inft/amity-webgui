@@ -25,6 +25,16 @@
 		scrollContainer.scrollLeft += delta * scrollSpeed;
 	}
 
+	const newfolderscrollthing = (e)=>{
+
+		if(!scrollContainer) return
+		scrollContainer.scrollLeft = scrollContainer?.scrollWidth;
+
+		isNewFolder.set(!$isNewFolder)
+		newFolderE.set(e)
+		
+	}
+
 	setContext('isUserBar', isUserBar);
 
 	let isReallyFireFox = $state<boolean>(false);
@@ -71,8 +81,7 @@
 					newFolderE.set(e)
 				}}
 				action={(e: MouseEvent)=>{
-					isNewFolder.set(!$isNewFolder)
-					newFolderE.set(e)
+					newfolderscrollthing(e)	
 				}} style={$isNewFolder ? 6 : 4}>
 				<Icon name={$isNewFolder ? "X" : "Plus"} />{$isNewFolder ? "Close" : "New folder"}
 			</Button>
