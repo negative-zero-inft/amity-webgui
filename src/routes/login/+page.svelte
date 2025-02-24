@@ -9,6 +9,8 @@
 	import { errorValue, isError } from "$lib/scripts/loginWritables";
 	import { server, isHttps, port } from "$lib/scripts/globalData";
 
+	let serverchanger:string = $state();
+
 	let isLogin = writable<boolean>(true);
 
 	$effect(()=>{
@@ -24,6 +26,9 @@
 	</div>
 
 	instance server: http{$isHttps ? "s" : ""}://{$server}:{$port}
+	<Textbox placeholder="change server" bind:value={serverchanger} onkeydown={()=>{
+		server.set(serverchanger)
+	}}></Textbox>
 
 	<!-- svelte-ignore a11y_no_static_element_interactions -->
 	<!-- svelte-ignore a11y_click_events_have_key_events -->
