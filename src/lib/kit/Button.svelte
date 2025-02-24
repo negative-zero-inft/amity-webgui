@@ -50,6 +50,7 @@
 	}
 	button:hover {
 		transform: scale(var(--sh));
+		cursor: pointer;
 	}
 	button:active {
 		transform: scale(var(--sc));
