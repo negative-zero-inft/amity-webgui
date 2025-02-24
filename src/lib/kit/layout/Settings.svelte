@@ -3,6 +3,9 @@
 	import { isSettings } from '$lib/scripts/chatViews';
 	import Icon from '../Icon.svelte';
 	import Textbox from '../Textbox.svelte';
+
+	let SW: HTMLElement;
+
 </script>
 
 <!-- svelte-ignore a11y_click_events_have_key_events -->
@@ -21,13 +24,15 @@
 		}
 	}}
 >
-	<div
+	<div 
+	    bind:this={SW}
 		class="settingWindow"
 		style="
-		width: {$isSettings ? '1100px' : '300px'}; 
-		height: {$isSettings ? 'calc(100vh - 150px)' : '36px'};
-		opacity: {$isSettings ? '1' : '0'};
-		transform: {$isSettings ? 'translate(0, 0)' : 'translate(calc(-50vw + 159px), calc(50vh - 28px))'};
+		width: {$isSettings ? '1100px' : '320px'}; 
+		height: {$isSettings ? 'calc(100vh - 150px)' : '56px'};
+		scale: {$isSettings ? '1' : '0'};
+		left: {$isSettings ? "calc(50vw - 550px)" : "0px"};
+		bottom: {$isSettings ? "75px" : "-10px"};
 	"
 	>
 		<div class="sidebar">
@@ -156,6 +161,7 @@
 		transition: 0.25s;
 		display: flex;
 		overflow: hidden;
+		position: absolute;
 	}
 
 	.bg {
