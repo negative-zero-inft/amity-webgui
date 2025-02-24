@@ -81,7 +81,7 @@
             if(e.key == "Enter"){
                 makeFolder()
             }
-        }} style="{isNoString ? "background-color: #d200001a; border-color: #d20000; background-image: repeating-linear-gradient(-45deg, transparent 15px, rgba(255, 0, 0, 0.25) 15px, rgba(255, 0, 0, 0.25) 35px, transparent 35px, transparent 55px ); " : ""}" bind:value={name} width="100%" icon="Rename" placeholder="Name"></Textbox>
+        }} maxlength={32} style="{isNoString ? "background-color: #d200001a; border-color: #d20000; background-image: repeating-linear-gradient(-45deg, transparent 15px, rgba(255, 0, 0, 0.25) 15px, rgba(255, 0, 0, 0.25) 35px, transparent 35px, transparent 55px ); " : ""}" bind:value={name} width="100%" icon="Rename" placeholder="Name"></Textbox>
         <Button action={()=>{isIconPicker = true}} scaleClick={0.95} scaleHover={1.05} alignment="space-between" width="100%">
             <div class="elem-horiz"><Icon name={icon}></Icon> Icon <div style="opacity: 0.5">{icon}</div> </div>
             <Icon name="Direction/Right"></Icon>

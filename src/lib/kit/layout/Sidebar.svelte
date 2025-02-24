@@ -40,6 +40,7 @@
 >
 	<div class="sidebar-top">
 		<div
+			
 			class="elements-horiz"
 			style="
             width: 300px;
@@ -72,8 +73,8 @@
 				action={(e: MouseEvent)=>{
 					isNewFolder.set(!$isNewFolder)
 					newFolderE.set(e)
-				}} style={4}>
-				<Icon name="Plus" />New folder
+				}} style={$isNewFolder ? 6 : 4}>
+				<Icon name={$isNewFolder ? "X" : "Plus"} />{$isNewFolder ? "Close" : "New folder"}
 			</Button>
 			<NewFolder></NewFolder>
 		</div>
