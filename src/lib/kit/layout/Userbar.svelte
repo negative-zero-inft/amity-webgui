@@ -47,6 +47,19 @@
 				<Icon name="Direction/Right"></Icon></Button
 			>
 		</div>
+		<div class="cluster">
+			<Button
+			action={()=>{
+				localStorage.removeItem("token")
+				window.location.replace("/login")
+			}}
+			style={3}
+			scaleClick={0.95}
+			scaleHover={1.05}
+			alignment="flex-start"
+			width="100%"><Icon name="Exit"></Icon> Log out</Button
+		>
+		</div>
 	</div>
 	<div class="bottomDock">
 		<hr class="separator" />
@@ -92,7 +105,8 @@
 		padding-bottom: v.$spacing-def;
 		overflow-y: auto;
 		overflow-x: hidden;
-		flex-grow: 1;
+		height: 100%;
+		padding-bottom: 66px;
 	}
 	.cluster {
 		display: flex;
@@ -112,6 +126,7 @@
 		background-color: c.$bg;
 		display: flex;
 		flex-direction: column;
+		align-items: end;
 		@include v.sidebar();
 	}
 </style>

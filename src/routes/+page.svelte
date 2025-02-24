@@ -29,18 +29,18 @@
 				style={1}
 			>
 				<div style="display: flex; gap: 10px; align-items: center;">
-					<Icon name="List"></Icon>
-					Explore public instances
+					<Icon name="Window"></Icon>
+					View demo
 				</div>
 				<Icon name="Direction/Right"></Icon>
 			</Button>
-			<Button width="230px" alignment="space-between">
+			<!-- <Button width="230px" alignment="space-between">
 				<div style="display: flex; gap: 10px; align-items: center;">
 					<Icon name="Cloud"></Icon>
 					Host your own instance
 				</div>
 				<Icon name="Direction/Right"></Icon>
-			</Button>
+			</Button> -->
 		</div>
 	</div>
 	<img class="closeup" src={closeup} alt="ui closeup" />

@@ -8,7 +8,9 @@
 
 	import { isFirefox } from '$lib/scripts/isFirefox';
 	import { setContext } from 'svelte';
-	import { isUserBar } from '$lib/scripts/chatViews';
+	import { isUserBar, isNewFolder, newFolderE } from '$lib/scripts/chatViews';
+	import { user } from '$lib/scripts/globalData';
+	import NewFolder from './sidebarElems/NewFolder.svelte';
 
 	let scrollContainer: HTMLDivElement | undefined;
 
@@ -59,38 +61,39 @@
 			<Button><Icon name="Search" /></Button>
 		</div>
 		<div class="scroll-horiz" bind:this={scrollContainer} onwheel={handleWheel}>
-			<Button style={6}><Icon name="Star" />balls 69</Button>
-			<Button style={4}><Icon name="Star" />balls 69</Button>
-			<Button style={4}><Icon name="Star" />balls 69</Button>
-			<Button style={4}><Icon name="Star" />balls 69</Button>
-			<Button style={4}><Icon name="Star" />balls 69</Button>
-			<Button style={4}><Icon name="Star" />balls 69</Button>
-			<Button style={4}><Icon name="Star" />balls 69</Button>
+			<Button style={6}><Icon name="Chat" />All chats</Button>
+			{#each $user?.chat_folders || [] as child}
+				<Button style={4}><Icon name={child.icon} />{child.name}</Button>
+			{/each}
+			<Button action={(e: MouseEvent)=>{
+				isNewFolder.set(!$isNewFolder)
+				newFolderE.set(e)
+			}} style={4}><Icon name="Plus" />New folder</Button>
+			<NewFolder></NewFolder>
 		</div>
 	</div>
 	<hr class="separator" />
-	<div class="chatEntries" style="--pr: {isReallyFireFox ? 10 : 5}px">
-		<ChatEntry isSelected={true} isFavorite={true}></ChatEntry>
-		<ChatEntry isFavorite={true} username={'Harry Bōlz'}></ChatEntry>
-		<ChatEntry unreads={69}></ChatEntry>
-		<ChatEntry timestamp={Date.now()}></ChatEntry>
-		<ChatEntry></ChatEntry>
-		<ChatEntry></ChatEntry>
-		<ChatEntry></ChatEntry>
-		<ChatEntry></ChatEntry>
-		<ChatEntry></ChatEntry>
-		<ChatEntry></ChatEntry>
-		<ChatEntry></ChatEntry>
-		<ChatEntry></ChatEntry>
-		<ChatEntry></ChatEntry>
-		<ChatEntry></ChatEntry>
-		<ChatEntry></ChatEntry>
+	<div class="chatEntriesContainer">
+		<div id="allChats" class="chatEntries" style="--pr: {isReallyFireFox ? 10 : 5}px">
+			{#each $user?.chats || [] as child}
+				<!-- magic -->
+				<script lang="ts">
+					
+				</script>
+				<ChatEntry></ChatEntry>
+			{/each}
+		</div>
 	</div>
 </div>
 
 <style lang="scss">
 	@use '$lib/style/colors.scss' as c;
 	@use '$lib/style/variables.scss' as v;
+	
+	.chatEntriesContainer{
+		width: 320px;
+		height: 100%;
+	}
 
 	.avatarstack {
 		display: inline-flex;
@@ -137,6 +140,7 @@
 	}
 
 	.chatEntries {
+		position: relative;
 		display: flex;
 		flex-direction: column;
 		gap: v.$spacing-def;
@@ -144,8 +148,9 @@
 		padding-right: var(--pr);
 		overflow-y: auto;
 		overflow-x: hidden;
-		flex-grow: 1;
+		height: 100%;
 		flex-shrink: none;
+		box-sizing: border-box;
 		scrollbar-gutter: stable;
 	}
 </style>

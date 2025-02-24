@@ -76,7 +76,7 @@
 	}
 
 	.unreads {
-		background-color: c.$accent-80;
+		background-color: c.$accent-t80;
 		border-radius: v.$corner-elem;
 		padding-left: 6px;
 		padding-right: 6px;
@@ -148,7 +148,7 @@
 		padding: v.$spacing-def;
 		gap: v.$spacing-def;
 		width: 100%;
-		background-color: c.$accent-50;
+		background-color: c.$accent-t50;
 		height: 56px;
 		border-radius: v.$corner-elem;
 		border-width: 1px !important;
@@ -159,7 +159,7 @@
 		@include v.standard-text();
 
 		&:hover {
-			background-color: c.$accent-80;
+			background-color: c.$accent-t80;
 		}
 		&:active {
 			background-color: c.$accent;

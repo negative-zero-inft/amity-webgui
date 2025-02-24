@@ -1,15 +1,28 @@
 <script lang="ts">
 	import Avatar from '$lib/kit/Avatar.svelte';
-
 	import Button from '$lib/kit/Button.svelte';
 	import Icon from '$lib/kit/Icon.svelte';
 	import { getContext } from 'svelte';
 	import type { Writable } from 'svelte/store';
+	import { user } from '$lib/scripts/globalData';
+
+	let banner:string | undefined = $state()
+	let username:string | undefined = $state()
+	let tag:string | undefined = $state()
+	let avatar:string | undefined = $state()
+
+	$effect(()=>{
+		try{
+			banner =  $user?.banner
+			username =  $user?.name
+			tag =  `${$user?.tag}@${$user.id.server}`
+			avatar =  $user?.avatar
+		}catch(e){
+			console.log(e)
+		}
+	})
+
 	let {
-		banner = 'Jump.png',
-		username = 'Alex',
-		tag = 'nrd@amity.neg-zero.com',
-		avatar = 'amity.png',
 		notifCount
 	} = $props();
 
@@ -32,7 +45,9 @@
 				{tag}
 			</div>
 		</div>
-		<Button><Icon name="Share/Alt"></Icon></Button>
+		<Button action={()=>{
+			navigator.clipboard.writeText(`https://${$user.id.server}/user/${$user.id.id}/info`)
+		}}><Icon name="Share/Alt"></Icon></Button>
 		<Button><Icon name="Switch"></Icon></Button>
 	</div>
 </div>
@@ -67,6 +82,7 @@
 		object-fit: cover;
 	}
 	.barTop {
+		position: relative;
 		height: 150px;
 		width: 320px;
 		display: flex;

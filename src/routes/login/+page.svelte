@@ -7,8 +7,13 @@
 	import LoginBox from "$lib/kit/layout/login/LoginBox.svelte";
 	import SignupBox from "$lib/kit/layout/login/SignupBox.svelte";
 	import { writable } from "svelte/store";
+	import { errorValue, isError } from "$lib/scripts/loginWritables";
 
 	let isLogin = writable<boolean>(true);
+
+	$effect(()=>{
+		if(localStorage.getItem("token")) window.location.replace("/chat")
+	})
 
 </script>
 
@@ -17,6 +22,13 @@
 		<LoginBox isLogin={isLogin}></LoginBox>
 		<SignupBox isLogin={isLogin}></SignupBox>
 	</div>
+	<!-- {#if $isError} -->
+		<!-- svelte-ignore a11y_no_static_element_interactions -->
+		<!-- svelte-ignore a11y_click_events_have_key_events -->
+		<div onclick={()=>{isError.set(false)}} style="transform: scale({$isError ? "1" : "0"}); opacity: {$isError ? "1" : "0"};" class="error">
+			<Icon name="Warning"></Icon>{$errorValue}
+		</div>
+	<!-- {/if} -->
 
 	<img alt="Amy" class="amy" src={amy}/>
 </div>
@@ -24,6 +36,39 @@
 <style lang="scss">
 	@use '$lib/style/variables.scss' as v;
 	@use '$lib/style/colors.scss' as c;
+	
+	.error{
+		overflow: hidden;
+		position: absolute;
+		bottom: 10px;
+		transition: 0.25s;
+		gap: v.$spacing-def;
+		font-size: 16px;
+		width: 320px;
+		height: max-content;
+		padding: 10px;
+		display: flex;
+		box-sizing: border-box;
+		align-items: center;
+		justify-content: center;
+		background-color: c.$accent-t10;
+		border-radius: v.$corner-window;
+		border: solid;
+		border-width: 1px;
+		border-color: c.$accent;
+		background-image: repeating-linear-gradient(
+			-45deg,
+			transparent 15px,
+			rgba(255, 0, 0, 0.25) 15px,
+			rgba(255, 0, 0, 0.25) 35px,
+			transparent 35px,
+			transparent 55px /* added this so the pattern repeats seamlessly */
+		);
+		&:hover{
+			background-color: c.$accent-t40;
+			scale: 1.1;
+		}
+	}
 
 	.amy{
 		position:fixed;
@@ -42,6 +87,7 @@
 		background: radial-gradient(#300000, #000000);
 		gap: v.$spacing-def;
 		overflow: hidden;
+		flex-direction: column;
 	}
 
 	.window {

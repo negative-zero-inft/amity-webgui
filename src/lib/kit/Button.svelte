@@ -48,7 +48,7 @@
 		transform: scale(var(--sc));
 	}
 	.bv3 {
-		background-color: c.$accent-10;
+		background-color: c.$accent-t10;
 		border: solid;
 		color: c.$text;
 		border-color: c.$accent;
@@ -64,32 +64,32 @@
 		flex-direction: row;
 		gap: v.$spacing-def;
 		@include v.standard-text();
-		background-image: linear-gradient(
+		background-image: repeating-linear-gradient(
 			-45deg,
-			transparent 25%,
-			rgba(255, 0, 0, 0.2) 25%,
-			rgba(255, 0, 0, 0.2) 75%,
-			transparent 75%,
-			transparent
+			transparent 15px,
+			rgba(255, 0, 0, 0.25) 15px,
+			rgba(255, 0, 0, 0.25) 35px,
+			transparent 35px,
+			transparent 55px /* added this so the pattern repeats seamlessly */
 		);
 	}
 	.bv3:hover {
-		background-image: linear-gradient(
+		background-color: c.$accent-t40;
+		background-image: repeating-linear-gradient(
 			-45deg,
-			transparent 25%,
-			rgba(255, 0, 0, 0.5) 25%,
-			rgba(255, 0, 0, 0.5) 75%,
-			transparent 75%,
-			transparent
+			transparent 15px,
+			rgba(255, 0, 0, 0.5) 15px,
+			rgba(255, 0, 0, 0.5) 35px,
+			transparent 35px,
+			transparent 55px /* added this so the pattern repeats seamlessly */
 		);
-		background-color: c.$accent-40;
 	}
 	.bv3:active {
 		background-color: c.$accent;
 	}
 
 	.bv2 {
-		background-color: c.$accent-50;
+		background-color: c.$accent-t50;
 		border: solid;
 		color: c.$text;
 		border-color: c.$accent;
@@ -107,13 +107,13 @@
 		@include v.standard-text();
 	}
 	.bv2:hover {
-		background-color: c.$accent-80;
+		background-color: c.$accent-t80;
 	}
 	.bv2:active {
 		background-color: c.$accent;
 	}
 	.bv6 {
-		background-color: c.$accent-50;
+		background-color: c.$accent-t50;
 		border: solid;
 		color: c.$text;
 		border-color: c.$accent;
@@ -131,7 +131,7 @@
 		@include v.standard-text();
 	}
 	.bv6:hover {
-		background-color: c.$accent-80;
+		background-color: c.$accent-t80;
 	}
 	.bv6:active {
 		background-color: c.$accent;
@@ -151,11 +151,11 @@
 	}
 
 	.bv5:hover {
-		background-color: c.$accent-80;
+		background-color: c.$accent-t80;
 	}
 
 	.bv5:active {
-		background-color: c.$accent-40;
+		background-color: c.$accent-t40;
 	}
 
 	.bv1 {
@@ -172,11 +172,11 @@
 	}
 
 	.bv1:hover {
-		background-color: c.$accent-80;
+		background-color: c.$accent-t80;
 	}
 
 	.bv1:active {
-		background-color: c.$accent-40;
+		background-color: c.$accent-t40;
 	}
 
 	.bv0 {

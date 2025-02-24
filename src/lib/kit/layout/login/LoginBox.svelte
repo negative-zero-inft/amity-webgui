@@ -2,6 +2,9 @@
     import Button from "$lib/kit/Button.svelte";
 	import Icon from "$lib/kit/Icon.svelte";
 	import Textbox from "$lib/kit/Textbox.svelte";
+	import { server } from "$lib/scripts/globalData";
+	import { errorValue, isError } from "$lib/scripts/loginWritables";
+	import OAuth from "./OAuth.svelte";
 
     let{
         isLogin 
@@ -15,6 +18,41 @@
         tag = ""
         pass = ""
     }
+
+    const signInProcedure = async () =>{
+        try{
+            if( !tag || !pass ){
+                isError.set(true)
+                errorValue.set("Please fill all spaces")
+                return
+            }
+            if( !tag.match("@") ){
+                isError.set(true)
+                errorValue.set("Please include the instance this user was created on")
+                return
+            }
+
+            const response = await fetch(`http://${$server}/signin`, {
+                method: "POST",
+                body: JSON.stringify({
+                    tag: tag,
+                    password: pass
+                }),
+                headers: {
+                    "Content-Type": "application/json",
+                    "Access-Control-Allow-Origin": "*"
+                }
+            })
+            localStorage.setItem("token", await response.text())
+            isError.set(false)
+            window.location.replace("/chat")
+        }catch(e: any){
+
+            isError.set(true)
+            errorValue.set(e)
+            return
+        }
+    }
 </script>
 
 <div class="loginBox" style="
@@ -24,13 +62,17 @@
 ">
     <div class="title">Log in to Amity</div>
     <div class="inputs">
-        <Textbox bind:value={tag} width="100%" icon="User" placeholder="User tag"></Textbox>
-        <Textbox bind:value={pass} isPassword width="100%" icon="Lock/Locked" placeholder="Password"></Textbox>
-        <a href="https://skibidi.pneumonoultramicroscopicsilicovolcanoconiosis.space">Forgot your password?</a>
+        <Textbox onkeydown={(e:any)=>{
+            if(e.key == "Enter") signInProcedure()
+        }} bind:value={tag} width="100%" icon="User" placeholder="User tag"></Textbox>
+        <Textbox onkeydown={(e:any)=>{
+            if(e.key == "Enter") signInProcedure()
+        }} bind:value={pass} isPassword width="100%" icon="Lock/Locked" placeholder="Password"></Textbox>
+        <a href="https://skibidi.pneumonoultramicroscopicsilicovolcanoconiosis.site">Forgot your password?</a>
     </div>
     <div class="buttons">
         <Button width="100%; flex-shrink: 1;" action={changeView}><Icon name="Plus"></Icon>Create account</Button>
-        <Button width="100%; flex-shrink: 1;" style={1}><Icon name="Login"></Icon>Log in</Button>
+        <Button action={signInProcedure} width="100%; flex-shrink: 1;" style={1}><Icon name="Login"></Icon>Log in</Button>
     </div>
     <div class="oauthSeparator">
         <hr style="width: 100%" class="separator"/>
@@ -38,14 +80,14 @@
         <hr style="width: 100%" class="separator"/>
     </div>
     <div class="oauthGrid">
-        <Button width="100%; flex-shrink: 1;"><Icon name="Google"></Icon></Button>
-        <Button width="100%; flex-shrink: 1;"><Icon name="Apple"></Icon></Button>
-        <Button width="100%; flex-shrink: 1;"><Icon name="Objects"></Icon></Button>
-        <Button width="100%; flex-shrink: 1;"><Icon name="Discord"></Icon></Button>
-        <Button width="100%; flex-shrink: 1;"><Icon name="Telegram"></Icon></Button>
-        <Button width="100%; flex-shrink: 1;"><Icon name="Github"></Icon></Button>
-        <Button width="100%; flex-shrink: 1;"><Icon name="Mastodon"></Icon></Button>
-        <Button width="100%; flex-shrink: 1;">OSU</Button>
+        <OAuth name="google"><Icon name="Google"></Icon></OAuth>
+        <OAuth name="apple"><Icon name="Apple"></Icon></OAuth>
+        <OAuth name="objects"><Icon name="Objects"></Icon></OAuth>
+        <OAuth name="discord"><Icon name="Discord"></Icon></OAuth>
+        <OAuth name="telegram"><Icon name="Telegram"></Icon></OAuth>
+        <OAuth name="github"><Icon name="Github"></Icon></OAuth>
+        <OAuth name="mastodon"><Icon name="Mastodon"></Icon></OAuth>
+        <OAuth name="osu">OSU</OAuth>
     </div>
 </div>
 

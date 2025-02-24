@@ -3,6 +3,7 @@
 	import Icon from "$lib/kit/Icon.svelte";
 	import Textbox from "$lib/kit/Textbox.svelte";
 	import { server } from "$lib/scripts/globalData";
+	import { errorValue, isError } from "$lib/scripts/loginWritables";
 
     let{
         isLogin 
@@ -15,36 +16,58 @@
 
     let fileserver = "amycdn.neg-zero.com"
 
-    const signupProcedure = () =>{
-        if(!dname || !uname || !fpass || !rpass) return // TODO: user-friendly error catcher 
-        if(fpass != rpass) return
-        for (let i = 0; i < uname.length; i++) {
-            if (uname.charCodeAt(i) > 127) {
+    const signupProcedure = async () =>{
+        
+        try{
+            if(!dname || !uname || !fpass || !rpass){
+                console.log("a")
+                isError.set(true)
+                errorValue.set("Please fill all spaces")
                 return
             }
-        }
-        
-        const user = {
-            tag: uname,
-            password: rpass,
-            name: dname,
-            cdn: fileserver
-        }
-
-        const request = async () => {
+            if(fpass != rpass){
+                isError.set(true)
+                errorValue.set("Passwords don't match")
+                return
+            }
+            for (let i = 0; i < uname.length; i++) {
+                if (uname.charCodeAt(i) > 127 || uname.charAt(i) == " " || uname.charAt(i) == "@") {
+                    isError.set(true)
+                    errorValue.set("Usernames can only contain ASCII characters and can't include the @ symbol or spaces")
+                    return
+                }
+            }
+            
+            const user = {
+                tag: uname,
+                password: rpass,
+                name: dname,
+                cdn: fileserver
+            }
+    
             const response = await fetch(`http://${$server}/register`, {
                 method: "POST",
                 body: JSON.stringify(user),
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    "Access-Control-Allow-Origin": "*"
                 }
             })
-            return await response
+            
+            if(response.status == 200){
+                changeView()
+            }else{
+                let error:string = await response.text()
+                isError.set(true)
+                if(error.match("dup key")) return errorValue.set("This user already exists")
+                errorValue.set(error)
+                return
+            }
+        }catch(e: any){
+            isError.set(true)
+            errorValue.set(e)
+            return
         }
-
-        const response = request()
-
-        console.log(response)
     }
 
     const changeView = () =>{
@@ -63,10 +86,18 @@
 ">
     <div class="title">Sign up for Amity</div>
     <div class="inputs">
-        <Textbox maxlength={64} bind:value={dname} width="100%" icon="Rename" placeholder="Display name"></Textbox>
-        <Textbox maxlength={32} bind:value={uname} width="100%" icon="User" placeholder="Username"></Textbox>
-        <Textbox isPassword maxlength={64} bind:value={fpass} width="100%" icon="Lock/Locked" placeholder="Password"></Textbox>
-        <Textbox isPassword maxlength={64} bind:value={rpass} width="100%" icon="Lock/Locked" placeholder="Repeat password"></Textbox>
+        <Textbox onkeydown={(e:any)=>{
+            if(e.key == "Enter") signupProcedure()
+        }} maxlength={64} bind:value={dname} width="100%" icon="Rename" placeholder="Display name"></Textbox>
+        <Textbox onkeydown={(e:any)=>{
+            if(e.key == "Enter") signupProcedure()
+        }} maxlength={32} bind:value={uname} width="100%" icon="User" placeholder="Username"></Textbox>
+        <Textbox onkeydown={(e:any)=>{
+            if(e.key == "Enter") signupProcedure()
+        }} isPassword maxlength={64} bind:value={fpass} width="100%" icon="Lock/Locked" placeholder="Password"></Textbox>
+        <Textbox onkeydown={(e:any)=>{
+            if(e.key == "Enter") signupProcedure()
+        }} isPassword maxlength={64} bind:value={rpass} width="100%" icon="Lock/Locked" placeholder="Repeat password"></Textbox>
         <Button scaleClick={0.95} scaleHover={1.05} alignment="space-between" width="100%"
             ><div class="elem-horiz"><Icon name="Cloud"></Icon> File server <div style="opacity: 0.5;">amycdn.neg-zero.com</div></div>
             <Icon name="Direction/Right"></Icon></Button
