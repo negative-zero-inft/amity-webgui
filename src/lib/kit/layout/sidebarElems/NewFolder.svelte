@@ -36,7 +36,6 @@
 			user.set(JSON.parse(await response.text()))
 		}catch(e){
 			console.log(e)
-			localStorage.removeItem("token")
 			window.location.replace("/login")
 			token.set(null)
 			return

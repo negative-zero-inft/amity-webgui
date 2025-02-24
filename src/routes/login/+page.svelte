@@ -9,7 +9,7 @@
 	import { errorValue, isError } from "$lib/scripts/loginWritables";
 	import { server, isHttps, port } from "$lib/scripts/globalData";
 
-	let serverchanger:string = $state();
+	let serverchanger:string | undefined = $state();
 
 	let isLogin = writable<boolean>(true);
 
