@@ -32,7 +32,6 @@
 
 		isNewFolder.set(!$isNewFolder)
 		newFolderE.set(e)
-		
 	}
 
 	setContext('isUserBar', isUserBar);
@@ -85,8 +84,8 @@
 				}} style={$isNewFolder ? 6 : 4}>
 				<Icon name={$isNewFolder ? "X" : "Plus"} />{$isNewFolder ? "Close" : "New folder"}
 			</Button>
-			<NewFolder></NewFolder>
 		</div>
+		<NewFolder></NewFolder>
 	</div>
 	<hr class="separator" />
 	<div class="chatEntriesContainer">
