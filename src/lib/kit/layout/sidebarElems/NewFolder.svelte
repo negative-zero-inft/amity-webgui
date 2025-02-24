@@ -91,7 +91,7 @@
         </div>
         <grid class="iconList">
             {#each icons || [] as child}
-				<Button action={()=>{
+				<Button style={(icon == child.substring(14, child.length - 4)) ? 6 : 4} action={()=>{
                     icon = child.substring(14, child.length - 4)
                     isIconPicker = false
                 }}><Icon name={child.substring(14, child.length - 4)} /></Button>
