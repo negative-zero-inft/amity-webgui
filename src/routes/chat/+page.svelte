@@ -2,7 +2,7 @@
 	import Sidebar from '$lib/kit/layout/Sidebar.svelte';
 	import View from '$lib/kit/layout/View.svelte';
 	import Settings from '$lib/kit/layout/Settings.svelte';
-	import { user, server } from '$lib/scripts/globalData';
+	import { user, server, isHttps, port } from '$lib/scripts/globalData';
 	import { token } from '$lib/scripts/globalData';
 
 	$effect(()=>{
@@ -16,7 +16,7 @@
 	const getUser = async () =>{
 		console.log($server)
 		try{
-			const response = await fetch(`http://${$server}:3000/user/me?token=${$token}`, {
+			const response = await fetch(`http${$isHttps ? "s" : ""}://${$server}:${$port}/user/me?token=${$token}`, {
 				method: "GET",
 				headers: {
 					"Content-Type": "application/json",

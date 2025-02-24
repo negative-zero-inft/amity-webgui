@@ -3,7 +3,7 @@
 	import Icon from "$lib/kit/Icon.svelte";
     import Textbox from "$lib/kit/Textbox.svelte";
     import { isNewFolder, newFolderE } from "$lib/scripts/chatViews";
-    import { server, token, user } from "$lib/scripts/globalData";
+    import { isHttps, port, server, token, user } from "$lib/scripts/globalData";
 
     let name: string | undefined = $state();
     let icon: string | undefined = $state();
@@ -26,7 +26,7 @@
 
     const getUser = async () =>{
 		try{
-			const response = await fetch(`http://${$server}:3000/user/me?token=${$token}`, {
+			const response = await fetch(`http${$isHttps ? "s" : ""}://${$server}:${$port}user/me?token=${$token}`, {
 				method: "GET",
 				headers: {
 					"Content-Type": "application/json",
@@ -49,7 +49,7 @@
             errorValue = "Please fill all spaces"
         }
         try{
-            const response = await fetch(`http://${$server}:3000/user/me/chatfolders/add?token=${$token}`, {
+            const response = await fetch(`http${$isHttps ? "s" : ""}://${$server}:${$port}/user/me/chatfolders/add?token=${$token}`, {
                 method: "POST",
                 body: JSON.stringify({
                     name: name,

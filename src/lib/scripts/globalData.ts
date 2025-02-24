@@ -1,7 +1,11 @@
 import { writable } from "svelte/store";
 
-export let server = writable<string>("185.25.217.62");
-export let user = writable<{
+export const server = writable<string>("185.25.217.62");
+export const isHttps = writable<boolean>(false)
+export const port = writable<number>(3000)
+
+export let token = writable<string | null>();
+export const user = writable<{
     _id: string,
     id: {
         id: string,
@@ -40,4 +44,3 @@ export let user = writable<{
     password: string,
     cdn: string
 }>();
-export let token = writable<string | null>();

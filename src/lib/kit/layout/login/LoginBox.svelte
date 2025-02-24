@@ -2,7 +2,7 @@
     import Button from "$lib/kit/Button.svelte";
 	import Icon from "$lib/kit/Icon.svelte";
 	import Textbox from "$lib/kit/Textbox.svelte";
-	import { server } from "$lib/scripts/globalData";
+	import { isHttps, port, server } from "$lib/scripts/globalData";
 	import { errorValue, isError } from "$lib/scripts/loginWritables";
 	import { error } from "@sveltejs/kit";
 	import OAuth from "./OAuth.svelte";
@@ -33,7 +33,7 @@
                 return
             }
 
-            const response = await fetch(`http://${tag.split("@")[1]}:3000/signin`, {
+            const response = await fetch(`http${$isHttps ? "s" : ""}://${tag.split("@")[1]}:${$port}/signin`, {
                 method: "POST",
                 body: JSON.stringify({
                     tag: tag,

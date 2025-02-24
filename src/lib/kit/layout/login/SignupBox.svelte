@@ -2,7 +2,7 @@
     import Button from "$lib/kit/Button.svelte";
 	import Icon from "$lib/kit/Icon.svelte";
 	import Textbox from "$lib/kit/Textbox.svelte";
-	import { server } from "$lib/scripts/globalData";
+	import { server, isHttps, port } from "$lib/scripts/globalData";
 	import { errorValue, isError } from "$lib/scripts/loginWritables";
 
     let{
@@ -45,7 +45,7 @@
                 cdn: fileserver
             }
     
-            const response = await fetch(`http://${$server}:3000/register`, {
+            const response = await fetch(`http${$isHttps ? "s" : ""}://${$server}:${$port}/register`, {
                 method: "POST",
                 body: JSON.stringify(user),
                 headers: {
