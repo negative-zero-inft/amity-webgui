@@ -74,7 +74,7 @@
 		<div class="scroll-horiz" bind:this={scrollContainer} onwheel={handleWheel}>
 			<Button style={6}><Icon name="Chat" />All chats</Button>
 			{#each $user?.chat_folders || [] as child}
-				<Button style={4}><Icon name={child.icon} />{child.name}</Button>
+				<Button style={4}><Icon name={child.icon} />{child.name || ""}</Button>
 			{/each}
 			<Button
 				hoverAction={(e: MouseEvent)=>{
