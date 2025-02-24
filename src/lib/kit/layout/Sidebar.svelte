@@ -68,7 +68,6 @@
 			<Button
 				hoverAction={(e: MouseEvent)=>{
 					newFolderE.set(e)
-					console.log(e)
 				}}
 				action={(e: MouseEvent)=>{
 					isNewFolder.set(!$isNewFolder)
