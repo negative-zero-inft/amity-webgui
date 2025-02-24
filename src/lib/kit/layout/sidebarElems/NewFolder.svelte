@@ -6,27 +6,25 @@
     import { isHttps, port, server, token, user } from "$lib/scripts/globalData";
 
     let name: string | undefined = $state();
-    let icon: string | undefined = $state();
-    
-    let isError:boolean;
-    let errorValue:string;
+    let icon: string | undefined = $state("Cube");
 
-    let icons:string[];
-    $effect(() => {
-        try {
-            // Import.meta.glob returns a module with keys that are the file paths, and values that are the imported modules.
-            // We only want the keys (file paths)
-            const modules = import.meta.glob('/static/icons/**/*'); // Adjust the path as needed (e.g., './components/*.svelte')
-            icons = Object.keys(modules);
-            console.log(icons)
-        } catch (error) {
-            console.error('Error listing files:', error);
-        }
-    });
+    let isIconPicker: boolean = $state(false);
+    
+    let isNoString: boolean | undefined = $state(false);
+
+    let icons:string[] | undefined = $state();
+    try {
+        // Import.meta.glob returns a module with keys that are the file paths, and values that are the imported modules.
+        // We only want the keys (file paths)
+        const modules = import.meta.glob('/static/icons/**/*'); // Adjust the path as needed (e.g., './components/*.svelte')
+        icons = Object.keys(modules);
+    } catch (error) {
+        console.error('Error listing files:', error);
+    }
 
     const getUser = async () =>{
 		try{
-			const response = await fetch(`http${$isHttps ? "s" : ""}://${$server}:${$port}user/me?token=${$token}`, {
+			const response = await fetch(`http${$isHttps ? "s" : ""}://${$server}:${$port}/user/me?token=${$token}`, {
 				method: "GET",
 				headers: {
 					"Content-Type": "application/json",
@@ -36,16 +34,16 @@
 			user.set(JSON.parse(await response.text()))
 		}catch(e){
 			console.log(e)
-			window.location.replace("/login")
-			token.set(null)
+			// window.location.replace("/login")
+			// token.set(null)
 			return
 		}
 	}
 
     const makeFolder = async () =>{
-        if(!name || !icon){
-            isError = true
-            errorValue = "Please fill all spaces"
+        if(!name){
+            isNoString = true
+            return
         }
         try{
             const response = await fetch(`http${$isHttps ? "s" : ""}://${$server}:${$port}/user/me/chatfolders/add?token=${$token}`, {
@@ -64,6 +62,7 @@
         }catch(e){
             console.log(e)
         }
+        isNewFolder.set(false)
     }
 </script>
 
@@ -73,17 +72,99 @@
     transform: translateY({$isNewFolder ? "0" : "300px"});
     top: {$isNewFolder ? "88px" : "0px" };
     left: {$isNewFolder ? "10px" : `${$newFolderE?.clientX - 150}px`};
+    height: {isIconPicker ? "300px" : "128px"}
 ">
-    <Textbox bind:value={name} width="100%" icon="Rename" placeholder="Name"></Textbox>
-    <Textbox bind:value={icon} width="100%" icon="Image" placeholder="Icon"></Textbox>
-    <Button action={makeFolder} scaleClick={0.95} scaleHover={1.05} style={1} width="100%"><Icon name="Plus"></Icon>Add</Button>
+    <div class="defaultView" style="
+        left: {isIconPicker ? "-320px" : "10px"}
+    ">
+        <Textbox onkeydown={(e: KeyboardEvent)=>{
+            isNoString = false
+            if(e.key == "Enter"){
+                makeFolder()
+            }
+        }} style="{isNoString ? "background-color: #d200001a; border-color: #d20000; background-image: repeating-linear-gradient(-45deg, transparent 15px, rgba(255, 0, 0, 0.25) 15px, rgba(255, 0, 0, 0.25) 35px, transparent 35px, transparent 55px ); " : ""}" bind:value={name} width="100%" icon="Rename" placeholder="Name"></Textbox>
+        <Button action={()=>{isIconPicker = true}} scaleClick={0.95} scaleHover={1.05} alignment="space-between" width="100%">
+            <div class="elem-horiz"><Icon name={icon}></Icon> Icon <div style="opacity: 0.5">{icon}</div> </div>
+            <Icon name="Direction/Right"></Icon>
+        </Button>
+        <Button action={makeFolder} scaleClick={0.95} scaleHover={1.05} style={1} width="100%"><Icon name="Plus"></Icon>Add</Button>
+    </div>
+    <div class="iconPicker" style="
+        left: {isIconPicker ? "0px" : "320px"}
+    ">
+        <div class="iconPickerTop">
+            <Button action={()=>{isIconPicker = false}}><Icon name="Direction/Left"></Icon></Button>
+            <Textbox width="100%; background-color: black;" icon="Search" placeholder="Search icons..."></Textbox>
+        </div>
+        <grid class="iconList">
+            {#each icons || [] as child}
+				<Button action={()=>{
+                    icon = child.substring(14, child.length - 4)
+                    isIconPicker = false
+                }}><Icon name={child.substring(14, child.length - 4)} /></Button>
+			{/each}
+        </grid>
+    </div>
 </div>
 
 <style lang="scss">
     
     @use '$lib/style/colors.scss' as c;
 	@use '$lib/style/variables.scss' as v;
+
+    .iconList{
+        width: 300px;
+        height: 320px;
+        padding: v.$spacing-def;
+        padding-top: 56px;
+        box-sizing: border-box;
+        display: grid;
+        grid-template-columns: repeat(7, 36px); /* 7 equal-width columns */
+        gap: 5px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        background-color: c.$bg;
+    }
+
+    .iconPickerTop {
+        top: 0;
+        left: 0;
+        width: 300px;
+		box-sizing: border-box;
+		flex-shrink: 0;
+		background: linear-gradient(to bottom, #000000ff 50%, #00000000);
+		display: flex;
+		flex-direction: row;
+		gap: v.$spacing-def;
+		position: absolute;
+        padding: v.$spacing-def;
+        z-index: 21374;
+	}
+
+    .iconPicker{
+        top: 0;
+        width: 280px;
+        display: flex;
+        flex-direction: column;
+        gap: v.$spacing-def;
+        position: absolute;
+        transition: 0.25s;
+    }
+
+    .defaultView{
+        width: 280px;
+        display: flex;
+        flex-direction: column;
+        gap: v.$spacing-def;
+        position: absolute;
+        transition: 0.25s;
+    }
     
+	.elem-horiz {
+		display: flex;
+		gap: v.$spacing-def;
+		align-items: center;
+	}
     .window{
         transition: 0.25s;
         position: absolute;
@@ -91,5 +172,6 @@
         width: 280px;
         z-index: 2137;
         gap: v.$spacing-def;
+        overflow: hidden;
     }
 </style>
