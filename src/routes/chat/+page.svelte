@@ -12,21 +12,22 @@
 	})
 
 	const getUser = async () =>{
-		const response = await fetch(`http://${$server}/user/me?token=${$token}`, {
-			method: "GET",
-			headers: {
-				"Content-Type": "application/json",
-				"Access-Control-Allow-Origin": "*"
-			}
-		})
-		if(response.status != 200){
+		try{
+			const response = await fetch(`http://${$server}/user/me?token=${$token}`, {
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+					"Access-Control-Allow-Origin": "*"
+				}
+			})
+			user.set(JSON.parse(await response.text()))
+		}catch(e){
+			console.log(e)
 			localStorage.removeItem("token")
 			window.location.replace("/login")
 			token.set(null)
 			return
 		}
-		user.set(JSON.parse(await response.text()))
-		console.log($user)
 	}
 	
 

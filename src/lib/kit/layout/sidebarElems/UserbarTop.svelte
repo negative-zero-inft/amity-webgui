@@ -12,10 +12,14 @@
 	let avatar:string | undefined = $state()
 
 	$effect(()=>{
-		banner =  $user?.banner
-		username =  $user?.name
-		tag =  `${$user?.tag}@${$user.id.server}`
-		avatar =  $user?.avatar
+		try{
+			banner =  $user?.banner
+			username =  $user?.name
+			tag =  `${$user?.tag}@${$user.id.server}`
+			avatar =  $user?.avatar
+		}catch(e){
+			console.log(e)
+		}
 	})
 
 	let {

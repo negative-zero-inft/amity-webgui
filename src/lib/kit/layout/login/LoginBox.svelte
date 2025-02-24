@@ -20,37 +20,37 @@
     }
 
     const signInProcedure = async () =>{
-        if( !tag || !pass ){
-            isError.set(true)
-            errorValue.set("Please fill all spaces")
-            return
-        }
-        if( !tag.match("@") ){
-            isError.set(true)
-            errorValue.set("Please include the instance this user was created on")
-            return
-        }
-
-        const response = await fetch(`http://${$server}/signin`, {
-            method: "POST",
-            body: JSON.stringify({
-                tag: tag,
-                password: pass
-            }),
-            headers: {
-                "Content-Type": "application/json",
-                "Access-Control-Allow-Origin": "*"
+        try{
+            if( !tag || !pass ){
+                isError.set(true)
+                errorValue.set("Please fill all spaces")
+                return
             }
-        })
+            if( !tag.match("@") ){
+                isError.set(true)
+                errorValue.set("Please include the instance this user was created on")
+                return
+            }
 
-        if(await response.status != 200){
+            const response = await fetch(`http://${$server}/signin`, {
+                method: "POST",
+                body: JSON.stringify({
+                    tag: tag,
+                    password: pass
+                }),
+                headers: {
+                    "Content-Type": "application/json",
+                    "Access-Control-Allow-Origin": "*"
+                }
+            })
+            localStorage.setItem("token", await response.text())
+            window.location.replace("/chat")
+        }catch(e: any){
+
             isError.set(true)
-            errorValue.set(await response.text())
+            errorValue.set(e)
             return
         }
-        localStorage.setItem("token", await response.text())
-
-        window.location.replace("/chat")
     }
 </script>
 

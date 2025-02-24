@@ -17,48 +17,55 @@
     let fileserver = "amycdn.neg-zero.com"
 
     const signupProcedure = async () =>{
-        if(!dname || !uname || !fpass || !rpass){
-            console.log("a")
-            isError.set(true)
-            errorValue.set("Please fill all spaces")
-            return
-        }
-        if(fpass != rpass){
-            isError.set(true)
-            errorValue.set("Passwords don't match")
-            return
-        }
-        for (let i = 0; i < uname.length; i++) {
-            if (uname.charCodeAt(i) > 127 || uname.charAt(i) == " " || uname.charAt(i) == "@") {
+        
+        try{
+            if(!dname || !uname || !fpass || !rpass){
+                console.log("a")
                 isError.set(true)
-                errorValue.set("Usernames can only contain ASCII characters and can't include the @ symbol or spaces")
+                errorValue.set("Please fill all spaces")
                 return
             }
-        }
-        
-        const user = {
-            tag: uname,
-            password: rpass,
-            name: dname,
-            cdn: fileserver
-        }
-
-        const response = await fetch(`http://${$server}/register`, {
-            method: "POST",
-            body: JSON.stringify(user),
-            headers: {
-                "Content-Type": "application/json",
-                "Access-Control-Allow-Origin": "*"
+            if(fpass != rpass){
+                isError.set(true)
+                errorValue.set("Passwords don't match")
+                return
             }
-        })
-
-        if(response.status == 200){
-            changeView()
-        }else{
-            let error:string = await response.text()
+            for (let i = 0; i < uname.length; i++) {
+                if (uname.charCodeAt(i) > 127 || uname.charAt(i) == " " || uname.charAt(i) == "@") {
+                    isError.set(true)
+                    errorValue.set("Usernames can only contain ASCII characters and can't include the @ symbol or spaces")
+                    return
+                }
+            }
+            
+            const user = {
+                tag: uname,
+                password: rpass,
+                name: dname,
+                cdn: fileserver
+            }
+    
+            const response = await fetch(`http://${$server}/register`, {
+                method: "POST",
+                body: JSON.stringify(user),
+                headers: {
+                    "Content-Type": "application/json",
+                    "Access-Control-Allow-Origin": "*"
+                }
+            })
+            
+            if(response.status == 200){
+                changeView()
+            }else{
+                let error:string = await response.text()
+                isError.set(true)
+                if(error.match("dup key")) return errorValue.set("This user already exists")
+                errorValue.set(error)
+                return
+            }
+        }catch(e: any){
             isError.set(true)
-            if(error.match("dup key")) return errorValue.set("This user already exists")
-            errorValue.set(error)
+            errorValue.set(e)
             return
         }
     }
