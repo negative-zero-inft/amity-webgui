@@ -96,7 +96,7 @@
         <OAuth name="telegram"><Icon name="Telegram"></Icon></OAuth>
         <OAuth name="github"><Icon name="Github"></Icon></OAuth>
         <OAuth name="mastodon"><Icon name="Mastodon"></Icon></OAuth>
-        <OAuth name="osu">OSU</OAuth>
+        <OAuth name="osu"><Icon name="Osu/Default"></Icon></OAuth>
     </div>
 </div>
 
