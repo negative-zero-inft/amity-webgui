@@ -2,7 +2,8 @@
 	import Button from "$lib/kit/Button.svelte";
 	import Icon from "$lib/kit/Icon.svelte";
     import Textbox from "$lib/kit/Textbox.svelte";
-    import { isNewFolder } from "$lib/scripts/chatViews";
+    import { isNewFolder, newFolderE } from "$lib/scripts/chatViews";
+    import { server, token, user } from "$lib/scripts/globalData";
 
     let name: string | undefined = $state();
     let icon: string | undefined = $state();
@@ -23,15 +24,46 @@
         }
     });
 
+    const getUser = async () =>{
+		try{
+			const response = await fetch(`http://${$server}/user/me?token=${$token}`, {
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+					"Access-Control-Allow-Origin": "*"
+				}
+			})
+			user.set(JSON.parse(await response.text()))
+		}catch(e){
+			console.log(e)
+			localStorage.removeItem("token")
+			window.location.replace("/login")
+			token.set(null)
+			return
+		}
+	}
+
     const makeFolder = async () =>{
         if(!name || !icon){
             isError = true
             errorValue = "Please fill all spaces"
         }
         try{
-
+            const response = await fetch(`http://${$server}/user/me/chatfolders/add?token=${$token}`, {
+                method: "POST",
+                body: JSON.stringify({
+                    name: name,
+                    icon: icon
+                }),
+                headers: {
+                    "Content-Type": "application/json",
+                    "Access-Control-Allow-Origin": "*"
+                }
+            })
+            console.log(response)
+            getUser()
         }catch(e){
-
+            console.log(e)
         }
     }
 </script>
@@ -40,7 +72,8 @@
     scale: {$isNewFolder ? 1 : 0};
     pointer-events: {$isNewFolder ? "auto" : "none"};
     transform: translateY({$isNewFolder ? "0" : "300px"});
-    top: {$isNewFolder ? "88px" : "0px"};
+    top: {$isNewFolder ? "88px" : "0px" };
+    left: {$isNewFolder ? "10px" : `${$newFolderE?.clientX - 150}px`};
 ">
     <Textbox bind:value={name} width="100%" icon="Rename" placeholder="Name"></Textbox>
     <Textbox bind:value={icon} width="100%" icon="Image" placeholder="Icon"></Textbox>

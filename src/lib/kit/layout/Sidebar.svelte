@@ -8,7 +8,7 @@
 
 	import { isFirefox } from '$lib/scripts/isFirefox';
 	import { setContext } from 'svelte';
-	import { isUserBar, isNewFolder } from '$lib/scripts/chatViews';
+	import { isUserBar, isNewFolder, newFolderE } from '$lib/scripts/chatViews';
 	import { user } from '$lib/scripts/globalData';
 	import NewFolder from './sidebarElems/NewFolder.svelte';
 
@@ -65,8 +65,9 @@
 			{#each $user?.chat_folders || [] as child}
 				<Button style={4}><Icon name={child.icon} />{child.name}</Button>
 			{/each}
-			<Button action={()=>{
+			<Button action={(e: MouseEvent)=>{
 				isNewFolder.set(!$isNewFolder)
+				newFolderE.set(e)
 			}} style={4}><Icon name="Plus" />New folder</Button>
 			<NewFolder></NewFolder>
 		</div>
