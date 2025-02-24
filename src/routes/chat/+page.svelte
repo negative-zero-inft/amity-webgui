@@ -6,6 +6,7 @@
 	import { token } from '$lib/scripts/globalData';
 
 	$effect(()=>{
+		if(localStorage.getItem("isDev") == "true") isHttps.set(false)
 		if(!localStorage.getItem("token")) window.location.replace("/login")
 		token.set(localStorage.getItem("token")) 
 		if(localStorage.getItem("server")) server.set(localStorage.getItem("server") || "")

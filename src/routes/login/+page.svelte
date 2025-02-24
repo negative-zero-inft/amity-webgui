@@ -29,6 +29,7 @@
 	<Textbox placeholder="change server" bind:value={serverchanger} onkeydown={()=>{
 		server.set(serverchanger)
 	}}></Textbox>
+	<Button action={()=>{isHttps.set(!$isHttps); localStorage.setItem("isDev", "true")}}>Toggle HTTPS</Button>
 
 	<!-- svelte-ignore a11y_no_static_element_interactions -->
 	<!-- svelte-ignore a11y_click_events_have_key_events -->

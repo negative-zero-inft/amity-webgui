@@ -156,7 +156,7 @@
 	}
 	.emojiList {
 		width: 320px;
-		height: calc(100vh - 6px - 56px);
+		height: calc(100vh - 2px - 56px * 3);
 		display: flex;
 		flex-direction: column;
 		flex-shrink: 0;

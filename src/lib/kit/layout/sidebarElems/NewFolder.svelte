@@ -10,7 +10,6 @@
 
     let isIconPicker: boolean = $state(false);
     
-    let isNoString: boolean | undefined = $state(false);
 
     let icons:string[] | undefined = $state();
     try {
@@ -40,10 +39,6 @@
 	}
 
     const makeFolder = async () =>{
-        if(!name){
-            isNoString = true
-            return
-        }
         try{
             const response = await fetch(`http${$isHttps ? "s" : ""}://${$server}:${$port}/user/me/chatfolders/add?token=${$token}`, {
                 method: "POST",
@@ -77,11 +72,10 @@
         left: {isIconPicker ? "-320px" : "10px"}
     ">
         <Textbox onkeydown={(e: KeyboardEvent)=>{
-            isNoString = false
             if(e.key == "Enter"){
                 makeFolder()
             }
-        }} maxlength={32} isError={isNoString} bind:value={name} width="100%" icon="Rename" placeholder="Name"></Textbox>
+        }} maxlength={32} bind:value={name} width="100%" icon="Rename" placeholder="Name"></Textbox>
         <Button action={()=>{isIconPicker = true}} scaleClick={0.95} scaleHover={1.05} alignment="space-between" width="100%">
             <div class="elem-horiz"><Icon name={icon}></Icon> Icon <div style="opacity: 0.5">{icon}</div> </div>
             <Icon name="Direction/Right"></Icon>

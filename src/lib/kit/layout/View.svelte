@@ -108,8 +108,7 @@
 					</div>
 				</div>
 			</div>
-			<hr class="separator" />
-			<ViewBottomBar />
+			<hr class="separator"/>
 			<ContactsSidebar></ContactsSidebar>
 			<MapSidebar></MapSidebar>
 			<PollSidebar></PollSidebar>
@@ -119,13 +118,18 @@
 			<GifsSidebar></GifsSidebar>
 			<ChatInfoSidebar></ChatInfoSidebar>
 		</div>
-		<hr class="separator" />
+		<hr class="separator" style="z-index: 2137"/>
+		<ViewBottomBar />
 	</div>
 </div>
 
 <style lang="scss">
 	@use '$lib/style/variables.scss' as v;
 	@use '$lib/style/colors.scss' as c;
+
+	.view2{
+		display: flex;
+	}
 
 	.clusterMessages {
 		display: flex;
@@ -151,20 +155,20 @@
 
 	.userView {
 		display: flex;
-		flex-direction: column;
+		flex-direction: row;
 		width: 100%;
-		height: 100%;
+		height: calc(100vh - 2px - 56px * 2);
 	}
 
 	.subView {
 		width: 100%;
 		height: 100%;
 		display: flex;
-		flex-direction: row;
+		flex-direction: column;
+		flex-grow: 1;
 	}
 
 	.chatView {
-		height: calc(100vh - 4px - 56px * 2);
 		width: 100%;
 		overflow-y: scroll;
 		display: flex;
@@ -173,10 +177,11 @@
 		gap: v.$spacing-def;
 		box-sizing: border-box;
 		padding-top: 10px;
+		height: 100%;
 	}
 
 	.view {
-		height: 100%;
+		height: 100vh;
 		width: 100%;
 		display: flex;
 		flex-direction: column;

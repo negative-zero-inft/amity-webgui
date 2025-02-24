@@ -155,8 +155,8 @@
 		height: max-content; /* Or a specific height */
 	}
 	.emojiList {
+		height: calc(100vh - 2px - 56px * 3);
 		width: 320px;
-		height: calc(100vh - 4px - 56px * 2);
 		display: flex;
 		flex-direction: column;
 		flex-shrink: 0;

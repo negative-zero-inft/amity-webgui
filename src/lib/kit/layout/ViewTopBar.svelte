@@ -68,5 +68,6 @@
 		width: 100%;
 		box-sizing: border-box;
 		padding: v.$spacing-def;
+		height: 56px;
 	}
 </style>
