@@ -13,6 +13,7 @@
 
     let tag:string | undefined = $state();
     let pass:string | undefined = $state();
+    let instance:string | undefined = $state("amysrv.neg-zero.com");
     
     const changeView = () =>{
         isLogin.set(!$isLogin)
@@ -22,18 +23,13 @@
 
     const signInProcedure = async () =>{
         try{
-            if( !tag || !pass ){
+            if( !tag || !pass || !instance ){
                 isError.set(true)
                 errorValue.set("Please fill all spaces")
                 return
             }
-            if( !tag.match("@") ){
-                isError.set(true)
-                errorValue.set("Please include the instance this user was created on")
-                return
-            }
 
-            const response = await fetch(`http${$isHttps ? "s" : ""}://${tag.split("@")[1]}:${$port}/signin`, {
+            const response = await fetch(`http${$isHttps ? "s" : ""}://${instance}:${$port}/signin`, {
                 method: "POST",
                 body: JSON.stringify({
                     tag: tag,
@@ -69,9 +65,15 @@
 ">
     <div class="title">Log in to Amity</div>
     <div class="inputs">
-        <Textbox onkeydown={(e:any)=>{
-            if(e.key == "Enter") signInProcedure()
-        }} bind:value={tag} width="100%" icon="User" placeholder="username@instance"></Textbox>
+        <div class="elements-horiz">
+            <Textbox onkeydown={(e:any)=>{
+                if(e.key == "Enter") signInProcedure()
+            }} bind:value={tag} width="100%" icon="User" placeholder="Username"></Textbox>
+            @
+            <Textbox onkeydown={(e:any)=>{
+                if(e.key == "Enter") signInProcedure()
+            }} bind:value={instance} width="100%" placeholder="Server"></Textbox>
+        </div>
         <Textbox onkeydown={(e:any)=>{
             if(e.key == "Enter") signInProcedure()
         }} bind:value={pass} isPassword width="100%" icon="Lock/Locked" placeholder="Password"></Textbox>
@@ -102,6 +104,11 @@
 
     @use '$lib/style/variables.scss' as v;
     @use '$lib/style/colors.scss' as c;
+
+    .elements-horiz{
+        align-items: center;
+        gap: v.$spacing-def;
+    }
 
     .loginBox{
         flex-shrink: 0;
