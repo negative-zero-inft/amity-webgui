@@ -14,9 +14,8 @@
 
     let icons:string[] | undefined = $state();
     try {
-        // Import.meta.glob returns a module with keys that are the file paths, and values that are the imported modules.
-        // We only want the keys (file paths)
-        const modules = import.meta.glob('/static/icons/**/*'); // Adjust the path as needed (e.g., './components/*.svelte')
+
+        const modules = import.meta.glob('/static/icons/**/*');
         icons = Object.keys(modules);
     } catch (error) {
         console.error('Error listing files:', error);
