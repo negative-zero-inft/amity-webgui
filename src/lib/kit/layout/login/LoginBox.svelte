@@ -44,6 +44,7 @@
                 }
             })
             localStorage.setItem("token", await response.text())
+            isError.set(false)
             window.location.replace("/chat")
         }catch(e: any){
 

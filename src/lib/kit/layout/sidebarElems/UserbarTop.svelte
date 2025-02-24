@@ -82,6 +82,7 @@
 		object-fit: cover;
 	}
 	.barTop {
+		position: relative;
 		height: 150px;
 		width: 320px;
 		display: flex;

@@ -12,6 +12,8 @@ export const isChatInfo = writable<boolean>(false);
 
 export const isRecording = writable<boolean>(false);
 
+export const isNewFolder = writable<boolean>(false);
+
 export const isSettings = writable<boolean>(false);
 export const isUserBar = writable<boolean>(false);
 

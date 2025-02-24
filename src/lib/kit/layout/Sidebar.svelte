@@ -8,8 +8,9 @@
 
 	import { isFirefox } from '$lib/scripts/isFirefox';
 	import { setContext } from 'svelte';
-	import { isUserBar } from '$lib/scripts/chatViews';
+	import { isUserBar, isNewFolder } from '$lib/scripts/chatViews';
 	import { user } from '$lib/scripts/globalData';
+	import NewFolder from './sidebarElems/NewFolder.svelte';
 
 	let scrollContainer: HTMLDivElement | undefined;
 
@@ -64,6 +65,10 @@
 			{#each $user?.chat_folders || [] as child}
 				<Button style={4}><Icon name={child.icon} />{child.name}</Button>
 			{/each}
+			<Button action={()=>{
+				isNewFolder.set(!$isNewFolder)
+			}} style={4}><Icon name="Plus" />New folder</Button>
+			<NewFolder></NewFolder>
 		</div>
 	</div>
 	<hr class="separator" />

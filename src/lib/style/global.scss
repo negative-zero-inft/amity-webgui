@@ -16,6 +16,19 @@ a{
     color: c.$accent;
 }
 
+.window {
+    padding: v.$spacing-def;
+    background-color: c.$bg;
+    border-radius: v.$corner-window;
+    border: solid;
+    border-color: c.$text-25;
+    border-width: 1px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+}
+
 // this prevents svelte compoments from modifying body
 // #body{
 //     background-color: c.$bg;

@@ -126,6 +126,7 @@
 		background-color: c.$bg;
 		display: flex;
 		flex-direction: column;
+		align-items: end;
 		@include v.sidebar();
 	}
 </style>
