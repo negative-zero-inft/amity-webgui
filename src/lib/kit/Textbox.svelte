@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Icon from './Icon.svelte';
 
-	let { width = '200px', icon = null, placeholder = 'placeholder', value = $bindable<string>(), maxlength = 4000, isPassword = false, onkeydown = ()=>{}, style = "" } = $props();
+	let { width = '200px', icon = null, placeholder = 'placeholder', value = $bindable<string>(), maxlength = 4000, isPassword = false, onkeydown = ()=>{}, style = "", isError = false } = $props();
 
 	let padding: number = $state<number>(10);
 
@@ -16,12 +16,25 @@
 			<Icon name={icon} />
 		</span>
 	{/if}
-	<input onkeydown={(e)=>{onkeydown(e)}} maxlength={maxlength} bind:value type={isPassword ? "password" : "text" } {placeholder} style="--w: {width}; --icon: {icon}; --padding: {padding}px; {style}" />
+	<input class="e{Number(isError)}" onkeydown={(e)=>{onkeydown(e)}} maxlength={maxlength} bind:value type={isPassword ? "password" : "text" } {placeholder} style="--w: {width}; --icon: {icon}; --padding: {padding}px; {style}" />
 </div>
 
 <style lang="scss">
 	@use '$lib/style/variables.scss' as v;
 	@use '$lib/style/colors.scss' as c;
+
+	.e1{
+		background-color: c.$accent-10; 
+		border-color: c.$accent; 
+		background-image: repeating-linear-gradient(
+			-45deg, 
+			transparent 15px, 
+			rgba(255, 0, 0, 0.25) 15px, 
+			rgba(255, 0, 0, 0.25) 35px, 
+			transparent 35px, 
+			transparent 55px 
+		);
+	}
 
 	.icon {
 		width: 16px;
