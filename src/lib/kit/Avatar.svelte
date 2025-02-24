@@ -14,6 +14,13 @@
 		outline-color: c.$clickable;
 		outline-offset: -0.5px;
 	}
+	.bv0:hover .a1 {
+		outline-color: c.$hover;
+	}
+
+	.bv0:active .a1 {
+		outline-color: c.$clicked;
+	}
 	img {
 		width: var(--w, v.$elem-height);
 		height: var(--w, v.$elem-height);
