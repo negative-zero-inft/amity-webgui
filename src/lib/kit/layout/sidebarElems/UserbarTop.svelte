@@ -38,10 +38,10 @@
 	<div class="bottom">
 		<Avatar pfpLink={avatar}></Avatar>
 		<div class="username">
-			<b>
+			<div class="name">
 				{username}
-			</b>
-			<div>
+			</div>
+			<div class="tag">
 				{tag}
 			</div>
 		</div>
@@ -56,11 +56,26 @@
 	@use '$lib/style/colors.scss' as c;
 	@use '$lib/style/variables.scss' as v;
 
+	.tag{
+		text-overflow: ellipsis; 
+		width: 100%;
+		white-space: nowrap; 
+		overflow: hidden;
+		height: 15px !important;
+	}
+
 	.username {
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
-		width: 100%;
+		max-width: 160px;
+		& .name{
+			font-weight: bold;
+			text-overflow: ellipsis; 
+			width: 100%;
+			white-space: nowrap; 
+			overflow: hidden;
+		}
 	}
 	.bottom {
 		display: flex;

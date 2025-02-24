@@ -25,7 +25,7 @@
 		scrollContainer.scrollLeft += delta * scrollSpeed;
 	}
 
-	const newfolderscrollthing = (e)=>{
+	const newfolderscrollthing = (e: MouseEvent)=>{
 
 		if(!scrollContainer) return
 		scrollContainer.scrollLeft = scrollContainer?.scrollWidth;
