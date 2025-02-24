@@ -69,7 +69,7 @@
             <Textbox onkeydown={(e:any)=>{
                 if(e.key == "Enter") signInProcedure()
             }} bind:value={tag} width="100%" icon="User" placeholder="Username"></Textbox>
-            @
+            <Icon name="AtSign"></Icon>
             <Textbox onkeydown={(e:any)=>{
                 if(e.key == "Enter") signInProcedure()
             }} bind:value={instance} width="100%" placeholder="Server"></Textbox>
