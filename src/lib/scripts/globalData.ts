@@ -1,6 +1,6 @@
 import { writable } from "svelte/store";
 
-export const server = writable<string>("185.25.217.62");
+export const server = writable<string>("amysrv.neg-zero.com");
 export const isHttps = writable<boolean>(true)
 export const port = writable<number>(3000)
 
