@@ -32,7 +32,7 @@
             const response = await fetch(`http${$isHttps ? "s" : ""}://${instance}:${$port}/signin`, {
                 method: "POST",
                 body: JSON.stringify({
-                    tag: tag,
+                    tag: `${tag}@${instance}`,
                     password: pass
                 }),
                 headers: {
@@ -41,12 +41,13 @@
                 }
             })
             if(await response.status != 200) {
+                console.log(await response)
                 isError.set(true)
                 errorValue.set(await response.text())
                 return
             }
             localStorage.setItem("token", await response.text())
-            localStorage.setItem("server", tag.split("@")[1])
+            localStorage.setItem("server", instance)
             isError.set(false)
             window.location.replace("/chat")
         }catch(e: any){

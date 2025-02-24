@@ -20,8 +20,8 @@
 	<ViewTopBar />
 	<hr class="separator" />
 	<div class="subView">
-		<CloudStorageBar></CloudStorageBar>
 		<div class="userView">
+			<CloudStorageBar></CloudStorageBar>
 			<div class="chatView">
 				<div class="clusterForeign">
 					<Avatar></Avatar>
@@ -110,16 +110,16 @@
 			</div>
 			<hr class="separator" />
 			<ViewBottomBar />
+			<ContactsSidebar></ContactsSidebar>
+			<MapSidebar></MapSidebar>
+			<PollSidebar></PollSidebar>
+			<CommandSidear></CommandSidear>
+			<EmojiSidebar></EmojiSidebar>
+			<StickerSidebar></StickerSidebar>
+			<GifsSidebar></GifsSidebar>
+			<ChatInfoSidebar></ChatInfoSidebar>
 		</div>
 		<hr class="separator" />
-		<ContactsSidebar></ContactsSidebar>
-		<MapSidebar></MapSidebar>
-		<PollSidebar></PollSidebar>
-		<CommandSidear></CommandSidear>
-		<EmojiSidebar></EmojiSidebar>
-		<StickerSidebar></StickerSidebar>
-		<GifsSidebar></GifsSidebar>
-		<ChatInfoSidebar></ChatInfoSidebar>
 	</div>
 </div>
 
