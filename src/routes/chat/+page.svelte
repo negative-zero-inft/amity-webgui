@@ -8,12 +8,15 @@
 	$effect(()=>{
 		if(!localStorage.getItem("token")) window.location.replace("/login")
 		token.set(localStorage.getItem("token")) 
+		if(localStorage.getItem("server")) server.set(localStorage.getItem("server") || "")
+		console.log($server)
 		getUser()
 	})
 
 	const getUser = async () =>{
+		console.log($server)
 		try{
-			const response = await fetch(`http://${$server}/user/me?token=${$token}`, {
+			const response = await fetch(`http://${$server}:3000/user/me?token=${$token}`, {
 				method: "GET",
 				headers: {
 					"Content-Type": "application/json",
@@ -24,7 +27,7 @@
 		}catch(e){
 			console.log(e)
 			localStorage.removeItem("token")
-			window.location.replace("/login")
+			// window.location.replace("/login")
 			token.set(null)
 			return
 		}

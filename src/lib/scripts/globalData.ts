@@ -1,6 +1,6 @@
 import { writable } from "svelte/store";
 
-export let server = writable<string>("localhost:3000");
+export let server = writable<string>("185.25.217.62");
 export let user = writable<{
     _id: string,
     id: {

@@ -65,10 +65,17 @@
 			{#each $user?.chat_folders || [] as child}
 				<Button style={4}><Icon name={child.icon} />{child.name}</Button>
 			{/each}
-			<Button action={(e: MouseEvent)=>{
-				isNewFolder.set(!$isNewFolder)
-				newFolderE.set(e)
-			}} style={4}><Icon name="Plus" />New folder</Button>
+			<Button
+				hoverAction={(e: MouseEvent)=>{
+					newFolderE.set(e)
+					console.log(e)
+				}}
+				action={(e: MouseEvent)=>{
+					isNewFolder.set(!$isNewFolder)
+					newFolderE.set(e)
+				}} style={4}>
+				<Icon name="Plus" />New folder
+			</Button>
 			<NewFolder></NewFolder>
 		</div>
 	</div>

@@ -45,7 +45,7 @@
                 cdn: fileserver
             }
     
-            const response = await fetch(`http://${$server}/register`, {
+            const response = await fetch(`http://${$server}:3000/register`, {
                 method: "POST",
                 body: JSON.stringify(user),
                 headers: {

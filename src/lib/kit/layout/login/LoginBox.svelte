@@ -4,6 +4,7 @@
 	import Textbox from "$lib/kit/Textbox.svelte";
 	import { server } from "$lib/scripts/globalData";
 	import { errorValue, isError } from "$lib/scripts/loginWritables";
+	import { error } from "@sveltejs/kit";
 	import OAuth from "./OAuth.svelte";
 
     let{
@@ -32,7 +33,7 @@
                 return
             }
 
-            const response = await fetch(`http://${$server}/signin`, {
+            const response = await fetch(`http://${tag.split("@")[1]}:3000/signin`, {
                 method: "POST",
                 body: JSON.stringify({
                     tag: tag,
@@ -43,7 +44,13 @@
                     "Access-Control-Allow-Origin": "*"
                 }
             })
+            if(await response.status != 200) {
+                isError.set(true)
+                errorValue.set(await response.text())
+                return
+            }
             localStorage.setItem("token", await response.text())
+            localStorage.setItem("server", tag.split("@")[1])
             isError.set(false)
             window.location.replace("/chat")
         }catch(e: any){

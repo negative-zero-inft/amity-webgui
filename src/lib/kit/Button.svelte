@@ -16,18 +16,25 @@
 		children,
 		id = '',
 		scaleHover = 1.1,
-		scaleClick = 0.9
+		scaleClick = 0.9,
+		hoverAction = ()=>{}
 	} = $props();
 </script>
 
+<!-- svelte-ignore a11y_mouse_events_have_key_events -->
 <button
 	{id}
 	class="bv{style}"
 	style="--w: {width}; --a: {alignment}; --sh: {scaleHover}; --sc: {scaleClick}"
 	onclick={(e) => {
 		action(e);
-	}}>{@render children?.()}</button
+	}}
+	onmouseover={(e) =>{
+		hoverAction(e)
+	}}
 >
+	{@render children?.()}
+</button>
 
 <style lang="scss">
 	@use '$lib/style/variables.scss' as v;

@@ -26,7 +26,7 @@
 
     const getUser = async () =>{
 		try{
-			const response = await fetch(`http://${$server}/user/me?token=${$token}`, {
+			const response = await fetch(`http://${$server}:3000/user/me?token=${$token}`, {
 				method: "GET",
 				headers: {
 					"Content-Type": "application/json",
@@ -49,7 +49,7 @@
             errorValue = "Please fill all spaces"
         }
         try{
-            const response = await fetch(`http://${$server}/user/me/chatfolders/add?token=${$token}`, {
+            const response = await fetch(`http://${$server}:3000/user/me/chatfolders/add?token=${$token}`, {
                 method: "POST",
                 body: JSON.stringify({
                     name: name,

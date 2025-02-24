@@ -3,7 +3,6 @@
 	import Icon from "$lib/kit/Icon.svelte";
 	import Textbox from "$lib/kit/Textbox.svelte";
 	import amy from "$lib/amy.svg"
-	import QRCode from '@castlenine/svelte-qrcode';
 	import LoginBox from "$lib/kit/layout/login/LoginBox.svelte";
 	import SignupBox from "$lib/kit/layout/login/SignupBox.svelte";
 	import { writable } from "svelte/store";
