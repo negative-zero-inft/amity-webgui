@@ -1,7 +1,7 @@
 import { writable } from "svelte/store";
 
-export const server = writable<string>("185.25.217.62");
-export const isHttps = writable<boolean>(false)
+export const server = writable<string>("meowster.dev");
+export const isHttps = writable<boolean>(true)
 export const port = writable<number>(3000)
 
 export let token = writable<string | null>();
