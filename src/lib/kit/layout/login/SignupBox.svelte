@@ -80,7 +80,7 @@
 </script>
 
 <div class="loginBox" style="
-    left: {!$isLogin ? "-300px" : "320px"};
+    left: {!$isLogin ? "-320px" : "340px"};
     pointer-events: {!$isLogin ? "auto" : "none"};
     padding: {!$isLogin ? "10px" : "0" };
 ">
@@ -122,7 +122,7 @@
 
     .loginBox{
         flex-shrink: 0;
-        width: 300px;
+        width: 320px;
         height: 350px;
         display: flex;
         flex-direction: column;

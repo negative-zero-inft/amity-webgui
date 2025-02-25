@@ -20,7 +20,7 @@
 </script>
 
 <div class="loginBg">
-	<div class="window" style="width: 320px; height: 370px; flex-direction: row; padding: 0; gap: 0;">
+	<div class="window" style="width: 340px; height: 370px; flex-direction: row; padding: 0; gap: 0;">
 		<LoginBox isLogin={isLogin}></LoginBox>
 		<SignupBox isLogin={isLogin}></SignupBox>
 	</div>
