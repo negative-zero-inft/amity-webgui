@@ -104,7 +104,7 @@
 			<Button width="100%"><Icon name="More"></Icon>More</Button>
 		</grid>
 	</div>
-	<hr class="separator" />
+	<hr class="separator" style="position: absolute; bottom: 55px; z-index: 5; width: 320px;" />
 	<div class="bottomBar" bind:this={scrollContainer} onwheel={handleWheel}>
 		<Button style={2}><Icon name="Star"></Icon></Button>
 		<Button><Icon name="Clock"></Icon></Button>
@@ -145,6 +145,9 @@
 		&::-webkit-scrollbar{
 			display: none;
 		}
+		position: absolute;
+		bottom: 0;
+		right: 0;
 	}
 
 	.emojiGrid {
@@ -167,6 +170,10 @@
 		box-sizing: border-box;
 		padding-top: 56px;
 		gap: v.$spacing-def;
+		position: absolute;
+		right: 0;
+		top: 0;
+		overflow-x: hidden;
 	}
 	.topBar {
 		width: 320px;
