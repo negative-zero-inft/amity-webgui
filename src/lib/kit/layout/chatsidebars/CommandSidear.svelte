@@ -130,7 +130,7 @@
 		gap: v.$spacing-def;
 		position: absolute;
 		z-index: 69696969;
-		right: 0;
+		left: 0;
 	}
 
 	.bar {
