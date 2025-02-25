@@ -66,7 +66,10 @@
 		class="window"
 		style="
         position: absolute;
-        left: {(folderEvent as MouseEvent)?.clientX - (ctxMenu as HTMLElement)?.offsetWidth / 2}px;
+        left: {			
+			((folderEvent as MouseEvent)?.clientX < 110) ? 10 :
+			(folderEvent as MouseEvent)?.clientX - (ctxMenu as HTMLElement)?.offsetWidth / 2
+		}px;
         scale: {isFolderCtxMenu ? 1 : 0};
         top: {isFolderCtxMenu ? 56 + 32 + 5 : 36 + 16}px;
         z-index: 12831928471983471;
