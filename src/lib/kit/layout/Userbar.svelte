@@ -120,7 +120,7 @@
 	}
 
 	.bar {
-		position: absolute;
+		position: absolute !important;
 		left: 0;
 		top: 0;
 		bottom: 0;
