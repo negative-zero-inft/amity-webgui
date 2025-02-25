@@ -8,9 +8,13 @@
 
 	import { isFirefox } from '$lib/scripts/isFirefox';
 	import { setContext } from 'svelte';
-	import { isUserBar, isNewFolder, newFolderE } from '$lib/scripts/chatViews';
+	import { isUserBar, isNewFolder, newFolderE, windowClickEvent } from '$lib/scripts/chatViews';
 	import { user } from '$lib/scripts/globalData';
 	import NewFolder from './sidebarElems/NewFolder.svelte';
+
+	let isFolderCtxMenu: boolean = $state(false);
+	let folderEvent: MouseEvent | undefined = $state();
+	let ctxMenu: HTMLElement | undefined = $state();
 
 	let scrollContainer: HTMLDivElement | undefined;
 
@@ -40,6 +44,12 @@
 	$effect(() => {
 		isReallyFireFox = isFirefox();
 	});
+
+	windowClickEvent.subscribe((e)=>{
+		if(e?.target?.id != "ctxMenu"){
+			isFolderCtxMenu = false
+		}
+	})
 </script>
 
 <Userbar />
@@ -70,10 +80,31 @@
 			</Button>
 			<Button><Icon name="Search" /></Button>
 		</div>
+		<div bind:this={ctxMenu} id="ctxMenu" class="window" style="
+			position: absolute;
+			left: {folderEvent?.clientX - ctxMenu?.offsetWidth / 2}px;
+			scale: {isFolderCtxMenu ? 1 : 0};
+			top: {isFolderCtxMenu ? 56 + 32 + 5 : 36 + 16}px;
+			z-index: 12831928471983471;
+			width: 200px;
+		">	
+			<Button action={()=>{}} scaleClick={0.95} scaleHover={1.05} alignment="space-between" width="100%">
+				<div class="elem-horiz"><Icon name="Pencil/Angled"></Icon> Edit folder</div>
+				<Icon name="Direction/Right"></Icon>
+			</Button>
+			<Button width="100%" style={3}><Icon name="Trash"></Icon> Delete folder</Button>
+		</div>
 		<div class="scroll-horiz" bind:this={scrollContainer} onwheel={handleWheel}>
 			<Button style={6}><Icon name="Chat" />All chats</Button>
 			{#each $user?.chat_folders || [] as child}
-				<Button style={4}><Icon name={child.icon} />{child.name || ""}</Button>
+				<Button
+					hoverAction={(e:MouseEvent)=>{if(!isFolderCtxMenu)folderEvent = e}}
+					contextmenu={(e: MouseEvent)=>{
+						e.preventDefault()
+						isFolderCtxMenu = true
+						folderEvent = e
+					}}
+					style={4}><Icon name={child.icon} />{child.name || ""}</Button>
 			{/each}
 			<Button
 				hoverAction={(e: MouseEvent)=>{
@@ -168,5 +199,10 @@
 		flex-shrink: none;
 		box-sizing: border-box;
 		scrollbar-gutter: stable;
+	}
+	.elem-horiz {
+		display: flex;
+		gap: v.$spacing-def;
+		align-items: center;
 	}
 </style>

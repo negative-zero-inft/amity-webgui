@@ -17,12 +17,14 @@
 		id = '',
 		scaleHover = 1.1,
 		scaleClick = 0.9,
-		hoverAction = ()=>{}
+		hoverAction = ()=>{},
+		contextmenu=()=>{}
 	} = $props();
 </script>
 
 <!-- svelte-ignore a11y_mouse_events_have_key_events -->
 <button
+	oncontextmenu={(e)=>{contextmenu(e)}}
 	{id}
 	class="bv{style}"
 	style="--w: {width}; --a: {alignment}; --sh: {scaleHover}; --sc: {scaleClick}"

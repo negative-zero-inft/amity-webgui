@@ -27,6 +27,7 @@ a{
     align-items: center;
     flex-direction: column;
     overflow: hidden;
+    transition: 0.25s;
 }
 
 // this prevents svelte compoments from modifying body

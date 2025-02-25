@@ -4,6 +4,7 @@
 	import Settings from '$lib/kit/layout/Settings.svelte';
 	import { user, server, isHttps, port } from '$lib/scripts/globalData';
 	import { token } from '$lib/scripts/globalData';
+	import { windowClickEvent } from '$lib/scripts/chatViews';
 
 	$effect(()=>{
 		if(localStorage.getItem("isDev") == "true") isHttps.set(false)
@@ -37,9 +38,14 @@
 
 </script>
 
-<div class="main">
+<!-- svelte-ignore a11y_no_static_element_interactions -->
+<!-- svelte-ignore a11y_click_events_have_key_events -->
+<div class="main" onclick={(e)=>{
+	windowClickEvent.set(e)
+}}>
 	<Settings></Settings>
 	<Sidebar />
 	<hr class="separator" />
 	<View />
 </div>
+	

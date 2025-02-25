@@ -1,5 +1,7 @@
 import { writable } from "svelte/store";
 
+export const windowClickEvent = writable<MouseEvent>();
+
 export const isEmojiBar = writable<boolean>(false);
 export const isGifBar = writable<boolean>(false);
 export const isCommandBar = writable<boolean>(false);
