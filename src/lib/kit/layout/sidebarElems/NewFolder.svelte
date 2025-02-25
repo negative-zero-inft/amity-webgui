@@ -106,14 +106,14 @@
 	@use '$lib/style/variables.scss' as v;
 
     .iconList{
-        width: 310px;
+        width: 305px;
         height: 320px;
         padding: v.$spacing-def;
         padding-top: 56px;
         box-sizing: border-box;
         display: grid;
         grid-template-columns: repeat(6, 1fr);
-        gap: 10px;
+        gap: 13px;
         overflow-y: scroll;
         overflow-x: hidden;
         background-color: c.$bg;
@@ -122,7 +122,7 @@
     .iconPickerTop {
         top: 0;
         left: 0;
-        width: 300px;
+        width: 302px;
 		box-sizing: border-box;
 		flex-shrink: 0;
 		background: linear-gradient(to bottom, #000000ff 50%, #00000000);
