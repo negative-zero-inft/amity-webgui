@@ -50,7 +50,9 @@
 		<div class="cluster">
 			<Button
 			action={()=>{
-				localStorage.clear()
+				localStorage.removeItem("token")
+				localStorage.removeItem("isDev")
+				localStorage.removeItem("server")
 				window.location.replace("/login")
 			}}
 			style={3}
