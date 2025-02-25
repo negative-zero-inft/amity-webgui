@@ -186,6 +186,9 @@
 		align-items: center;
 		overflow: scroll;
 		scroll-behavior: smooth;
+		&::-webkit-scrollbar{
+			display: none;
+		}
 		padding-right: 60px;
 	}
 	.topBar {

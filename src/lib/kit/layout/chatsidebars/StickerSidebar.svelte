@@ -166,6 +166,9 @@
 		overflow: scroll;
 		scroll-behavior: smooth;
 		padding-right: 60px;
+		&::-webkit-scrollbar{
+			display: none;
+		}
 	}
 	.topBar {
 		width: 320px;

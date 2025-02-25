@@ -115,6 +115,9 @@
 		gap: v.$spacing-def;
 		overflow: scroll;
 		scroll-behavior: smooth;
+		&::-webkit-scrollbar{
+			display: none;
+		}
 	}
 
 	.emojiGrid {
