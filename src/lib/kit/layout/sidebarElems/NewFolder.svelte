@@ -87,7 +87,7 @@
     ">
         <div class="iconPickerTop">
             <Button action={()=>{isIconPicker = false}}><Icon name="Direction/Left"></Icon></Button>
-            <Textbox width="100%; background-color: black;" icon="Search" placeholder="Search icons..."></Textbox>
+            <Textbox bgc="black" width="100%" icon="Search" placeholder="Search icons..."></Textbox>
         </div>
         <grid class="iconList">
             {#each icons || [] as child}
@@ -106,7 +106,7 @@
 	@use '$lib/style/variables.scss' as v;
 
     .iconList{
-        width: 300px;
+        width: 310px;
         height: 320px;
         padding: v.$spacing-def;
         padding-top: 56px;

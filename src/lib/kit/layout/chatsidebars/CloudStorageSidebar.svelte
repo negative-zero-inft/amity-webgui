@@ -33,7 +33,7 @@
 
 <div class="bar" style="--w: {animatedSidebar}px">
 	<div class="topBar">
-		<Textbox width="100%; background-color: black;" icon="Search" placeholder="Search your files..."></Textbox>
+		<Textbox width="100%" bgc="black" icon="Search" placeholder="Search your files..."></Textbox>
 	</div>
 	<!-- <hr class="separator"/> -->
 	<div class="emojiList">

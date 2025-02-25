@@ -33,7 +33,7 @@
 
 <div class="bar" style="--w: {animatedSidebar}px">
 	<div class="topBar">
-		<Textbox width="100%; background-color: black;" icon="Search" placeholder="Search stickers..."
+		<Textbox width="100%" bgc="black" icon="Search" placeholder="Search stickers..."
 		></Textbox>
 		<Button><Icon name="Plus"></Icon></Button>
 	</div>
