@@ -31,13 +31,11 @@
 </script>
 
 <div class="bar" style="--w: {animatedSidebar}px">
-	{#if $isEmojiBar}
-		<div class="topBar">
-			<Textbox width="100%; background-color: black;" icon="Search" placeholder="Search emoji..."
-			></Textbox>
-			<Button><Icon name="Plus"></Icon></Button>
-		</div>
-	{/if}
+	<div class="topBar">
+		<Textbox width="100%; background-color: black;" icon="Search" placeholder="Search emoji..."
+		></Textbox>
+		<Button><Icon name="Plus"></Icon></Button>
+	</div>
 	<!-- <hr class="separator"/> -->
 	<div class="emojiList">
 		<Label icon="Star" label="Favorites"></Label>
@@ -202,6 +200,7 @@
 		flex-direction: row;
 		gap: v.$spacing-def;
 		position: absolute;
+		z-index: 69696969;
 		right: 0;
 	}
 

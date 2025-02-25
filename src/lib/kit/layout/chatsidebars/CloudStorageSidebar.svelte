@@ -32,11 +32,9 @@
 </script>
 
 <div class="bar" style="--w: {animatedSidebar}px">
-	{#if $isCloudStorageBar}
-		<div class="topBar">
-			<Textbox width="100%; background-color: black;" icon="Search" placeholder="Search your files..."></Textbox>
-		</div>
-	{/if}
+	<div class="topBar">
+		<Textbox width="100%; background-color: black;" icon="Search" placeholder="Search your files..."></Textbox>
+	</div>
 	<!-- <hr class="separator"/> -->
 	<div class="emojiList">
 		<Label icon="Star" label="Favorites"></Label>
@@ -181,10 +179,12 @@
 		flex-direction: row;
 		gap: v.$spacing-def;
 		position: absolute;
-		left: 321px;
+		z-index: 69696969;
+		right: 0;
 	}
 
 	.bar {
 		@include v.sidebar;
+		align-items: end;
 	}
 </style>

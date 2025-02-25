@@ -18,12 +18,10 @@
 </script>
 
 <div class="bar" style="--w: {animatedSidebar}px">
-	{#if $isGifBar}
-		<div class="topBar">
-			<Textbox width="100%; background-color: black;" icon="Search" placeholder="Search gifs..."
-			></Textbox>
-		</div>
-	{/if}
+	<div class="topBar">
+		<Textbox width="100%; background-color: black;" icon="Search" placeholder="Search gifs..."
+		></Textbox>
+	</div>
 	<!-- <hr class="separator"/> -->
 	<div class="emojiList">
 		<Label icon="Star" label="Favorites"></Label>
@@ -156,7 +154,7 @@
 	}
 	.emojiList {
 		width: 320px;
-		height: calc(100vh - 2px - 56px * 3);
+		height: calc(100vh - 2px - 56px * 2);
 		display: flex;
 		flex-direction: column;
 		flex-shrink: 0;
@@ -178,6 +176,7 @@
 		flex-direction: row;
 		gap: v.$spacing-def;
 		position: absolute;
+		z-index: 69696969;
 		right: 0;
 	}
 
