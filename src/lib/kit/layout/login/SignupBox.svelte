@@ -89,9 +89,14 @@
         <Textbox onkeydown={(e:any)=>{
             if(e.key == "Enter") signupProcedure()
         }} maxlength={64} bind:value={dname} width="100%" icon="Rename" placeholder="Display name"></Textbox>
-        <Textbox onkeydown={(e:any)=>{
-            if(e.key == "Enter") signupProcedure()
-        }} maxlength={32} bind:value={uname} width="100%" icon="User" placeholder="Username"></Textbox>
+        
+        <div class="elements-horiz">
+            <Textbox onkeydown={(e:any)=>{
+                if(e.key == "Enter") signupProcedure()
+            }} maxlength={32} bind:value={uname} width="100%" icon="User" placeholder="Username"></Textbox>
+            <Icon name="AtSign"></Icon>
+            <Textbox isImmutable bind:value={$server} width="100%" placeholder="Server"></Textbox>
+        </div>
         <Textbox onkeydown={(e:any)=>{
             if(e.key == "Enter") signupProcedure()
         }} isPassword maxlength={64} bind:value={fpass} width="100%" icon="Lock/Locked" placeholder="Password"></Textbox>
@@ -131,6 +136,11 @@
         transition: 0.25s;
         flex-wrap: 0;
         position: relative;
+    }
+
+    .elements-horiz{
+        align-items: center;
+        gap: v.$spacing-def;
     }
 
     .oauthGrid{
