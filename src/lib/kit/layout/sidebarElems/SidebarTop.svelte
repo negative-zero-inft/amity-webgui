@@ -3,7 +3,7 @@
 	import Button from '$lib/kit/Button.svelte';
 	import Icon from '$lib/kit/Icon.svelte';
 	import NewFolder from './NewFolder.svelte';
-	import { isNewFolder, isUserBar, newFolderE, windowClickEvent, isFolderCtxMenu, folderClickEvent, folder } from '$lib/scripts/chatViews';
+	import { isNewFolder, isUserBar, newFolderE, isFolderCtxMenu, folderClickEvent, folder, isMoreButtonCtxMenu, moreButtonClickEvent } from '$lib/scripts/chatViews';
 	import { user } from '$lib/scripts/globalData';
 	import FolderCtxMenu from './FolderCtxMenu.svelte';
 
@@ -27,7 +27,7 @@
 		isNewFolder.set(!$isNewFolder);
 		newFolderE.set(e);
 	};
-	
+
 </script>
 
 <div class="sidebar-top">
@@ -52,14 +52,12 @@
 		</Button>
 		<Button 
 			hoverAction={(e: MouseEvent) => {
-				if (!$isFolderCtxMenu) folderClickEvent.set(e);
+				if (!$isMoreButtonCtxMenu) moreButtonClickEvent.set(e);
 			}}
 			action={(e: MouseEvent) => {
-				e.preventDefault();
-				isFolderCtxMenu.set(false);
-				folderClickEvent.set(e)
-				folder.set(child)
-				isFolderCtxMenu.set(true);
+				isMoreButtonCtxMenu.set(false);
+				moreButtonClickEvent.set(e)
+				isMoreButtonCtxMenu.set(true);
 			}}
 		><Icon name="More" /></Button>
 	</div>

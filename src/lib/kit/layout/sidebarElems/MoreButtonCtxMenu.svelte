@@ -1,9 +1,8 @@
 <script lang="ts">
     import Button from '$lib/kit/Button.svelte';
 	import Icon from '$lib/kit/Icon.svelte';
-	import NewFolder from './NewFolder.svelte';
     import { isHttps, port, server, token, user } from "$lib/scripts/globalData";
-	import { windowClickEvent, isFolderCtxMenu, folderClickEvent, folder } from '$lib/scripts/chatViews';
+	import { windowClickEvent, isMoreButtonCtxMenu, moreButtonClickEvent, folder } from '$lib/scripts/chatViews';
 	import Textbox from '$lib/kit/Textbox.svelte';
 	import Label from '$lib/kit/Label.svelte';
 
@@ -17,7 +16,7 @@
         icon = $folder.icon
         name = $folder.name
     })
-    let isIconPicker = $state(false)
+    let isIconPicker = $state(true)
 
 	let ctxMenu: HTMLElement | undefined = $state();
 	let isCtxEdit: boolean = $state(false)
@@ -25,6 +24,8 @@
     let ctxDef: HTMLElement | undefined = $state();
     let ctxEdit: HTMLElement | undefined = $state();
     let iconPicker: HTMLElement | undefined = $state();
+
+    let wasActive: boolean = $state(true)
 
     let icons:string[] | undefined = $state();
     try {
@@ -34,7 +35,7 @@
         console.error('Error listing files:', error);
     }
 
-    isFolderCtxMenu.subscribe(()=>{
+    isMoreButtonCtxMenu.subscribe(()=>{
         isIconPicker = false
         isCtxEdit = false
     })
@@ -46,52 +47,14 @@
 			e?.clientY < ctxMenu?.offsetTop || 
 			e?.clientY > ctxMenu?.offsetTop + ctxMenu?.offsetHeight
 		) {
-            isIconPicker = false
-            isCtxEdit = false
-			$isFolderCtxMenu = false;
+            if($isMoreButtonCtxMenu){
+                isIconPicker = false
+                isCtxEdit = false
+                $isMoreButtonCtxMenu = false;
+            }
 		}
 	});
-    const folderUpdateProc = async ()=>{
-        try{
-            const response = await fetch(`http${$isHttps ? "s" : ""}://${$server}:${$port}/user/me/chatfolders?token=${$token}`, {
-                method: "PUT",
-                body: JSON.stringify({
-                    name: name,
-                    icon: icon,
-                    _id: $folder._id
-                }),
-                headers: {
-                    "Content-Type": "application/json",
-                    "Access-Control-Allow-Origin": "*"
-                }
-            })
-            console.log(response)
-            getUser()
-        }catch(e){
-            console.log(e)
-        }
-        isFolderCtxMenu.set(false)
-    }
-
-    const folderDelProc = async ()=>{
-        try{
-            const response = await fetch(`http${$isHttps ? "s" : ""}://${$server}:${$port}/user/me/chatfolders?token=${$token}`, {
-                method: "DELETE",
-                body: JSON.stringify({
-                    _id: $folder._id
-                }),
-                headers: {
-                    "Content-Type": "application/json",
-                    "Access-Control-Allow-Origin": "*"
-                }
-            })
-            console.log(response)
-            getUser()
-        }catch(e){
-            console.log(e)
-        }
-        isFolderCtxMenu.set(false)
-    }
+    
 
     const getUser = async () =>{
 		try{
@@ -110,7 +73,6 @@
 			return
 		}
 	}
-
 </script>
 
 <div
@@ -119,27 +81,18 @@
     class="window"
     style="
     position: absolute;
-    left: {			
-        (($folderClickEvent as MouseEvent)?.clientX < 130) ? 10 :
-        isIconPicker ? (($folderClickEvent as MouseEvent)?.clientX < 170) ? 10 :
-        ($folderClickEvent as MouseEvent)?.clientX - 160 : 
-        ($folderClickEvent as MouseEvent)?.clientX - 120
-    }px;
-    scale: {$isFolderCtxMenu ? 1 : 0};
-    top: {$isFolderCtxMenu ? 56 + 32 + 5 : 16}px;
+    left: calc({$moreButtonClickEvent?.clientX}px - {ctxMenu?.clientWidth / 2}px);
+    scale: {$isMoreButtonCtxMenu ? 1 : 0};
+    top: {$isMoreButtonCtxMenu ? 56 : -28}px;
     z-index: 12831928471983412381931723071;
-    width: {isIconPicker ? 300 : 240}px;
-    height: {isCtxEdit ? isIconPicker ? iconPicker?.clientHeight : ctxEdit?.clientHeight : ctxDef?.clientHeight}px;
+    width: 240px;
+    height: {ctxDef?.clientHeight}px;
     padding: 0;
 "
 >
     <div bind:this={ctxDef} class="defaultCtxMenuView" style="
         left: {isCtxEdit ? -240 : 0}px
     ">
-        <div class="elements-horiz" style="justify-content: space-between; padding-right: 5px;">
-            <Label icon="Folder/Default" label={name || icon}></Label>
-            <Icon name={icon}></Icon>
-        </div>
         <Button
             action={() => {
                 isCtxEdit = true
@@ -149,43 +102,21 @@
             alignment="space-between"
             width="100%"
         >
-            <div class="elem-horiz"><Icon name="Pencil/Angled"></Icon> Edit folder</div>
+            <div class="elem-horiz"><Icon name="Search"></Icon> Search Amity</div>
             <Icon name="Direction/Right"></Icon>
         </Button>
-        <Button action={folderDelProc} width="100%" style={3}><Icon name="Trash"></Icon> Delete folder</Button>
-    </div>
-    <div bind:this={ctxEdit} class="editCtxMenuView" style="
-        left: {isCtxEdit ? isIconPicker ? -240 : 0 : 240}px
-    ">
-        <div class="menuTop">
-            <Button action={()=>{
-                icon = $folder.icon
-                name = $folder.name
-                isCtxEdit = false
-            }}><Icon name="Direction/Left"></Icon></Button>
-            <Textbox maxlength={32} bind:value={name} width="100%" icon="Rename" placeholder="Folder name"></Textbox>
-        </div>
-        <Button action={()=>{isIconPicker = true}} scaleClick={0.95} scaleHover={1.05} alignment="space-between" width="100%">
-            <div class="elem-horiz"><Icon name={icon}></Icon> Icon <div style="opacity: 0.5">{icon}</div> </div>
+        <Button
+            action={() => {
+                isCtxEdit = true
+            }}
+            scaleClick={0.95}
+            scaleHover={1.05}
+            alignment="space-between"
+            width="100%"
+        >
+            <div class="elem-horiz"><Icon name="Plus"></Icon> Create...</div>
             <Icon name="Direction/Right"></Icon>
         </Button>
-        <Button action={folderUpdateProc} width="100%" style={1}><Icon name="Save"></Icon> Save</Button>
-    </div>
-    <div bind:this={iconPicker} class="iconPicker" style="
-        left: {isIconPicker ? 0 : 240}px
-    ">
-        <div class="iconPickerTop">
-            <Button action={()=>{isIconPicker = false}}><Icon name="Direction/Left"></Icon></Button>
-            <Textbox bgc="black" width="100%" icon="Search" placeholder="Search icons..."></Textbox>
-        </div>
-        <grid class="iconList">
-            {#each icons || [] as child}
-				<Button width="36px; height: 36px;" style={(icon == child.substring(14, child.length - 4)) ? 6 : 4} action={()=>{
-                    icon = child.substring(14, child.length - 4)
-                    isIconPicker = false
-                }}><Icon name={child.substring(14, child.length - 4)} /></Button>
-			{/each}
-        </grid>
     </div>
 </div>
 

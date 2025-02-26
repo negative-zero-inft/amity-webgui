@@ -9,6 +9,7 @@
 	import { windowClickEvent } from '$lib/scripts/chatViews';
 	import FolderCtxMenu from '$lib/kit/layout/sidebarElems/FolderCtxMenu.svelte';
 	import Icon from '$lib/kit/Icon.svelte';
+	import MoreButtonCtxMenu from '$lib/kit/layout/sidebarElems/MoreButtonCtxMenu.svelte';
 
 	$effect(() => {
 		if (!browser) return;
@@ -56,7 +57,8 @@
 </script>
 
 {#if $token}
-<FolderCtxMenu></FolderCtxMenu>
+	<FolderCtxMenu></FolderCtxMenu>
+	<MoreButtonCtxMenu></MoreButtonCtxMenu>
 	<div
 		class="main"
 		onclick={(e) => {
