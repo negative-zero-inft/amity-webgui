@@ -3,12 +3,12 @@
 	import Icon from "$lib/kit/Icon.svelte";
 	import Label from "$lib/kit/Label.svelte";
     import Textbox from "$lib/kit/Textbox.svelte";
-    import { isNewFolder, newFolderE } from "$lib/scripts/chatViews";
+    import { isNewFolder, newFolderE, windowClickEvent } from "$lib/scripts/chatViews";
     import { isHttps, port, server, token, user } from "$lib/scripts/globalData";
 
     let name: string | undefined = $state();
     let icon: string | undefined = $state("Cube");
-    let menu: HTMLElement | undefined = $state();
+    let ctxMenu: HTMLElement | undefined = $state();
 
     let isIconPicker: boolean = $state(false);
     
@@ -60,16 +60,32 @@
         name = ""
         isNewFolder.set(false)
     }
+
+    windowClickEvent.subscribe((e) => {
+		if (
+			e?.clientX < ctxMenu?.offsetLeft || 
+			e?.clientX > ctxMenu?.offsetLeft + ctxMenu?.offsetWidth ||
+			e?.clientY < ctxMenu?.offsetTop || 
+			e?.clientY > ctxMenu?.offsetTop + ctxMenu?.offsetHeight
+		) {
+            if($isNewFolder){
+                isIconPicker = false
+                icon = "Cube"
+                name = ""
+                isNewFolder.set(false);
+            }
+		}
+	});
 </script>
 
 <div
-    bind:this={menu}
+    bind:this={ctxMenu}
     class="window" style="
     scale: {$isNewFolder ? 1 : 0};
     pointer-events: {$isNewFolder ? "auto" : "none"};
     transform: translateY({$isNewFolder ? "0" : "300px"});
     top: {$isNewFolder ? "88px" : "0px" };
-    left: {$isNewFolder ? $newFolderE?.clientX > 320 ? $newFolderE?.clientX - (menu?.clientWidth || 300) / 2 : 9 : $newFolderE?.clientX - 150}px;
+    left: {$isNewFolder ? $newFolderE?.clientX > 320 ? $newFolderE?.clientX - (ctxMenu?.clientWidth || 300) / 2 : 9 : $newFolderE?.clientX - 150}px;
     height: {isIconPicker ? "300px" : "154px"}
 ">
     <div class="defaultView" style="
