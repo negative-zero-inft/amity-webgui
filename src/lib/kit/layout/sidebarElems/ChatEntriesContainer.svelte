@@ -26,7 +26,7 @@
 	@use '$lib/style/variables.scss' as v;
 
 	.chatEntriesContainer {
-		width: 320px;
+		width: 100%;
 		height: 100%;
 	}
 

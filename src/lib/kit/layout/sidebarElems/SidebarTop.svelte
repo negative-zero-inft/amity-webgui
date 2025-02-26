@@ -34,7 +34,7 @@
 	<div
 		class="elements-horiz"
 		style="
-        width: 300px;
+        width: calc(100% - 20px);
         justify-content: space-between; 
         padding-right: 10px; 
         padding-left: 10px;"
