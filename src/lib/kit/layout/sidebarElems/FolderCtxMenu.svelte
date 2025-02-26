@@ -51,18 +51,18 @@
     position: absolute;
     left: {			
         (($folderClickEvent as MouseEvent)?.clientX < 110) ? 10 :
-        ($folderClickEvent as MouseEvent)?.clientX - (ctxMenu as HTMLElement)?.offsetWidth / 2
+        ($folderClickEvent as MouseEvent)?.clientX - (isIconPicker ? 160 : 110)
     }px;
     scale: {$isFolderCtxMenu ? 1 : 0};
     top: {$isFolderCtxMenu ? 56 + 32 + 5 : 16}px;
     z-index: 12831928471983412381931723071;
     width: {isIconPicker ? 300 : 220}px;
-    height: {isCtxEdit ? isIconPicker? iconPicker?.clientHeight : ctxEdit?.clientHeight : ctxDef?.clientHeight}px;
+    height: {isCtxEdit ? isIconPicker ? iconPicker?.clientHeight : ctxEdit?.clientHeight : ctxDef?.clientHeight}px;
     padding: 0;
 "
 >
     <div bind:this={ctxDef} class="defaultCtxMenuView" style="
-        left: {isCtxEdit ? -320 : 0}px
+        left: {isCtxEdit ? -220 : 0}px
     ">
         <Label icon="Folder/Default" label={$folder.name}></Label>
         <Button
@@ -80,7 +80,7 @@
         <Button width="100%" style={3}><Icon name="Trash"></Icon> Delete folder</Button>
     </div>
     <div bind:this={ctxEdit} class="editCtxMenuView" style="
-        left: {isCtxEdit ? 0 : 320}px
+        left: {isCtxEdit ? isIconPicker ? -220 : 0 : 220}px
     ">
         <div class="menuTop">
             <Button action={()=>{isCtxEdit = false}}><Icon name="Direction/Left"></Icon></Button>
@@ -93,7 +93,7 @@
         <Button width="100%" style={1}><Icon name="Save"></Icon> Save</Button>
     </div>
     <div bind:this={iconPicker} class="iconPicker" style="
-        left: {isIconPicker ? "0px" : "320px"}
+        left: {isIconPicker ? 0 : 220}px
     ">
         <div class="iconPickerTop">
             <Button action={()=>{isIconPicker = false}}><Icon name="Direction/Left"></Icon></Button>
