@@ -120,21 +120,21 @@
     style="
     position: absolute;
     left: {			
-        (($folderClickEvent as MouseEvent)?.clientX < 110) ? 10 :
+        (($folderClickEvent as MouseEvent)?.clientX < 120) ? 10 :
         isIconPicker ? (($folderClickEvent as MouseEvent)?.clientX < 160) ? 10 :
         ($folderClickEvent as MouseEvent)?.clientX - 160 : 
-        ($folderClickEvent as MouseEvent)?.clientX - 110
+        ($folderClickEvent as MouseEvent)?.clientX - 120
     }px;
     scale: {$isFolderCtxMenu ? 1 : 0};
     top: {$isFolderCtxMenu ? 56 + 32 + 5 : 16}px;
     z-index: 12831928471983412381931723071;
-    width: {isIconPicker ? 300 : 220}px;
+    width: {isIconPicker ? 300 : 240}px;
     height: {isCtxEdit ? isIconPicker ? iconPicker?.clientHeight : ctxEdit?.clientHeight : ctxDef?.clientHeight}px;
     padding: 0;
 "
 >
     <div bind:this={ctxDef} class="defaultCtxMenuView" style="
-        left: {isCtxEdit ? -220 : 0}px
+        left: {isCtxEdit ? -240 : 0}px
     ">
         <div class="elements-horiz" style="justify-content: space-between; padding-right: 5px;">
             <Label icon="Folder/Default" label={name || icon}></Label>
@@ -155,7 +155,7 @@
         <Button action={folderDelProc} width="100%" style={3}><Icon name="Trash"></Icon> Delete folder</Button>
     </div>
     <div bind:this={ctxEdit} class="editCtxMenuView" style="
-        left: {isCtxEdit ? isIconPicker ? -220 : 0 : 220}px
+        left: {isCtxEdit ? isIconPicker ? -240 : 0 : 240}px
     ">
         <div class="menuTop">
             <Button action={()=>{
@@ -172,7 +172,7 @@
         <Button action={folderUpdateProc} width="100%" style={1}><Icon name="Save"></Icon> Save</Button>
     </div>
     <div bind:this={iconPicker} class="iconPicker" style="
-        left: {isIconPicker ? 0 : 220}px
+        left: {isIconPicker ? 0 : 240}px
     ">
         <div class="iconPickerTop">
             <Button action={()=>{isIconPicker = false}}><Icon name="Direction/Left"></Icon></Button>
@@ -242,7 +242,7 @@
         gap: v.$spacing-def;
     }
     .editCtxMenuView{
-		width: 200px;
+		width: 220px;
 		display: flex;
 		flex-direction: column;
 		gap: v.$spacing-def;
@@ -251,7 +251,7 @@
         padding: v.$spacing-def;
 	}
 	.defaultCtxMenuView{
-		width: 200px;
+		width: 220px;
 		display: flex;
 		flex-direction: column;
 		gap: v.$spacing-def;
