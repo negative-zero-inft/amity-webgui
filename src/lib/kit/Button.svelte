@@ -43,6 +43,7 @@
 	@use '$lib/style/colors.scss' as c;
 
 	button {
+		user-select: none;
 		white-space: nowrap;
 		flex-direction: row !important;
 		width: var(--w);

@@ -1,6 +1,15 @@
 import { writable } from "svelte/store";
 
 export const windowClickEvent = writable<MouseEvent>();
+export const isFolderCtxMenu = writable<boolean>(false)
+export const folderClickEvent = writable<MouseEvent>();
+export const folder = writable<{
+    name: string,
+    icon: string
+}>({
+    name: "",
+    icon: ""
+})
 
 export const isEmojiBar = writable<boolean>(false);
 export const isGifBar = writable<boolean>(false);

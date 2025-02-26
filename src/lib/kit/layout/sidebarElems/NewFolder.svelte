@@ -10,10 +10,8 @@
 
     let isIconPicker: boolean = $state(false);
     
-
     let icons:string[] | undefined = $state();
     try {
-
         const modules = import.meta.glob('/static/icons/**/*');
         icons = Object.keys(modules);
     } catch (error) {

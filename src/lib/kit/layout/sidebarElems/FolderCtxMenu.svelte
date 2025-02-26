@@ -1,0 +1,183 @@
+<script lang="ts">
+    import Button from '$lib/kit/Button.svelte';
+	import Icon from '$lib/kit/Icon.svelte';
+	import NewFolder from './NewFolder.svelte';
+	import { windowClickEvent, isFolderCtxMenu, folderClickEvent, folder } from '$lib/scripts/chatViews';
+	import { user } from '$lib/scripts/globalData';
+	import Textbox from '$lib/kit/Textbox.svelte';
+	import Label from '$lib/kit/Label.svelte';
+
+    let{
+
+    } = $props()
+
+    let icon = $state($folder.icon)
+    let isIconPicker = $state(false)
+
+	let ctxMenu: HTMLElement | undefined = $state();
+	let isCtxEdit: boolean = $state(false)
+
+    let ctxDef: HTMLElement | undefined = $state();
+    let ctxEdit: HTMLElement | undefined = $state();
+    let iconPicker: HTMLElement | undefined = $state();
+
+    let icons:string[] | undefined = $state();
+    try {
+        const modules = import.meta.glob('/static/icons/**/*');
+        icons = Object.keys(modules);
+    } catch (error) {
+        console.error('Error listing files:', error);
+    }
+
+    windowClickEvent.subscribe((e) => {
+		if (
+			e?.clientX < ctxMenu?.offsetLeft || 
+			e?.clientX > ctxMenu?.offsetLeft + ctxMenu?.offsetWidth ||
+			e?.clientY < ctxMenu?.offsetTop || 
+			e?.clientY > ctxMenu?.offsetTop + ctxMenu?.offsetHeight
+		) {
+            isIconPicker = false
+            isCtxEdit = false
+			$isFolderCtxMenu = false;
+		}
+	});
+</script>
+
+<div
+    bind:this={ctxMenu}
+    id="ctxMenu"
+    class="window"
+    style="
+    position: absolute;
+    left: {			
+        (($folderClickEvent as MouseEvent)?.clientX < 110) ? 10 :
+        ($folderClickEvent as MouseEvent)?.clientX - (ctxMenu as HTMLElement)?.offsetWidth / 2
+    }px;
+    scale: {$isFolderCtxMenu ? 1 : 0};
+    top: {$isFolderCtxMenu ? 56 + 32 + 5 : 16}px;
+    z-index: 12831928471983412381931723071;
+    width: {isIconPicker ? 300 : 220}px;
+    height: {isCtxEdit ? isIconPicker? iconPicker?.clientHeight : ctxEdit?.clientHeight : ctxDef?.clientHeight}px;
+    padding: 0;
+"
+>
+    <div bind:this={ctxDef} class="defaultCtxMenuView" style="
+        left: {isCtxEdit ? -320 : 0}px
+    ">
+        <Label icon="Folder/Default" label={$folder.name}></Label>
+        <Button
+            action={() => {
+                isCtxEdit = true
+            }}
+            scaleClick={0.95}
+            scaleHover={1.05}
+            alignment="space-between"
+            width="100%"
+        >
+            <div class="elem-horiz"><Icon name="Pencil/Angled"></Icon> Edit folder</div>
+            <Icon name="Direction/Right"></Icon>
+        </Button>
+        <Button width="100%" style={3}><Icon name="Trash"></Icon> Delete folder</Button>
+    </div>
+    <div bind:this={ctxEdit} class="editCtxMenuView" style="
+        left: {isCtxEdit ? 0 : 320}px
+    ">
+        <div class="menuTop">
+            <Button action={()=>{isCtxEdit = false}}><Icon name="Direction/Left"></Icon></Button>
+            <Textbox bind:value={$folder.name} width="100%" icon="Rename" placeholder="Folder name"></Textbox>
+        </div>
+        <Button action={()=>{isIconPicker = true}} scaleClick={0.95} scaleHover={1.05} alignment="space-between" width="100%">
+            <div class="elem-horiz"><Icon name={icon}></Icon> Icon <div style="opacity: 0.5">{icon}</div> </div>
+            <Icon name="Direction/Right"></Icon>
+        </Button>
+        <Button width="100%" style={1}><Icon name="Save"></Icon> Save</Button>
+    </div>
+    <div bind:this={iconPicker} class="iconPicker" style="
+        left: {isIconPicker ? "0px" : "320px"}
+    ">
+        <div class="iconPickerTop">
+            <Button action={()=>{isIconPicker = false}}><Icon name="Direction/Left"></Icon></Button>
+            <Textbox bgc="black" width="100%" icon="Search" placeholder="Search icons..."></Textbox>
+        </div>
+        <grid class="iconList">
+            {#each icons || [] as child}
+				<Button width="36px; height: 36px;" style={(icon == child.substring(14, child.length - 4)) ? 6 : 4} action={()=>{
+                    icon = child.substring(14, child.length - 4)
+                    isIconPicker = false
+                }}><Icon name={child.substring(14, child.length - 4)} /></Button>
+			{/each}
+        </grid>
+    </div>
+</div>
+
+<style lang="scss">
+    @use '$lib/style/colors.scss' as c;
+	@use '$lib/style/variables.scss' as v;
+    .iconList{
+        width: 305px;
+        height: 320px;
+        padding: v.$spacing-def;
+        padding-top: 56px;
+        box-sizing: border-box;
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 13px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        background-color: c.$bg;
+    }
+
+    .iconPickerTop {
+        top: 0;
+        left: 0;
+        width: 300px;
+		box-sizing: border-box;
+		flex-shrink: 0;
+		background: linear-gradient(to bottom, #000000ff 50%, #00000000);
+		display: flex;
+		flex-direction: row;
+		gap: v.$spacing-def;
+		position: absolute;
+        padding: v.$spacing-def;
+        z-index: 21374;
+	}
+
+    .iconPicker{
+        top: 0;
+        width: 280px;
+        display: flex;
+        flex-direction: column;
+        gap: v.$spacing-def;
+        position: absolute;
+        transition: 0.25s;
+    }
+
+
+    .elem-horiz {
+		display: flex;
+		gap: v.$spacing-def;
+		align-items: center;
+	}
+    .menuTop{
+        display: flex;
+        gap: v.$spacing-def;
+    }
+    .editCtxMenuView{
+		width: 200px;
+		display: flex;
+		flex-direction: column;
+		gap: v.$spacing-def;
+		position: absolute;
+		transition: 0.25s;
+        padding: v.$spacing-def;
+	}
+	.defaultCtxMenuView{
+		width: 200px;
+		display: flex;
+		flex-direction: column;
+		gap: v.$spacing-def;
+		position: absolute;
+		transition: 0.25s;
+        padding: v.$spacing-def;
+	}
+</style>
