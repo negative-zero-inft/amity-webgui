@@ -61,6 +61,7 @@
 				}}
 				contextmenu={(e: MouseEvent) => {
 					e.preventDefault();
+					isFolderCtxMenu.set(false);
 					folderClickEvent.set(e)
 					folder.set(child)
 					isFolderCtxMenu.set(true);

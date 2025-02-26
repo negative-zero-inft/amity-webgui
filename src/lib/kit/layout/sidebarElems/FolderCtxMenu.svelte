@@ -2,8 +2,8 @@
     import Button from '$lib/kit/Button.svelte';
 	import Icon from '$lib/kit/Icon.svelte';
 	import NewFolder from './NewFolder.svelte';
+    import { isHttps, port, server, token, user } from "$lib/scripts/globalData";
 	import { windowClickEvent, isFolderCtxMenu, folderClickEvent, folder } from '$lib/scripts/chatViews';
-	import { user } from '$lib/scripts/globalData';
 	import Textbox from '$lib/kit/Textbox.svelte';
 	import Label from '$lib/kit/Label.svelte';
 
@@ -12,6 +12,11 @@
     } = $props()
 
     let icon = $state($folder.icon)
+    let name = $state($folder.name)
+    folder.subscribe(()=>{
+        icon = $folder.icon
+        name = $folder.name
+    })
     let isIconPicker = $state(false)
 
 	let ctxMenu: HTMLElement | undefined = $state();
@@ -29,6 +34,11 @@
         console.error('Error listing files:', error);
     }
 
+    isFolderCtxMenu.subscribe(()=>{
+        isIconPicker = false
+        isCtxEdit = false
+    })
+
     windowClickEvent.subscribe((e) => {
 		if (
 			e?.clientX < ctxMenu?.offsetLeft || 
@@ -41,6 +51,66 @@
 			$isFolderCtxMenu = false;
 		}
 	});
+    const folderUpdateProc = async ()=>{
+        try{
+            const response = await fetch(`http${$isHttps ? "s" : ""}://${$server}:${$port}/user/me/chatfolders?token=${$token}`, {
+                method: "PUT",
+                body: JSON.stringify({
+                    name: name,
+                    icon: icon,
+                    _id: $folder._id
+                }),
+                headers: {
+                    "Content-Type": "application/json",
+                    "Access-Control-Allow-Origin": "*"
+                }
+            })
+            console.log(response)
+            getUser()
+        }catch(e){
+            console.log(e)
+        }
+        isFolderCtxMenu.set(false)
+    }
+
+    const folderDelProc = async ()=>{
+        try{
+            const response = await fetch(`http${$isHttps ? "s" : ""}://${$server}:${$port}/user/me/chatfolders?token=${$token}`, {
+                method: "DELETE",
+                body: JSON.stringify({
+                    _id: $folder._id
+                }),
+                headers: {
+                    "Content-Type": "application/json",
+                    "Access-Control-Allow-Origin": "*"
+                }
+            })
+            console.log(response)
+            getUser()
+        }catch(e){
+            console.log(e)
+        }
+        isFolderCtxMenu.set(false)
+    }
+
+    const getUser = async () =>{
+		try{
+			const response = await fetch(`http${$isHttps ? "s" : ""}://${$server}:${$port}/user/me?token=${$token}`, {
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+					"Access-Control-Allow-Origin": "*"
+				}
+			})
+			user.set(JSON.parse(await response.text()))
+		}catch(e){
+			console.log(e)
+			// window.location.replace("/login")
+			// token.set(null)
+			return
+		}
+	}
+
 </script>
 
 <div
@@ -51,7 +121,9 @@
     position: absolute;
     left: {			
         (($folderClickEvent as MouseEvent)?.clientX < 110) ? 10 :
-        ($folderClickEvent as MouseEvent)?.clientX - (isIconPicker ? 160 : 110)
+        isIconPicker ? (($folderClickEvent as MouseEvent)?.clientX < 160) ? 10 :
+        ($folderClickEvent as MouseEvent)?.clientX - 160 : 
+        ($folderClickEvent as MouseEvent)?.clientX - 110
     }px;
     scale: {$isFolderCtxMenu ? 1 : 0};
     top: {$isFolderCtxMenu ? 56 + 32 + 5 : 16}px;
@@ -64,7 +136,10 @@
     <div bind:this={ctxDef} class="defaultCtxMenuView" style="
         left: {isCtxEdit ? -220 : 0}px
     ">
-        <Label icon="Folder/Default" label={$folder.name}></Label>
+        <div class="elements-horiz" style="justify-content: space-between; padding-right: 5px;">
+            <Label icon="Folder/Default" label={name || icon}></Label>
+            <Icon name={icon}></Icon>
+        </div>
         <Button
             action={() => {
                 isCtxEdit = true
@@ -77,20 +152,24 @@
             <div class="elem-horiz"><Icon name="Pencil/Angled"></Icon> Edit folder</div>
             <Icon name="Direction/Right"></Icon>
         </Button>
-        <Button width="100%" style={3}><Icon name="Trash"></Icon> Delete folder</Button>
+        <Button action={folderDelProc} width="100%" style={3}><Icon name="Trash"></Icon> Delete folder</Button>
     </div>
     <div bind:this={ctxEdit} class="editCtxMenuView" style="
         left: {isCtxEdit ? isIconPicker ? -220 : 0 : 220}px
     ">
         <div class="menuTop">
-            <Button action={()=>{isCtxEdit = false}}><Icon name="Direction/Left"></Icon></Button>
-            <Textbox bind:value={$folder.name} width="100%" icon="Rename" placeholder="Folder name"></Textbox>
+            <Button action={()=>{
+                icon = $folder.icon
+                name = $folder.name
+                isCtxEdit = false
+            }}><Icon name="Direction/Left"></Icon></Button>
+            <Textbox bind:value={name} width="100%" icon="Rename" placeholder="Folder name"></Textbox>
         </div>
         <Button action={()=>{isIconPicker = true}} scaleClick={0.95} scaleHover={1.05} alignment="space-between" width="100%">
             <div class="elem-horiz"><Icon name={icon}></Icon> Icon <div style="opacity: 0.5">{icon}</div> </div>
             <Icon name="Direction/Right"></Icon>
         </Button>
-        <Button width="100%" style={1}><Icon name="Save"></Icon> Save</Button>
+        <Button action={folderUpdateProc} width="100%" style={1}><Icon name="Save"></Icon> Save</Button>
     </div>
     <div bind:this={iconPicker} class="iconPicker" style="
         left: {isIconPicker ? 0 : 220}px

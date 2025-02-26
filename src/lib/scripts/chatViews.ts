@@ -5,10 +5,12 @@ export const isFolderCtxMenu = writable<boolean>(false)
 export const folderClickEvent = writable<MouseEvent>();
 export const folder = writable<{
     name: string,
-    icon: string
+    icon: string,
+    _id: string
 }>({
     name: "",
-    icon: ""
+    icon: "",
+    _id: ""
 })
 
 export const isEmojiBar = writable<boolean>(false);
