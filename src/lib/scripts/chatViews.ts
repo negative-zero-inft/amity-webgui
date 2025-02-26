@@ -13,6 +13,8 @@ export const folder = writable<{
     _id: ""
 })
 
+export const isMoreButtonCtxMenu = writable<boolean>(false)
+
 export const isEmojiBar = writable<boolean>(false);
 export const isGifBar = writable<boolean>(false);
 export const isCommandBar = writable<boolean>(false);

@@ -50,7 +50,18 @@
 				Stories <AvatarStack avatar2={'guitar.png'} avatar3={'amity.png'} />
 			</span>
 		</Button>
-		<Button><Icon name="Search" /></Button>
+		<Button 
+			hoverAction={(e: MouseEvent) => {
+				if (!$isFolderCtxMenu) folderClickEvent.set(e);
+			}}
+			action={(e: MouseEvent) => {
+				e.preventDefault();
+				isFolderCtxMenu.set(false);
+				folderClickEvent.set(e)
+				folder.set(child)
+				isFolderCtxMenu.set(true);
+			}}
+		><Icon name="More" /></Button>
 	</div>
 	<div class="scroll-horiz" bind:this={scrollContainer} onwheel={handleWheel}>
 		<Button style={6}><Icon name="Chat" />All chats</Button>
@@ -83,7 +94,6 @@
 	</div>
 	<NewFolder></NewFolder>
 </div>
-<FolderCtxMenu></FolderCtxMenu>
 
 <style lang="scss">
 	@use '$lib/style/colors.scss' as c;

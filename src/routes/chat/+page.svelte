@@ -7,6 +7,8 @@
 	import { user, server, isHttps, port } from '$lib/scripts/globalData';
 	import { token } from '$lib/scripts/globalData';
 	import { windowClickEvent } from '$lib/scripts/chatViews';
+	import FolderCtxMenu from '$lib/kit/layout/sidebarElems/FolderCtxMenu.svelte';
+	import Icon from '$lib/kit/Icon.svelte';
 
 	$effect(() => {
 		if (!browser) return;
@@ -54,6 +56,7 @@
 </script>
 
 {#if $token}
+<FolderCtxMenu></FolderCtxMenu>
 	<div
 		class="main"
 		onclick={(e) => {
@@ -65,4 +68,34 @@
 		<hr class="separator" />
 		<View />
 	</div>
+{:else}
+	<div class="main" style="
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		justify-content: center;
+		scale: 3;
+		background: radial-gradient(#300000, #000000 30%);
+	">
+		<div id="loadingScreen">
+			<Icon name="Update"></Icon>
+		</div> Waking Amy up...
+	</div>
 {/if}
+
+<style lang="scss">
+
+	#loadingScreen{
+		animation: spin 2s linear infinite; 
+		width: 16px;
+		height: 16px;
+	}
+	@keyframes spin {
+		from {
+			transform: rotateZ(0deg);
+		}
+		to {
+			transform: rotateZ(360deg);
+		}
+	}
+</style>
