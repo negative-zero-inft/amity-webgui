@@ -163,7 +163,7 @@
                 name = $folder.name
                 isCtxEdit = false
             }}><Icon name="Direction/Left"></Icon></Button>
-            <Textbox bind:value={name} width="100%" icon="Rename" placeholder="Folder name"></Textbox>
+            <Textbox maxlength={32} bind:value={name} width="100%" icon="Rename" placeholder="Folder name"></Textbox>
         </div>
         <Button action={()=>{isIconPicker = true}} scaleClick={0.95} scaleHover={1.05} alignment="space-between" width="100%">
             <div class="elem-horiz"><Icon name={icon}></Icon> Icon <div style="opacity: 0.5">{icon}</div> </div>
