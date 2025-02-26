@@ -32,9 +32,7 @@
 		flex-direction: column;
 		opacity: var(--o);
 		scale: var(--u);
-		.bar {
-		transition: 0.25s;
-		}
+		transition: scale 0.25s, transform 0.25s, opacity 0.25s;
 		transform: rotate3d(0, var(--r), 0, 90deg);
 		overflow: hidden;
 		resize: horizontal;
