@@ -32,7 +32,7 @@
 		flex-direction: column;
 		opacity: var(--o);
 		scale: var(--u);
-		// transition: 0.25s;
+		transition: 0.25s;
 		transform: rotate3d(0, var(--r), 0, 90deg);
 		overflow: hidden;
 		resize: horizontal;
