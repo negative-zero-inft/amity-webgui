@@ -12,7 +12,12 @@
 <Userbar />
 <div
 	class="sidebar"
-	style="--u: {$isUserBar ? 0.9 : 1}; --o: {$isUserBar ? 0.25 : 1}; --r: {$isUserBar ? 1 : 0}; transition: width {$isUserBar ? 0.25 : 0}s, scale 0.25s, transform 0.25s, opacity 0.25s;"
+	style="
+		--u: {$isUserBar ? 0.9 : 1};
+		--o: {$isUserBar ? 0.25 : 1}; 
+		--r: {$isUserBar ? 1 : 0}; 
+		transition: width {$isUserBar ? 0.25 : 0}s, scale 0.25s, transform 0.25s, opacity 0.25s;
+	"
 >
 	<SidebarTop />
 	<hr class="separator" />

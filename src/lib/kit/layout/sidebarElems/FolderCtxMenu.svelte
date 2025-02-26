@@ -120,8 +120,8 @@
     style="
     position: absolute;
     left: {			
-        (($folderClickEvent as MouseEvent)?.clientX < 120) ? 10 :
-        isIconPicker ? (($folderClickEvent as MouseEvent)?.clientX < 160) ? 10 :
+        (($folderClickEvent as MouseEvent)?.clientX < 130) ? 10 :
+        isIconPicker ? (($folderClickEvent as MouseEvent)?.clientX < 170) ? 10 :
         ($folderClickEvent as MouseEvent)?.clientX - 160 : 
         ($folderClickEvent as MouseEvent)?.clientX - 120
     }px;
