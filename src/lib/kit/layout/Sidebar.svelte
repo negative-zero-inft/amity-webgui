@@ -25,12 +25,18 @@
 
 	.sidebar {
 		height: 100%;
+		min-width: 320px;
 		width: 320px;
+		max-width: 720px;
 		display: flex;
 		flex-direction: column;
 		opacity: var(--o);
 		scale: var(--u);
+		.bar {
 		transition: 0.25s;
+		}
 		transform: rotate3d(0, var(--r), 0, 90deg);
+		overflow: hidden;
+		resize: horizontal;
 	}
 </style>
