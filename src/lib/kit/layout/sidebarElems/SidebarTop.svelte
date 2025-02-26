@@ -80,7 +80,7 @@
 		{/each}
 		<Button
 			hoverAction={(e: MouseEvent) => {
-				newFolderE.set(e);
+				if(!$isNewFolder) newFolderE.set(e);
 			}}
 			action={(e: MouseEvent) => {
 				newfolderscrollthing(e);

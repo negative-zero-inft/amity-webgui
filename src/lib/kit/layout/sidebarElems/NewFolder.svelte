@@ -8,6 +8,7 @@
 
     let name: string | undefined = $state();
     let icon: string | undefined = $state("Cube");
+    let menu: HTMLElement | undefined = $state();
 
     let isIconPicker: boolean = $state(false);
     
@@ -61,12 +62,14 @@
     }
 </script>
 
-<div class="window" style="
+<div
+    bind:this={menu}
+    class="window" style="
     scale: {$isNewFolder ? 1 : 0};
     pointer-events: {$isNewFolder ? "auto" : "none"};
     transform: translateY({$isNewFolder ? "0" : "300px"});
     top: {$isNewFolder ? "88px" : "0px" };
-    left: {$isNewFolder ? "10px" : `${$newFolderE?.clientX - 150}px`};
+    left: {$isNewFolder ? $newFolderE?.clientX > 320 ? $newFolderE?.clientX - (menu?.clientWidth || 300) / 2 : 9 : $newFolderE?.clientX - 150}px;
     height: {isIconPicker ? "300px" : "154px"}
 ">
     <div class="defaultView" style="
