@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Button from "$lib/kit/Button.svelte";
 	import Icon from "$lib/kit/Icon.svelte";
+	import Label from "$lib/kit/Label.svelte";
     import Textbox from "$lib/kit/Textbox.svelte";
     import { isNewFolder, newFolderE } from "$lib/scripts/chatViews";
     import { isHttps, port, server, token, user } from "$lib/scripts/globalData";
@@ -64,11 +65,12 @@
     transform: translateY({$isNewFolder ? "0" : "300px"});
     top: {$isNewFolder ? "88px" : "0px" };
     left: {$isNewFolder ? "10px" : `${$newFolderE?.clientX - 150}px`};
-    height: {isIconPicker ? "300px" : "128px"}
+    height: {isIconPicker ? "300px" : "154px"}
 ">
     <div class="defaultView" style="
         left: {isIconPicker ? "-320px" : "10px"}
     ">
+        <Label icon="Plus" label="New folder"></Label>
         <Textbox onkeydown={(e: KeyboardEvent)=>{
             if(e.key == "Enter"){
                 makeFolder()
@@ -78,7 +80,7 @@
             <div class="elem-horiz"><Icon name={icon}></Icon> Icon <div style="opacity: 0.5">{icon}</div> </div>
             <Icon name="Direction/Right"></Icon>
         </Button>
-        <Button action={makeFolder} scaleClick={0.95} scaleHover={1.05} style={1} width="100%"><Icon name="Plus"></Icon>Add</Button>
+        <Button action={makeFolder} scaleClick={0.95} scaleHover={1.05} style={1} width="100%"><Icon name="Plus"></Icon>Add folder</Button>
     </div>
     <div class="iconPicker" style="
         left: {isIconPicker ? "0px" : "320px"}
