@@ -55,6 +55,8 @@
         }catch(e){
             console.log(e)
         }
+        icon = "Cube"
+        name = ""
         isNewFolder.set(false)
     }
 </script>
