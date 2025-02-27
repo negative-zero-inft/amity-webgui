@@ -19,6 +19,9 @@
 		const storedToken = localStorage.getItem('token');
 
 		if (!storedToken) {
+			localStorage.removeItem('token');
+			localStorage.removeItem('server');
+			localStorage.removeItem('isDev');
 			goto('/login', { replaceState: true });
 			return;
 		}
@@ -50,6 +53,8 @@
 		} catch (e) {
 			console.error(e);
 			localStorage.removeItem('token');
+			localStorage.removeItem('server');
+			localStorage.removeItem('isDev');
 			token.set(null);
 			goto('/login', { replaceState: true });
 		}

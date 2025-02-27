@@ -97,7 +97,15 @@
             <Textbox onkeydown={(e:any)=>{
                 if(e.key == "Enter") signInProcedure()
             }} bind:value={instance} width="100%" placeholder="Server"></Textbox>
-        	<Button tooltip="Toggle developer mode (http instead of https)" style={$isHttps ? 0 : 2} action={()=>{isHttps.set(!$isHttps); localStorage.setItem("isDev", "true")}}><Icon name="Code"></Icon></Button>
+        	<Button tooltip="Toggle developer mode (http instead of https)" style={$isHttps ? 0 : 2} action={()=>{
+                isHttps.set(!$isHttps); 
+                if(localStorage.getItem("isDev") == "true"){
+                    localStorage.removeItem("isDev")
+                }else{
+                    localStorage.setItem("isDev", "true")
+                }
+                console.log(`${$isHttps}, ${localStorage.getItem("isDev")}`)
+                }}><Icon name="Code"></Icon></Button>
         </div>
         <Textbox onkeydown={(e:any)=>{
             if(e.key == "Enter") signInProcedure()

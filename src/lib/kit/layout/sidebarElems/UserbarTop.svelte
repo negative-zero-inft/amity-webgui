@@ -18,7 +18,7 @@
 			tag =  `${$user?.tag}@${$user.id.server}`
 			avatar =  $user?.avatar
 		}catch(e){
-			console.log(e)
+			// console.log(e)
 		}
 	})
 
