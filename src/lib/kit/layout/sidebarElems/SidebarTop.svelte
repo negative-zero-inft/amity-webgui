@@ -71,7 +71,7 @@
 					e.preventDefault();
 					isFolderCtxMenu.set(false);
 					folderClickEvent.set(e)
-					folder.set(child)
+					folder.set((child as any))
 					isFolderCtxMenu.set(true);
 				}}
 				style={4}><Icon name={child.icon} />{child.name || ''}</Button
