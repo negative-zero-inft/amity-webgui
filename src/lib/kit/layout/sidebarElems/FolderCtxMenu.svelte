@@ -41,10 +41,10 @@
 
     windowClickEvent.subscribe((e) => {
 		if (
-			e?.clientX < ctxMenu?.offsetLeft || 
-			e?.clientX > ctxMenu?.offsetLeft + ctxMenu?.offsetWidth ||
-			e?.clientY < ctxMenu?.offsetTop || 
-			e?.clientY > ctxMenu?.offsetTop + ctxMenu?.offsetHeight
+			e?.clientX < (ctxMenu?.offsetLeft || 1) || 
+			e?.clientX > (ctxMenu?.offsetLeft || 1) + (ctxMenu?.offsetWidth || 1) ||
+			e?.clientY < (ctxMenu?.offsetTop || 1) || 
+			e?.clientY > (ctxMenu?.offsetTop || 1) + (ctxMenu?.offsetHeight || 1)
 		) {
             isIconPicker = false
             isCtxEdit = false

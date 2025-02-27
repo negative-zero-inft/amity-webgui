@@ -27,7 +27,7 @@
 
 	instance server: http{$isHttps ? "s" : ""}://{$server}:{$port}
 	<Textbox placeholder="change server" bind:value={serverchanger} onkeydown={()=>{
-		server.set(serverchanger)
+		server.set(serverchanger || $server)
 	}}></Textbox>
 	<Button style={$isHttps ? 2 : 0} action={()=>{isHttps.set(!$isHttps); localStorage.setItem("isDev", "true")}}>Toggle HTTPS</Button>
 
