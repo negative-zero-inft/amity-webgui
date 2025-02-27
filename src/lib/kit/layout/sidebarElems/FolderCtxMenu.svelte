@@ -40,6 +40,7 @@
     isFolderCtxMenu.subscribe(()=>{
         isIconPicker = false
         isCtxEdit = false
+        isChatPicker = false
     })
     let isReallyFireFox = $state<boolean>(false);
 	$effect(() => {
