@@ -21,12 +21,35 @@
         pass = ""
     }
 
+    async function checkServerReachability(url:string) {
+        try {
+            const response = await fetch(url, {
+                cache: 'no-cache'
+            });
+
+            if (response.ok) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (error) {
+            return false;
+        }
+    }
+
     const signInProcedure = async () =>{
         try{
             if( !tag || !pass || !instance ){
                 isError.set(true)
                 errorValue.set("Please fill all spaces")
                 return
+            }
+
+            const serverReachable = await checkServerReachability(`http${$isHttps ? "s" : ""}://${insrv}:${$port}`);
+            if (!serverReachable) {
+                isError.set(true);
+                errorValue.set("Server is unreachable or doesn't exist");
+                return;
             }
 
             const response = await fetch(`http${$isHttps ? "s" : ""}://${instance}:${$port}/signin`, {

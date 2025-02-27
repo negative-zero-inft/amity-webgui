@@ -13,13 +13,30 @@
     let uname:string | undefined = $state();
     let fpass:string | undefined = $state();
     let rpass:string | undefined = $state();
+    let insrv:string | undefined = $state($server);
 
     let fileserver = "amycdn.neg-zero.com"
+
+    async function checkServerReachability(url:string) {
+        try {
+            const response = await fetch(url, {
+                cache: 'no-cache'
+            });
+
+            if (response.ok) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (error) {
+            return false;
+        }
+    }
 
     const signupProcedure = async () =>{
         
         try{
-            if(!dname || !uname || !fpass || !rpass){
+            if(!dname || !uname || !fpass || !rpass || !insrv){
                 console.log("a")
                 isError.set(true)
                 errorValue.set("Please fill all spaces")
@@ -37,6 +54,13 @@
                     return
                 }
             }
+
+            const serverReachable = await checkServerReachability(`http${$isHttps ? "s" : ""}://${insrv}:${$port}`);
+            if (!serverReachable) {
+                isError.set(true);
+                errorValue.set("Server is unreachable or doesn't exist");
+                return;
+            }
             
             const user = {
                 tag: uname,
@@ -45,7 +69,7 @@
                 cdn: fileserver
             }
     
-            const response = await fetch(`http${$isHttps ? "s" : ""}://${$server}:${$port}/register`, {
+            const response = await fetch(`http${$isHttps ? "s" : ""}://${insrv}:${$port}/register`, {
                 method: "POST",
                 body: JSON.stringify(user),
                 headers: {
@@ -95,7 +119,7 @@
                 if(e.key == "Enter") signupProcedure()
             }} maxlength={32} bind:value={uname} width="100%" icon="User" placeholder="Username"></Textbox>
             <Icon name="AtSign"></Icon>
-            <Textbox isImmutable bind:value={$server} width="100%" placeholder="Server"></Textbox>
+            <Textbox bind:value={insrv} width="100%" placeholder="Server"></Textbox>
         </div>
         <Textbox onkeydown={(e:any)=>{
             if(e.key == "Enter") signupProcedure()
