@@ -18,12 +18,14 @@
 		scaleHover = 1.1,
 		scaleClick = 0.9,
 		hoverAction = ()=>{},
-		contextmenu=()=>{}
+		contextmenu=()=>{},
+		tooltip = ""
 	} = $props();
 </script>
 
 <!-- svelte-ignore a11y_mouse_events_have_key_events -->
 <button
+	title={tooltip}
 	oncontextmenu={(e)=>{contextmenu(e)}}
 	{id}
 	class="bv{style}"

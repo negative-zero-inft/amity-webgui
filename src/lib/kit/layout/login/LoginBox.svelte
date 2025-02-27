@@ -97,6 +97,7 @@
             <Textbox onkeydown={(e:any)=>{
                 if(e.key == "Enter") signInProcedure()
             }} bind:value={instance} width="100%" placeholder="Server"></Textbox>
+        	<Button tooltip="Toggle developer mode (http instead of https)" style={$isHttps ? 0 : 2} action={()=>{isHttps.set(!$isHttps); localStorage.setItem("isDev", "true")}}><Icon name="Code"></Icon></Button>
         </div>
         <Textbox onkeydown={(e:any)=>{
             if(e.key == "Enter") signInProcedure()
