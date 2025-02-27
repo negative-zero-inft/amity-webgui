@@ -82,7 +82,7 @@
     scale: {$isNewFolder ? 1 : 0};
     pointer-events: {$isNewFolder ? "auto" : "none"};
     transform: translateY({$isNewFolder ? "0" : "300px"});
-    top: {$isNewFolder ? "88px" : "0px" };
+    top: {$isNewFolder ? 88 : -36 }px;
     left: {$isNewFolder ? $newFolderE?.clientX > 320 ? $newFolderE?.clientX - (ctxMenu?.clientWidth || 300) / 2 : 10 : $newFolderE?.clientX - 150}px;
     height: {isIconPicker ? 300 : isChatPicker ? chatPickerCtx?.clientHeight : 200}px;
 ">
