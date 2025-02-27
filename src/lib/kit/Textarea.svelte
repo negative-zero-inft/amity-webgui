@@ -3,48 +3,38 @@
 
 	let { 
 		width = '200px', 
-		icon = null, 
 		placeholder = 'placeholder', 
 		value = $bindable<string>(), 
 		maxlength = 4000, 
-		isPassword = false, 
 		onkeydown = ()=>{}, 
 		style = "", 
 		isError = false, 
 		isImmutable = false, 
 		bgc="none",
-		height = "36px" 
+		height = "36px",
+        resize = "none"
 	} = $props();
 
 	let padding: number = $state<number>(10);
-
-	if (icon) {
-		padding = 36;
-	}
 </script>
 
-<div class="wrapper" style="--w: {width}">
-	{#if icon}
-		<span class="icon">
-			<Icon name={icon} />
-		</span>
-	{/if}
-	<input 
-		readonly={isImmutable} 
-		class="e{Number(isError)}" 
-		onkeydown={(e)=>{onkeydown(e)}} 
-		maxlength={maxlength} 
-		bind:value 
-		type={isPassword ? "password" : "text" } 
-		{placeholder} 
-		style="
-			width: {width}; 
-			height: {height}; 
-			--icon: {icon}; 
-			--padding: {padding}px; 
-			{style}; 
-			background-color: {bgc}" />
-</div>
+
+<textarea 
+    readonly={isImmutable} 
+    class="e{Number(isError)}" 
+    onkeydown={(e)=>{onkeydown(e)}} 
+    maxlength={maxlength} 
+    bind:value 
+    {placeholder} 
+    style="
+        width: {width}; 
+        height: {height}; 
+        --padding: 10px; 
+        {style}; 
+        background-color: {bgc};
+		resize: {resize};
+    " 
+></textarea>
 
 <style lang="scss">
 	@use '$lib/style/variables.scss' as v;
@@ -72,20 +62,9 @@
 		cursor: text;
 	}
 
-	input:-webkit-autofill,
-	input:-webkit-autofill:focus, 
-	input:-webkit-autofill:active{
-		-webkit-box-shadow: 0 0 0 30px #540000 inset !important;
-		border-color: c.$accent !important;
-		border-width: 1px;
-		-webkit-text-fill-color:white;
-		caret-color: white;
-	}
-
-
-	input {
+	textarea {
 		display: flex;
-		padding-left: calc(var(--padding) - 1px);
+		padding: calc(var(--padding) - 1px);
 		justify-content: center;
 		align-content: center;
 		gap: v.$spacing-def;
@@ -102,7 +81,7 @@
 		transition: 0.25s;
 
 		&:hover {
-			padding-left: calc(var(--padding) - 5px);
+			padding: calc(var(--padding) - 5px);
 			border-width: 5px;
 		}
 		&:active {
@@ -114,7 +93,7 @@
 			border: solid;
 			border-width: 2px;
 			border-color: c.$text-50;
-			padding-left: calc(var(--padding) - 2px);
+			padding: calc(var(--padding) - 2px);
 			outline: none;
 		}
 	}

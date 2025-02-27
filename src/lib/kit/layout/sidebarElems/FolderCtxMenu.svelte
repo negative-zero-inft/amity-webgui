@@ -5,7 +5,7 @@
 	import { windowClickEvent, isFolderCtxMenu, folderClickEvent, folder } from '$lib/scripts/chatViews';
 	import Textbox from '$lib/kit/Textbox.svelte';
 	import Label from '$lib/kit/Label.svelte';
-    import { getUser } from "$lib/scripts/requests"
+    import { getUser, iconList } from "$lib/scripts/requests"
 
     let{
 
@@ -26,13 +26,7 @@
     let ctxEdit: HTMLElement | undefined = $state();
     let iconPicker: HTMLElement | undefined = $state();
 
-    let icons:string[] | undefined = $state();
-    try {
-        const modules = import.meta.glob('/static/icons/**/*');
-        icons = Object.keys(modules);
-    } catch (error) {
-        console.error('Error listing files:', error);
-    }
+    let icons = iconList();
 
     isFolderCtxMenu.subscribe(()=>{
         isIconPicker = false

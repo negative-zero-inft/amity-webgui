@@ -5,7 +5,7 @@
     import Textbox from "$lib/kit/Textbox.svelte";
     import { isNewFolder, newFolderE, windowClickEvent } from "$lib/scripts/chatViews";
     import { isHttps, port, server, token } from "$lib/scripts/globalData";
-    import { getUser } from "$lib/scripts/requests";
+    import { getUser, iconList } from "$lib/scripts/requests";
 
     let name: string | undefined = $state();
     let icon: string | undefined = $state("Cube");
@@ -13,13 +13,7 @@
 
     let isIconPicker: boolean = $state(false);
     
-    let icons:string[] | undefined = $state();
-    try {
-        const modules = import.meta.glob('/static/icons/**/*');
-        icons = Object.keys(modules);
-    } catch (error) {
-        console.error('Error listing files:', error);
-    }
+    let icons = iconList();
 
     const makeFolder = async () =>{
         try{

@@ -2,38 +2,25 @@
     import Button from '$lib/kit/Button.svelte';
 	import Icon from '$lib/kit/Icon.svelte';
     import { isHttps, port, server, token, user } from "$lib/scripts/globalData";
-	import { windowClickEvent, isMoreButtonCtxMenu, moreButtonClickEvent, folder } from '$lib/scripts/chatViews';
+	import { windowClickEvent, isMoreButtonCtxMenu, moreButtonClickEvent } from '$lib/scripts/chatViews';
 	import Textbox from '$lib/kit/Textbox.svelte';
 	import Label from '$lib/kit/Label.svelte';
-
+	import Textarea from '$lib/kit/Textarea.svelte';
+    import Switch from '$lib/kit/Switch.svelte';
+    
     let{
 
     } = $props()
 
-    let icon = $state($folder.icon)
-    let name = $state($folder.name)
-    folder.subscribe(()=>{
-        icon = $folder.icon
-        name = $folder.name
-    })
-    let isIconPicker = $state(true)
-
 	let ctxMenu: HTMLElement | undefined = $state();
-	let isCtxEdit: boolean = $state(false)
-
+	let currentView: string = $state("default")
+    let previousView: string = $state("default")
+    let isGCPrivate: boolean = $state(false)
     let ctxDef: HTMLElement | undefined = $state();
-
-    let icons:string[] | undefined = $state();
-    try {
-        const modules = import.meta.glob('/static/icons/**/*');
-        icons = Object.keys(modules);
-    } catch (error) {
-        console.error('Error listing files:', error);
-    }
+    let ctxNew: HTMLElement | undefined = $state();
+    let ctxNewGC: HTMLElement | undefined = $state();
 
     isMoreButtonCtxMenu.subscribe(()=>{
-        isIconPicker = false
-        isCtxEdit = false
     })
 
     windowClickEvent.subscribe((e) => {
@@ -44,31 +31,13 @@
 			e?.clientY > (ctxMenu?.offsetTop as number) + (ctxMenu?.offsetHeight as number)
 		) {
             if($isMoreButtonCtxMenu){
-                isIconPicker = false
-                isCtxEdit = false
+                currentView = "default";
+                previousView = "default";
                 $isMoreButtonCtxMenu = false;
             }
 		}
 	});
     
-
-    const getUser = async () =>{
-		try{
-			const response = await fetch(`http${$isHttps ? "s" : ""}://${$server}:${$port}/user/me?token=${$token}`, {
-				method: "GET",
-				headers: {
-					"Content-Type": "application/json",
-					"Access-Control-Allow-Origin": "*"
-				}
-			})
-			user.set(JSON.parse(await response.text()))
-		}catch(e){
-			console.log(e)
-			// window.location.replace("/login")
-			// token.set(null)
-			return
-		}
-	}
 </script>
 
 <div
@@ -82,16 +51,20 @@
     top: {$isMoreButtonCtxMenu ? 56 : -28}px;
     z-index: 12831928471983412381931723071;
     width: 240px;
-    height: {ctxDef?.clientHeight}px;
+    height: {
+        currentView === "default" ? ctxDef?.clientHeight : 
+        currentView === "new" ? ctxNew?.clientHeight : 
+        ctxNewGC?.clientHeight}px;
     padding: 0;
 "
 >
-    <div bind:this={ctxDef} class="defaultCtxMenuView" style="
-        left: {isCtxEdit ? -240 : 0}px
+    <div id="defaultCtxMenu" bind:this={ctxDef} class="defaultCtxMenuView" style="
+        left: {currentView === "default" ? 0 : -240}px;
+        opacity: {currentView === "default" ? 1 : previousView === "default" ? 1 : 0};
     ">
         <Button
             action={() => {
-                isCtxEdit = true
+                currentView = "search"
             }}
             scaleClick={0.95}
             scaleHover={1.05}
@@ -103,7 +76,8 @@
         </Button>
         <Button
             action={() => {
-                isCtxEdit = true
+                currentView = "new"
+                previousView = "default"
             }}
             scaleClick={0.95}
             scaleHover={1.05}
@@ -114,11 +88,94 @@
             <Icon name="Direction/Right"></Icon>
         </Button>
     </div>
+    <div id="newCtxMenu" class="defaultCtxMenuView" bind:this={ctxNew} style="
+        left: {currentView === "new" ? 0 : previousView === "new" ? -240 : 240}px;
+        opacity: {currentView === "new" || previousView === "new" || previousView === "default" ? 1 : 0};
+    ">
+        <Button
+            action={() => {
+                currentView = "newGC"
+                previousView = "new"
+            }}
+            scaleClick={0.95}
+            scaleHover={1.05}
+            width="100%"
+            alignment="space-between"
+        >
+            <div class="elem-horiz"><Icon name="Users"></Icon> New group</div>
+            <Icon name="Direction/Right"></Icon>
+        </Button>
+        <Button
+            action={() => {
+                currentView = "newSB"
+                previousView = "new"
+            }}
+            scaleClick={0.95}
+            scaleHover={1.05}
+            width="100%"
+            alignment="space-between"
+        >
+            <div class="elem-horiz"><Icon name="Announcement"></Icon> New soapbox</div>
+            <Icon name="Direction/Right"></Icon>
+        </Button>
+        <Button
+            action={() => {
+                currentView = "default"
+                previousView = "default"
+            }}
+            scaleClick={0.95}
+            scaleHover={1.05}
+            width="100%"
+            alignment="left"
+        ><Icon name="X"></Icon> Cancel</Button>
+    </div>
+    <div id="newGCCtxMenu" class="defaultCtxMenuView" bind:this={ctxNewGC} style="
+        left: {currentView === "newGC" ? 0 : previousView === "newGC" ? -240 : 240}px;
+        opacity: {currentView === "newGC" || previousView === "newGC" || previousView === "new" ? 1 : 0};
+    ">
+    <Textbox 
+        maxlength={32}
+        placeholder="Group name"
+        width="100%"
+        icon="Rename"
+    ></Textbox>
+    <Textarea 
+        placeholder="Group description"
+        width="100%"
+        height="72px"
+    ></Textarea>
+    <Button 
+        action={()=>{
+            isGCPrivate = !isGCPrivate
+        }}
+        alignment="space-between"
+        scaleClick={0.95}
+        scaleHover={1.05}
+        width="100%"
+    >
+        <div class="elem-horiz">
+            <Icon name={isGCPrivate ? "Lock/Locked" : "Lock/Unlocked"}></Icon>
+            {isGCPrivate ? "Private" : "Public"}
+        </div>
+        <Switch isOn={isGCPrivate} />
+    </Button>
+    <Button
+        action={() => {
+            currentView = "new"
+            previousView = "new"
+        }}
+        scaleClick={0.95}
+        scaleHover={1.05}
+        width="100%"
+        alignment="left"
+    ><Icon name="X"></Icon> Cancel</Button>
+    </div>
 </div>
 
 <style lang="scss">
     @use '$lib/style/colors.scss' as c;
 	@use '$lib/style/variables.scss' as v;
+
     .iconList{
         width: 305px;
         height: 320px;
@@ -183,7 +240,7 @@
 		flex-direction: column;
 		gap: v.$spacing-def;
 		position: absolute;
-		transition: 0.25s;
+		transition: left 0.25s;
         padding: v.$spacing-def;
 	}
 </style>

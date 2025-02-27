@@ -14,3 +14,13 @@ export const getUser = async (isHttps:boolean, server:string, port:number, token
         throw e
     }
 }
+
+export const iconList = ()=>{
+    try {
+        const modules = import.meta.glob('/static/icons/**/*');
+        var icons:string[] = Object.keys(modules);
+        return icons
+    } catch (error) {
+        throw error
+    }
+}
