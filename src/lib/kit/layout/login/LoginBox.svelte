@@ -45,7 +45,7 @@
                 return
             }
 
-            const serverReachable = await checkServerReachability(`http${$isHttps ? "s" : ""}://${insrv}:${$port}`);
+            const serverReachable = await checkServerReachability(`http${$isHttps ? "s" : ""}://${instance}:${$port}`);
             if (!serverReachable) {
                 isError.set(true);
                 errorValue.set("Server is unreachable or doesn't exist");
