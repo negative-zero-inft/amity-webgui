@@ -79,6 +79,7 @@
             })
             
             if(response.status == 200){
+                server.set(insrv)
                 changeView()
             }else{
                 let error:string = await response.text()
@@ -119,7 +120,10 @@
                 if(e.key == "Enter") signupProcedure()
             }} maxlength={32} bind:value={uname} width="100%" icon="User" placeholder="Username"></Textbox>
             <Icon name="AtSign"></Icon>
-            <Textbox bind:value={insrv} width="100%" placeholder="Server"></Textbox>
+            <Textbox onkeydown={(e:any)=>{
+                if(e.key == "Enter") signupProcedure()
+            }} bind:value={insrv} width="100%" placeholder="Server"></Textbox>
+        	<Button style={$isHttps ? 0 : 2} action={()=>{isHttps.set(!$isHttps); localStorage.setItem("isDev", "true")}}><Icon name="Code"></Icon></Button>
         </div>
         <Textbox onkeydown={(e:any)=>{
             if(e.key == "Enter") signupProcedure()
@@ -129,8 +133,8 @@
         }} isPassword maxlength={64} bind:value={rpass} width="100%" icon="Lock/Locked" placeholder="Repeat password"></Textbox>
         <Button scaleClick={0.95} scaleHover={1.05} alignment="space-between" width="100%"
             ><div class="elem-horiz"><Icon name="Cloud"></Icon> File server <div style="opacity: 0.5;">amycdn.neg-zero.com</div></div>
-            <Icon name="Direction/Right"></Icon></Button
-        >
+            <Icon name="Direction/Right"></Icon>
+        </Button>
     </div>
     <div class="buttons">
         <Button width="100%; flex-shrink: 1;" action={changeView}><Icon name="Direction/Left"></Icon>Go back</Button>

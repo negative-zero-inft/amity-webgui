@@ -24,13 +24,6 @@
 		<LoginBox isLogin={isLogin}></LoginBox>
 		<SignupBox isLogin={isLogin}></SignupBox>
 	</div>
-
-	instance server: http{$isHttps ? "s" : ""}://{$server}:{$port}
-	<Textbox placeholder="change server" bind:value={serverchanger} onkeydown={()=>{
-		server.set(serverchanger || $server)
-	}}></Textbox>
-	<Button style={$isHttps ? 2 : 0} action={()=>{isHttps.set(!$isHttps); localStorage.setItem("isDev", "true")}}>Toggle HTTPS</Button>
-
 	<!-- svelte-ignore a11y_no_static_element_interactions -->
 	<!-- svelte-ignore a11y_click_events_have_key_events -->
 	<div onclick={()=>{isError.set(false)}} style="transform: scale({$isError ? "1" : "0"}); opacity: {$isError ? "1" : "0"};" class="error">
