@@ -22,10 +22,6 @@
 	let isCtxEdit: boolean = $state(false)
 
     let ctxDef: HTMLElement | undefined = $state();
-    let ctxEdit: HTMLElement | undefined = $state();
-    let iconPicker: HTMLElement | undefined = $state();
-
-    let wasActive: boolean = $state(true)
 
     let icons:string[] | undefined = $state();
     try {
@@ -42,10 +38,10 @@
 
     windowClickEvent.subscribe((e) => {
 		if (
-			e?.clientX < ctxMenu?.offsetLeft || 
-			e?.clientX > ctxMenu?.offsetLeft + ctxMenu?.offsetWidth ||
-			e?.clientY < ctxMenu?.offsetTop || 
-			e?.clientY > ctxMenu?.offsetTop + ctxMenu?.offsetHeight
+			e?.clientX < (ctxMenu?.offsetLeft as number) || 
+			e?.clientX > (ctxMenu?.offsetLeft as number) + (ctxMenu?.offsetWidth as number) ||
+			e?.clientY < (ctxMenu?.offsetTop as number) || 
+			e?.clientY > (ctxMenu?.offsetTop as number) + (ctxMenu?.offsetHeight as number)
 		) {
             if($isMoreButtonCtxMenu){
                 isIconPicker = false
@@ -81,7 +77,7 @@
     class="window"
     style="
     position: absolute;
-    left: calc({$moreButtonClickEvent?.clientX}px - {ctxMenu?.clientWidth / 2}px);
+    left: calc({$moreButtonClickEvent?.clientX}px - {(ctxMenu?.clientWidth as number) / 2}px);
     scale: {$isMoreButtonCtxMenu ? 1 : 0};
     top: {$isMoreButtonCtxMenu ? 56 : -28}px;
     z-index: 12831928471983412381931723071;

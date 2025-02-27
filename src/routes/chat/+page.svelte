@@ -10,6 +10,7 @@
 	import FolderCtxMenu from '$lib/kit/layout/sidebarElems/FolderCtxMenu.svelte';
 	import Icon from '$lib/kit/Icon.svelte';
 	import MoreButtonCtxMenu from '$lib/kit/layout/sidebarElems/MoreButtonCtxMenu.svelte';
+	import { getUser } from '$lib/scripts/requests';
 
 	$effect(() => {
 		if (!browser) return;
@@ -19,9 +20,7 @@
 		const storedToken = localStorage.getItem('token');
 
 		if (!storedToken) {
-			localStorage.removeItem('token');
-			localStorage.removeItem('server');
-			localStorage.removeItem('isDev');
+			clearLocalStorage()
 			goto('/login', { replaceState: true });
 			return;
 		}
@@ -32,38 +31,27 @@
 			server.set(localStorage.getItem('server') || '');
 		}
 
-		getUser();
-	});
-
-	const getUser = async () => {
-		try {
-			const response = await fetch(
-				`http${$isHttps ? 's' : ''}://${$server}:${$port}/user/me?token=${$token}`,
-				{
-					method: 'GET',
-					headers: {
-						'Content-Type': 'application/json',
-						'Access-Control-Allow-Origin': '*'
-					}
-				}
-			);
-
-			if (!response.ok) throw new Error('failed to fetch user');
-			user.set(JSON.parse(await response.text()));
-		} catch (e) {
-			console.error(e);
-			localStorage.removeItem('token');
-			localStorage.removeItem('server');
-			localStorage.removeItem('isDev');
+		try{
+			getUser($isHttps, $server, $port, ($token as string))
+		}catch(e){
+			clearLocalStorage()
 			token.set(null);
 			goto('/login', { replaceState: true });
 		}
-	};
+	});
+
+	const clearLocalStorage = ()=>{
+		localStorage.removeItem('token');
+		localStorage.removeItem('server');
+		localStorage.removeItem('isDev');
+	}
 </script>
 
 {#if $token}
 	<FolderCtxMenu></FolderCtxMenu>
 	<MoreButtonCtxMenu></MoreButtonCtxMenu>
+	<!-- svelte-ignore a11y_no_static_element_interactions -->
+	<!-- svelte-ignore a11y_click_events_have_key_events -->
 	<div
 		class="main"
 		onclick={(e) => {

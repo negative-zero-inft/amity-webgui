@@ -4,7 +4,6 @@
 	import Textbox from "$lib/kit/Textbox.svelte";
 	import { isHttps, port, server } from "$lib/scripts/globalData";
 	import { errorValue, isError } from "$lib/scripts/loginWritables";
-	import { error } from "@sveltejs/kit";
 	import OAuth from "./OAuth.svelte";
 
     let{

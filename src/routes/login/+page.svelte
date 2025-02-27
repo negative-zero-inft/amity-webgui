@@ -1,15 +1,11 @@
 <script lang="ts">
-	import Button from "$lib/kit/Button.svelte";
 	import Icon from "$lib/kit/Icon.svelte";
-	import Textbox from "$lib/kit/Textbox.svelte";
 	import amy from "$lib/amy.svg"
 	import LoginBox from "$lib/kit/layout/login/LoginBox.svelte";
 	import SignupBox from "$lib/kit/layout/login/SignupBox.svelte";
 	import { writable } from "svelte/store";
 	import { errorValue, isError } from "$lib/scripts/loginWritables";
-	import { server, isHttps, port } from "$lib/scripts/globalData";
-
-	let serverchanger:string | undefined = $state();
+	import { isHttps } from "$lib/scripts/globalData";
 
 	let isLogin = writable<boolean>(true);
 
@@ -20,10 +16,16 @@
 </script>
 
 <div class="loginBg">
+	{#if !$isHttps}
+		<div class="elements-horiz" style="gap: 10px;">
+			You've enabled the developer backend mode. Press the <Icon name="Code"></Icon> button to return to normal mode.
+		</div>
+	{/if}
 	<div class="window" style="width: 340px; height: 370px; flex-direction: row; padding: 0; gap: 0;">
 		<LoginBox isLogin={isLogin}></LoginBox>
 		<SignupBox isLogin={isLogin}></SignupBox>
 	</div>
+
 	<!-- svelte-ignore a11y_no_static_element_interactions -->
 	<!-- svelte-ignore a11y_click_events_have_key_events -->
 	<div onclick={()=>{isError.set(false)}} style="transform: scale({$isError ? "1" : "0"}); opacity: {$isError ? "1" : "0"};" class="error">
@@ -56,6 +58,7 @@
 		border-radius: v.$corner-window;
 		border: solid;
 		border-width: 1px;
+		z-index: 2137;
 		border-color: c.$accent;
 		background-image: repeating-linear-gradient(
 			-45deg,

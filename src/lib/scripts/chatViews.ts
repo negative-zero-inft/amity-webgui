@@ -3,11 +3,7 @@ import { writable } from "svelte/store";
 export const windowClickEvent = writable<MouseEvent>();
 export const isFolderCtxMenu = writable<boolean>(false)
 export const folderClickEvent = writable<MouseEvent>();
-export const folder = writable<{
-    name: string,
-    icon: string,
-    _id: string
-}>({
+export const folder = writable({
     name: "",
     icon: "",
     _id: ""

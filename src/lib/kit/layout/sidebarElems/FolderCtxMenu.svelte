@@ -1,11 +1,11 @@
 <script lang="ts">
     import Button from '$lib/kit/Button.svelte';
 	import Icon from '$lib/kit/Icon.svelte';
-	import NewFolder from './NewFolder.svelte';
-    import { isHttps, port, server, token, user } from "$lib/scripts/globalData";
+    import { isHttps, port, server, token } from "$lib/scripts/globalData";
 	import { windowClickEvent, isFolderCtxMenu, folderClickEvent, folder } from '$lib/scripts/chatViews';
 	import Textbox from '$lib/kit/Textbox.svelte';
 	import Label from '$lib/kit/Label.svelte';
+    import { getUser } from "$lib/scripts/requests"
 
     let{
 
@@ -66,7 +66,7 @@
                 }
             })
             console.log(response)
-            getUser()
+            getUser($isHttps, $server, $port, ($token as string))
         }catch(e){
             console.log(e)
         }
@@ -86,30 +86,12 @@
                 }
             })
             console.log(response)
-            getUser()
+            getUser($isHttps, $server, $port, ($token as string))
         }catch(e){
             console.log(e)
         }
         isFolderCtxMenu.set(false)
     }
-
-    const getUser = async () =>{
-		try{
-			const response = await fetch(`http${$isHttps ? "s" : ""}://${$server}:${$port}/user/me?token=${$token}`, {
-				method: "GET",
-				headers: {
-					"Content-Type": "application/json",
-					"Access-Control-Allow-Origin": "*"
-				}
-			})
-			user.set(JSON.parse(await response.text()))
-		}catch(e){
-			console.log(e)
-			// window.location.replace("/login")
-			// token.set(null)
-			return
-		}
-	}
 
 </script>
 

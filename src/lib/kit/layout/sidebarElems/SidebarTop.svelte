@@ -5,7 +5,6 @@
 	import NewFolder from './NewFolder.svelte';
 	import { isNewFolder, isUserBar, newFolderE, isFolderCtxMenu, folderClickEvent, folder, isMoreButtonCtxMenu, moreButtonClickEvent } from '$lib/scripts/chatViews';
 	import { user } from '$lib/scripts/globalData';
-	import FolderCtxMenu from './FolderCtxMenu.svelte';
 
 	let scrollContainer: HTMLDivElement | undefined;
 
@@ -128,11 +127,5 @@
 		padding-left: 0px;
 		padding-bottom: 5px;
 		gap: 5px;
-	}
-
-	.elem-horiz {
-		display: flex;
-		gap: v.$spacing-def;
-		align-items: center;
 	}
 </style>

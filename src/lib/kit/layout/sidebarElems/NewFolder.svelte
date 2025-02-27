@@ -4,7 +4,8 @@
 	import Label from "$lib/kit/Label.svelte";
     import Textbox from "$lib/kit/Textbox.svelte";
     import { isNewFolder, newFolderE, windowClickEvent } from "$lib/scripts/chatViews";
-    import { isHttps, port, server, token, user } from "$lib/scripts/globalData";
+    import { isHttps, port, server, token } from "$lib/scripts/globalData";
+    import { getUser } from "$lib/scripts/requests";
 
     let name: string | undefined = $state();
     let icon: string | undefined = $state("Cube");
@@ -20,24 +21,6 @@
         console.error('Error listing files:', error);
     }
 
-    const getUser = async () =>{
-		try{
-			const response = await fetch(`http${$isHttps ? "s" : ""}://${$server}:${$port}/user/me?token=${$token}`, {
-				method: "GET",
-				headers: {
-					"Content-Type": "application/json",
-					"Access-Control-Allow-Origin": "*"
-				}
-			})
-			user.set(JSON.parse(await response.text()))
-		}catch(e){
-			console.log(e)
-			// window.location.replace("/login")
-			// token.set(null)
-			return
-		}
-	}
-
     const makeFolder = async () =>{
         try{
             const response = await fetch(`http${$isHttps ? "s" : ""}://${$server}:${$port}/user/me/chatfolders/add?token=${$token}`, {
@@ -52,7 +35,7 @@
                 }
             })
             console.log(response)
-            getUser()
+            getUser($isHttps, $server, $port, ($token as string))
         }catch(e){
             console.log(e)
         }
