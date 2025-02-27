@@ -7,6 +7,7 @@
 	import Label from '$lib/kit/Label.svelte';
 	import Textarea from '$lib/kit/Textarea.svelte';
     import Switch from '$lib/kit/Switch.svelte';
+    import { getUser, iconList } from "$lib/scripts/requests";
     
     let{
 
@@ -15,11 +16,15 @@
 	let ctxMenu: HTMLElement | undefined = $state();
 	let currentView: string = $state("default")
     let previousView: string = $state("default")
-    let isGCPrivate: boolean = $state(false)
     let ctxDef: HTMLElement | undefined = $state();
     let ctxNew: HTMLElement | undefined = $state();
     let ctxNewGC: HTMLElement | undefined = $state();
-
+    
+    let isGCPrivate: boolean = $state(false)
+    let isGCChannels: boolean = $state(false)
+    let gcName: string = $state("")
+    let gcDesc: string = $state("")
+    
     isMoreButtonCtxMenu.subscribe(()=>{
     })
 
@@ -34,10 +39,43 @@
                 currentView = "default";
                 previousView = "default";
                 $isMoreButtonCtxMenu = false;
+                isGCPrivate = false;
+                gcName = "";
+                gcDesc = "";
+                isGCChannels = false;
             }
 		}
 	});
     
+    const createGC = async () => {
+        if(gcName === "") return;
+        try{
+            const response = await fetch(`http${$isHttps ? "s" : ""}://${$server}:${$port}/group/create?token=${$token}`, {
+                method: "POST",
+                body: JSON.stringify({
+                    name: gcName,
+                    description: gcDesc,
+                    is_public: !isGCPrivate,
+                    has_channels: isGCChannels
+                }),
+                headers: {
+                    "Content-Type": "application/json",
+                    "Access-Control-Allow-Origin": "*"
+                }
+            })
+            console.log(response)
+            getUser($isHttps, $server, $port, ($token as string))
+        }catch(e){
+            console.log(e)
+        }
+        currentView = "default";
+        previousView = "default";
+        $isMoreButtonCtxMenu = false;
+        isGCPrivate = false;
+        gcName = "";
+        gcDesc = "";
+        isGCChannels = false;
+    }
 </script>
 
 <div
@@ -46,11 +84,11 @@
     class="window"
     style="
     position: absolute;
-    left: calc({$moreButtonClickEvent?.clientX}px - {(ctxMenu?.clientWidth as number) / 2}px);
+    left: calc({$moreButtonClickEvent?.clientX}px - {currentView === "newGC" ? 160 : 120}px);
     scale: {$isMoreButtonCtxMenu ? 1 : 0};
     top: {$isMoreButtonCtxMenu ? 56 : -28}px;
     z-index: 12831928471983412381931723071;
-    width: 240px;
+    width: {currentView === "newGC" ? 320 : 240}px;
     height: {
         currentView === "default" ? ctxDef?.clientHeight : 
         currentView === "new" ? ctxNew?.clientHeight : 
@@ -132,43 +170,79 @@
     <div id="newGCCtxMenu" class="defaultCtxMenuView" bind:this={ctxNewGC} style="
         left: {currentView === "newGC" ? 0 : previousView === "newGC" ? -240 : 240}px;
         opacity: {currentView === "newGC" || previousView === "newGC" || previousView === "new" ? 1 : 0};
+        width: 300px;
     ">
-    <Textbox 
-        maxlength={32}
-        placeholder="Group name"
-        width="100%"
-        icon="Rename"
-    ></Textbox>
-    <Textarea 
-        placeholder="Group description"
-        width="100%"
-        height="72px"
-    ></Textarea>
-    <Button 
-        action={()=>{
-            isGCPrivate = !isGCPrivate
-        }}
-        alignment="space-between"
-        scaleClick={0.95}
-        scaleHover={1.05}
-        width="100%"
-    >
-        <div class="elem-horiz">
-            <Icon name={isGCPrivate ? "Lock/Locked" : "Lock/Unlocked"}></Icon>
-            {isGCPrivate ? "Private" : "Public"}
+        <Label icon="Users" label="New group" />
+        <Textbox 
+            maxlength={32}
+            placeholder="Group name"
+            width="100%"
+            icon="Rename"
+            bind:value={gcName}
+        ></Textbox>
+        <Textarea 
+            placeholder="Group description"
+            width="100%"
+            height="72px"
+            bind:value={gcDesc}
+        ></Textarea>
+        <Button 
+            action={()=>{
+                isGCPrivate = !isGCPrivate
+            }}
+            alignment="space-between"
+            scaleClick={0.95}
+            scaleHover={1.05}
+            width="100%"
+        >
+            <div class="elem-horiz">
+                <Icon name={isGCPrivate ? "Lock/Locked" : "Lock/Unlocked"}></Icon>
+                Privacy
+                <div style="opacity: 0.5;">{isGCPrivate ? "Private" : "Public"}</div>
+            </div>
+            <Switch isOn={isGCPrivate} />
+        </Button>
+        <Button 
+            action={()=>{
+                isGCChannels = !isGCChannels
+            }}
+            alignment="space-between"
+            scaleClick={0.95}
+            scaleHover={1.05}
+            width="100%"
+        >
+            <div class="elem-horiz">
+                <Icon name="List"></Icon>
+                Channels
+                <div style="opacity: 0.5;">{isGCChannels ? "Enabled" : "Disabled"}</div>
+            </div>
+            <Switch isOn={isGCChannels} />
+        </Button>
+        <div class="elements-horiz" style="gap: 10px; width: 100%;">
+            <Button
+                action={() => {
+                    currentView = "new"
+                    previousView = "new"
+                    isGCPrivate = false;
+                    gcName = "";
+                    gcDesc = "";
+                    isGCChannels = false;
+                    isGCPrivate = false;
+                }}
+                scaleClick={0.95}
+                scaleHover={1.05}
+                width="100%; flex-shrink: 1;">
+                    <Icon name="X"></Icon> Cancel
+            </Button>
+            <Button
+                style={1}
+                action={createGC}
+                scaleClick={0.95}
+                scaleHover={1.05}
+                width="100%; flex-shrink: 1;">
+                    <Icon name="Plus"></Icon> Create group
+            </Button>
         </div>
-        <Switch isOn={isGCPrivate} />
-    </Button>
-    <Button
-        action={() => {
-            currentView = "new"
-            previousView = "new"
-        }}
-        scaleClick={0.95}
-        scaleHover={1.05}
-        width="100%"
-        alignment="left"
-    ><Icon name="X"></Icon> Cancel</Button>
     </div>
 </div>
 

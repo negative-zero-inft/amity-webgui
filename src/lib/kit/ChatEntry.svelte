@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { isHttps, port, server, token } from "$lib/scripts/globalData";
 	let {
 		unreads = 0,
 		isUnreads = unreads != 0,
@@ -7,7 +8,14 @@
 		timestamp = Date.parse('2025-02-14 00:00:00') as number,
 		isFavorite = false,
 		pfpLink = 'amity.png',
-		isSelected = false
+		isSelected = false,
+		data = {
+			type: '',
+			id: {
+				id: '',
+				server: ''
+			}
+		}
 	} = $props();
 
 	import check from '$lib/minicons/check.svg';
@@ -19,6 +27,38 @@
 	setInterval(() => {
 		datenow = Date.now();
 	}, 1.5 * 1000);
+	
+	const getGC = async (instance: string, id: string) => {
+        try{
+            const response = await fetch(`http${$isHttps ? "s" : ""}://${instance}:${$port}/group/${id}/info?token=${$token}`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Access-Control-Allow-Origin": "*"
+                }
+            })
+			console.log(response)
+            return await response
+        }catch(e){
+            console.log(e)
+        }
+    }
+
+	$effect(() => {
+		console.log(data)
+		switch(data.type){
+			case "group":
+				const tempData = getGC(data.id.server, data.id.id)
+				console.log(tempData)
+				break;
+			case "chat":
+				break;
+			case "soapbox":
+				break;
+			default:
+				break;
+		}
+	})
 </script>
 
 <button class="chatEntry{Number(isSelected)}">

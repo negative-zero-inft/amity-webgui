@@ -2,21 +2,21 @@
 	import { isFirefox } from '$lib/scripts/isFirefox';
 	import ChatEntry from '../../ChatEntry.svelte';
 	import { user } from '$lib/scripts/globalData';
+    import { isHttps, port, server, token } from "$lib/scripts/globalData";
 
 	let isReallyFireFox = $state<boolean>(false);
 	$effect(() => {
 		isReallyFireFox = isFirefox();
 	});
+
 </script>
 
 <div class="chatEntriesContainer">
 	<div id="allChats" class="chatEntries" style="--pr: {isReallyFireFox ? 10 : 5}px">
-		<ChatEntry username="example" isSelected={true}></ChatEntry>
-		{#each $user?.chats || [] as child}
+		{#each $user?.chats || [] as child} 
 			<!-- magic -->
-			<script lang="ts">
-			</script>
-			<ChatEntry></ChatEntry>
+
+			<ChatEntry data={child}></ChatEntry>
 		{/each}
 	</div>
 </div>
