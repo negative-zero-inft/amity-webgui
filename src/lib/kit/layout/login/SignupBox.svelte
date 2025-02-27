@@ -167,21 +167,6 @@
         gap: v.$spacing-def;
     }
 
-    .oauthGrid{
-		width: 100%;
-		display: grid;
-		gap: v.$spacing-def;
-		grid-template-columns: repeat(4, 1fr); /* 7 equal-width columns */
-		grid-template-rows: repeat(2, 1fr); /* 3 equal-height rows */
-	}
-
-	.oauthSeparator{
-		display: flex;
-		width: 100%;
-		align-items: center;
-		gap: v.$spacing-def;
-	}
-
 	.buttons{
 		display: flex;
 		flex-direction: row;
