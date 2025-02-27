@@ -6,19 +6,29 @@
 	import Textbox from '$lib/kit/Textbox.svelte';
 	import Label from '$lib/kit/Label.svelte';
     import { getUser, iconList } from "$lib/scripts/requests"
+    import { isFirefox } from '$lib/scripts/isFirefox';
+    import ChatEntry from '../../ChatEntry.svelte';
+    import { user } from '$lib/scripts/globalData';
 
     let{
 
     } = $props()
 
+    let isChatPicker: boolean = $state(false);
+    let chatPickerCtx: HTMLElement | undefined = $state();
+    let chats = $state($user?.chats || []);
+
     let icon = $state($folder.icon)
     let name = $state($folder.name)
+    let elements = $state($folder.elements)
     folder.subscribe(()=>{
         icon = $folder.icon
         name = $folder.name
+        elements = $folder.elements
+        console.log(elements)
     })
+    
     let isIconPicker = $state(false)
-
 	let ctxMenu: HTMLElement | undefined = $state();
 	let isCtxEdit: boolean = $state(false)
 
@@ -32,6 +42,10 @@
         isIconPicker = false
         isCtxEdit = false
     })
+    let isReallyFireFox = $state<boolean>(false);
+	$effect(() => {
+		isReallyFireFox = isFirefox();
+	});
 
     windowClickEvent.subscribe((e) => {
 		if (
@@ -46,13 +60,15 @@
 		}
 	});
     const folderUpdateProc = async ()=>{
+
         try{
             const response = await fetch(`http${$isHttps ? "s" : ""}://${$server}:${$port}/user/me/chatfolders?token=${$token}`, {
                 method: "PUT",
                 body: JSON.stringify({
                     name: name,
                     icon: icon,
-                    _id: $folder._id
+                    _id: $folder._id,
+                    elements: elements
                 }),
                 headers: {
                     "Content-Type": "application/json",
@@ -97,15 +113,15 @@
     position: absolute;
     left: {			
         (($folderClickEvent as MouseEvent)?.clientX < 130) ? 10 :
-        isIconPicker ? (($folderClickEvent as MouseEvent)?.clientX < 170) ? 10 :
+        isIconPicker || isChatPicker ? (($folderClickEvent as MouseEvent)?.clientX < 170) ? 10 :
         ($folderClickEvent as MouseEvent)?.clientX - 160 : 
         ($folderClickEvent as MouseEvent)?.clientX - 120
     }px;
     scale: {$isFolderCtxMenu ? 1 : 0};
     top: {$isFolderCtxMenu ? 56 + 32 + 5 : 16}px;
     z-index: 12831928471983412381931723071;
-    width: {isIconPicker ? 300 : 240}px;
-    height: {isCtxEdit ? isIconPicker ? iconPicker?.clientHeight : ctxEdit?.clientHeight : ctxDef?.clientHeight}px;
+    width: {isIconPicker || isChatPicker ? 300 : 240}px;
+    height: {isCtxEdit ? isIconPicker ? iconPicker?.clientHeight : isChatPicker ? chatPickerCtx?.clientHeight : ctxEdit?.clientHeight : ctxDef?.clientHeight}px;
     padding: 0;
 "
 >
@@ -131,7 +147,7 @@
         <Button action={folderDelProc} width="100%" style={3}><Icon name="Trash"></Icon> Delete folder</Button>
     </div>
     <div bind:this={ctxEdit} class="editCtxMenuView" style="
-        left: {isCtxEdit ? isIconPicker ? -240 : 0 : 240}px
+        left: {isCtxEdit ? isIconPicker || isChatPicker ? -240 : 0 : 240}px
     ">
         <div class="menuTop">
             <Button action={()=>{
@@ -143,6 +159,10 @@
         </div>
         <Button action={()=>{isIconPicker = true}} scaleClick={0.95} scaleHover={1.05} alignment="space-between" width="100%">
             <div class="elem-horiz"><Icon name={icon}></Icon> Icon <div style="opacity: 0.5">{icon}</div> </div>
+            <Icon name="Direction/Right"></Icon>
+        </Button>
+        <Button action={()=>{isChatPicker = true}} scaleClick={0.95} scaleHover={1.05} alignment="space-between" width="100%">
+            <div class="elem-horiz"><Icon name="Chat"></Icon> Chats <div style="opacity: 0.5">{elements.length}</div> </div>
             <Icon name="Direction/Right"></Icon>
         </Button>
         <Button action={folderUpdateProc} width="100%" style={1}><Icon name="Save"></Icon> Save</Button>
@@ -163,11 +183,70 @@
 			{/each}
         </grid>
     </div>
+    <div bind:this={chatPickerCtx} class="chatPicker" style="
+        left: {isChatPicker ? "0px" : "320px"}
+    ">
+        <div class="chatPickerTop">
+            <Button action={()=>{isChatPicker = false}}><Icon name="Direction/Left"></Icon></Button>
+            <Textbox bgc="black" width="100%" icon="Search" placeholder="Search chats..."></Textbox>
+        </div>
+        <div id="allChats" class="chatEntries" style="--pr: {isReallyFireFox ? 10 : 5}px">
+            {#each $user?.chats || [] as child} 
+                <ChatEntry click={()=>{
+                    if(chats.find(e => e._id == child._id)){
+                        chats = chats.filter(e => e._id != child._id)
+                    }else{
+                        chats = [...chats, child]
+                    }
+                    console.log(chats)
+                }} isSelected={elements.find(e => e._id == child._id) ? true : false} data={child}></ChatEntry>
+            {/each}
+        </div>
+    </div>
 </div>
 
 <style lang="scss">
     @use '$lib/style/colors.scss' as c;
 	@use '$lib/style/variables.scss' as v;
+    .chatPicker{
+        width: 100%;
+        height: 400px;
+        display: flex;
+        flex-direction: column;
+        gap: v.$spacing-def;
+        transition: 0.25s;
+        position: absolute;
+        top: 0;
+    }
+
+    .chatEntries{
+        width: 300px;
+        height: 400px;
+        padding: v.$spacing-def;
+        padding-top: 56px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        gap: v.$spacing-def;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        background-color: c.$bg;
+    }
+
+    .chatPickerTop {
+        top: 0;
+        left: 0;
+        width: 302px;
+		box-sizing: border-box;
+		flex-shrink: 0;
+		background: linear-gradient(to bottom, #000000ff 50%, #00000000);
+		display: flex;
+		flex-direction: row;
+		gap: v.$spacing-def;
+		position: absolute;
+        padding: v.$spacing-def;
+        z-index: 21374;
+	}
     .iconList{
         width: 305px;
         height: 320px;

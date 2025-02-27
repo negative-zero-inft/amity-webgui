@@ -25,6 +25,7 @@ export const user = writable<{
         secret: string
     }[],
     chats: {
+        _id: string,
         type: string,
         id: {
             id: string,

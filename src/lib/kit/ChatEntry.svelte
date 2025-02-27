@@ -15,7 +15,11 @@
 				id: '',
 				server: ''
 			}
-		}
+		},
+		click = () => {},
+		rightClick = () => {},
+		hover = () => {},
+		leave = () => {}
 	} = $props();
 
 	import check from '$lib/minicons/check.svg';
@@ -46,7 +50,6 @@
 						}
 					})
 					tempData = await response.json()
-					console.log(tempData)
 				}catch(e){
 					console.log(e)
 				}
@@ -65,7 +68,7 @@
 	})
 </script>
 
-<button class="chatEntry{Number(isSelected)}">
+<button onclick={(e)=>{click(e)}} oncontextmenu={(e)=>{rightClick(e)}} onmouseenter={(e)=>{hover(e)}} onmouseleave={(e)=>{leave(e)}} class="chatEntry{Number(isSelected)}">
 	<Avatar {pfpLink} />
 	<div class="info">
 		<div class="line">

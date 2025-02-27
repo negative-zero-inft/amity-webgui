@@ -6,7 +6,8 @@ export const folderClickEvent = writable<MouseEvent>();
 export const folder = writable({
     name: "",
     icon: "",
-    _id: ""
+    _id: "",
+    elements: []
 })
 
 export const isMoreButtonCtxMenu = writable<boolean>(false);
