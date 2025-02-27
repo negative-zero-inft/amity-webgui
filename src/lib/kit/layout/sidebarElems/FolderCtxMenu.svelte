@@ -16,7 +16,6 @@
 
     let isChatPicker: boolean = $state(false);
     let chatPickerCtx: HTMLElement | undefined = $state();
-    let chats = $state($user?.chats || []);
 
     let icon = $state($folder.icon)
     let name = $state($folder.name)
@@ -60,7 +59,7 @@
 		}
 	});
     const folderUpdateProc = async ()=>{
-
+        console.log(elements)
         try{
             const response = await fetch(`http${$isHttps ? "s" : ""}://${$server}:${$port}/user/me/chatfolders?token=${$token}`, {
                 method: "PUT",
@@ -193,12 +192,11 @@
         <div id="allChats" class="chatEntries" style="--pr: {isReallyFireFox ? 10 : 5}px">
             {#each $user?.chats || [] as child} 
                 <ChatEntry click={()=>{
-                    if(chats.find(e => e._id == child._id)){
-                        chats = chats.filter(e => e._id != child._id)
+                    if(elements.find(e => e._id == child._id)){
+                        elements = elements.filter(e => e._id != child._id)
                     }else{
-                        chats = [...chats, child]
+                        elements = [...elements, child]
                     }
-                    console.log(chats)
                 }} isSelected={elements.find(e => e._id == child._id) ? true : false} data={child}></ChatEntry>
             {/each}
         </div>
