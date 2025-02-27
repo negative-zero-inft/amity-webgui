@@ -22,34 +22,34 @@
 	import { timeAgo } from '$lib/utils/timeAgo';
 	import Avatar from './Avatar.svelte';
 
+	let tempData = $state({
+		name: '',
+		description: '',
+		icon: ''
+	});
+
 	let datenow = $state(Date.now());
 
 	setInterval(() => {
 		datenow = Date.now();
 	}, 1.5 * 1000);
 	
-	const getGC = async (instance: string, id: string) => {
-        try{
-            const response = await fetch(`http${$isHttps ? "s" : ""}://${instance}:${$port}/group/${id}/info?token=${$token}`, {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Access-Control-Allow-Origin": "*"
-                }
-            })
-			console.log(response)
-            return await response
-        }catch(e){
-            console.log(e)
-        }
-    }
-
-	$effect(() => {
-		console.log(data)
-		switch(data.type){
+	const getData = async () => {
+		switch(data.chat_type){
 			case "group":
-				const tempData = getGC(data.id.server, data.id.id)
-				console.log(tempData)
+				try{
+					const response = await fetch(`http${$isHttps ? "s" : ""}://${data.id.server}:${$port}/group/${data.id.id}/info?token=${$token}`, {
+						method: "GET",
+						headers: {
+							"Content-Type": "application/json",
+							"Access-Control-Allow-Origin": "*"
+						}
+					})
+					tempData = await response.json()
+					console.log(tempData)
+				}catch(e){
+					console.log(e)
+				}
 				break;
 			case "chat":
 				break;
@@ -58,6 +58,10 @@
 			default:
 				break;
 		}
+    }
+
+	$effect(() => {
+		getData()
 	})
 </script>
 
@@ -66,7 +70,7 @@
 	<div class="info">
 		<div class="line">
 			<div class="horiz">
-				<div>{username}</div>
+				<div>{tempData?.name}</div>
 				{#if isFavorite}
 					<svg
 						width="11"
