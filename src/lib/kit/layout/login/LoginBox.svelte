@@ -13,7 +13,7 @@
 
     let tag:string | undefined = $state();
     let pass:string | undefined = $state();
-    let instance:string | undefined = $state("amysrv.neg-zero.com");
+    let instance:string | undefined = $state($server);
     
     const changeView = () =>{
         isLogin.set(!$isLogin)
