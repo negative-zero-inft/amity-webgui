@@ -251,7 +251,7 @@
     }
 
     .iconList {
-        width: 305px;
+        width: 300px;
         height: 320px;
         padding: v.$spacing-def;
         padding-top: 56px;
