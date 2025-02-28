@@ -19,6 +19,11 @@
 	import RecordingBar from '../RecordingBar.svelte';
 
 	let message: string = $state('');
+
+	const senMessage = () => {
+		console.log(message);
+		message = '';
+	}	
 </script>
 
 <div class="viewBottomBar">
@@ -34,6 +39,14 @@
 		}}><Icon name={$isCloudStorageBar ? 'X' : 'Plus'} /></Button
 		>
 		<TextArea 
+			onkeydown={(e) => {
+				if(e.key === 'Enter' && e.shiftKey){
+					console.log('shift enter');
+				}else if(e.key === 'Enter'){
+					e.preventDefault();
+					senMessage()
+				}
+			}}
 			zIndex={12837} 
 			bgc="black" 
 			bind:value={message} 
