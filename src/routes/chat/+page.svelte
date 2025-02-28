@@ -13,10 +13,6 @@
 	import { getUser } from '$lib/scripts/requests';
 	import { currentChat } from '$lib/scripts/chatViews';	
 
-	currentChat.subscribe((value) => {
-		console.log(value)
-	})
-
 	$effect(() => {
 		if (!browser) return;
 		

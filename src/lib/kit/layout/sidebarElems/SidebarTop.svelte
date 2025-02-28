@@ -98,7 +98,6 @@
 						elements: child.elements.map((e: any) => e?.id) || [],
 						index: $user?.chat_folders.findIndex((e: any) => e._id == child._id) + 1 || 0
 					})
-					console.log($previousFolder.index, $currentFolder.index)
 				}}
 				hoverAction={(e: MouseEvent) => {
 					if (!$isFolderCtxMenu) folderClickEvent.set(e);

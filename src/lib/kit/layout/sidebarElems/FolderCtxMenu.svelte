@@ -19,12 +19,18 @@
 
     let icon = $state($folder.icon)
     let name = $state($folder.name)
-    let elements = $state($folder.elements)
+    let elements = $state<{
+        _id: string,
+        chat_type: string,
+        id: {
+            id: string,
+            server: string
+        }
+    }[]>($folder.elements)
     folder.subscribe(()=>{
         icon = $folder.icon
         name = $folder.name
         elements = $folder.elements
-        console.log(elements)
     })
     
     let isIconPicker = $state(false)
@@ -60,7 +66,6 @@
 		}
 	});
     const folderUpdateProc = async ()=>{
-        console.log(elements)
         try{
             const response = await fetch(`http${$isHttps ? "s" : ""}://${$server}:${$port}/user/me/chatfolders?token=${$token}`, {
                 method: "PUT",
@@ -196,7 +201,14 @@
                     if(elements.find(e => e._id == child._id)){
                         elements = elements.filter(e => e._id != child._id)
                     }else{
-                        elements = [...elements, child]
+                        elements = [...elements, {
+                            _id: child._id,
+                            chat_type: child.chat_type,
+                            id: {
+                                id: child.id.id,
+                                server: child.id.server
+                            }
+                        }]
                     }
                 }} isSelected={elements.find(e => e._id == child._id) ? true : false} data={child}></ChatEntry>
             {/each}

@@ -26,7 +26,7 @@ export const user = writable<{
     }[],
     chats: {
         _id: string,
-        type: string,
+        chat_type: string,
         id: {
             id: string,
             server: string
@@ -37,11 +37,12 @@ export const user = writable<{
         icon: string,
         name: string,
         elements: [{
-            type: string,
-            amity_id: {
+            chat_type: string,
+            id: {
                 id: string,
                 server: string
-            }
+            },
+            _id: string
         }]
     }[],
     password: string,

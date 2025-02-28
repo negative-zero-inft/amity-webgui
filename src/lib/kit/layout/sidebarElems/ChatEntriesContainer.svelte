@@ -39,9 +39,8 @@
 				0
 			}
 		">
-			{#each child.elements.map((e: any) => e.id) || [] as chatentry} 
+			{#each child.elements || [] as chatentry} 
 				<!-- magic -->
-
 				<ChatEntry isSidebar={true} data={chatentry}></ChatEntry>
 			{/each}
 		</div>
