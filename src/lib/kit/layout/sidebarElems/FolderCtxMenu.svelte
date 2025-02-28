@@ -1,72 +1,66 @@
 <script lang="ts">
+    // External Imports
     import Button from '$lib/kit/Button.svelte';
-	import Icon from '$lib/kit/Icon.svelte';
-    import { isHttps, port, server, token } from "$lib/scripts/globalData";
-	import { windowClickEvent, isFolderCtxMenu, folderClickEvent, folder } from '$lib/scripts/chatViews';
-	import Textbox from '$lib/kit/Textbox.svelte';
-	import Label from '$lib/kit/Label.svelte';
-    import { getUser, iconList } from "$lib/scripts/requests"
-    import { isFirefox } from '$lib/scripts/isFirefox';
+    import Icon from '$lib/kit/Icon.svelte';
+    import Textbox from '$lib/kit/Textbox.svelte';
+    import Label from '$lib/kit/Label.svelte';
     import ChatEntry from '../../ChatEntry.svelte';
-    import { user } from '$lib/scripts/globalData';
 
-    let{
+    // Internal Imports
+    import { isHttps, port, server, token, user } from "$lib/scripts/globalData";
+    import { windowClickEvent, isFolderCtxMenu, folderClickEvent, folder } from '$lib/scripts/chatViews';
+    import { getUser, iconList } from "$lib/scripts/requests";
+    import { isFirefox } from '$lib/scripts/isFirefox';
 
-    } = $props()
-
+    // State Variables
     let isChatPicker: boolean = $state(false);
     let chatPickerCtx: HTMLElement | undefined = $state();
-
-    let icon = $state($folder.icon)
-    let name = $state($folder.name)
-    let elements = $state<{
-        _id: string,
-        chat_type: string,
-        id: {
-            id: string,
-            server: string
-        }
-    }[]>($folder.elements)
-    folder.subscribe(()=>{
-        icon = $folder.icon
-        name = $folder.name
-        elements = $folder.elements
-    })
-    
-    let isIconPicker = $state(false)
-	let ctxMenu: HTMLElement | undefined = $state();
-	let isCtxEdit: boolean = $state(false)
-
+    let icon = $state($folder.icon);
+    let name = $state($folder.name);
+    let elements = $state<{ _id: string, chat_type: string, id: { id: string, server: string } }[]>($folder.elements);
+    let isIconPicker = $state(false);
+    let ctxMenu: HTMLElement | undefined = $state();
+    let isCtxEdit: boolean = $state(false);
     let ctxDef: HTMLElement | undefined = $state();
     let ctxEdit: HTMLElement | undefined = $state();
     let iconPicker: HTMLElement | undefined = $state();
-
     let icons = iconList();
-
-    isFolderCtxMenu.subscribe(()=>{
-        isIconPicker = false
-        isCtxEdit = false
-        isChatPicker = false
-    })
     let isReallyFireFox = $state<boolean>(false);
-	$effect(() => {
-		isReallyFireFox = isFirefox();
-	});
+
+    // Subscriptions
+    folder.subscribe(() => {
+        icon = $folder.icon;
+        name = $folder.name;
+        elements = $folder.elements;
+    });
+
+    isFolderCtxMenu.subscribe(() => {
+        isIconPicker = false;
+        isCtxEdit = false;
+        isChatPicker = false;
+    });
 
     windowClickEvent.subscribe((e) => {
-		if (
-			e?.clientX < (ctxMenu?.offsetLeft as number) || 
-			e?.clientX > (ctxMenu?.offsetLeft as number) + (ctxMenu?.offsetWidth as number) ||
-			e?.clientY < (ctxMenu?.offsetTop as number) || 
-			e?.clientY > (ctxMenu?.offsetTop as number) + (ctxMenu?.offsetHeight as number)
-		) {
-            isIconPicker = false
-            isCtxEdit = false
-			$isFolderCtxMenu = false;
-		}
-	});
-    const folderUpdateProc = async ()=>{
-        try{
+        if (
+            e?.clientX < (ctxMenu?.offsetLeft as number) || 
+            e?.clientX > (ctxMenu?.offsetLeft as number) + (ctxMenu?.offsetWidth as number) ||
+            e?.clientY < (ctxMenu?.offsetTop as number) || 
+            e?.clientY > (ctxMenu?.offsetTop as number) + (ctxMenu?.offsetHeight as number)
+        ) {
+            isIconPicker = false;
+            isCtxEdit = false;
+            $isFolderCtxMenu = false;
+        }
+    });
+
+    // Effects
+    $effect(() => {
+        isReallyFireFox = isFirefox();
+    });
+
+    // Functions
+    const folderUpdateProc = async () => {
+        try {
             const response = await fetch(`http${$isHttps ? "s" : ""}://${$server}:${$port}/user/me/chatfolders?token=${$token}`, {
                 method: "PUT",
                 body: JSON.stringify({
@@ -79,17 +73,17 @@
                     "Content-Type": "application/json",
                     "Access-Control-Allow-Origin": "*"
                 }
-            })
-            console.log(response)
-            getUser($isHttps, $server, $port, ($token as string))
-        }catch(e){
-            console.log(e)
+            });
+            console.log(response);
+            getUser($isHttps, $server, $port, ($token as string));
+        } catch (e) {
+            console.log(e);
         }
-        isFolderCtxMenu.set(false)
-    }
+        isFolderCtxMenu.set(false);
+    };
 
-    const folderDelProc = async ()=>{
-        try{
+    const folderDelProc = async () => {
+        try {
             const response = await fetch(`http${$isHttps ? "s" : ""}://${$server}:${$port}/user/me/chatfolders?token=${$token}`, {
                 method: "DELETE",
                 body: JSON.stringify({
@@ -99,15 +93,14 @@
                     "Content-Type": "application/json",
                     "Access-Control-Allow-Origin": "*"
                 }
-            })
-            console.log(response)
-            getUser($isHttps, $server, $port, ($token as string))
-        }catch(e){
-            console.log(e)
+            });
+            console.log(response);
+            getUser($isHttps, $server, $port, ($token as string));
+        } catch (e) {
+            console.log(e);
         }
-        isFolderCtxMenu.set(false)
-    }
-
+        isFolderCtxMenu.set(false);
+    };
 </script>
 
 <div
@@ -130,17 +123,14 @@
     padding: 0;
 "
 >
-    <div bind:this={ctxDef} class="defaultCtxMenuView" style="
-        left: {isCtxEdit ? -240 : 0}px
-    ">
+    <!-- Default Context Menu View -->
+    <div bind:this={ctxDef} class="defaultCtxMenuView" style="left: {isCtxEdit ? -240 : 0}px">
         <div class="elements-horiz" style="justify-content: space-between; padding-right: 5px;">
             <Label icon="Folder/Default" label={name || icon}></Label>
             <Icon name={icon}></Icon>
         </div>
         <Button
-            action={() => {
-                isCtxEdit = true
-            }}
+            action={() => { isCtxEdit = true; }}
             scaleClick={0.95}
             scaleHover={1.05}
             alignment="space-between"
@@ -151,56 +141,56 @@
         </Button>
         <Button action={folderDelProc} width="100%" style={3}><Icon name="Trash"></Icon> Delete folder</Button>
     </div>
-    <div bind:this={ctxEdit} class="editCtxMenuView" style="
-        left: {isCtxEdit ? isIconPicker || isChatPicker ? -240 : 0 : 240}px
-    ">
+
+    <!-- Edit Context Menu View -->
+    <div bind:this={ctxEdit} class="editCtxMenuView" style="left: {isCtxEdit ? isIconPicker || isChatPicker ? -240 : 0 : 240}px">
         <div class="menuTop">
-            <Button action={()=>{
-                icon = $folder.icon
-                name = $folder.name
-                isCtxEdit = false
+            <Button action={() => {
+                icon = $folder.icon;
+                name = $folder.name;
+                isCtxEdit = false;
             }}><Icon name="Direction/Left"></Icon></Button>
             <Textbox maxlength={32} bind:value={name} width="100%" icon="Rename" placeholder="Folder name"></Textbox>
         </div>
-        <Button action={()=>{isIconPicker = true}} scaleClick={0.95} scaleHover={1.05} alignment="space-between" width="100%">
+        <Button action={() => { isIconPicker = true; }} scaleClick={0.95} scaleHover={1.05} alignment="space-between" width="100%">
             <div class="elem-horiz"><Icon name={icon}></Icon> Icon <div style="opacity: 0.5">{icon}</div> </div>
             <Icon name="Direction/Right"></Icon>
         </Button>
-        <Button action={()=>{isChatPicker = true}} scaleClick={0.95} scaleHover={1.05} alignment="space-between" width="100%">
+        <Button action={() => { isChatPicker = true; }} scaleClick={0.95} scaleHover={1.05} alignment="space-between" width="100%">
             <div class="elem-horiz"><Icon name="Chat"></Icon> Chats <div style="opacity: 0.5">{elements.length}</div> </div>
             <Icon name="Direction/Right"></Icon>
         </Button>
         <Button action={folderUpdateProc} width="100%" style={1}><Icon name="Save"></Icon> Save</Button>
     </div>
-    <div bind:this={iconPicker} class="iconPicker" style="
-        left: {isIconPicker ? 0 : 240}px
-    ">
+
+    <!-- Icon Picker -->
+    <div bind:this={iconPicker} class="iconPicker" style="left: {isIconPicker ? 0 : 240}px">
         <div class="iconPickerTop">
-            <Button action={()=>{isIconPicker = false}}><Icon name="Direction/Left"></Icon></Button>
+            <Button action={() => { isIconPicker = false; }}><Icon name="Direction/Left"></Icon></Button>
             <Textbox bgc="black" width="100%" icon="Search" placeholder="Search icons..."></Textbox>
         </div>
         <grid class="iconList">
             {#each icons || [] as child}
-				<Button width="36px; height: 36px;" style={(icon == child.substring(14, child.length - 4)) ? 6 : 4} action={()=>{
-                    icon = child.substring(14, child.length - 4)
-                    isIconPicker = false
+                <Button width="36px; height: 36px;" style={(icon == child.substring(14, child.length - 4)) ? 6 : 4} action={() => {
+                    icon = child.substring(14, child.length - 4);
+                    isIconPicker = false;
                 }}><Icon name={child.substring(14, child.length - 4)} /></Button>
-			{/each}
+            {/each}
         </grid>
     </div>
-    <div bind:this={chatPickerCtx} class="chatPicker" style="
-        left: {isChatPicker ? "0px" : "320px"}
-    ">
+
+    <!-- Chat Picker -->
+    <div bind:this={chatPickerCtx} class="chatPicker" style="left: {isChatPicker ? "0px" : "320px"}">
         <div class="chatPickerTop">
-            <Button action={()=>{isChatPicker = false}}><Icon name="Direction/Left"></Icon></Button>
+            <Button action={() => { isChatPicker = false; }}><Icon name="Direction/Left"></Icon></Button>
             <Textbox bgc="black" width="100%" icon="Search" placeholder="Search chats..."></Textbox>
         </div>
         <div id="allChats" class="chatEntries" style="--pr: {isReallyFireFox ? 10 : 5}px">
             {#each $user?.chats || [] as child} 
-                <ChatEntry click={()=>{
-                    if(elements.find(e => e._id == child._id)){
-                        elements = elements.filter(e => e._id != child._id)
-                    }else{
+                <ChatEntry click={() => {
+                    if (elements.find(e => e.id.id == child.id.id && e.id.server == child.id.server)) {
+                        elements = elements.filter(e => e.id.id + e.id.server != child.id.id + child.id.server);
+                    } else {
                         elements = [...elements, {
                             _id: child._id,
                             chat_type: child.chat_type,
@@ -208,9 +198,9 @@
                                 id: child.id.id,
                                 server: child.id.server
                             }
-                        }]
+                        }];
                     }
-                }} isSelected={elements.find(e => e._id == child._id) ? true : false} data={child}></ChatEntry>
+                }} isSelected={elements.find(e => e.id.id == child.id.id && e.id.server == child.id.server) ? true : false} data={child}></ChatEntry>
             {/each}
         </div>
     </div>
@@ -218,8 +208,9 @@
 
 <style lang="scss">
     @use '$lib/style/colors.scss' as c;
-	@use '$lib/style/variables.scss' as v;
-    .chatPicker{
+    @use '$lib/style/variables.scss' as v;
+
+    .chatPicker {
         width: 100%;
         height: 400px;
         display: flex;
@@ -230,7 +221,7 @@
         top: 0;
     }
 
-    .chatEntries{
+    .chatEntries {
         width: 300px;
         height: 400px;
         padding: v.$spacing-def;
@@ -248,17 +239,18 @@
         top: 0;
         left: 0;
         width: 302px;
-		box-sizing: border-box;
-		flex-shrink: 0;
-		background: linear-gradient(to bottom, #000000ff 50%, #00000000);
-		display: flex;
-		flex-direction: row;
-		gap: v.$spacing-def;
-		position: absolute;
+        box-sizing: border-box;
+        flex-shrink: 0;
+        background: linear-gradient(to bottom, #000000ff 50%, #00000000);
+        display: flex;
+        flex-direction: row;
+        gap: v.$spacing-def;
+        position: absolute;
         padding: v.$spacing-def;
         z-index: 21374;
-	}
-    .iconList{
+    }
+
+    .iconList {
         width: 305px;
         height: 320px;
         padding: v.$spacing-def;
@@ -276,18 +268,18 @@
         top: 0;
         left: 0;
         width: 300px;
-		box-sizing: border-box;
-		flex-shrink: 0;
-		background: linear-gradient(to bottom, #000000ff 50%, #00000000);
-		display: flex;
-		flex-direction: row;
-		gap: v.$spacing-def;
-		position: absolute;
+        box-sizing: border-box;
+        flex-shrink: 0;
+        background: linear-gradient(to bottom, #000000ff 50%, #00000000);
+        display: flex;
+        flex-direction: row;
+        gap: v.$spacing-def;
+        position: absolute;
         padding: v.$spacing-def;
         z-index: 21374;
-	}
+    }
 
-    .iconPicker{
+    .iconPicker {
         top: 0;
         width: 280px;
         display: flex;
@@ -297,32 +289,34 @@
         transition: 0.25s;
     }
 
-
     .elem-horiz {
-		display: flex;
-		gap: v.$spacing-def;
-		align-items: center;
-	}
-    .menuTop{
+        display: flex;
+        gap: v.$spacing-def;
+        align-items: center;
+    }
+
+    .menuTop {
         display: flex;
         gap: v.$spacing-def;
     }
-    .editCtxMenuView{
-		width: 220px;
-		display: flex;
-		flex-direction: column;
-		gap: v.$spacing-def;
-		position: absolute;
-		transition: 0.25s;
+
+    .editCtxMenuView {
+        width: 220px;
+        display: flex;
+        flex-direction: column;
+        gap: v.$spacing-def;
+        position: absolute;
+        transition: 0.25s;
         padding: v.$spacing-def;
-	}
-	.defaultCtxMenuView{
-		width: 220px;
-		display: flex;
-		flex-direction: column;
-		gap: v.$spacing-def;
-		position: absolute;
-		transition: 0.25s;
+    }
+
+    .defaultCtxMenuView {
+        width: 220px;
+        display: flex;
+        flex-direction: column;
+        gap: v.$spacing-def;
+        position: absolute;
+        transition: 0.25s;
         padding: v.$spacing-def;
-	}
+    }
 </style>
