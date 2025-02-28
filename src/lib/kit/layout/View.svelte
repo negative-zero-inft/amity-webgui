@@ -11,7 +11,7 @@
 	import MapSidebar from './chatsidebars/MapSidebar.svelte';
 	import PollSidebar from './chatsidebars/PollSidebar.svelte';
 	import StickerSidebar from './chatsidebars/StickerSidebar.svelte';
-	
+
 	import ViewBottomBar from './ViewBottomBar.svelte';
 	import ViewTopBar from './ViewTopBar.svelte';
 </script>
@@ -108,7 +108,7 @@
 					</div>
 				</div>
 			</div>
-			<hr class="separator"/>
+			<hr class="separator" />
 			<ContactsSidebar></ContactsSidebar>
 			<MapSidebar></MapSidebar>
 			<PollSidebar></PollSidebar>
@@ -118,7 +118,7 @@
 			<GifsSidebar></GifsSidebar>
 			<ChatInfoSidebar></ChatInfoSidebar>
 		</div>
-		<hr class="separator" style="z-index: 2137"/>
+		<hr class="separator" style="z-index: 2137" />
 		<ViewBottomBar />
 	</div>
 </div>
@@ -126,10 +126,6 @@
 <style lang="scss">
 	@use '$lib/style/variables.scss' as v;
 	@use '$lib/style/colors.scss' as c;
-
-	.view2{
-		display: flex;
-	}
 
 	.clusterMessages {
 		display: flex;

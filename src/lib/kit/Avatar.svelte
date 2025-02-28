@@ -2,7 +2,7 @@
 	let { pfpLink = 'amity.png', isOutline = false, size = 36 } = $props();
 </script>
 
-<img class="a{Number(isOutline)}" src={pfpLink} alt="pfp" style="--w: {size}px;" />
+<img class={isOutline ? 'a1' : ''} src={pfpLink} alt="pfp" style="--w: {size}px;" />
 
 <style lang="scss">
 	@use '$lib/style/colors.scss' as c;
@@ -13,14 +13,16 @@
 		outline: solid;
 		outline-color: c.$clickable;
 		outline-offset: -0.5px;
-	}
-	.bv0:hover .a1 {
-		outline-color: c.$hover;
+
+		&:hover {
+			outline-color: c.$hover;
+		}
+
+		&:active {
+			outline-color: c.$clicked;
+		}
 	}
 
-	.bv0:active .a1 {
-		outline-color: c.$clicked;
-	}
 	img {
 		width: var(--w, v.$elem-height);
 		height: var(--w, v.$elem-height);
