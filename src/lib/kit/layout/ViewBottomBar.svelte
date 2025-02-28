@@ -39,7 +39,7 @@
 			bind:value={message} 
 			height={message.includes('\n') ? message.split('\n').length * 15 + 20 + 'px' : '36px'} 
 			placeholder="Message General" 
-			icon={message.length > 0 ? '' : 'Chat'} 
+			icon={message.includes('\n') ? '' : 'Chat'} 
 			width="100%" 
 		/>
 		<Button
