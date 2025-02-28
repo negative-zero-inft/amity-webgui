@@ -22,6 +22,7 @@
 	let chatPickerCtx: HTMLElement | undefined = $state();
 	let icons = iconList();
 	let chats = $state<{ _id: string, chat_type: string, id: { id: string, server: string } }[]>([]);
+	let iconSearchQuery: string = $state("");
 
 	// Effects
 	$effect(() => {
@@ -51,21 +52,26 @@
 		isNewFolder.set(false);
 	};
 
+	const filteredIcons = () => {
+		if (!iconSearchQuery) return icons;
+		return icons.filter(icon => icon.toLowerCase().includes(iconSearchQuery.toLowerCase()));
+	};
+
 	// Subscriptions
 	windowClickEvent.subscribe((e) => {
-		if (isOutsideClick(e)) {
-			if ($isNewFolder) resetForm();
-		}
-	});
-
-	const isOutsideClick = (e: MouseEvent) => {
-		return (
-			e?.clientX < (ctxMenu?.offsetLeft as number) ||
+		if (
+            e?.clientX < (ctxMenu?.offsetLeft as number) ||
 			e?.clientX > (ctxMenu?.offsetLeft as number) + (ctxMenu?.offsetWidth as number) ||
 			e?.clientY < (ctxMenu?.offsetTop as number) ||
 			e?.clientY > (ctxMenu?.offsetTop as number) + (ctxMenu?.offsetHeight as number)
-		);
-	};
+        ) {
+			isNewFolder.set(false); 
+			iconSearchQuery = "";
+			isIconPicker = false;
+			isChatPicker = false;   
+		}
+	});
+
 </script>
 
 <div
@@ -80,6 +86,7 @@
 		height: {isIconPicker ? 300 : isChatPicker ? chatPickerCtx?.clientHeight : 200}px;
 	"
 >
+    <!-- default view -->
 	<div class="defaultView" style="left: {isIconPicker || isChatPicker ? '-320px' : '10px'}">
 		<Label icon="Plus" label="New folder"></Label>
 		<Textbox
@@ -102,13 +109,21 @@
 			<Icon name="Plus"></Icon>Add folder
 		</Button>
 	</div>
+
+    <!-- icon picker -->
 	<div class="iconPicker" style="left: {isIconPicker ? '0px' : '320px'}">
 		<div class="iconPickerTop">
 			<Button action={() => { isIconPicker = false; }}><Icon name="Direction/Left"></Icon></Button>
-			<Textbox bgc="black" width="100%" icon="Search" placeholder="Search icons..."></Textbox>
+			<Textbox
+				bgc="black"
+				width="100%"
+				icon="Search"
+				placeholder="Search icons..."
+				bind:value={iconSearchQuery}
+			></Textbox>
 		</div>
 		<grid class="iconList">
-			{#each icons || [] as child}
+			{#each filteredIcons() as child}
 				<Button width="36px; height: 36px;" style={(icon == child.substring(14, child.length - 4)) ? 6 : 4} action={() => {
 					icon = child.substring(14, child.length - 4);
 					isIconPicker = false;
@@ -116,6 +131,8 @@
 			{/each}
 		</grid>
 	</div>
+
+    <!-- chat picker -->
 	<div bind:this={chatPickerCtx} class="chatPicker" style="left: {isChatPicker ? '0px' : '320px'}">
 		<div class="chatPickerTop">
 			<Button action={() => { isChatPicker = false; }}><Icon name="Direction/Left"></Icon></Button>
