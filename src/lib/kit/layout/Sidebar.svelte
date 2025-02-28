@@ -6,7 +6,7 @@
 	import SidebarTop from './sidebarElems/SidebarTop.svelte';
 	import ChatEntriesContainer from './sidebarElems/ChatEntriesContainer.svelte';
 
-	setContext('isUserBar', isUserBar);
+	setContext('isUserBar', isUserBar);	
 </script>
 
 <Userbar />

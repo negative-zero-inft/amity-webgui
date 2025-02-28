@@ -11,10 +11,12 @@
 	import Icon from '$lib/kit/Icon.svelte';
 	import MoreButtonCtxMenu from '$lib/kit/layout/sidebarElems/MoreButtonCtxMenu.svelte';
 	import { getUser } from '$lib/scripts/requests';
+	
+
 
 	$effect(() => {
 		if (!browser) return;
-
+		
 		if (localStorage.getItem('isDev') == 'true') isHttps.set(false);
 
 		const storedToken = localStorage.getItem('token');
@@ -52,6 +54,7 @@
 	<MoreButtonCtxMenu></MoreButtonCtxMenu>
 	<!-- svelte-ignore a11y_no_static_element_interactions -->
 	<!-- svelte-ignore a11y_click_events_have_key_events -->
+	<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
 	<div
 		class="main"
 		onclick={(e) => {

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Button from '../Button.svelte';
 	import Icon from '../Icon.svelte';
-	import Textbox from '../Textbox.svelte';
+	import TextArea from '$lib/kit/Textarea.svelte';
 
 	import {
 		isCloudStorageBar,
@@ -17,6 +17,8 @@
 
 	} from '$lib/scripts/chatViews';
 	import RecordingBar from '../RecordingBar.svelte';
+
+	let message: string = $state('');
 </script>
 
 <div class="viewBottomBar">
@@ -31,7 +33,15 @@
 			setActive("cloud")
 		}}><Icon name={$isCloudStorageBar ? 'X' : 'Plus'} /></Button
 		>
-		<Textbox placeholder="Message General" icon="Chat" width="100%" />
+		<TextArea 
+			zIndex={12837} 
+			bgc="black" 
+			bind:value={message} 
+			height={message.includes('\n') ? message.split('\n').length * 15 + 20 + 'px' : '36px'} 
+			placeholder="Message General" 
+			icon={message.length > 0 ? '' : 'Chat'} 
+			width="100%" 
+		/>
 		<Button
 			width="36px"
 			style={$isContactsBar ? 2 : 0}
@@ -96,11 +106,15 @@
 	@use '$lib/style/variables.scss' as v;
 
 	.viewBottomBar {
+		height: 56px;
+		bottom: 0px;
+		flex-shrink: 0;
 		display: flex;
 		flex-direction: row;
 		padding: v.$spacing-def;
 		gap: v.$spacing-def;
 		width: 100%;
 		box-sizing: border-box;
+		align-items: flex-end;
 	}
 </style>

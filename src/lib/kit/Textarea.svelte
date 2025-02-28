@@ -12,29 +12,40 @@
 		isImmutable = false, 
 		bgc="none",
 		height = "36px",
-        resize = "none"
+        resize = "none",
+		icon = "",
+		zIndex = 0
 	} = $props();
 
-	let padding: number = $state<number>(10);
+	let padding: number = $derived(icon.length > 0 ? 36 : 10);
+
+	let textarea: HTMLTextAreaElement | undefined = $state();
 </script>
 
-
-<textarea 
-    readonly={isImmutable} 
-    class="e{Number(isError)}" 
-    onkeydown={(e)=>{onkeydown(e)}} 
-    maxlength={maxlength} 
-    bind:value 
-    {placeholder} 
-    style="
-        width: {width}; 
-        height: {height}; 
-        --padding: 10px; 
-        {style}; 
-        background-color: {bgc};
-		resize: {resize};
-    " 
-></textarea>
+<div class="textarea-wrapper" style="--w: {width}; height: {textarea?.clientHeight}; z-index: {zIndex}">
+	{#if icon.length > 0}
+		<span class="icon">
+			<Icon name={icon} />
+		</span>
+	{/if}
+	<textarea 
+		bind:this={textarea}
+		readonly={isImmutable} 
+		class="e{Number(isError)}" 
+		onkeydown={(e)=>{onkeydown(e)}} 
+		maxlength={maxlength} 
+		bind:value 
+		{placeholder} 
+		style="
+			width: {width}; 
+			height: {height}; 
+			--padding: {padding}px; 
+			{style}; 
+			background-color: {bgc};
+			resize: {resize};
+		" 
+	></textarea>
+</div>
 
 <style lang="scss">
 	@use '$lib/style/variables.scss' as v;
@@ -54,17 +65,26 @@
 	}
 
 	.icon {
-		width: 16px;
-		height: 16px !important;
+		position: absolute;
 		left: 10px;
 		top: 10px;
-		position: absolute;
+		width: 16px;
+		height: 16px;
 		cursor: text;
 	}
 
-	textarea {
+	.textarea-wrapper {
+		position: relative;
+		width: var(--w);
 		display: flex;
-		padding: calc(var(--padding) - 1px);
+		align-items: center;
+	}
+
+	textarea {
+		min-height: v.$elem-height;
+		display: flex;
+		padding: 9px;
+		padding-left: calc(var(--padding) - 1px);
 		justify-content: center;
 		align-content: center;
 		gap: v.$spacing-def;
@@ -81,11 +101,13 @@
 		transition: 0.25s;
 
 		&:hover {
-			padding: calc(var(--padding) - 5px);
+			padding: 5px;
+			padding-left: calc(var(--padding) - 5px);
 			border-width: 5px;
 		}
 		&:active {
 			transition: 0.1s;
+			padding-left: calc(var(--padding) - 1px);
 			border-width: 1px;
 		}
 
@@ -93,15 +115,9 @@
 			border: solid;
 			border-width: 2px;
 			border-color: c.$text-50;
-			padding: calc(var(--padding) - 2px);
+			padding: 8px;
+			padding-left: calc(var(--padding) - 1px);
 			outline: none;
 		}
-	}
-
-	.wrapper {
-		position: relative;
-		width: var(--w);
-		height: 36px;
-		display: flex;
 	}
 </style>
