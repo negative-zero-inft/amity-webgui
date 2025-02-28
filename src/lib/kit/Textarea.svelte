@@ -82,6 +82,8 @@
 	}
 
 	textarea {
+		padding-top: 11px;
+		padding-bottom: 11px;
 		min-height: v.$elem-height;
 		display: flex;
 		padding: 9px;

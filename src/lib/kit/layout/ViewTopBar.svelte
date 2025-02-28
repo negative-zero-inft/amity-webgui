@@ -2,9 +2,38 @@
 	import Button from '../Button.svelte';
 	import Icon from '../Icon.svelte';
 	import Textbox from '../Textbox.svelte';
+	import { currentChat } from '$lib/scripts/chatViews';
+    import { isHttps, port, server, token } from "$lib/scripts/globalData";
 
-	let { chatName = 'General', subtitle = 'Negative Zero' } = $props();
+	let chatData = $state();
 
+	currentChat.subscribe(async (value) => {
+		switch($currentChat.type){
+			case "group":
+				try{
+					const response = await fetch(`http${$isHttps ? "s" : ""}://${value.id.server}:${$port}/group/${value.id.id}/info?token=${$token}`, {
+						method: "GET",
+						headers: {
+							"Content-Type": "application/json",
+							"Access-Control-Allow-Origin": "*"
+						}
+					})
+					chatData = await response.json()
+				}catch(e){
+					console.log(e)
+				}
+				break;
+			case "dm":
+				break;
+			case "soapbox":
+				break;
+			case "channel":
+				break;
+			default:
+				break;
+		}
+	})
+	
 	import { isChatInfo, setActive } from '$lib/scripts/chatViews';
 </script>
 
@@ -14,8 +43,8 @@
 			<Icon name="Chat" />
 		</div>
 		<div class="chatName">
-			<div>{chatName}</div>
-			<div class="subtext">{subtitle}</div>
+			<div>{chatData?.name}</div>
+			<div class="subtext">{$currentChat.type == "group" ? chatData?.members.length + " member" + (chatData?.members.length == 1 ? "" : "s") : "temp"}</div>
 		</div>
 	</div>
 	<div class="elements-horiz" style="gap: 10px">

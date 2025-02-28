@@ -57,7 +57,7 @@
 		}}
 		zIndex={12837} 
 		bgc="#00000080; backdrop-filter: blur(40px);" 
-		bind:value={message} 
+		bind:value={message}
 		height={message.includes('\n') ? message.split('\n').length * 15 + 20 + 'px' : '36px'} 
 		placeholder="Message General" 
 		icon={message.includes('\n') ? '' : 'Chat'} 

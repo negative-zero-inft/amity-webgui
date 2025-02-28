@@ -1,9 +1,9 @@
 <script lang="ts">
     import { isHttps, port, server, token } from "$lib/scripts/globalData";
+	import { currentChat } from "$lib/scripts/chatViews";
 	let {
 		unreads = 0,
 		isUnreads = unreads != 0,
-		username = 'user',
 		preview = 'egg',
 		timestamp = Date.parse('2025-02-14 00:00:00') as number,
 		isFavorite = false,
@@ -29,7 +29,11 @@
 	let tempData = $state({
 		name: '',
 		description: '',
-		icon: ''
+		icon: '',
+		id: {
+			id: '',
+			server: ''
+		}
 	});
 
 	let datenow = $state(Date.now());
@@ -68,7 +72,15 @@
 	})
 </script>
 
-<button onclick={(e)=>{click(e)}} oncontextmenu={(e)=>{rightClick(e)}} onmouseenter={(e)=>{hover(e)}} onmouseleave={(e)=>{leave(e)}} class="chatEntry{Number(isSelected)}">
+<button onclick={(e)=>{
+	currentChat.set({
+		type: data.chat_type,
+		id: {
+			id: tempData.id.id,
+			server: tempData.id.server
+		}
+	})
+}} oncontextmenu={(e)=>{rightClick(e)}} onmouseenter={(e)=>{hover(e)}} onmouseleave={(e)=>{leave(e)}} class="chatEntry{Number(isSelected)}">
 	<Avatar {pfpLink} />
 	<div class="info">
 		<div class="line">

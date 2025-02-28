@@ -11,8 +11,11 @@
 	import Icon from '$lib/kit/Icon.svelte';
 	import MoreButtonCtxMenu from '$lib/kit/layout/sidebarElems/MoreButtonCtxMenu.svelte';
 	import { getUser } from '$lib/scripts/requests';
-	
+	import { currentChat } from '$lib/scripts/chatViews';	
 
+	currentChat.subscribe((value) => {
+		console.log(value)
+	})
 
 	$effect(() => {
 		if (!browser) return;
@@ -64,7 +67,13 @@
 		<Settings />
 		<Sidebar />
 		<hr class="separator" />
-		<View />
+		{#if $currentChat.id.id.length > 0}
+			<View />
+		{:else}
+			<div class="noChatSelected">
+				Select a chat
+			</div>
+		{/if}
 	</div>
 {:else}
 	<div class="main" style="
@@ -82,6 +91,7 @@
 {/if}
 
 <style lang="scss">
+	@use '$lib/style/colors.scss' as c;
 
 	#loadingScreen{
 		animation: spin 2s linear infinite; 
@@ -95,5 +105,14 @@
 		to {
 			transform: rotateZ(360deg);
 		}
+	}
+
+	.noChatSelected{
+		font-size: 24px;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
 	}
 </style>

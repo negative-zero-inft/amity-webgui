@@ -11,7 +11,7 @@ export const folder = writable({
 })
 
 export const currentChat = writable<{
-    type: "dm" | "channel" | "soapbox",
+    type: "dm" | "channel" | "group" | "soapbox",
     id: {
         id: string,
         server: string
