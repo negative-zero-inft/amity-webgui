@@ -7,18 +7,34 @@ export const folder = writable({
     name: "",
     icon: "",
     _id: "",
-    elements: []
+    elements: [],
+    index: 0
 })
 export const currentFolder = writable<{
     name: string,
     icon: string,
     _id: string,
-    elements: string[]
+    elements: string[],
+    index: number   
 }>({
     name: "",
     icon: "",
-    _id: "",
-    elements: []
+    _id: "AC",
+    elements: [],
+    index: 0
+})
+export const previousFolder = writable<{
+    name: string,
+    icon: string,
+    _id: string,
+    elements: string[],
+    index: number   
+}>({
+    name: "",
+    icon: "",
+    _id: "AC",
+    elements: [],
+    index: 0
 })
     
 

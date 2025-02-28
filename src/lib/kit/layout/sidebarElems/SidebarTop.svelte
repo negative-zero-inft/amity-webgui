@@ -5,7 +5,7 @@
 	import NewFolder from './NewFolder.svelte';
 	import { isNewFolder, isUserBar, newFolderE, isFolderCtxMenu, folderClickEvent, folder, isMoreButtonCtxMenu, moreButtonClickEvent } from '$lib/scripts/chatViews';
 	import { user } from '$lib/scripts/globalData';
-	import { currentFolder } from '$lib/scripts/chatViews';
+	import { currentFolder, previousFolder } from '$lib/scripts/chatViews';
 	let scrollContainer: HTMLDivElement | undefined;
 
 	function handleWheel(event: WheelEvent) {
@@ -66,22 +66,39 @@
 	</div>
 	<div class="scroll-horiz" bind:this={scrollContainer} onwheel={handleWheel}>
 		<Button action={()=>{
+			previousFolder.set({
+				name: $currentFolder.name,
+				icon: $currentFolder.icon,
+				_id: $currentFolder._id,
+				elements: $currentFolder.elements,
+				index: $currentFolder.index
+			})
 			currentFolder.set({
 				name: "All chats",
 				icon: "Chat",
 				_id: "AC",
-				elements: $user?.chats.map((e: any) => e._id) || []
+				elements: $user?.chats.map((e: any) => e._id) || [],
+				index: 0
 			})
 		}} style={$currentFolder._id == "AC" ? 6 : 4}><Icon name="Chat" />All chats</Button>
 		{#each $user?.chat_folders || [] as child}
 			<Button
 				action={()=>{
+					previousFolder.set({
+						name: $currentFolder.name,
+						icon: $currentFolder.icon,
+						_id: $currentFolder._id,
+						elements: $currentFolder.elements,
+						index: $currentFolder.index
+					})
 					currentFolder.set({
 						name: child.name,
 						icon: child.icon,
 						_id: child._id,
-						elements: child.elements.map((e: any) => e?.id)
+						elements: child.elements.map((e: any) => e?.id) || [],
+						index: $user?.chat_folders.findIndex((e: any) => e._id == child._id) + 1 || 0
 					})
+					console.log($previousFolder.index, $currentFolder.index)
 				}}
 				hoverAction={(e: MouseEvent) => {
 					if (!$isFolderCtxMenu) folderClickEvent.set(e);
