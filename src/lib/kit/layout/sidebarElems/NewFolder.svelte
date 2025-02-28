@@ -207,7 +207,8 @@
 		padding-top: 56px;
 		box-sizing: border-box;
 		display: grid;
-		grid-template-columns: repeat(6, 1fr);
+		grid-template-columns: repeat(6, 36px);
+		grid-template-rows: repeat(6, 36px);
 		gap: 13px;
 		overflow-y: scroll;
 		overflow-x: hidden;
