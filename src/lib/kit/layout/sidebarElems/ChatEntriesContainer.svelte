@@ -3,6 +3,7 @@
 	import ChatEntry from '../../ChatEntry.svelte';
 	import { user } from '$lib/scripts/globalData';
     import { isHttps, port, server, token } from "$lib/scripts/globalData";
+	import { currentChat } from '$lib/scripts/chatViews';
 
 	let isReallyFireFox = $state<boolean>(false);
 	$effect(() => {
@@ -16,7 +17,7 @@
 		{#each $user?.chats || [] as child} 
 			<!-- magic -->
 
-			<ChatEntry data={child}></ChatEntry>
+			<ChatEntry isSidebar={true} data={child}></ChatEntry>
 		{/each}
 	</div>
 </div>

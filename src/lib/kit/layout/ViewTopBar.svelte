@@ -9,7 +9,7 @@
 
 	currentChat.subscribe(async (value) => {
 		switch($currentChat.type){
-			case "group":
+			case "monogroup":
 				try{
 					const response = await fetch(`http${$isHttps ? "s" : ""}://${value.id.server}:${$port}/group/${value.id.id}/info?token=${$token}`, {
 						method: "GET",
@@ -19,6 +19,7 @@
 						}
 					})
 					chatData = await response.json()
+					console.log(chatData)
 				}catch(e){
 					console.log(e)
 				}

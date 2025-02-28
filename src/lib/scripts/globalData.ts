@@ -33,6 +33,7 @@ export const user = writable<{
         }
     }[],
     chat_folders: {
+        _id: string,
         icon: string,
         name: string,
         elements: [{

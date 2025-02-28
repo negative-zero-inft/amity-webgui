@@ -5,7 +5,7 @@
 	import NewFolder from './NewFolder.svelte';
 	import { isNewFolder, isUserBar, newFolderE, isFolderCtxMenu, folderClickEvent, folder, isMoreButtonCtxMenu, moreButtonClickEvent } from '$lib/scripts/chatViews';
 	import { user } from '$lib/scripts/globalData';
-
+	import { currentFolder } from '$lib/scripts/chatViews';
 	let scrollContainer: HTMLDivElement | undefined;
 
 	function handleWheel(event: WheelEvent) {
@@ -26,6 +26,10 @@
 		isNewFolder.set(!$isNewFolder);
 		newFolderE.set(e);
 	};
+
+	currentFolder.subscribe((value) => {
+		console.log(value)
+	})
 
 </script>
 
@@ -61,9 +65,24 @@
 		><Icon name="More" /></Button>
 	</div>
 	<div class="scroll-horiz" bind:this={scrollContainer} onwheel={handleWheel}>
-		<Button style={6}><Icon name="Chat" />All chats</Button>
+		<Button action={()=>{
+			currentFolder.set({
+				name: "All chats",
+				icon: "Chat",
+				_id: "AC",
+				elements: $user?.chats.map((e: any) => e._id) || []
+			})
+		}} style={$currentFolder._id == "AC" ? 6 : 4}><Icon name="Chat" />All chats</Button>
 		{#each $user?.chat_folders || [] as child}
 			<Button
+				action={()=>{
+					currentFolder.set({
+						name: child.name,
+						icon: child.icon,
+						_id: child._id,
+						elements: child.elements.map((e: any) => e?.id)
+					})
+				}}
 				hoverAction={(e: MouseEvent) => {
 					if (!$isFolderCtxMenu) folderClickEvent.set(e);
 				}}
@@ -74,7 +93,7 @@
 					folder.set((child as any))
 					isFolderCtxMenu.set(true);
 				}}
-				style={4}><Icon name={child.icon} />{child.name || ''}</Button
+				style={$currentFolder._id == child._id ? 6 : 4}><Icon name={child.icon} />{child.name || ''}</Button
 			>
 		{/each}
 		<Button

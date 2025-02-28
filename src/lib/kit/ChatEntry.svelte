@@ -16,10 +16,11 @@
 				server: ''
 			}
 		},
-		click = () => {},
+		click = ()=>{},
 		rightClick = () => {},
 		hover = () => {},
-		leave = () => {}
+		leave = () => {},
+		isSidebar = false
 	} = $props();
 
 	import check from '$lib/minicons/check.svg';
@@ -33,9 +34,11 @@
 		id: {
 			id: '',
 			server: ''
-		}
+		},
+		has_channels: false
 	});
-
+	let isMultiGroup = $state(false);
+	let chatType = $state('');
 	let datenow = $state(Date.now());
 
 	setInterval(() => {
@@ -54,6 +57,8 @@
 						}
 					})
 					tempData = await response.json()
+					if(tempData.has_channels) isMultiGroup = true;
+					chatType = "monogroup";
 				}catch(e){
 					console.log(e)
 				}
@@ -73,8 +78,9 @@
 </script>
 
 <button onclick={(e)=>{
-	currentChat.set({
-		type: data.chat_type,
+	click(e, data, tempData)
+	if(isSidebar && !isMultiGroup) currentChat.set({
+		type: chatType as "group" | "dm" | "channel" | "monogroup" | "soapbox",
 		id: {
 			id: tempData.id.id,
 			server: tempData.id.server

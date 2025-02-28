@@ -9,9 +9,21 @@ export const folder = writable({
     _id: "",
     elements: []
 })
+export const currentFolder = writable<{
+    name: string,
+    icon: string,
+    _id: string,
+    elements: string[]
+}>({
+    name: "",
+    icon: "",
+    _id: "",
+    elements: []
+})
+    
 
 export const currentChat = writable<{
-    type: "dm" | "channel" | "group" | "soapbox",
+    type: "dm" | "channel" | "group" | "monogroup" | "soapbox",
     id: {
         id: string,
         server: string
