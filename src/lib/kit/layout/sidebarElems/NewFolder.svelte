@@ -71,6 +71,7 @@
                 isIconPicker = false
                 icon = "Cube"
                 name = ""
+                chats = []
                 isNewFolder.set(false);
             }
 		}
