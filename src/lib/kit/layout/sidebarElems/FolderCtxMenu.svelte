@@ -34,6 +34,13 @@
         elements = $folder.elements;
     });
 
+    const filteredIcons = () => {
+		if (!iconSearchQuery) return icons;
+		return icons.filter(icon => icon.toLowerCase().includes(iconSearchQuery.toLowerCase()));
+	};
+
+    let iconSearchQuery = $state("");
+
     isFolderCtxMenu.subscribe(() => {
         isIconPicker = false;
         isCtxEdit = false;
@@ -163,21 +170,27 @@
         <Button action={folderUpdateProc} width="100%" style={1}><Icon name="Save"></Icon> Save</Button>
     </div>
 
-    <!-- Icon Picker -->
-    <div bind:this={iconPicker} class="iconPicker" style="left: {isIconPicker ? 0 : 240}px">
-        <div class="iconPickerTop">
-            <Button action={() => { isIconPicker = false; }}><Icon name="Direction/Left"></Icon></Button>
-            <Textbox bgc="black" width="100%" icon="Search" placeholder="Search icons..."></Textbox>
-        </div>
-        <grid class="iconList">
-            {#each icons || [] as child}
-                <Button width="36px; height: 36px;" style={(icon == child.substring(14, child.length - 4)) ? 6 : 4} action={() => {
-                    icon = child.substring(14, child.length - 4);
-                    isIconPicker = false;
-                }}><Icon name={child.substring(14, child.length - 4)} /></Button>
-            {/each}
-        </grid>
-    </div>
+    <!-- icon picker -->
+	<div bind:this={iconPicker} class="iconPicker" style="left: {isIconPicker ? '0px' : '320px'}">
+		<div class="iconPickerTop">
+			<Button action={() => { isIconPicker = false; }}><Icon name="Direction/Left"></Icon></Button>
+			<Textbox
+				bgc="black"
+				width="100%"
+				icon="Search"
+				placeholder="Search icons..."
+				bind:value={iconSearchQuery}
+			></Textbox>
+		</div>
+		<grid class="iconList">
+			{#each filteredIcons() as child}
+				<Button width="36px; height: 36px;" style={(icon == child.substring(14, child.length - 4)) ? 6 : 4} action={() => {
+					icon = child.substring(14, child.length - 4);
+					isIconPicker = false;
+				}}><Icon name={child.substring(14, child.length - 4)} /></Button>
+			{/each}
+		</grid>
+	</div>
 
     <!-- Chat Picker -->
     <div bind:this={chatPickerCtx} class="chatPicker" style="left: {isChatPicker ? "0px" : "320px"}">
@@ -251,17 +264,18 @@
     }
 
     .iconList {
-        width: 300px;
-        height: 320px;
-        padding: v.$spacing-def;
-        padding-top: 56px;
-        box-sizing: border-box;
-        display: grid;
-        grid-template-columns: repeat(6, 1fr);
-        gap: 13px;
-        overflow-y: scroll;
-        overflow-x: hidden;
-        background-color: c.$bg;
+        width: 305px;
+		height: 320px;
+		padding: v.$spacing-def;
+		padding-top: 56px;
+		box-sizing: border-box;
+		display: grid;
+		grid-template-columns: repeat(6, 36px);
+		grid-template-rows: repeat(6, 36px);
+		gap: 13px;
+		overflow-y: scroll;
+		overflow-x: hidden;
+		background-color: c.$bg;
     }
 
     .iconPickerTop {
