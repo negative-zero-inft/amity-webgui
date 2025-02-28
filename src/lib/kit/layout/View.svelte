@@ -2,6 +2,7 @@
 	import Avatar from '../Avatar.svelte';
 	import Button from '../Button.svelte';
 	import Message from '../Message.svelte';
+	import ChatView from './ChatView.svelte';
 	import ChatInfoSidebar from './chatsidebars/ChatInfoSidebar.svelte';
 	import CloudStorageBar from './chatsidebars/CloudStorageSidebar.svelte';
 	import CommandSidear from './chatsidebars/CommandSidear.svelte';
@@ -22,92 +23,7 @@
 	<div class="subView">
 		<div class="userView">
 			<CloudStorageBar></CloudStorageBar>
-			<div class="chatView">
-				<div class="clusterForeign">
-					<Avatar></Avatar>
-					<div class="clusterMessages">
-						<Message>skibidi toilet</Message>
-						<Message isClustered={true}
-							>skibidi toilet
-							asdihlas;udflu.oij;sduoilphasdfuopilhawsdfluoihbasdlofbasdbflkasdbflgikasdbvliasbdloivbasibvkijsdafbvgjknabsdfkhjv
-							bkjdafxbvhbasdfvjkhasdbvjkhasdbfdvgljkasdbfvkljh</Message
-						>
-					</div>
-				</div>
-				<div class="clusterOwn">
-					<div class="clusterMessages" style="align-items: flex-end">
-						<Message isSender={true}
-							>skibidi toilet
-							;jksfdhngluoij;fdgluijfsdnbluijfsdgluijbsdhnikbfhsdglikfhsdnklijsdfhlkivshndkligfsdhoikgsdfhbvuigzdxuhkfgbfsdxuvbsdhvhboikhsfdhbvoihsdvniuynsdcvoiuhasdvoijhnadxcouivbjhsvcxb
-							uibtvx,keshgj,kxlcyiur.,dkthikg9ifr0gol;4[wp;.r,t4iljo567vj6g87ridus5retreg78657h]</Message
-						>
-						<Message isClustered={true} isSender={true}>skibidi toilet</Message>
-					</div>
-				</div>
-				<div class="clusterForeign">
-					<Avatar></Avatar>
-					<div class="clusterMessages">
-						<Message>skibidi toilet</Message>
-						<Message isClustered={true}
-							>skibidi toilet
-							asdihlas;udflu.oij;sduoilphasdfuopilhawsdfluoihbasdlofbasdbflkasdbflgikasdbvliasbdloivbasibvkijsdafbvgjknabsdfkhjv
-							bkjdafxbvhbasdfvjkhasdbvjkhasdbfdvgljkasdbfvkljh</Message
-						>
-					</div>
-				</div>
-				<div class="clusterOwn">
-					<div class="clusterMessages" style="align-items: flex-end">
-						<Message isSender={true}
-							>skibidi toilet
-							;jksfdhngluoij;fdgluijfsdnbluijfsdgluijbsdhnikbfhsdglikfhsdnklijsdfhlkivshndkligfsdhoikgsdfhbvuigzdxuhkfgbfsdxuvbsdhvhboikhsfdhbvoihsdvniuynsdcvoiuhasdvoijhnadxcouivbjhsvcxb
-							uibtvx,keshgj,kxlcyiur.,dkthikg9ifr0gol;4[wp;.r,t4iljo567vj6g87ridus5retreg78657h]</Message
-						>
-						<Message isClustered={true} isSender={true}>skibidi toilet</Message>
-					</div>
-				</div>
-				<div class="clusterForeign">
-					<Avatar></Avatar>
-					<div class="clusterMessages">
-						<Message>skibidi toilet</Message>
-						<Message isClustered={true}
-							>skibidi toilet
-							asdihlas;udflu.oij;sduoilphasdfuopilhawsdfluoihbasdlofbasdbflkasdbflgikasdbvliasbdloivbasibvkijsdafbvgjknabsdfkhjv
-							bkjdafxbvhbasdfvjkhasdbvjkhasdbfdvgljkasdbfvkljh</Message
-						>
-					</div>
-				</div>
-				<div class="clusterOwn">
-					<div class="clusterMessages" style="align-items: flex-end">
-						<Message isSender={true}
-							>skibidi toilet
-							;jksfdhngluoij;fdgluijfsdnbluijfsdgluijbsdhnikbfhsdglikfhsdnklijsdfhlkivshndkligfsdhoikgsdfhbvuigzdxuhkfgbfsdxuvbsdhvhboikhsfdhbvoihsdvniuynsdcvoiuhasdvoijhnadxcouivbjhsvcxb
-							uibtvx,keshgj,kxlcyiur.,dkthikg9ifr0gol;4[wp;.r,t4iljo567vj6g87ridus5retreg78657h]</Message
-						>
-						<Message isClustered={true} isSender={true}>skibidi toilet</Message>
-					</div>
-				</div>
-				<div class="clusterForeign">
-					<Avatar></Avatar>
-					<div class="clusterMessages">
-						<Message>skibidi toilet</Message>
-						<Message isClustered={true}
-							>skibidi toilet
-							asdihlas;udflu.oij;sduoilphasdfuopilhawsdfluoihbasdlofbasdbflkasdbflgikasdbvliasbdloivbasibvkijsdafbvgjknabsdfkhjv
-							bkjdafxbvhbasdfvjkhasdbvjkhasdbfdvgljkasdbfvkljh</Message
-						>
-					</div>
-				</div>
-				<div class="clusterOwn">
-					<div class="clusterMessages" style="align-items: flex-end">
-						<Message isSender={true}
-							>skibidi toilet
-							;jksfdhngluoij;fdgluijfsdnbluijfsdgluijbsdhnikbfhsdglikfhsdnklijsdfhlkivshndkligfsdhoikgsdfhbvuigzdxuhkfgbfsdxuvbsdhvhboikhsfdhbvoihsdvniuynsdcvoiuhasdvoijhnadxcouivbjhsvcxb
-							uibtvx,keshgj,kxlcyiur.,dkthikg9ifr0gol;4[wp;.r,t4iljo567vj6g87ridus5retreg78657h]</Message
-						>
-						<Message isClustered={true} isSender={true}>skibidi toilet</Message>
-					</div>
-				</div>
-			</div>
+			<ChatView></ChatView>
 			<hr class="separator" />
 			<ContactsSidebar></ContactsSidebar>
 			<MapSidebar></MapSidebar>
@@ -127,28 +43,6 @@
 	@use '$lib/style/variables.scss' as v;
 	@use '$lib/style/colors.scss' as c;
 
-	.clusterMessages {
-		display: flex;
-		flex-direction: column;
-		gap: v.$spacing-msg;
-	}
-
-	.clusterForeign {
-		display: flex;
-		flex-direction: row;
-		width: 100%;
-		gap: v.$spacing-msg;
-		align-items: flex-end;
-	}
-
-	.clusterOwn {
-		display: flex;
-		flex-direction: column;
-		width: 100%;
-		align-items: flex-end;
-		gap: v.$spacing-msg;
-	}
-
 	.userView {
 		display: flex;
 		flex-direction: row;
@@ -162,18 +56,6 @@
 		display: flex;
 		flex-direction: column;
 		flex-grow: 1;
-	}
-
-	.chatView {
-		width: 100%;
-		overflow-y: scroll;
-		display: flex;
-		flex-direction: column-reverse;
-		padding: v.$spacing-def;
-		gap: v.$spacing-def;
-		box-sizing: border-box;
-		padding-top: 10px;
-		height: 100%;
 	}
 
 	.view {
