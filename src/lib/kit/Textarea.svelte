@@ -71,6 +71,7 @@
 		width: 16px;
 		height: 16px;
 		cursor: text;
+		z-index: 1000;
 	}
 
 	.textarea-wrapper {

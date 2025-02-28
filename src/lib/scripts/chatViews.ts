@@ -10,6 +10,20 @@ export const folder = writable({
     elements: []
 })
 
+export const currentChat = writable<{
+    type: "dm" | "channel" | "soapbox",
+    id: {
+        id: string,
+        server: string
+    }
+}>({
+    type: "dm",
+    id: {
+        id: "",
+        server: ""
+    }
+});
+
 export const isMoreButtonCtxMenu = writable<boolean>(false);
 export const moreButtonClickEvent = writable<MouseEvent>();
 
