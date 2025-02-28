@@ -5,19 +5,19 @@
 	import Label from "$lib/kit/Label.svelte";
 	import Textbox from "$lib/kit/Textbox.svelte";
 	import ChatEntry from '../../ChatEntry.svelte';
-
+    import IconPicker from '$lib/kit/layout/IconPicker.svelte';
+    
 	// Internal Imports
 	import { isNewFolder, newFolderE, windowClickEvent } from "$lib/scripts/chatViews";
 	import { getUser, iconList } from "$lib/scripts/requests";
 	import { isFirefox } from '$lib/scripts/isFirefox';
 	import { user, isHttps, port, server, token } from "$lib/scripts/globalData";
+    import { isIconPicker, icon } from '$lib/scripts/iconPicker';
 
 	// State Variables
 	let isReallyFireFox = $state<boolean>(false);
 	let name: string | undefined = $state();
-	let icon: string | undefined = $state("Cube");
 	let ctxMenu: HTMLElement | undefined = $state();
-	let isIconPicker: boolean = $state(false);
 	let isChatPicker: boolean = $state(false);
 	let chatPickerCtx: HTMLElement | undefined = $state();
 	let icons = iconList();
@@ -35,7 +35,7 @@
 		try {
 			const response = await fetch(`http${$isHttps ? "s" : ""}://${$server}:${$port}/user/me/chatfolders/add?token=${$token}`, {
 				method: "POST",
-				body: JSON.stringify({ name, icon, elements: chats }),
+				body: JSON.stringify({ name, icon: $icon, elements: chats }),
 				headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" }
 			});
 			getUser($isHttps, $server, $port, ($token as string));
@@ -46,7 +46,7 @@
 	};
 
 	const resetForm = () => {
-		icon = "Cube";
+		icon.set("cube");
 		name = "";
 		chats = [];
 		isNewFolder.set(false);
@@ -66,8 +66,8 @@
 			e?.clientY > (ctxMenu?.offsetTop as number) + (ctxMenu?.offsetHeight as number)
         ) {
 			isNewFolder.set(false); 
-			iconSearchQuery = "";
-			isIconPicker = false;
+            icon.set("cube");
+			isIconPicker.set(false);
 			isChatPicker = false;   
 		}
 	});
@@ -83,11 +83,11 @@
 		transform: translateY({$isNewFolder ? '0' : '300px'});
 		top: {$isNewFolder ? 88 : -36}px;
 		left: {$isNewFolder ? $newFolderE?.clientX > 320 ? $newFolderE?.clientX - (ctxMenu?.clientWidth || 300) / 2 : 10 : $newFolderE?.clientX - 150}px;
-		height: {isIconPicker ? 300 : isChatPicker ? chatPickerCtx?.clientHeight : 200}px;
+		height: {$isIconPicker ? 300 : isChatPicker ? chatPickerCtx?.clientHeight : 200}px;
 	"
 >
     <!-- default view -->
-	<div class="defaultView" style="left: {isIconPicker || isChatPicker ? '-320px' : '10px'}">
+	<div class="defaultView" style="left: {$isIconPicker || isChatPicker ? '-320px' : '10px'}">
 		<Label icon="Plus" label="New folder"></Label>
 		<Textbox
 			onkeydown={(e: KeyboardEvent) => { if (e.key == "Enter") makeFolder(); }}
@@ -97,8 +97,8 @@
 			icon="Rename"
 			placeholder="Name"
 		></Textbox>
-		<Button action={() => { isIconPicker = true; }} scaleClick={0.95} scaleHover={1.05} alignment="space-between" width="100%">
-			<div class="elem-horiz"><Icon name={icon}></Icon> Icon <div style="opacity: 0.5">{icon}</div></div>
+		<Button action={() => { isIconPicker.set(true); }} scaleClick={0.95} scaleHover={1.05} alignment="space-between" width="100%">
+			<div class="elem-horiz"><Icon name={$icon}></Icon> Icon <div style="opacity: 0.5">{$icon}</div></div>
 			<Icon name="Direction/Right"></Icon>
 		</Button>
 		<Button action={() => { isChatPicker = true; }} scaleClick={0.95} scaleHover={1.05} alignment="space-between" width="100%">
@@ -111,27 +111,8 @@
 	</div>
 
     <!-- icon picker -->
-	<div class="iconPicker" style="left: {isIconPicker ? '0px' : '320px'}">
-		<div class="iconPickerTop">
-			<Button action={() => { isIconPicker = false; }}><Icon name="Direction/Left"></Icon></Button>
-			<Textbox
-				bgc="black"
-				width="100%"
-				icon="Search"
-				placeholder="Search icons..."
-				bind:value={iconSearchQuery}
-			></Textbox>
-		</div>
-		<grid class="iconList">
-			{#each filteredIcons() as child}
-				<Button width="36px; height: 36px;" style={(icon == child.substring(14, child.length - 4)) ? 6 : 4} action={() => {
-					icon = child.substring(14, child.length - 4);
-					isIconPicker = false;
-				}}><Icon name={child.substring(14, child.length - 4)} /></Button>
-			{/each}
-		</grid>
-	</div>
-
+    <IconPicker></IconPicker>
+    
     <!-- chat picker -->
 	<div bind:this={chatPickerCtx} class="chatPicker" style="left: {isChatPicker ? '0px' : '320px'}">
 		<div class="chatPickerTop">
@@ -198,46 +179,6 @@
 		position: absolute;
 		padding: v.$spacing-def;
 		z-index: 21374;
-	}
-
-	.iconList {
-		width: 305px;
-		height: 320px;
-		padding: v.$spacing-def;
-		padding-top: 56px;
-		box-sizing: border-box;
-		display: grid;
-		grid-template-columns: repeat(6, 36px);
-		grid-template-rows: repeat(6, 36px);
-		gap: 13px;
-		overflow-y: scroll;
-		overflow-x: hidden;
-		background-color: c.$bg;
-	}
-
-	.iconPickerTop {
-		top: 0;
-		left: 0;
-		width: 302px;
-		box-sizing: border-box;
-		flex-shrink: 0;
-		background: linear-gradient(to bottom, #000000ff 50%, #00000000);
-		display: flex;
-		flex-direction: row;
-		gap: v.$spacing-def;
-		position: absolute;
-		padding: v.$spacing-def;
-		z-index: 21374;
-	}
-
-	.iconPicker {
-		top: 0;
-		width: 280px;
-		display: flex;
-		flex-direction: column;
-		gap: v.$spacing-def;
-		position: absolute;
-		transition: 0.25s;
 	}
 
 	.defaultView {

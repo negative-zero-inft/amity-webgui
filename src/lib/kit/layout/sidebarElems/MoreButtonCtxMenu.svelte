@@ -11,7 +11,7 @@
 	import Label from '$lib/kit/Label.svelte';
 	import Textarea from '$lib/kit/Textarea.svelte';
 	import Switch from '$lib/kit/Switch.svelte';
-	import { getUser, iconList } from '$lib/scripts/requests';
+	import { getUser } from '$lib/scripts/requests';
 
 	let {} = $props();
 

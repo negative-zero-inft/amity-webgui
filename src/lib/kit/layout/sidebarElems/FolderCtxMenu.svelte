@@ -5,20 +5,20 @@
     import Textbox from '$lib/kit/Textbox.svelte';
     import Label from '$lib/kit/Label.svelte';
     import ChatEntry from '../../ChatEntry.svelte';
+    import { isIconPicker, icon } from '$lib/scripts/iconPicker';
 
     // Internal Imports
     import { isHttps, port, server, token, user } from "$lib/scripts/globalData";
     import { windowClickEvent, isFolderCtxMenu, folderClickEvent, folder } from '$lib/scripts/chatViews';
     import { getUser, iconList } from "$lib/scripts/requests";
     import { isFirefox } from '$lib/scripts/isFirefox';
+    import IconPicker from '$lib/kit/layout/IconPicker.svelte';
 
     // State Variables
     let isChatPicker: boolean = $state(false);
     let chatPickerCtx: HTMLElement | undefined = $state();
-    let icon = $state($folder.icon);
     let name = $state($folder.name);
     let elements = $state<{ _id: string, chat_type: string, id: { id: string, server: string } }[]>($folder.elements);
-    let isIconPicker = $state(false);
     let ctxMenu: HTMLElement | undefined = $state();
     let isCtxEdit: boolean = $state(false);
     let ctxDef: HTMLElement | undefined = $state();
@@ -29,13 +29,13 @@
 
     // Subscriptions
     folder.subscribe(() => {
-        icon = $folder.icon;
+        icon.set($folder.icon);
         name = $folder.name;
         elements = $folder.elements;
     });
 
     isFolderCtxMenu.subscribe(() => {
-        isIconPicker = false;
+        isIconPicker.set(false);
         isCtxEdit = false;
         isChatPicker = false;
     });
@@ -47,7 +47,7 @@
             e?.clientY < (ctxMenu?.offsetTop as number) || 
             e?.clientY > (ctxMenu?.offsetTop as number) + (ctxMenu?.offsetHeight as number)
         ) {
-            isIconPicker = false;
+            isIconPicker.set(false);
             isCtxEdit = false;
             $isFolderCtxMenu = false;
         }
@@ -111,23 +111,23 @@
     position: absolute;
     left: {			
         (($folderClickEvent as MouseEvent)?.clientX < 130) ? 10 :
-        isIconPicker || isChatPicker ? (($folderClickEvent as MouseEvent)?.clientX < 170) ? 10 :
+        $isIconPicker || isChatPicker ? (($folderClickEvent as MouseEvent)?.clientX < 170) ? 10 :
         ($folderClickEvent as MouseEvent)?.clientX - 160 : 
         ($folderClickEvent as MouseEvent)?.clientX - 120
     }px;
     scale: {$isFolderCtxMenu ? 1 : 0};
     top: {$isFolderCtxMenu ? 56 + 32 + 5 : 16}px;
     z-index: 12831928471983412381931723071;
-    width: {isIconPicker || isChatPicker ? 300 : 240}px;
-    height: {isCtxEdit ? isIconPicker ? iconPicker?.clientHeight : isChatPicker ? chatPickerCtx?.clientHeight : ctxEdit?.clientHeight : ctxDef?.clientHeight}px;
+    width: {$isIconPicker || isChatPicker ? 300 : 240}px;
+    height: {isCtxEdit ? $isIconPicker ? 320 : isChatPicker ? chatPickerCtx?.clientHeight : ctxEdit?.clientHeight : ctxDef?.clientHeight}px;
     padding: 0;
 "
 >
     <!-- Default Context Menu View -->
     <div bind:this={ctxDef} class="defaultCtxMenuView" style="left: {isCtxEdit ? -240 : 0}px">
         <div class="elements-horiz" style="justify-content: space-between; padding-right: 5px;">
-            <Label icon="Folder/Default" label={name || icon}></Label>
-            <Icon name={icon}></Icon>
+            <Label icon="Folder/Default" label={name || $icon}></Label>
+            <Icon name={$icon}></Icon>
         </div>
         <Button
             action={() => { isCtxEdit = true; }}
@@ -143,17 +143,17 @@
     </div>
 
     <!-- Edit Context Menu View -->
-    <div bind:this={ctxEdit} class="editCtxMenuView" style="left: {isCtxEdit ? isIconPicker || isChatPicker ? -240 : 0 : 240}px">
+    <div bind:this={ctxEdit} class="editCtxMenuView" style="left: {isCtxEdit ? $isIconPicker || isChatPicker ? -240 : 0 : 240}px">
         <div class="menuTop">
             <Button action={() => {
-                icon = $folder.icon;
+                icon.set($folder.icon);
                 name = $folder.name;
                 isCtxEdit = false;
             }}><Icon name="Direction/Left"></Icon></Button>
             <Textbox maxlength={32} bind:value={name} width="100%" icon="Rename" placeholder="Folder name"></Textbox>
         </div>
-        <Button action={() => { isIconPicker = true; }} scaleClick={0.95} scaleHover={1.05} alignment="space-between" width="100%">
-            <div class="elem-horiz"><Icon name={icon}></Icon> Icon <div style="opacity: 0.5">{icon}</div> </div>
+        <Button action={() => { isIconPicker.set(true); }} scaleClick={0.95} scaleHover={1.05} alignment="space-between" width="100%">
+            <div class="elem-horiz"><Icon name={$icon}></Icon> Icon <div style="opacity: 0.5">{$icon}</div> </div>
             <Icon name="Direction/Right"></Icon>
         </Button>
         <Button action={() => { isChatPicker = true; }} scaleClick={0.95} scaleHover={1.05} alignment="space-between" width="100%">
@@ -164,20 +164,7 @@
     </div>
 
     <!-- Icon Picker -->
-    <div bind:this={iconPicker} class="iconPicker" style="left: {isIconPicker ? 0 : 240}px">
-        <div class="iconPickerTop">
-            <Button action={() => { isIconPicker = false; }}><Icon name="Direction/Left"></Icon></Button>
-            <Textbox bgc="black" width="100%" icon="Search" placeholder="Search icons..."></Textbox>
-        </div>
-        <grid class="iconList">
-            {#each icons || [] as child}
-                <Button width="36px; height: 36px;" style={(icon == child.substring(14, child.length - 4)) ? 6 : 4} action={() => {
-                    icon = child.substring(14, child.length - 4);
-                    isIconPicker = false;
-                }}><Icon name={child.substring(14, child.length - 4)} /></Button>
-            {/each}
-        </grid>
-    </div>
+    <IconPicker></IconPicker>
 
     <!-- Chat Picker -->
     <div bind:this={chatPickerCtx} class="chatPicker" style="left: {isChatPicker ? "0px" : "320px"}">
