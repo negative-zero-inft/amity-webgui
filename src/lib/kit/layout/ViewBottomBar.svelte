@@ -27,40 +27,49 @@
 </script>
 
 <div class="viewBottomBar">
-	{#if $isRecording}
+		
+	<div class="recordingElements" style={
+		$isRecording ? 'width: 100%; position: relative; opacity: 1; pointer-events: auto;' : 
+		'width: 0px; position: absolute; opacity: 0; pointer-events: none;'
+		}>
 		<Button action={() => {isRecording.set(!$isRecording)}} style={3}><Icon name="X"></Icon></Button>
-		<RecordingBar></RecordingBar>
-	{:else}
-		<Button
+		<RecordingBar timestamp={$isRecording ? new Date().getTime() + 1 : new Date().getTime() + 1}></RecordingBar>
+	</div>
+	<Button
 		width="36px"
 		style={$isCloudStorageBar ? 2 : 0}
 		action={() => {
 			setActive("cloud")
-		}}><Icon name={$isCloudStorageBar ? 'X' : 'Plus'} /></Button
-		>
-		<TextArea 
-			onkeydown={(e) => {
-				if(e.key === 'Enter' && e.shiftKey){
-					console.log('shift enter');
-				}else if(e.key === 'Enter'){
-					e.preventDefault();
-					senMessage()
-				}
-			}}
-			zIndex={12837} 
-			bgc="black" 
-			bind:value={message} 
-			height={message.includes('\n') ? message.split('\n').length * 15 + 20 + 'px' : '36px'} 
-			placeholder="Message General" 
-			icon={message.includes('\n') ? '' : 'Chat'} 
-			width="100%" 
-		/>
+		}}>
+		<Icon name={$isCloudStorageBar ? 'X' : 'Plus'} />
+	</Button>
+	<TextArea 
+		style="max-height: calc(100vh - 20px);"
+		onkeydown={(e: KeyboardEvent) => {
+			if(e.key === 'Enter' && e.shiftKey){
+				console.log('shift enter');
+			}else if(e.key === 'Enter'){
+				e.preventDefault();
+				senMessage()
+			}else if(e.key === 'Escape'){
+				message = '';
+			}
+		}}
+		zIndex={12837} 
+		bgc="black" 
+		bind:value={message} 
+		height={message.includes('\n') ? message.split('\n').length * 15 + 20 + 'px' : '36px'} 
+		placeholder="Message General" 
+		icon={message.includes('\n') ? '' : 'Chat'} 
+		width="100%" 
+	/>
+	<div class="elements-horiz">
 		<Button
 			width="36px"
 			style={$isContactsBar ? 2 : 0}
 			action={() => {
 				setActive('contacts');
-			}}><Icon name={$isContactsBar ? 'X' : 'Users'} /></Button
+		}}><Icon name={$isContactsBar ? 'X' : 'Users'} /></Button
 		>
 		<Button
 			width="36px"
@@ -104,19 +113,32 @@
 				setActive('gifs');
 			}}><Icon name={$isGifBar ? 'X' : 'GIF'} /></Button
 		>
-	{/if}
-	<Button
-		width="36px"
-		style={$isRecording ? 1 : 0}
-		action={() => {
-			isRecording.set(!$isRecording)
-		}}><Icon name={$isRecording ? 'Send' : 'Microphone'} /></Button
-	>
+		<Button
+			width="36px"
+			style={$isRecording ? 1 : 0}
+			action={() => {
+				isRecording.set(!$isRecording)
+			}}><Icon name={$isRecording ? 'Send' : 'Microphone'} /></Button
+		>
+	</div>
 </div>
 
 <style lang="scss">
 	@use '$lib/style/colors.scss' as c;
 	@use '$lib/style/variables.scss' as v;
+
+	.recordingElements{
+		transition: 0.25s;
+		display: flex;
+		flex-direction: row;
+		gap: v.$spacing-def;
+	}
+
+	.elements-horiz{
+		display: flex;
+		flex-direction: row;
+		gap: v.$spacing-def;
+	}
 
 	.viewBottomBar {
 		height: 56px;

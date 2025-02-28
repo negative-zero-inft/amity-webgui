@@ -9,7 +9,7 @@
 	setInterval(() => {
 		datenow = Date.now();
 	}, 1000);
-    const getTime = (timestamp, datenow) =>{
+    const getTime = (timestamp: number, datenow: number) =>{
         const diff = datenow - timestamp
         const second = diff / 1000
         const seconds = second % 60
