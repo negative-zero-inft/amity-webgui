@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Avatar from '../Avatar.svelte';
 	import Message from '../Message.svelte';
+	import SvelteMarkdown from 'svelte-markdown';
 
 	let { isForeign = false, messages = [] } = $props();
 </script>
@@ -11,9 +12,12 @@
 	{/if}
 	<div class="clusterMessages" style={!isForeign ? 'align-items: flex-end' : ''}>
 		{#each messages as message}
-			<Message isClustered={messages.findIndex((m) => m === message) >= 1} isSender={!isForeign}
-				>{message}</Message
+			<Message 
+				isClustered={messages.findIndex((m) => m === message) >= 1} 
+				isSender={!isForeign}
 			>
+				<SvelteMarkdown source={message} />
+			</Message>
 		{/each}
 	</div>
 </div>

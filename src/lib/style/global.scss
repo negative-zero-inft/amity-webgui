@@ -16,6 +16,39 @@ a{
     color: c.$accent;
 }
 
+p{
+    margin-top: 0;  
+    margin-bottom: 0;
+}
+
+h1{
+    margin-top: 0px;  
+    margin-bottom: 10px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+h2{
+    margin-top: 0px;  
+    margin-bottom: 10px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+h3{
+    margin-top: 0px;  
+    margin-bottom: 10px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+h4{
+    margin-top: 0px;  
+    margin-bottom: 10px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
 .window {
     padding: v.$spacing-def;
     background-color: c.$bg;

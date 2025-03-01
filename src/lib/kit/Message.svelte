@@ -3,7 +3,7 @@
 	let { isSender = false, isClustered = false, children } = $props();
 </script>
 
-<div class="message{Number(isSender)}{Number(isClustered)}">
+<div id="message" class="message{Number(isSender)}{Number(isClustered)}">
 	{@render children?.()}
 </div>
 
