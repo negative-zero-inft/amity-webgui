@@ -3,7 +3,7 @@
 	import Icon from '../Icon.svelte';
 	import Textbox from '../Textbox.svelte';
 	import { currentChat } from '$lib/scripts/chatViews';
-    import { isHttps, port, server, token } from "$lib/scripts/globalData";
+    import { isHttps, port, token } from "$lib/scripts/globalData";
 
 	let chatData = $state();
 
@@ -19,7 +19,6 @@
 						}
 					})
 					chatData = await response.json()
-					console.log(chatData)
 				}catch(e){
 					console.log(e)
 				}
