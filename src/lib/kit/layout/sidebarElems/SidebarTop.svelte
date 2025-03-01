@@ -27,10 +27,6 @@
 		newFolderE.set(e);
 	};
 
-	currentFolder.subscribe((value) => {
-		console.log(value)
-	})
-
 </script>
 
 <div class="sidebar-top">
