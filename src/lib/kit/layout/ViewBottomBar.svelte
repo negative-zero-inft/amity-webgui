@@ -19,7 +19,8 @@
 	import RecordingBar from '../RecordingBar.svelte';
 
 	let message: string = $state('');
-
+	let elements: HTMLDivElement | null = $state(null);
+	let msgelements: HTMLDivElement | null = $state(null);
 	const senMessage = () => {
 		console.log(message);
 		message = '';
@@ -63,7 +64,46 @@
 		icon={message.includes('\n') ? '' : 'Chat'} 
 		width="100%" 
 	/>
-	<div class="elements-horiz">
+	<div bind:this={msgelements} class="elements-horiz" style="
+	position: {message.length > 0 ? 'relative' : 'absolute'};
+	right: {message.length > 0 ? 0 : 0 - (msgelements?.offsetWidth || 0)}px;
+	transition: 0.25s;
+	z-index: 12837;
+	">
+		<Button
+			width="36px"
+			style={$isEmojiBar ? 2 : 0}
+			action={() => {
+				console.log("msg preview")
+			}}
+		>
+			<Icon name={'Eye'} />
+		</Button>
+		<Button
+			width="36px"
+			style={$isEmojiBar ? 2 : 0}
+			action={() => {
+				setActive('emoji');
+			}}
+		>
+			<Icon name={$isEmojiBar ? 'X' : 'Smile'} />
+		</Button>
+		<Button
+			width="36px"
+			style={1}
+			action={() => {
+				senMessage();
+			}}
+		>
+			<Icon name='Send' />
+		</Button>
+	</div>
+	<div bind:this={elements} class="elements-horiz" style="
+		position: {message.length > 0 ? 'absolute' : 'relative'};
+		right: {message.length > 0 ? 0 - (elements?.offsetWidth || 0) : 0}px;
+		transition: 0.25s;
+		z-index: 12837;
+	">
 		<Button
 			width="36px"
 			style={$isContactsBar ? 2 : 0}
@@ -141,6 +181,8 @@
 	}
 
 	.viewBottomBar {
+		position: relative;
+		overflow-y: visible !important;
 		height: 56px;
 		bottom: 0px;
 		flex-shrink: 0;
