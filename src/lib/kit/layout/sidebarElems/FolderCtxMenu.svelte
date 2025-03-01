@@ -49,10 +49,12 @@
 
     windowClickEvent.subscribe((e) => {
         if (
-            e?.clientX < (ctxMenu?.offsetLeft as number) || 
-            e?.clientX > (ctxMenu?.offsetLeft as number) + (ctxMenu?.offsetWidth as number) ||
-            e?.clientY < (ctxMenu?.offsetTop as number) || 
-            e?.clientY > (ctxMenu?.offsetTop as number) + (ctxMenu?.offsetHeight as number)
+            (
+                e?.clientX < (ctxMenu?.offsetLeft as number) || 
+                e?.clientX > (ctxMenu?.offsetLeft as number) + (ctxMenu?.offsetWidth as number) ||
+                e?.clientY < (ctxMenu?.offsetTop as number) || 
+                e?.clientY > (ctxMenu?.offsetTop as number) + (ctxMenu?.offsetHeight as number)
+            ) && (e.target as HTMLElement)?.id != "folderButton"
         ) {
             isIconPicker = false;
             isCtxEdit = false;
