@@ -59,6 +59,9 @@
 		onclick={(e) => {
 			windowClickEvent.set(e);
 		}}
+		oncontextmenu={(e) => {
+			windowClickEvent.set(e);
+		}}
 	>
 		<Settings />
 		<Sidebar />
