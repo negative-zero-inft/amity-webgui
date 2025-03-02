@@ -118,6 +118,7 @@
 	@use '$lib/style/colors.scss' as c;
 
 	.name{
+		text-align: left;
 		width: 100%;
 		white-space: nowrap;
 		overflow: hidden;
