@@ -17,11 +17,21 @@
 <div 
 	class="loginBg"
 >
-	{#if !$isHttps}
-		<div class="elem-horiz" style="gap: 10px; align-items: center;">
-			You've enabled the developer backend mode. Press the <Icon name="Code"></Icon> button to return to normal mode.
+	<div class="error" style="
+		flex-direction: column;
+		align-items: flex-start;
+		width: max-content; 
+		top: {!$isHttps ? "10px" : "50vh"};
+		scale: {$isHttps ? "0" : "1"};
+		transition: 0.25s;
+	">	
+		<div class="elem-horiz">
+			<Icon name="Warning"></Icon>You've enabled the developer backend mode!
 		</div>
-	{/if}
+		<div class="elem-horiz">
+			<Icon name="Warning"></Icon>If you're not sure what this is, press the <Icon name="Code"></Icon> button to return to normal mode.
+		</div>
+	</div>
 	<div 
 		id="loginWindow"
 		class="window" 

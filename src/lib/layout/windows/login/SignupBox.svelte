@@ -23,6 +23,25 @@
     let isRePswordInvalid = $state(false);
     let isTagInvalid = $state(false);
 
+    view.subscribe((v)=>{
+        if(v == "login"){
+            isUsernameInvalid = false;
+            isPasswordInvalid = false;
+            isInstanceInvalid = false;
+            isRePswordInvalid = false;
+            isTagInvalid = false;
+
+            username = "";
+            password = "";
+            rePsword = "";
+            instance = $server;
+            fileserver = "amity.neg-zero.com";
+            usertag = "";
+
+            isError.set(false);
+        }
+    })
+
     const signUpProcedure = async () =>{
         try{
 
@@ -66,7 +85,7 @@
                 errorValue.set(await response.text())
                 return
             }
-            
+
             view.set("login");
         }catch(e: any){
 
@@ -138,6 +157,10 @@
             icon="Lock/Locked"
             isPassword
         />
+        <Button scaleClick={0.95} scaleHover={1.05} alignment="space-between" width="100%"
+            ><div class="elem-horiz"><Icon name="Cloud"></Icon> File server <div style="opacity: 0.5;">{fileserver}</div></div>
+            <Icon name="Direction/Right"></Icon>
+        </Button>
     </div>
     <div class="elem-horiz">
         <Button

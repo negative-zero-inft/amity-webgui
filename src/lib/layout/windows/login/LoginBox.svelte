@@ -18,6 +18,20 @@
     let isPasswordInvalid = $state(false);
     let isInstanceInvalid = $state(false);
 
+    view.subscribe((v)=>{
+        if(v == "signup"){
+            isUsernameInvalid = false;
+            isPasswordInvalid = false;
+            isInstanceInvalid = false;
+
+            username = "";
+            password = "";
+            instance = $server;
+
+            isError.set(false);
+        }
+    })
+
     const signInProcedure = async () =>{
         try{
 
