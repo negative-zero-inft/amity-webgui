@@ -16,15 +16,27 @@
 		isRecording
 
 	} from '$lib/scripts/chatViews';
+
 	import RecordingBar from '../RecordingBar.svelte';
+	import Cluster from './Cluster.svelte';
 
 	let message: string = $state('');
 	let elements: HTMLDivElement | null = $state(null);
 	let msgelements: HTMLDivElement | null = $state(null);
-	const senMessage = () => {
+	let isPreview = $state(false);
+	let previewButtonEvent: MouseEvent | null = $state(null);
+
+	const sendMessage = () => {
 		console.log(message);
 		message = '';
 	}	
+
+	$effect(() => {
+		if(message.length == 0){
+			isPreview = false;
+		}
+	})
+
 </script>
 
 <div class="viewBottomBar">
@@ -51,7 +63,7 @@
 				console.log('shift enter');
 			}else if(e.key === 'Enter'){
 				e.preventDefault();
-				senMessage()
+				sendMessage()
 			}else if(e.key === 'Escape'){
 				message = '';
 			}
@@ -72,9 +84,10 @@
 	">
 		<Button
 			width="36px"
-			style={$isEmojiBar ? 2 : 0}
-			action={() => {
-				console.log("msg preview")
+			style={isPreview ? 2 : 0}
+			action={(e: MouseEvent) => {
+				isPreview = !isPreview;
+				previewButtonEvent = e;
 			}}
 		>
 			<Icon name={'Eye'} />
@@ -92,11 +105,21 @@
 			width="36px"
 			style={1}
 			action={() => {
-				senMessage();
+				sendMessage();
 			}}
 		>
 			<Icon name='Send' />
 		</Button>
+		<div class="window" style="
+			scale: {isPreview ? 1 : 0};
+			position: absolute;
+			right: {isPreview ? 0 : (36 * 2) + 10}px;
+			bottom: {isPreview ? 56 : -16}px;
+			background-color: #00000080;
+			backdrop-filter: blur(40px);
+		">
+			<Cluster messages={[message]}></Cluster>
+		</div>
 	</div>
 	<div bind:this={elements} class="elements-horiz" style="
 		position: {message.length > 0 ? 'absolute' : 'relative'};
