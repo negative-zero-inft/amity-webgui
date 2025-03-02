@@ -91,17 +91,6 @@ pre{
     transition: 0.25s;
 }
 
-// this prevents svelte compoments from modifying body
-// #body{
-//     background-color: c.$bg;
-//     margin-top: 0px;
-//     margin-right: 0px;
-//     margin-bottom: 0px;
-//     margin-left: 0px;
-//     width: 100vw;
-//     height: 100vh;
-// }
-
 body{
     
     background-color: c.$bg;
@@ -139,15 +128,16 @@ body{
     overflow: hidden;
 }
 
-.elements-horiz{
+.elem-horiz{
     display: flex;
     flex-direction: row;
     gap: v.$spacing-def;
 }
 
-.elements-vert{
+.elem-vert{
     display: flex;
     flex-direction: column;
+    gap: v.$spacing-def;
 }
 
 

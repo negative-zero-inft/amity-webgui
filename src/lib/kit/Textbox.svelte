@@ -25,13 +25,13 @@
 
 <div class="wrapper" style="--w: {width}">
 	{#if icon}
-		<span class="icon {isError ? 'shake' : ''}">
+		<span class="icon {isError ? 'error' : ''}">
 			<Icon name={icon} />
 		</span>
 	{/if}
 	<input 
 		readonly={isImmutable} 
-		class="e{Number(isError)} {isError ? 'shake' : ''}" 
+		class="{isError ? 'error' : ''}" 
 		onkeydown={(e)=>{onkeydown(e)}} 
 		maxlength={maxlength} 
 		bind:value 
@@ -43,46 +43,16 @@
 			--icon: {icon}; 
 			--padding: {padding}px; 
 			{style}; 
-			background-color: {bgc}" />
+			background-color: {bgc}
+		"
+	/>
 </div>
 
 <style lang="scss">
 	@use '$lib/style/variables.scss' as v;
 	@use '$lib/style/colors.scss' as c;
 
-	.e1{
-		background-color: c.$accent-t10; 
-		border-color: c.$accent !important; 
-		background-image: repeating-linear-gradient(
-			-45deg, 
-			transparent 15px, 
-			rgba(255, 0, 0, 0.25) 15px, 
-			rgba(255, 0, 0, 0.25) 35px, 
-			transparent 35px, 
-			transparent 55px 
-		);
-	}
-
-	.icon {
-		width: 16px;
-		height: 16px !important;
-		left: 10px;
-		top: 10px;
-		position: absolute;
-		cursor: text;
-	}
-
-	input:-webkit-autofill,
-	input:-webkit-autofill:focus, 
-	input:-webkit-autofill:active{
-		-webkit-box-shadow: 0 0 0 30px #540000 inset !important;
-		border-color: c.$accent !important;
-		border-width: 1px;
-		-webkit-text-fill-color:white;
-		caret-color: white;
-	}
-
-
+	
 	input {
 		display: flex;
 		padding-left: calc(var(--padding) - 1px);
@@ -100,16 +70,30 @@
 		box-sizing: border-box;
 		@include v.standard-text();
 		transition: 0.25s;
-
-		&:hover {
-			padding-left: calc(var(--padding) - 5px);
-			border-width: 5px;
-		}
-		&:active {
-			transition: 0.1s;
+		
+		&.error{
+			background-color: c.$accent-t10; 
+			border-color: c.$accent !important; 
+			background-image: repeating-linear-gradient(
+				-45deg, 
+				transparent 15px, 
+				rgba(255, 0, 0, 0.25) 15px, 
+				rgba(255, 0, 0, 0.25) 35px, 
+				transparent 35px, 
+				transparent 55px 
+				);
+			}
+			
+			&:hover {
+				padding-left: calc(var(--padding) - 5px);
+				border-width: 5px;
+			}
+			
+			&:active {
+				transition: 0.1s;
 			border-width: 1px;
 		}
-
+		
 		&:focus {
 			border: solid;
 			border-width: 2px;
@@ -117,8 +101,19 @@
 			padding-left: calc(var(--padding) - 2px);
 			outline: none;
 		}
+		
+		&:-webkit-autofill,
+		&:-webkit-autofill:focus, 
+		&:-webkit-autofill:active{
+			-webkit-box-shadow: 0 0 0 30px #540000 inset !important;
+			border-color: c.$accent !important;
+			border-width: 1px;
+			-webkit-text-fill-color:white;
+			caret-color: white;
+		}
+		
 	}
-
+	
 	.wrapper {
 		position: relative;
 		width: var(--w);
@@ -134,7 +129,18 @@
 		100% { transform: translateX(0); }
 	}
 
-	.shake {
+	.error{
 		animation: shake 0.5s;
+	}
+	
+	.icon {
+		width: 16px;
+		height: 16px !important;
+		left: 10px;
+		top: 10px;
+		position: absolute;
+		cursor: text;
+		z-index: 1;
+		background-color: none;
 	}
 </style>
