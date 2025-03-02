@@ -49,7 +49,7 @@
 		{/if}
 		<div class="chatName">
 			<div>{chatData?.name}</div>
-			<div class="subtext">temp</div>
+			<div class="subtext">{chatData?.description || "placeholder"}</div>
 		</div>
 	</div>
 	<div class="elements-horiz" style="gap: 10px">
