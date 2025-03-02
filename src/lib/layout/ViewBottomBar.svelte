@@ -19,7 +19,7 @@
 	} from '$lib/scripts/chatViews';
 
 	import RecordingBar from '../RecordingBar.svelte';
-	import Cluster from './Cluster.svelte';
+	import Cluster from '../kit/messages/MsgCluster.svelte';
 	
 	let message: string = $state('');
 	let elements: HTMLDivElement | null = $state(null);

@@ -1,9 +1,9 @@
 <script lang="ts">
 	import Avatar from '$lib/kit/decor/Avatar.svelte';
-	import Message from '$lib/kit/Message.svelte';
+	import Message from '$lib/kit/messages/Message.svelte';
 	import { server, user } from '$lib/scripts/globalData';
 	import { currentChat } from '$lib/scripts/chatViews';
-	import Cluster from './Cluster.svelte';
+	import Cluster from '../kit/messages/MsgCluster.svelte';
 
 	const messages = [
 		[

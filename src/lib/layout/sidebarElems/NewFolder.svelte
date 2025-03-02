@@ -1,6 +1,6 @@
 <script lang="ts">
 	// External Imports
-	import Button from "$lib/kit/Button.svelte";
+	import Button from "$lib/kit/gizmos/Button.svelte";
 	import Icon from "$lib/kit/Icon.svelte";
 	import Label from "$lib/kit/Label.svelte";
 	import Textbox from "$lib/kit/Textbox.svelte";

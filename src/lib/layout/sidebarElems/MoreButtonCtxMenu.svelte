@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Button from '$lib/kit/Button.svelte';
+	import Button from '$lib/kit/gizmos/Button.svelte';
 	import Icon from '$lib/kit/Icon.svelte';
 	import { isHttps, port, server, token, user } from '$lib/scripts/globalData';
 	import {
@@ -10,7 +10,7 @@
 	import Textbox from '$lib/kit/Textbox.svelte';
 	import Label from '$lib/kit/Label.svelte';
 	import Textarea from '$lib/kit/Textarea.svelte';
-	import Switch from '$lib/kit/Switch.svelte';
+	import Switch from '$lib/kit/gizmos/Switch.svelte';
 	import { getUser, iconList } from '$lib/scripts/requests';
 
 	let {} = $props();

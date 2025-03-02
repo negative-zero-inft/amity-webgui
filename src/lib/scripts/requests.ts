@@ -1,18 +1,7 @@
 import { user } from "./globalData"
 
 export const getUser = async (isHttps:boolean, server:string, port:number, token:string) =>{
-    try{
-        const response = await fetch(`http${isHttps ? "s" : ""}://${server}:${port}/user/me?token=${token}`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                "Access-Control-Allow-Origin": "*"
-            }
-        })
-        user.set(JSON.parse(await response.text()))
-    }catch(e){
-        throw e
-    }
+    user.set(await fetchData(`http${isHttps ? "s" : ""}://${server}:${port}/user/me?token=${token}`))
 }
 
 export const iconList = ()=>{
@@ -24,3 +13,19 @@ export const iconList = ()=>{
         throw error
     }
 }
+
+export const fetchData = async (url: string) => {
+    try {
+        const response = await fetch(url, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*"
+            }
+        });
+        return await response.json();
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
+};

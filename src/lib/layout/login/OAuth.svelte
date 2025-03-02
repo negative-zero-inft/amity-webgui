@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Button from "$lib/kit/Button.svelte";
+	import Button from "$lib/kit/gizmos/Button.svelte";
 	import { isHttps, port, server } from "$lib/scripts/globalData";
 
     let {

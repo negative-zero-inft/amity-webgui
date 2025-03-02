@@ -1,5 +1,5 @@
 <script>
-	import Avatar from './Avatar.svelte';
+	import Avatar from '$lib/kit/decor/Avatar.svelte';
 
 	let { 
 		avatars = [ "amity.png", "guitar.png", "Jump.png" ],

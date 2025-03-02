@@ -1,5 +1,5 @@
 <script lang="ts">
-    import Button from '$lib/kit/Button.svelte';
+    import Button from '$lib/kit/gizmos/Button.svelte';
     import Icon from '$lib/kit/decor/Icon.svelte';
     import AvatarStack from '$lib/kit/decor/AvatarStack.svelte';
 

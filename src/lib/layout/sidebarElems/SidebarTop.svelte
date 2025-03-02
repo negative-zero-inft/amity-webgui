@@ -1,6 +1,6 @@
 <script lang="ts">
 	import AvatarStack from '$lib/kit/decor/AvatarStack.svelte';
-	import Button from '$lib/kit/Button.svelte';
+	import Button from '$lib/kit/gizmos/Button.svelte';
 	import Icon from '$lib/kit/Icon.svelte';
 	import NewFolder from './NewFolder.svelte';
 	import { isNewFolder, isUserBar, newFolderE, isFolderCtxMenu, folderClickEvent, folder, isMoreButtonCtxMenu, moreButtonClickEvent } from '$lib/scripts/chatViews';

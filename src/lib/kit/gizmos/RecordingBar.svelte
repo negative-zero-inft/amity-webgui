@@ -1,7 +1,7 @@
 <!-- SOMEONE FINISH THIS -->
 
 <script lang="ts">
-	import Icon from './Icon.svelte';
+	import Icon from '$lib/kit/decor/Icon.svelte';
 
 	let { timestamp = Date.now() } = $props();
 

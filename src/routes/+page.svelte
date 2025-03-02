@@ -1,7 +1,7 @@
 <script lang="ts">
 	import closeup from '../lib/closeup.png';
 	import amy from '../lib/amy.svg';
-	import Button from '$lib/kit/Button.svelte';
+	import Button from '$lib/kit/gizmos/Button.svelte';
 	import Icon from '$lib/kit/Icon.svelte';
 </script>
 

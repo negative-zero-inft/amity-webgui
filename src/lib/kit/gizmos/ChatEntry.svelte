@@ -1,6 +1,11 @@
 <script lang="ts">
-    import { isHttps, port, server, token } from "$lib/scripts/globalData";
+    import { isHttps, port, token } from "$lib/scripts/globalData";
 	import { currentChat } from "$lib/scripts/chatViews";
+	import { timeAgo } from '$lib/utils/timeAgo';
+	import { fetchData } from '$lib/scripts/requests';
+	import check from '$lib/minicons/check.svg';
+	import Avatar from '$lib/kit/decor/Avatar.svelte';
+
 	let {
 		unreads = 0,
 		isUnreads = unreads != 0,
@@ -23,10 +28,6 @@
 		isSidebar = false
 	} = $props();
 
-	import check from '$lib/minicons/check.svg';
-	import { timeAgo } from '$lib/utils/timeAgo';
-	import Avatar from './decor/Avatar.svelte';
-
 	let tempData = $state({
 		name: '',
 		description: '',
@@ -46,52 +47,39 @@
 		datenow = Date.now();
 	}, 1.5 * 1000);
 	
+	
+
 	const getData = async () => {
-		switch(data.chat_type){
-			case "group":
-				try{
-					const response = await fetch(`http${$isHttps ? "s" : ""}://${data.id.server}:${$port}/group/${data.id.id}/info?token=${$token}`, {
-						method: "GET",
-						headers: {
-							"Content-Type": "application/json",
-							"Access-Control-Allow-Origin": "*"
-						}
-					})
-					tempData = await response.json()
-					if(tempData.has_channels){
-						isMultiGroup = true;
-						chatType = "group";
-					}else{
-						chatType = "monogroup";
-					}
-				}catch(e){
-					console.log(e)
-				}
-				break;
-			case "chat":
-				break;
-			case "soapbox":
-				break;
-			default:
-				break;
+		const url = `http${isHttps ? "s" : ""}://${data.id.server}:${$port}/group/${data.id.id}/info?token=${token}`;
+		const responseData = await fetchData(url);
+
+		if (responseData) {
+			tempData = responseData;
+			isMultiGroup = tempData.has_channels;
+			chatType = isMultiGroup ? "group" : "monogroup";
 		}
-    }
+	};
 
 	$effect(() => {
 		getData()
 	})
 </script>
 
-<button onclick={(e)=>{
-	click(e, data, tempData)
-	if(isSidebar && !isMultiGroup) currentChat.set({
-		type: chatType as "group" | "dm" | "channel" | "monogroup" | "soapbox",
-		id: {
-			id: tempData.id.id,
-			server: tempData.id.server
-		}
-	})
-}} oncontextmenu={(e)=>{rightClick(e)}} onmouseenter={(e)=>{hover(e)}} onmouseleave={(e)=>{leave(e)}} class="chatEntry{Number(isSelected)}">
+<button 
+	onclick={(e)=>{
+		click(e, data, tempData)
+		if(isSidebar && !isMultiGroup) currentChat.set({
+			type: chatType as "group" | "dm" | "channel" | "monogroup" | "soapbox",
+			id: {
+				id: tempData.id.id,
+				server: tempData.id.server
+			}
+		})
+	}} 
+	oncontextmenu={(e)=>{rightClick(e)}} 
+	onmouseenter={(e)=>{hover(e)}} 
+	onmouseleave={(e)=>{leave(e)}} 
+	class="chatEntry {isSelected ? 'selected' : ''}">
 	<Avatar {pfpLink} />
 	<div class="info">
 		<div class="line">
@@ -130,19 +118,60 @@
 <style lang="scss">
 	@use '$lib/style/variables.scss' as v;
 	@use '$lib/style/colors.scss' as c;
-
+	
+	.selected {
+		display: flex;
+		flex-direction: row;
+		padding: v.$spacing-def;
+		gap: v.$spacing-def;
+		width: 100%;
+		background-color: c.$accent-t50;
+		height: 56px;
+		border-radius: v.$corner-elem;
+		border-width: 1px !important;
+		border: solid;
+		border-color: c.$accent;
+		color: c.$text;
+		box-sizing: border-box;
+		@include v.standard-text();
+	
+		&:hover {
+			background-color: c.$accent-t80;
+		}
+		&:active {
+			background-color: c.$accent;
+		}
+		path {
+			fill: c.$text-80;
+		}
+	}
+	
 	button {
 		white-space: nowrap;
 		flex-direction: row !important;
 		width: var(--w);
 		justify-content: center;
 		transition: 0.25s;
-	}
-	button:hover {
-		transform: scale(1.05);
-	}
-	button:active {
-		transform: scale(0.95);
+		display: flex;
+		flex-direction: row;
+		padding: v.$spacing-def;
+		gap: v.$spacing-def;
+		width: 100%;
+		background-color: c.$clickable;
+		height: 56px;
+		border-radius: v.$corner-elem;
+		border: none;
+		color: c.$text;
+		@include v.standard-text();
+	
+		&:hover {
+			background-color: c.$hover;
+			transform: scale(1.05);
+		}
+		&:active {
+			background-color: c.$clicked;
+			transform: scale(0.95);
+		}
 	}
 
 	.unreads {
@@ -190,52 +219,4 @@
 		justify-content: space-between;
 	}
 
-	.chatEntry0 {
-		display: flex;
-		flex-direction: row;
-		padding: v.$spacing-def;
-		gap: v.$spacing-def;
-		width: 100%;
-		background-color: c.$clickable;
-		height: 56px;
-		border-radius: v.$corner-elem;
-		border: none;
-		color: c.$text;
-		@include v.standard-text();
-
-		&:hover {
-			background-color: c.$hover;
-		}
-
-		&:active {
-			background-color: c.$clicked;
-		}
-	}
-
-	.chatEntry1 {
-		display: flex;
-		flex-direction: row;
-		padding: v.$spacing-def;
-		gap: v.$spacing-def;
-		width: 100%;
-		background-color: c.$accent-t50;
-		height: 56px;
-		border-radius: v.$corner-elem;
-		border-width: 1px !important;
-		border: solid;
-		border-color: c.$accent;
-		color: c.$text;
-		box-sizing: border-box;
-		@include v.standard-text();
-
-		&:hover {
-			background-color: c.$accent-t80;
-		}
-		&:active {
-			background-color: c.$accent;
-		}
-		path {
-			fill: c.$text-80;
-		}
-	}
 </style>

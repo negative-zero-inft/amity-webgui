@@ -1,12 +1,12 @@
 <script lang="ts">
-	import Button from '$lib/kit/Button.svelte';
+	import Button from '$lib/kit/gizmos/Button.svelte';
 	import Emoji from '$lib/kit/Emoji.svelte';
 	import Icon from '$lib/kit/Icon.svelte';
 	import Label from '$lib/kit/Label.svelte';
 	import Textbox from '$lib/kit/Textbox.svelte';
 
 	import { isCommandBar } from '$lib/scripts/chatViews';
-	import Command from '$lib/kit/Command.svelte';
+	import Command from '$lib/kit/gizmos/Command.svelte';
 	let animatedSidebar: number = $state(0);
 
 	$effect(() => {

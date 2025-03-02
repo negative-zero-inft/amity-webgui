@@ -1,7 +1,6 @@
 <script lang="ts">
-	import Avatar from '../Avatar.svelte';
-	import Message from '../Message.svelte';
-	import SvelteMarkdown from 'svelte-markdown';
+	import Avatar from '$lib/kit/decor/Avatar.svelte';
+	import Message from '$lib/kit/messages/Message.svelte';
 	import { isHttps, port, token, user } from '$lib/scripts/globalData';
 
 	let { author = {id: "", server: ""}, messages = [], isGroup = false } = $props();
@@ -12,7 +11,7 @@
 		banner: ""
 	})
 
-	let isForeign:boolean = author.id != $user.id.id
+	let isForeign:boolean = author.id != $user?.id.id
 
 	$effect(() => {
 		getAuthor()
@@ -45,8 +44,8 @@
 			<Message 
 				isClustered={messages.findIndex((m) => m === message) >= 1} 
 				isSender={!isForeign}
+				content={message}
 			>
-				<SvelteMarkdown source={message} />
 			</Message>
 		{/each}
 	</div>
