@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Avatar from '$lib/kit/Avatar.svelte';
+	import Avatar from '$lib/kit/decor/Avatar.svelte';
 	import Message from '$lib/kit/Message.svelte';
 	import { server, user } from '$lib/scripts/globalData';
 	import { currentChat } from '$lib/scripts/chatViews';

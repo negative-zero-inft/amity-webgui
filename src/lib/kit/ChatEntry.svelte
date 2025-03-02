@@ -25,7 +25,7 @@
 
 	import check from '$lib/minicons/check.svg';
 	import { timeAgo } from '$lib/utils/timeAgo';
-	import Avatar from './Avatar.svelte';
+	import Avatar from './decor/Avatar.svelte';
 
 	let tempData = $state({
 		name: '',

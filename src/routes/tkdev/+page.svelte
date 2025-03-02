@@ -1,73 +1,106 @@
 <script lang="ts">  
 	import Button from '$lib/kit/Button.svelte';
-	import Label from '$lib/kit/Label.svelte';
-	import Icon from '$lib/kit/Icon.svelte';
-	import Textbox from '$lib/kit/Textbox.svelte';
-	import Textarea from '$lib/kit/Textarea.svelte';
-
+	import Label from '$lib/kit/decor/Label.svelte';
+	import Icon from '$lib/kit/decor/Icon.svelte';
+	import Textbox from '$lib/kit/text/Textbox.svelte';
+	import Textarea from '$lib/kit/text/Textarea.svelte';
+    import Avatar from '$lib/kit/decor/Avatar.svelte';
+    import AvatarStack from '$lib/kit/decor/AvatarStack.svelte';
+	import Emoji from '$lib/kit/decor/Emoji.svelte';
     let isEvil = $state<boolean>(false);
+    let isHover = $state<boolean>(false);
+    let isActive = $state<boolean>(false);
+
 </script>
 
 <div class="devView">
 
+    <Label icon="Image" label="Decorations"></Label>
+    <div class="elem-horiz">
+        <Icon name="Image" />
+        <Avatar/>
+        <Button 
+            hoverAction={()=>{
+                isHover = true;
+            }}
+            leaveAction={()=>{
+                isHover = false;
+            }}
+            mdownAction={()=>{
+                isActive = true;
+            }}
+            mupAction={()=>{
+                isActive = false;
+            }}
+        >
+            <Icon name="Camera/Video" />
+            Stories
+            <AvatarStack isHover={isHover} isActive={isActive} />
+        </Button>
+        <Emoji/>
+    </div>
     <Label icon="Rename" label="Text inputs"></Label>
     <div class="elem-vert">
-        <Textbox
-            onkeydown={(e: KeyboardEvent)=>{
-                if(e.key === 'Enter'){
-                    isEvil = true;
-                    setTimeout(()=>{
-                        isEvil = false;
-                    }, 1000);
-                    e.preventDefault() 
+        <div class="elem-horiz">
+            <Textarea 
+                onkeydown={(e: KeyboardEvent)=>{
+                    if(e.key === 'Enter'){
+                        isEvil = true;
+                        setTimeout(()=>{
+                            isEvil = false;
+                        }, 1000);
+                        e.preventDefault() 
+                    }
                 }}
-            }
-            placeholder="Textbox"
-            isError={isEvil}
-        />
-        <Textarea 
-            onkeydown={(e: KeyboardEvent)=>{
-                if(e.key === 'Enter'){
-                    isEvil = true;
-                    setTimeout(()=>{
-                        isEvil = false;
-                    }, 1000);
-                    e.preventDefault() 
-                }
-            }}
-            placeholder="Textarea" 
-            height="100px" 
-            isError={isEvil}
-        />
-        <Textbox
-            icon="Rename"
-            onkeydown={(e: KeyboardEvent)=>{
-                if(e.key === 'Enter'){
-                    isEvil = true;
-                    setTimeout(()=>{
-                        isEvil = false;
-                    }, 1000);
-                    e.preventDefault() 
+                placeholder="Textarea" 
+                height="100px" 
+                isError={isEvil}
+                />
+            <Textarea 
+                icon="Rename"
+                onkeydown={(e: KeyboardEvent)=>{
+                    if(e.key === 'Enter'){
+                        isEvil = true;
+                        setTimeout(()=>{
+                            isEvil = false;
+                        }, 1000);
+                        e.preventDefault() 
+                    }
                 }}
-            }
-            placeholder="Textbox"
-            isError={isEvil}
-        />
-        <Textarea 
-            icon="Rename"
-            onkeydown={(e: KeyboardEvent)=>{
-                if(e.key === 'Enter'){
-                    isEvil = true;
-                    setTimeout(()=>{
-                        isEvil = false;
-                    }, 1000);
-                    e.preventDefault() 
-                }
-            }}
-            placeholder="Textarea" 
-            height="100px" 
-            isError={isEvil}
-        />
+                placeholder="Textarea" 
+                height="100px" 
+                isError={isEvil}
+            />
+            </div>
+            <div class="elem-horiz">
+                <Textbox
+                    onkeydown={(e: KeyboardEvent)=>{
+                        if(e.key === 'Enter'){
+                            isEvil = true;
+                            setTimeout(()=>{
+                                isEvil = false;
+                            }, 1000);
+                            e.preventDefault() 
+                        }}
+                    }
+                    placeholder="Textbox"
+                    isError={isEvil}
+                />
+                <Textbox
+                    icon="Rename"
+                    onkeydown={(e: KeyboardEvent)=>{
+                        if(e.key === 'Enter'){
+                            isEvil = true;
+                            setTimeout(()=>{
+                                isEvil = false;
+                            }, 1000);
+                            e.preventDefault() 
+                        }}
+                    }
+                    placeholder="Textbox"
+                    isError={isEvil}
+                />
+        </div>
     </div>
     <Label icon="Button" label="Buttons"></Label>
     <div class="elem-horiz">

@@ -10,8 +10,11 @@
 		scaleHover = 1.1,
 		scaleClick = 0.9,
 		hoverAction = ()=>{},
+		leaveAction = ()=>{},
 		contextmenu=()=>{},
-		tooltip = ""
+		tooltip = "",
+		mdownAction = ()=>{},
+		mupAction = ()=>{},
 	} = $props();
 
 </script>
@@ -31,8 +34,17 @@
 	onclick={(e) => {
 		action(e);
 	}}
+	onmousedown={(e) =>{
+		mdownAction(e)
+	}}
+	onmouseup={(e) =>{
+		mupAction(e)
+	}}
 	onmouseover={(e) =>{
 		hoverAction(e)
+	}}
+	onmouseout={(e) =>{
+		leaveAction(e)
 	}}
 >
 	{@render children?.()}

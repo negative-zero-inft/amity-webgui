@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Icon from '$lib/kit/Icon.svelte';
+	import Icon from '$lib/kit/decor/Icon.svelte';
 	let { icon = 'NegZero', label = 'label' } = $props();
 </script>
 

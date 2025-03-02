@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Avatar from '$lib/kit/Avatar.svelte';
+	import Avatar from '$lib/kit/decor/Avatar.svelte';
 	import Button from '$lib/kit/Button.svelte';
 	import Icon from '$lib/kit/Icon.svelte';
 	import { getContext } from 'svelte';
