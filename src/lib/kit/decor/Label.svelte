@@ -3,7 +3,7 @@
 	let { 
 		icon = 'NegZero', 
 		label = 'label',
-		children,
+		children = null as any,
 		width = '100%'
 	} = $props();
 
