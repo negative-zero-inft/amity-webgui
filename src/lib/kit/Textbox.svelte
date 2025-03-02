@@ -52,7 +52,7 @@
 
 	.e1{
 		background-color: c.$accent-t10; 
-		border-color: c.$accent; 
+		border-color: c.$accent !important; 
 		background-image: repeating-linear-gradient(
 			-45deg, 
 			transparent 15px, 

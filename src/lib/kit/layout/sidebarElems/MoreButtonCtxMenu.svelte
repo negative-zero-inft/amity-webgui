@@ -202,6 +202,7 @@
 		<Label icon="Users" label="New group" />
 		<Textbox 
 			onkeydown={(e: KeyboardEvent) => {
+				isGCNameInvalid = false;
 				if (e.key === 'Enter') {
 					createGC();
 				}

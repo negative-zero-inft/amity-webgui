@@ -52,8 +52,8 @@
 	@use '$lib/style/colors.scss' as c;
 
 	.e1{
-		background-color: c.$accent-t10; 
-		border-color: c.$accent; 
+		background-color: c.$accent-t10 !important; 
+		border-color: c.$accent !important; 
 		background-image: repeating-linear-gradient(
 			-45deg, 
 			transparent 15px, 
