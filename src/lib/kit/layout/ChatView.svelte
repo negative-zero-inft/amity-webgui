@@ -38,7 +38,14 @@
 				date: new Date(),
 				content: "testoid"
 			},
-
+			{
+				date: new Date(),
+				content: "testoid"
+			},
+			{
+				date: new Date(),
+				content: "# testoid"
+			}
 		],
 	]
 </script>

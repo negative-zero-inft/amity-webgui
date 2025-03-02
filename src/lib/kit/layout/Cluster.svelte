@@ -15,7 +15,6 @@
 	let isForeign:boolean = author.id != $user.id.id
 
 	$effect(() => {
-		console.log(author, isForeign)
 		getAuthor()
 	})
 
