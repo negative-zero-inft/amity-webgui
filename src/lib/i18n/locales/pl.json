@@ -11,13 +11,13 @@
         "login": "Zaloguj się",
         "forgotpassword": "Zapomniałeś hasła?",
         "password": "Hasło",
-        "username": "Nazwa użytkownika",
+        "username": "Tag użytkownika",
         "instanceURL": "URL serwera",
         "serverUnreachable": "Ten serwer jest offline lub nie istnieje",
         "fillAllSpaces": "Wypełnij wszystkie pola"
     },
     "signupBox": {
-        "username": "Nazwa użytkownika",
+        "username": "Twój tag",
         "instanceURL": "URL serwera",
         "usertag": "Tag użytkownika",
         "password": "Hasło",
