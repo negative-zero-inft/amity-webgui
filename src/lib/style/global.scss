@@ -1,6 +1,7 @@
 @use "colors.scss" as c;
 @use "variables.scss" as v;
 @import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Mono:ital,wght@0,200..800;1,200..800&display=swap');
 
 html {
     @include v.standard-text();
@@ -19,6 +20,10 @@ a{
 p{
     margin-top: 0;  
     margin-bottom: 0;
+    &:has(code){
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
 }
 
 h1{
@@ -52,6 +57,12 @@ h4{
 ul{
     margin-top: 0px;
     margin-bottom: 0px;
+}
+
+code{
+    background-color: #00000080;
+    padding: 5px;
+    border-radius: 5px;
 }
 
 .window {

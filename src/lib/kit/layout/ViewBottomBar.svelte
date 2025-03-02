@@ -117,6 +117,7 @@
 			bottom: {isPreview ? 56 : -16}px;
 			background-color: #00000080;
 			backdrop-filter: blur(40px);
+			border-radius: 25px 25px 15px 25px;
 		">
 			<Cluster messages={[message]}></Cluster>
 		</div>
