@@ -32,6 +32,13 @@
 	let channels: {name: string, type: "text" | "voice", icon: string}[] = $state([]);
 	let icon: string = $state('Cube');
 	let channelName: string = $state('');
+	let icons = iconList();
+	let iconSearchQuery: string = $state("");
+	let ctxIconPicker: HTMLElement | undefined = $state();
+	const filteredIcons = () => {
+		if (!iconSearchQuery) return icons;
+		return icons.filter(icon => icon.toLowerCase().includes(iconSearchQuery.toLowerCase()));
+	};
 	
 	isMoreButtonCtxMenu.subscribe(() => {});
 
@@ -97,11 +104,11 @@
 	class="window"
 	style="
 		position: absolute;
-		left: calc({$moreButtonClickEvent?.clientX}px - {currentView === 'newGC' || currentView === 'newGCChannels' || currentView === 'channelMaker' ? 160 : 120}px);
+		left: calc({$moreButtonClickEvent?.clientX}px - {currentView === 'newGC' || currentView === 'newGCChannels' || currentView === 'channelMaker' ? 160 : currentView === 'iconPicker' ? 150 : 120}px);
 		scale: {$isMoreButtonCtxMenu ? 1 : 0};
 		top: {$isMoreButtonCtxMenu ? 56 : -28}px;
 		z-index: 12831928471983412381931723071;
-		width: {currentView === 'newGC' || currentView === 'newGCChannels' || currentView === 'channelMaker' ? 320 : 240}px;
+		width: {currentView === 'newGC' || currentView === 'newGCChannels' || currentView === 'channelMaker' ? 320 : currentView === 'iconPicker' ? 300 : 240}px;
 		height: {
 			currentView === 'default' ? ctxDef?.clientHeight : 
 			currentView === 'new' ? ctxNew?.clientHeight : 
@@ -109,6 +116,7 @@
 			currentView === "newGC" ? ctxNewGC?.clientHeight : 
 			currentView === "newGCChannels" ? ctxNewGCChannels?.clientHeight : 
 			currentView === "channelMaker" ? ctxChannelMaker?.clientHeight : 
+			currentView === "iconPicker" ? ctxIconPicker?.clientHeight : 
 			ctxNewGC?.clientHeight
 		}px; 
 		padding: 0;
@@ -402,6 +410,38 @@
 			><Icon name="Plus"></Icon> Create channel</Button>
 		</div>
 	</div>
+
+	<!-- Icon picker context menu view -->
+	<div bind:this={ctxIconPicker} id="iconPickerCtxMenu" class="defaultCtxMenuView" style="
+		left: {currentView === 'iconPicker' ? 0 : previousView === 'iconPicker' ? -320 : 320}px;
+		opacity: {currentView === 'iconPicker' || previousView === 'iconPicker' || previousView === 'channelMaker'
+			? 1
+			: 0};
+		width: 300px;
+	">
+		<div class="iconPickerTop">
+			<Button action={() => { 
+				currentView = 'channelMaker';
+				previousView = 'channelMaker';
+			 }}><Icon name="Direction/Left"></Icon></Button>
+			<Textbox
+				bgc="black"
+				width="100%"
+				icon="Search"
+				placeholder="Search icons..."
+				bind:value={iconSearchQuery}
+			></Textbox>
+		</div>
+		<grid class="iconList">
+			{#each filteredIcons() as child}
+				<Button width="36px; height: 36px;" style={(icon == child.substring(14, child.length - 4)) ? 6 : 4} action={() => {
+					icon = child.substring(14, child.length - 4);
+					currentView = 'channelMaker';
+					previousView = 'channelMaker';
+				}}><Icon name={child.substring(14, child.length - 4)} /></Button>
+			{/each}
+		</grid>
+	</div>
 </div>
 
 <style lang="scss">
@@ -410,6 +450,47 @@
 
 	#newGCChannelsCtxMenu{
 		height: 400px;
+		padding: 0;
+	}
+
+	.iconList {
+		width: 305px;
+		height: 320px;
+		padding: v.$spacing-def;
+		padding-top: 56px;
+		box-sizing: border-box;
+		display: grid;
+		grid-template-columns: repeat(6, 36px);
+		grid-template-rows: repeat(6, 36px);
+		gap: 13px;
+		overflow-y: scroll;
+		overflow-x: hidden;
+		background-color: c.$bg;
+	}
+
+	.iconPickerTop {
+		top: 0;
+		left: 0;
+		width: 302px;
+		box-sizing: border-box;
+		flex-shrink: 0;
+		background: linear-gradient(to bottom, #000000ff 50%, #00000000);
+		display: flex;
+		flex-direction: row;
+		gap: v.$spacing-def;
+		position: absolute;
+		padding: v.$spacing-def;
+		z-index: 21374;
+	}
+
+	#iconPickerCtxMenu {
+		top: 0;
+		width: 280px;
+		display: flex;
+		flex-direction: column;
+		gap: v.$spacing-def;
+		position: absolute;
+		transition: 0.25s;
 		padding: 0;
 	}
 
