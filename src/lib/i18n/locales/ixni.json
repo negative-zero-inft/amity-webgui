@@ -23,6 +23,32 @@
     "sidebar": {
         "newFolder": "neu kulup",
         "allChats": "nenul xatei",
-        "storiesButton": "obrazei"
+        "storiesButton": "obrazei",
+        "noChats": "nehr xylei dyla xat je...",
+        "noChatsDesc": "by kulup jer idi lup neu kulup jer doromi jer mix \"wielent\" baton moxex",
+        "userbar": {
+            "settings": "inaxei",
+            "logoutEntry": "zy to kont jer idior",
+            "changelogEntry": "neu wy amity",
+            "instanceEntry": "o to serwer",
+            "archivedEntry": "neneu xatei",
+            "savedEntry": "auenort mesaxei",
+            "thingsEntry": "jere xexei",
+            "friendsEntry": "jere pyxaxerei",
+            "profileEntry": "jere profil",
+            "tooltips": {
+                "copyTag": "jere tag jer kopior",
+                "switchAccount": "by inax kont jer idior",
+                "notifButton": "neu xexei",
+                "backButton": "zy tu jer idior"
+            }
+        }
+    },
+    "start": {
+        "aboutAmity": "open-source tul xto wiel serwerei jon jorn are mix wiel xylei jer wyfoma jon dyla jer moxex amity je.",
+        "demo": "demo jer zejexor"
+    },
+    "chat": {
+        "loading": "amy nesenica..."
     }
 }

@@ -25,7 +25,24 @@
         "allChats": "Wszystkie czaty",
         "storiesButton": "Storiesy",
         "noChats": "Nikogo tu nie ma...",
-        "noChatsDesc": "Możesz założyć nową grupę lub dołączyć do istniejącej klikając przycisk \"więcej\" na górze"
+        "noChatsDesc": "Możesz założyć nową grupę lub dołączyć do istniejącej klikając przycisk \"więcej\" na górze",
+        "userbar": {
+            "settings": "Ustawienia",
+            "logoutEntry": "Wyloguj się",
+            "changelogEntry": "Nowości w Amity",
+            "instanceEntry": "O tym serwerze",
+            "archivedEntry": "Archiwowane czaty",
+            "savedEntry": "Zapisane wiadomości",
+            "thingsEntry": "Twoje rzeczy",
+            "friendsEntry": "Twoi znajomi",
+            "profileEntry": "Twój profil",
+            "tooltips": {
+                "copyTag": "Skopiuj swój tag",
+                "switchAccount": "Zmień konto",
+                "notifButton": "Powiadomienia",
+                "backButton": "Zamknij pasek"
+            }
+        }
     },
     "start": {
         "aboutAmity": "Amity jest zdecentralizowaną aplikacją do rozmów z otwartym kodem źródłowym, pozwalającą komukolwiek rozmawiać z kimkolwiek.",

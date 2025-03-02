@@ -25,7 +25,24 @@
         "allChats": "toki ale",
         "storiesButton": "sitelen lili",
         "noChats": "jan ala li lon...",
-        "noChatsDesc": "sina ken pali anu kama lon kulupu kepeken e tomo \"mute\" lon sewi"
+        "noChatsDesc": "sina ken pali anu kama lon kulupu kepeken e tomo \"mute\" lon sewi",
+        "userbar": {
+            "settings": "ilo ante",
+            "logoutEntry": "o weka sijelo",
+            "changelogEntry": "sin lon ilo Amiti",
+            "instanceEntry": "ilo linluwi ni li seme?",
+            "archivedEntry": "toki pi tenpo pini",
+            "savedEntry": "sitelen awen",
+            "thingsEntry": "ijo sina",
+            "friendsEntry": "jan pona sina",
+            "profileEntry": "sina",
+            "tooltips": {
+                "copyTag": "o lanpan e nimi sijelo",
+                "switchAccount": "o ante e sijelo",
+                "notifButton": "ijo sin",
+                "backButton": "o weka e ilo palisa"
+            }
+        }
     },
     "start": {
         "aboutAmity": "ilo Amiti li ilo toki open pi ilo linluwi mute, sina ken toki tawa jan ale kepeken ona.",
