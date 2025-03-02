@@ -2,6 +2,7 @@
 	import Avatar from '$lib/kit/Avatar.svelte';
 	import Message from '$lib/kit/Message.svelte';
 	import { server, user } from '$lib/scripts/globalData';
+	import { currentChat } from '$lib/scripts/chatViews';
 	import Cluster from './Cluster.svelte';
 
 	const messages = [
@@ -25,7 +26,7 @@
 		[
 			{
 				id: {
-					id: "2137420",
+					id: "ZSTXMJ16VQ2OG2AIQF49YZZ8",
 					server: $server
 				}
 			},
@@ -44,7 +45,11 @@
 
 <div class="chatView">
 	{#each messages || [] as cluster}
-		<Cluster isForeign={!(cluster[0].id?.id != $user.id.id && cluster[0].id?.server == $user.id.server)} messages={cluster.slice(1).map((m: any) => m.content)}></Cluster>
+		<Cluster 
+			isGroup={$currentChat.type == "group" || $currentChat.type == "monogroup"} 
+			author={cluster[0].id}
+			messages={cluster.slice(1).map((m: any) => m.content)}>
+		</Cluster>
 	{/each}
 </div>
 

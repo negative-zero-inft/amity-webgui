@@ -2,13 +2,44 @@
 	import Avatar from '../Avatar.svelte';
 	import Message from '../Message.svelte';
 	import SvelteMarkdown from 'svelte-markdown';
+	import { isHttps, port, token, user } from '$lib/scripts/globalData';
 
-	let { isForeign = false, messages = [] } = $props();
+	let { author = {id: "", server: ""}, messages = [], isGroup = false } = $props();
+
+	let authorInfo = $state({
+		name: "",
+		avatar: "",
+		banner: ""
+	})
+
+	let isForeign:boolean = author.id != $user.id.id
+
+	$effect(() => {
+		console.log(author, isForeign)
+		getAuthor()
+	})
+
+	export const getAuthor = async () =>{
+		if(!author.server) return
+		if(!author.id) return
+		try{
+			const response = await fetch(`http${isHttps ? "s" : ""}://${author.server}:${$port}/user/${author.id}/info?token=${token}`, {
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+					"Access-Control-Allow-Origin": "*"
+				}
+			})
+			authorInfo = JSON.parse(await response.text())
+		}catch(e){
+			throw e
+		}
+	}
 </script>
 
 <div class={isForeign ? 'clusterForeign' : 'clusterOwn'}>
-	{#if isForeign}
-		<Avatar></Avatar>
+	{#if isForeign && isGroup}
+		<Avatar pfpLink={authorInfo.avatar}></Avatar>
 	{/if}
 	<div class="clusterMessages" style={!isForeign ? 'align-items: flex-end' : ''}>
 		{#each messages as message}
@@ -36,7 +67,7 @@
 		display: flex;
 		flex-direction: row;
 		width: 100%;
-		gap: v.$spacing-msg;
+		gap: v.$spacing-def;
 		align-items: flex-end;
 	}
 
