@@ -5,15 +5,21 @@
     import ChatEntry from "$lib/kit/gizmos/ChatEntry.svelte";
 	import EmptyFolderList from "./EmptyFolderList.svelte";
 
+    let container: HTMLElement | null = $state(null);
 </script>
 
 <div 
     class="chatEntriesContainer"
+    bind:this={container}
 >
-    <div id="allChats" class="chatEntries" style="
-        padding-right: {isFirefox() ? 10 : 5}px;
-        left: {$currentFolder._id == "AC" ? 0 : -320}px;
-    ">
+    <div 
+        id="allChats" 
+        class="chatEntries" 
+        style="
+            padding-right: {isFirefox() ? 10 : 5}px;
+            left: {$currentFolder._id == "AC" ? 0 : 0 - container?.clientWidth}px;
+        "
+    >
         {#if $user?.chats.length > 0}
             {#each $user?.chats || [] as child} 
                 <ChatEntry isSidebar={true} data={child}></ChatEntry>
@@ -27,8 +33,8 @@
             padding-right: {isFirefox() ? 10 : 5}px;
             left: {
                 $currentFolder._id == child._id ? 0 : 
-                $currentFolder.index > $user?.chat_folders.findIndex((e: any) => e._id == child._id) + 1 ? -320 : 
-                $currentFolder.index < $user?.chat_folders.findIndex((e: any) => e._id == child._id) + 1 ? 320 : 
+                $currentFolder.index > $user?.chat_folders.findIndex((e: any) => e._id == child._id) + 1 ? 0 - container.clientWidth : 
+                $currentFolder.index < $user?.chat_folders.findIndex((e: any) => e._id == child._id) + 1 ? container.clientWidth : 
                 0
             }px;
             opacity: {
