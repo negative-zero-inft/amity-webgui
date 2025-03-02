@@ -3,6 +3,7 @@ import { defineConfig } from 'vite';
 import sveltesvg from '@poppanator/sveltekit-svg';
 import { sveltekitSprite } from 'sveltekit-sprite';
 
+
 export default defineConfig({
 	plugins: [
 		sveltekit(), 	
@@ -14,4 +15,7 @@ export default defineConfig({
 	server: {
 		allowedHosts: true
 	},
+	esbuild: {
+		minify: true
+	}
 });

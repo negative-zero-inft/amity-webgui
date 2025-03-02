@@ -1,0 +1,18 @@
+{
+    "loginBox": {
+        "signup": "Negru",
+        "signinwith": "Negru",
+        "loginGreet": "Negru",
+        "login": "Negru",
+        "forgotpassword": "Negru"
+    },
+    "signupBox": {
+        "username": "Negru",
+        "instanceURL": "Negru",
+        "usertag": "Negru",
+        "password": "Negru",
+        "confirmpassword": "Negru",
+        "fileserver": "Negru",
+        "cancel": "Negru"
+    }
+}

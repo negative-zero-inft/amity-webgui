@@ -3,8 +3,11 @@
 	import { goto } from '$app/navigation';
 	import { token, isHttps, server, port } from '$lib/scripts/globalData';
 	import { getUser } from '$lib/scripts/requests';
-	import { windowClickEvent } from '$lib/scripts/chatViews';
+	import { currentChat, windowClickEvent } from '$lib/scripts/chatViews';
 	import Icon from '$lib/kit/decor/Icon.svelte';
+	import Sidebar from '$lib/layout/panels/MainSidebar.svelte';
+	import Chatview from '$lib/layout/views/Chatview.svelte';
+	import Emptyview from '$lib/layout/views/Emptyview.svelte';
 
 	$effect(() => {
 		if (!browser) return;
@@ -45,7 +48,20 @@
 	<!-- svelte-ignore a11y_no_static_element_interactions -->
 	<!-- svelte-ignore a11y_click_events_have_key_events -->
 	<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
-	yay you logged in
+	<div 
+		class="main"
+		onclick={(e)=>{
+			windowClickEvent.set(e)
+		}}
+	>
+		<Sidebar/>
+		<hr class="separator"/>
+		{#if $currentChat.type == "empty"}
+			<Emptyview/>
+		{:else}
+			<Chatview/>
+		{/if}
+	</div>
 {:else}
 	<div class="main" style="
 		display: flex;

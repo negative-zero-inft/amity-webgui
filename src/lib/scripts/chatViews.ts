@@ -39,13 +39,13 @@ export const previousFolder = writable<{
     
 
 export const currentChat = writable<{
-    type: "dm" | "channel" | "group" | "monogroup" | "soapbox",
+    type: "empty" | "dm" | "channel" | "group" | "monogroup" | "soapbox",
     id: {
         id: string,
         server: string
     }
 }>({
-    type: "dm",
+    type: "empty",
     id: {
         id: "",
         server: ""

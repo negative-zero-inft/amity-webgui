@@ -6,6 +6,7 @@
     import { server, isHttps, port } from "$lib/scripts/globalData";
     import { checkServerReachability } from "$lib/scripts/requests";
     import { isError, errorValue, view } from "$lib/scripts/loginWritables";
+    import { _, locales } from "svelte-i18n";
 
     let{
         height = $bindable(370)
@@ -103,6 +104,10 @@
             return
         }
     }
+
+    $effect(() => {
+        console.log($locales)
+    })
 </script>
 
 <div 
@@ -113,7 +118,7 @@
     "
 >
     <div class="title">
-        Log in to Amity
+        {$_("loginBox.loginGreet")}
     </div>
     <div class="form">
         <div class="elem-horiz">
@@ -126,7 +131,7 @@
                 bind:value={username}
                 width="100%; flex-shrink: 1;"
                 icon="User"
-                placeholder="Username"
+                placeholder={$_("signupBox.username")}
             />
             <Icon name="AtSign"/>
             <!-- Instance URL input -->
@@ -134,7 +139,7 @@
                 isError={isInstanceInvalid}
                 bind:value={instance}
                 width="100%; flex-shrink: 1;"
-                placeholder="Instance URL"
+                placeholder={$_("signupBox.instanceURL")}
             />
             <!-- Toggle dev mode -->
             <Button 
@@ -151,7 +156,7 @@
             isError={isTagInvalid}
             bind:value={usertag}
             width="100%;"
-            placeholder="User tag"
+            placeholder={$_("signupBox.usertag")}
             icon="User"
         />
         <!-- Password input -->
@@ -159,7 +164,7 @@
             isError={isPasswordInvalid}
             bind:value={password}
             width="100%;"
-            placeholder="Password"
+            placeholder={$_("signupBox.password")}
             icon="Lock/Locked"
             isPassword
         />
@@ -168,7 +173,7 @@
             isError={isRePswordInvalid}
             bind:value={rePsword}
             width="100%;"
-            placeholder="Confirm Password"
+            placeholder={$_("signupBox.confirmpassword")}
             icon="Lock/Locked"
             isPassword
         />
@@ -188,7 +193,7 @@
             }}
         >
             <Icon name="X"/>
-            Cancel
+            {$_("signupBox.cancel")}
         </Button>
         <Button
             action={signUpProcedure}
@@ -196,7 +201,7 @@
             width="100%; flex-shrink: 1;"
         >
             <Icon name="Plus"/>
-            Sign up
+            {$_("loginBox.signup")}
         </Button>
     </div>
 </div>

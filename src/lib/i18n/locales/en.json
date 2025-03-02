@@ -1,0 +1,27 @@
+{
+    "loginBox": {
+        "signup": "Sign up",
+        "signinwith": "Or, sign in with...",
+        "loginGreet": "Login to Amity",
+        "login": "Log in",
+        "forgotpassword": "Forgot password?",
+        "password": "Password",
+        "username": "Username",
+        "instanceURL": "Instance URL",
+        "serverUnreachable": "This instance is either offline or doesn't exist",
+        "fillAllSpaces": "Please fill in all spaces"
+    },
+    "signupBox": {
+        "username": "Username",
+        "instanceURL": "Instance URL",
+        "usertag": "User Tag",
+        "password": "Password",
+        "confirmpassword": "Confirm Password",
+        "fileserver": "File server",
+        "cancel": "Cancel"
+    },
+    "sidebar": {
+        "newFolder": "New Folder",
+        "allChats": "All Chats"
+    }
+}

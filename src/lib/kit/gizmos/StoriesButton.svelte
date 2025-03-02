@@ -5,17 +5,24 @@
 
     let isHover = $state(false);
     let isActive = $state(false);
+
 </script>
 
 <Button 
     hoverAction={()=>{
         isHover = true;
+        setTimeout(()=>{
+            isHover = false;
+        }, 1000)
     }}
     leaveAction={()=>{
         isHover = false;
     }}
     mdownAction={()=>{
         isActive = true;
+        setTimeout(()=>{
+            isActive = false;
+        }, 1000)
     }}
     mupAction={()=>{
         isActive = false;

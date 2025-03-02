@@ -7,6 +7,7 @@
     import OAuth from "$lib/kit/gizmos/OAuth.svelte";
     import { checkServerReachability } from "$lib/scripts/requests";
     import { isError, errorValue, view } from "$lib/scripts/loginWritables";
+    import { _ } from 'svelte-i18n';
 
     // Bindable property for the height of the login box
     let{
@@ -46,7 +47,7 @@
                 if(!password) isPasswordInvalid = true;
                 if(!instance) isInstanceInvalid = true;
                 isError.set(true);
-                errorValue.set("Please fill all spaces")
+                errorValue.set($_("loginBox.fillAllSpaces"))
                 return
             }
 
@@ -54,7 +55,7 @@
             const serverReachable = await checkServerReachability(`http${$isHttps ? "s" : ""}://${instance}:${$port}`);
             if (!serverReachable) {
                 isError.set(true);
-                errorValue.set("Server is unreachable or doesn't exist");
+                errorValue.set($_("loginBox.serverUnreachable"));
                 return;
             }
 
@@ -99,7 +100,7 @@
     "
 >
     <div class="title">
-        Log in to Amity
+        {$_("loginBox.loginGreet")}
     </div>
     <div class="form">
         <div class="elem-horiz">
@@ -112,7 +113,7 @@
                 bind:value={username}
                 width="100%; flex-shrink: 1;"
                 icon="User"
-                placeholder="Username"
+                placeholder={$_("loginBox.username")}
             />
             <Icon name="AtSign"/>
 
@@ -121,7 +122,7 @@
                 isError={isInstanceInvalid}
                 bind:value={instance}
                 width="100%; flex-shrink: 1;"
-                placeholder="Instance URL"
+                placeholder={$_("loginBox.instanceURL")}
             />
 
             <!-- Toggle dev mode -->
@@ -140,11 +141,11 @@
             isError={isPasswordInvalid}
             bind:value={password}
             width="100%;"
-            placeholder="Password"
+            placeholder={$_("loginBox.password")}
             icon="Lock/Locked"
             isPassword
         />
-        <a href="/Dobby.png">Forgot password?</a>
+        <a href="/Dobby.png">{$_("loginBox.forgotpassword")}</a>
         <div class="elem-horiz">
 
             <!-- Sign up button -->
@@ -156,7 +157,7 @@
                 }}
             >
                 <Icon name="Plus"/>
-                Sign up
+                {$_("loginBox.signup")}
             </Button>
 
             <!-- Log in button -->
@@ -166,7 +167,7 @@
                 width="100%; flex-shrink: 1;"
             >
                 <Icon name="Login"/>
-                Log in
+                {$_("loginBox.login")}
             </Button>
         </div>
     </div>
@@ -175,7 +176,7 @@
     <div class="elem-horiz" style="width: 100%;">
         <hr class="separator"/>
         <div class="text">
-            Or, sign in with...
+            {$_("loginBox.signinwith")}
         </div>
         <hr class="separator"/>
     </div>
