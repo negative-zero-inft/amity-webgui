@@ -4,6 +4,7 @@
 	import Textbox from '../Textbox.svelte';
 	import { currentChat } from '$lib/scripts/chatViews';
     import { isHttps, port, token } from "$lib/scripts/globalData";
+	import Avatar from '../Avatar.svelte';
 
 	let chatData = $state();
 
@@ -39,12 +40,16 @@
 
 <div class="viewTopBar">
 	<div class="chatNameContainer">
-		<div class="iconContainer">
-			<Icon name="Chat" />
-		</div>
+		{#if $currentChat.type == "channel"}
+			<div class="iconContainer">
+				<Icon name="Chat" />
+			</div>
+		{:else}
+			<Avatar pfpLink={chatData?.avatar}></Avatar>
+		{/if}
 		<div class="chatName">
 			<div>{chatData?.name}</div>
-			<div class="subtext">{$currentChat.type == "group" ? chatData?.members.length + " member" + (chatData?.members.length == 1 ? "" : "s") : "temp"}</div>
+			<div class="subtext">temp</div>
 		</div>
 	</div>
 	<div class="elements-horiz" style="gap: 10px">
