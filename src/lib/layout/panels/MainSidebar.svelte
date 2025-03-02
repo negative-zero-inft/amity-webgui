@@ -30,6 +30,7 @@
     .sidebar{
         @include v.sidebar;
         min-width: 320px;
+        max-width: 50vw;
         height: 100vh;
         opacity: var(--o);
 		scale: var(--u);
