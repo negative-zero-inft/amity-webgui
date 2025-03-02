@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Icon from './Icon.svelte';
+	import Icon from '$lib/kit/Icon.svelte';
 
 	let { 
 		width = '200px', 

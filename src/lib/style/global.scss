@@ -142,6 +142,7 @@ body{
 .elements-horiz{
     display: flex;
     flex-direction: row;
+    gap: v.$spacing-def;
 }
 
 .elements-vert{
