@@ -25,13 +25,13 @@
 
 <div class="wrapper" style="--w: {width}">
 	{#if icon}
-		<span class="icon">
+		<span class="icon {isError ? 'shake' : ''}">
 			<Icon name={icon} />
 		</span>
 	{/if}
 	<input 
 		readonly={isImmutable} 
-		class="e{Number(isError)}" 
+		class="e{Number(isError)} {isError ? 'shake' : ''}" 
 		onkeydown={(e)=>{onkeydown(e)}} 
 		maxlength={maxlength} 
 		bind:value 
@@ -124,5 +124,17 @@
 		width: var(--w);
 		height: 36px;
 		display: flex;
+	}
+	
+	@keyframes shake {
+		0% { transform: translateX(0); }
+		25% { transform: translateX(-5px); }
+		50% { transform: translateX(5px); }
+		75% { transform: translateX(-5px); }
+		100% { transform: translateX(0); }
+	}
+
+	.shake {
+		animation: shake 0.5s;
 	}
 </style>

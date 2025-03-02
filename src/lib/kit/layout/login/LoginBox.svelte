@@ -13,6 +13,9 @@
     let tag:string | undefined = $state();
     let pass:string | undefined = $state();
     let instance:string | undefined = $state($server);
+    let isTagInvalid: boolean = $state(false);
+    let isPassInvalid: boolean = $state(false);
+    let isInstanceInvalid: boolean = $state(false);
     
     const changeView = () =>{
         isLogin.set(!$isLogin)
@@ -39,6 +42,9 @@
     const signInProcedure = async () =>{
         try{
             if( !tag || !pass || !instance ){
+                if(!tag) isTagInvalid = true;
+                if(!pass) isPassInvalid = true;
+                if(!instance) isInstanceInvalid = true;
                 isError.set(true)
                 errorValue.set("Please fill all spaces")
                 return
@@ -90,12 +96,14 @@
     <div class="inputs">
         <div class="elements-horiz">
             <Textbox onkeydown={(e:any)=>{
+                isTagInvalid = false;
                 if(e.key == "Enter") signInProcedure()
-            }} bind:value={tag} width="100%" icon="User" placeholder="Username"></Textbox>
+            }} isError={isTagInvalid} bind:value={tag} width="100%" icon="User" placeholder="Username"></Textbox>
             <Icon name="AtSign"></Icon>
             <Textbox onkeydown={(e:any)=>{
+                isInstanceInvalid = false;
                 if(e.key == "Enter") signInProcedure()
-            }} bind:value={instance} width="100%" placeholder="Server"></Textbox>
+            }} isError={isInstanceInvalid} bind:value={instance} width="100%" placeholder="Server"></Textbox>
         	<Button tooltip="Toggle developer mode (http instead of https)" style={$isHttps ? 0 : 2} action={()=>{
                 isHttps.set(!$isHttps); 
                 if(localStorage.getItem("isDev") == "true"){
@@ -107,8 +115,9 @@
                 }}><Icon name="Code"></Icon></Button>
         </div>
         <Textbox onkeydown={(e:any)=>{
+            isPassInvalid = false;
             if(e.key == "Enter") signInProcedure()
-        }} bind:value={pass} isPassword width="100%" icon="Lock/Locked" placeholder="Password"></Textbox>
+        }} isError={isPassInvalid} bind:value={pass} isPassword width="100%" icon="Lock/Locked" placeholder="Password"></Textbox>
         <a href="https://skibidi.pneumonoultramicroscopicsilicovolcanoconiosis.site">Forgot your password?</a>
     </div>
     <div class="buttons">

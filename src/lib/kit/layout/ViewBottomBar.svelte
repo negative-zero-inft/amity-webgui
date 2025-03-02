@@ -25,8 +25,14 @@
 	let msgelements: HTMLDivElement | null = $state(null);
 	let isPreview = $state(false);
 	let previewButtonEvent: MouseEvent | null = $state(null);
+	let isTextboxInvalid = $state(false);
 
 	const sendMessage = () => {
+		isTextboxInvalid = false;
+		if(message.length == 0){
+			isTextboxInvalid = true;
+			return;
+		}
 		console.log(message);
 		message = '';
 	}	
@@ -57,10 +63,12 @@
 		<Icon name={$isCloudStorageBar ? 'X' : 'Plus'} />
 	</Button>
 	<TextArea 
+		isError={isTextboxInvalid}
 		style="max-height: calc(100vh - 20px);"
 		onkeydown={(e: KeyboardEvent) => {
+			isTextboxInvalid = false;
 			if(e.key === 'Enter' && e.shiftKey){
-				
+
 			}else if(e.key === 'Enter'){
 				e.preventDefault();
 				sendMessage()

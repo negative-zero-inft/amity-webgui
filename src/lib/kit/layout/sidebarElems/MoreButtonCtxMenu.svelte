@@ -26,7 +26,7 @@
 	let isGCChannels: boolean = $state(false);
 	let gcName: string = $state('');
 	let gcDesc: string = $state('');
-
+	let isGCNameInvalid: boolean = $state(false);
 	isMoreButtonCtxMenu.subscribe(() => {});
 
 	windowClickEvent.subscribe((e) => {
@@ -49,7 +49,10 @@
 	});
 
 	const createGC = async () => {
-		if (gcName === '') return;
+		if (gcName === ''){
+			isGCNameInvalid = true;
+			return;
+		};
 		try {
 			const response = await fetch(
 				`http${$isHttps ? 's' : ''}://${$server}:${$port}/group/create?token=${$token}`,
@@ -197,8 +200,19 @@
     "
 	>
 		<Label icon="Users" label="New group" />
-		<Textbox maxlength={32} placeholder="Group name" width="100%" icon="Rename" bind:value={gcName}
-		></Textbox>
+		<Textbox 
+			onkeydown={(e: KeyboardEvent) => {
+				if (e.key === 'Enter') {
+					createGC();
+				}
+			}}
+			isError={isGCNameInvalid} 
+			maxlength={32} 
+			placeholder="Group name" 
+			width="100%" 
+			icon="Rename" 
+			bind:value={gcName}>
+		</Textbox>
 		<Textarea placeholder="Group description" width="100%" height="72px" bind:value={gcDesc}
 		></Textarea>
 		<Button

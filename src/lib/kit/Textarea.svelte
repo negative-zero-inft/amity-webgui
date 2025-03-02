@@ -24,14 +24,14 @@
 
 <div class="textarea-wrapper" style="--w: {width}; height: {textarea?.clientHeight}; z-index: {zIndex}">
 	{#if icon.length > 0}
-		<span class="icon">
+		<span class="icon {isError ? 'shake' : ''}">
 			<Icon name={icon} />
 		</span>
 	{/if}
 	<textarea 
 		bind:this={textarea}
 		readonly={isImmutable} 
-		class="e{Number(isError)}" 
+		class="e{Number(isError)} {isError ? 'shake' : ''}" 
 		onkeydown={(e)=>{onkeydown(e)}} 
 		maxlength={maxlength} 
 		bind:value 
@@ -122,5 +122,17 @@
 			padding-left: calc(var(--padding) - 1px);
 			outline: none;
 		}
+	}
+
+	@keyframes shake {
+		0% { transform: translateX(0); }
+		25% { transform: translateX(-5px); }
+		50% { transform: translateX(5px); }
+		75% { transform: translateX(-5px); }
+		100% { transform: translateX(0); }
+	}
+
+	.shake {
+		animation: shake 0.5s;
 	}
 </style>

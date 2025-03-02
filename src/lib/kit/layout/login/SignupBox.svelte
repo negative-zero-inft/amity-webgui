@@ -14,6 +14,11 @@
     let fpass:string | undefined = $state();
     let rpass:string | undefined = $state();
     let insrv:string | undefined = $state($server);
+    let isDnameInvalid: boolean = $state(false);
+    let isUnameInvalid: boolean = $state(false);
+    let isFpassInvalid: boolean = $state(false);
+    let isRpassInvalid: boolean = $state(false);
+    let isInsrvInvalid: boolean = $state(false);
 
     let fileserver = "amycdn.neg-zero.com"
 
@@ -37,6 +42,11 @@
         
         try{
             if(!dname || !uname || !fpass || !rpass || !insrv){
+                if(!dname) isDnameInvalid = true;
+                if(!uname) isUnameInvalid = true;
+                if(!fpass) isFpassInvalid = true;
+                if(!rpass) isRpassInvalid = true;
+                if(!insrv) isInsrvInvalid = true;
                 console.log("a")
                 isError.set(true)
                 errorValue.set("Please fill all spaces")
@@ -112,25 +122,30 @@
     <div class="title">Sign up for Amity</div>
     <div class="inputs">
         <Textbox onkeydown={(e:any)=>{
+            isDnameInvalid = false;
             if(e.key == "Enter") signupProcedure()
-        }} maxlength={64} bind:value={dname} width="100%" icon="Rename" placeholder="Display name"></Textbox>
+        }} isError={isDnameInvalid} maxlength={64} bind:value={dname} width="100%" icon="Rename" placeholder="Display name"></Textbox>
         
         <div class="elements-horiz">
             <Textbox onkeydown={(e:any)=>{
+                isUnameInvalid = false;
                 if(e.key == "Enter") signupProcedure()
-            }} maxlength={32} bind:value={uname} width="100%" icon="User" placeholder="Username"></Textbox>
+            }} isError={isUnameInvalid} maxlength={32} bind:value={uname} width="100%" icon="User" placeholder="Username"></Textbox>
             <Icon name="AtSign"></Icon>
             <Textbox onkeydown={(e:any)=>{
+                isInsrvInvalid = false;
                 if(e.key == "Enter") signupProcedure()
-            }} bind:value={insrv} width="100%" placeholder="Server"></Textbox>
+            }} isError={isInsrvInvalid} bind:value={insrv} width="100%" placeholder="Server"></Textbox>
         	<Button style={$isHttps ? 0 : 2} action={()=>{isHttps.set(!$isHttps); localStorage.setItem("isDev", "true")}}><Icon name="Code"></Icon></Button>
         </div>
         <Textbox onkeydown={(e:any)=>{
+            isFpassInvalid = false;
             if(e.key == "Enter") signupProcedure()
-        }} isPassword maxlength={64} bind:value={fpass} width="100%" icon="Lock/Locked" placeholder="Password"></Textbox>
+        }} isError={isFpassInvalid} isPassword maxlength={64} bind:value={fpass} width="100%" icon="Lock/Locked" placeholder="Password"></Textbox>
         <Textbox onkeydown={(e:any)=>{
+            isRpassInvalid = false;
             if(e.key == "Enter") signupProcedure()
-        }} isPassword maxlength={64} bind:value={rpass} width="100%" icon="Lock/Locked" placeholder="Repeat password"></Textbox>
+        }} isError={isRpassInvalid} isPassword maxlength={64} bind:value={rpass} width="100%" icon="Lock/Locked" placeholder="Repeat password"></Textbox>
         <Button scaleClick={0.95} scaleHover={1.05} alignment="space-between" width="100%"
             ><div class="elem-horiz"><Icon name="Cloud"></Icon> File server <div style="opacity: 0.5;">amycdn.neg-zero.com</div></div>
             <Icon name="Direction/Right"></Icon>
