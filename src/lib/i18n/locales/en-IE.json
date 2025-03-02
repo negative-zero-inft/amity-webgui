@@ -1,37 +1,37 @@
 {
     "loginBox": {
-        "signup": "Grand, sign up",
-        "signinwith": "Or, sign in with...",
-        "loginGreet": "Ah sure, log in to Amity",
-        "login": "Fire away, log in",
-        "forgotpassword": "Jaysus, forgot your password?",
-        "password": "Yer password",
-        "username": "Yer username",
-        "instanceURL": "Instance URL, sound",
+        "signup": "Make a'one",
+        "signinwith": "If that aint yer fancy...",
+        "loginGreet": "Come in, come in, have a pint",
+        "login": "Crack on, then!",
+        "forgotpassword": "Forgot your password, ya poor sod?",
+        "password": "The bob'ty bits",
+        "username": "Ya name",
+        "instanceURL": "Yer gaff",
         "serverUnreachable": "Ah feck, this instance is either offline or doesn’t exist",
-        "fillAllSpaces": "Ah here, ya need to fill in all the spaces, yeah?"
+        "fillAllSpaces": "Sure look, ya gotta to fill in all the spaces, yeah?"
     },
     "signupBox": {
         "username": "Throw in a username there",
-        "instanceURL": "Yer instance URL",
-        "usertag": "User tag, grand",
+        "instanceURL": "Yer gaff",
+        "usertag": "The little tag yolk",
         "password": "Pick a password, lad",
         "confirmpassword": "Confirm yer password, go on",
         "fileserver": "File server, all good?",
         "cancel": "Ah never mind, scrap it"
     },
     "sidebar": {
-        "newFolder": "New folder, no bother",
+        "newFolder": "Bit less messy, eh?",
         "allChats": "All yer chats",
-        "storiesButton": "Stories, deadly stuff",
-        "noChats": "Jaysus, no one to chat with...",
+        "storiesButton": "Craic",
+        "noChats": "Jaysus, what's your story?",
         "noChatsDesc": "Go on, join or start a group by hittin’ the \"more\" button up top"
     },
     "start": {
-        "aboutAmity": "Amity’s a grand open-source and decentralised chat app, so ye can have the chats with whoever ya like.",
+        "aboutAmity": "Amity’s a grand open-source and decentralised chat app, so ye can have a bit'ta craic with with whoever ya like.",
         "demo": "Sure, have a gawk at the demo"
     },
     "chat": {
-        "loading": "Hang on... Wakin’ Amy up now..."
+        "loading": "Amy's 'avin a kip, lemme wake 'er up..."
     }
 }
