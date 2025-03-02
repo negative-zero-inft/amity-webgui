@@ -2,6 +2,7 @@
 	import Button from '../Button.svelte';
 	import Icon from '../Icon.svelte';
 	import TextArea from '$lib/kit/Textarea.svelte';
+	import { user } from '$lib/scripts/globalData';
 
 	import {
 		isCloudStorageBar,
@@ -19,7 +20,7 @@
 
 	import RecordingBar from '../RecordingBar.svelte';
 	import Cluster from './Cluster.svelte';
-
+	
 	let message: string = $state('');
 	let elements: HTMLDivElement | null = $state(null);
 	let msgelements: HTMLDivElement | null = $state(null);
@@ -131,7 +132,7 @@
 			backdrop-filter: blur(40px);
 			border-radius: 25px 25px 15px 25px;
 		">
-			<Cluster messages={[message]}></Cluster>
+			<Cluster author={{id: $user.id.id, server: $user.id.server}} messages={[message]}></Cluster>
 		</div>
 	</div>
 	<div bind:this={elements} class="elements-horiz" style="
