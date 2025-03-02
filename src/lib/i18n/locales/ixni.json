@@ -1,4 +1,9 @@
 {
+    "login": {
+        "devMode0": "doromiert tryp jer silenoj!",
+        "devMode1": "nehr xto jon wyxotar jer zynax li",
+        "devMode2": "baton jer lukanor."
+    },
     "loginBox": {
         "signup": "neu kont jer doromior",
         "signinwith": "lup mix to jer idior...",

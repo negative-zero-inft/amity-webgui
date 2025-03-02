@@ -6,6 +6,7 @@
 	import { isError, errorValue, view } from "$lib/scripts/loginWritables";
 	import { isHttps } from "$lib/scripts/globalData";
 	import LingoWindow from "$lib/layout/devTools/DevWindow.svelte";
+	import { _ } from "svelte-i18n";
 
 	$effect(()=>{
 		if(localStorage.getItem("token")) window.location.replace("/chat")
@@ -27,10 +28,10 @@
 		"
 	>	
 		<div class="elem-horiz">
-			<Icon name="Warning"></Icon>You've enabled the developer backend mode!
+			<Icon name="Warning"></Icon>{$_("login.devMode0")}
 		</div>
 		<div class="elem-horiz">
-			<Icon name="Warning"></Icon>If you're not sure what this is, press the <Icon name="Code"></Icon> button to return to normal mode.
+			<Icon name="Warning"></Icon>{$_("login.devMode1")}<Icon name="Code"></Icon>{$_("login.devMode2")}
 		</div>
 	</div>
 	<div 

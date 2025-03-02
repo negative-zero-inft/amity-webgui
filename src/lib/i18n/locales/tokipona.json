@@ -1,4 +1,9 @@
 {
+    "login": {
+        "devMode0": "sina lon e nasin pi jan pali!",
+        "devMode1": "sina sona ala e pali ona, la o luka e nena",
+        "devMode2": "la sina lon ala e ona."
+    },
     "loginBox": {
         "signup": "o pali e sijelo",
         "signinwith": "anu o lon sijelo kepeken...",

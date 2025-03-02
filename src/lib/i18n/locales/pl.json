@@ -1,4 +1,9 @@
 {
+    "login": {
+        "devMode0": "Włączyłeś tryb deweloperski!",
+        "devMode1": "Jeśli nie wiesz co to jest, naciśnij przycisk",
+        "devMode2": "żeby wrócić do trybu normalnego."
+    },
     "loginBox": {
         "signup": "Zarejestruj się",
         "signinwith": "Zaloguj się za pomocą...",

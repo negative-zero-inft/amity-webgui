@@ -1,4 +1,9 @@
 {
+    "login": {
+        "devMode0": "You've enabled the developer backend mode!",
+        "devMode1": "If you're not sure what this is, press the",
+        "devMode2": "button to return to normal mode."
+    },
     "loginBox": {
         "signup": "Sign up",
         "signinwith": "Or, sign in with...",

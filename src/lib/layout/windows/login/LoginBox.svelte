@@ -234,6 +234,7 @@
     }
 
     .title{
+        line-height: 1.2;
 		width: 100%;
 		height: 46px;
 		font-size: 26px;
