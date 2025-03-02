@@ -179,7 +179,7 @@
         />
         <!-- File server input -->
         <Button scaleClick={0.95} scaleHover={1.05} alignment="space-between" width="100%"
-            ><div class="elem-horiz"><Icon name="Cloud"></Icon> File server <div style="opacity: 0.5;">{fileserver}</div></div>
+            ><div class="elem-horiz"><Icon name="Cloud"></Icon> {$_("signupBox.fileserver")} <div style="opacity: 0.5;">{fileserver}</div></div>
             <Icon name="Direction/Right"></Icon>
         </Button>
     </div>
