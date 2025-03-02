@@ -19,6 +19,7 @@
 </script>
 
 <div class="window">
+    <code>LE EPIC DEV WINDOW</code>
     <Label icon="Translate" label="Lingo switcher">
         <select name="cars" {onclick}>
             {#each listLanguages as lang}
