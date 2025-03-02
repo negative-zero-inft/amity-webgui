@@ -41,6 +41,9 @@
 	@use '$lib/style/colors.scss' as c;
 
 	.children{
+		display: flex;
+		flex-direction: column;
+		gap: v.$spacing-def;
 		margin-top: 5px;
 		min-width: 100%;
 	}

@@ -5,6 +5,7 @@
     import { locale } from "$lib/scripts/globalData";
     import { locale as ilocale, locales } from "svelte-i18n"; 
     import Icon from "$lib/kit/decor/Icon.svelte";
+	import Button from "$lib/kit/gizmos/Button.svelte";
     
     let listLanguages = $state($locales);
 
@@ -18,16 +19,6 @@
 
 <div class="window">
     <Label icon="Translate" label="Lingo switcher">
-        <!-- <Textbox 
-            onkeydown={(e: KeyboardEvent)=>{
-                if(e.key == "Enter"){
-                    locale.set(localeInput);
-                    ilocale.set(localeInput);
-                }
-            }}
-            bind:value={localeInput}
-            placeholder="locale"
-        /> -->
         <select name="cars" {onclick}>
             {#each listLanguages as lang}
                 <option value={lang}>{lang}</option>
@@ -36,6 +27,10 @@
     </Label>
     <Label icon="Code" label="debug thingies">
         <div class="elem-horiz">current folder: <Icon name={$currentFolder.icon}/> {$currentFolder.name}</div>
+        <Button width="100%">
+            <Icon name="User"/>
+            view user
+        </Button>
     </Label>
 </div>
 
