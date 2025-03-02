@@ -5,6 +5,7 @@
 	import SignupBox from "$lib/layout/windows/login/SignupBox.svelte";
 	import { isError, errorValue, view } from "$lib/scripts/loginWritables";
 	import { isHttps } from "$lib/scripts/globalData";
+	import LingoWindow from "$lib/layout/devTools/DevWindow.svelte";
 
 	$effect(()=>{
 		if(localStorage.getItem("token")) window.location.replace("/chat")
@@ -59,6 +60,8 @@
 
 	<img alt="Amy" class="amy" src={amy}/>
 </div>
+
+<LingoWindow/>
 
 <style lang="scss">
 	@use '$lib/style/variables.scss' as v;

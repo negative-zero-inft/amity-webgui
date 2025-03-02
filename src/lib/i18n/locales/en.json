@@ -14,14 +14,24 @@
     "signupBox": {
         "username": "Username",
         "instanceURL": "Instance URL",
-        "usertag": "User Tag",
+        "usertag": "User tag",
         "password": "Password",
-        "confirmpassword": "Confirm Password",
+        "confirmpassword": "Confirm password",
         "fileserver": "File server",
         "cancel": "Cancel"
     },
     "sidebar": {
-        "newFolder": "New Folder",
-        "allChats": "All Chats"
+        "newFolder": "New folder",
+        "allChats": "All chats",
+        "storiesButton": "Stories",
+        "noChats": "There's nobody to chat with...",
+        "noChatsDesc": "You can join or create a group by clicking the \"more\" button at the top"
+    },
+    "start": {
+        "aboutAmity": "Amity is an open-source and decentralized chat app, allowing for anyone to freely connect with others.",
+        "demo": "Explore demo"
+    },
+    "chat": {
+        "loading": "Waking Amy up..."
     }
 }

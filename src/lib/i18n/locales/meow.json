@@ -1,0 +1,28 @@
+{
+    "loginBox": {
+        "signup": "meow",
+        "signinwith": "mew meow",
+        "loginGreet": "mow meow mrr",
+        "login": "meow mrr",
+        "forgotpassword": "meow meow?",
+        "password": "meow morr",
+        "username": "meow",
+        "instanceURL": "mrow meow",
+        "serverUnreachable": "meow mrrow mrr meow meow",
+        "fillAllSpaces": "meow meow mrr meow"
+    },
+    "signupBox": {
+        "username": "meow",
+        "instanceURL": "meow mrr",
+        "usertag": "meow mroe",
+        "password": "meow morr",
+        "confirmpassword": "miau meow morr",
+        "fileserver": "meow mrow",
+        "cancel": "meow"
+    },
+    "sidebar": {
+        "newFolder": "meow mow",
+        "allChats": "meow",
+        "storiesButton": "meow"
+    }
+}

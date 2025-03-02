@@ -2,6 +2,7 @@
     import Button from '$lib/kit/gizmos/Button.svelte';
     import Icon from '$lib/kit/decor/Icon.svelte';
     import AvatarStack from '$lib/kit/decor/AvatarStack.svelte';
+    import {_} from 'svelte-i18n';
 
     let isHover = $state(false);
     let isActive = $state(false);
@@ -29,6 +30,6 @@
     }}
 >
     <Icon name="Camera/Video" />
-    Stories
+    {$_("sidebar.storiesButton")}
     <AvatarStack isHover={isHover} isActive={isActive} />
 </Button>

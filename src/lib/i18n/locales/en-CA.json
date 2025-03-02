@@ -1,0 +1,37 @@
+{
+    "loginBox": {
+        "signup": "Sign up, eh?",
+        "signinwith": "Or, sign in with...",
+        "loginGreet": "Hey bud, log in to Amity",
+        "login": "Log in, no worries",
+        "forgotpassword": "Oh no, forgot your password, eh?",
+        "password": "Password, ya hoser",
+        "username": "Username, beauty",
+        "instanceURL": "Instance URL, all set?",
+        "serverUnreachable": "Ah shoot, this instance is either offline or doesn’t exist, sorry ‘bout that",
+        "fillAllSpaces": "Hey, ya gotta fill in all the fields, bud"
+    },
+    "signupBox": {
+        "username": "Pick a username, buddy",
+        "instanceURL": "Instance URL, all good",
+        "usertag": "User tag, no stress",
+        "password": "Password, keep ‘er safe",
+        "confirmpassword": "Confirm password, don’t mess ‘er up",
+        "fileserver": "File server, nice ‘n’ easy",
+        "cancel": "Nah, I’m good"
+    },
+    "sidebar": {
+        "newFolder": "New folder, beauty",
+        "allChats": "All yer chats, eh",
+        "storiesButton": "Stories, nice one",
+        "noChats": "Aw jeez, nobody to chat with...",
+        "noChatsDesc": "Just join or start a group, bud! Click the \"more\" button up top"
+    },
+    "start": {
+        "aboutAmity": "Amity’s a proper open-source and decentralized chat app, so ya can connect with folks real easy, eh?",
+        "demo": "Take ‘er for a rip in the demo"
+    },
+    "chat": {
+        "loading": "Hang tight... Wakin’ Amy up, bud..."
+    }
+}

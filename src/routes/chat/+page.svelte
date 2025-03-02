@@ -8,6 +8,9 @@
 	import Sidebar from '$lib/layout/panels/MainSidebar.svelte';
 	import Chatview from '$lib/layout/views/Chatview.svelte';
 	import Emptyview from '$lib/layout/views/Emptyview.svelte';
+	import LingoWindow from '$lib/layout/devTools/DevWindow.svelte';
+	import ComboBox from '$lib/kit/gizmos/ComboBox.svelte';
+	import { _ } from 'svelte-i18n';
 
 	$effect(() => {
 		if (!browser) return;
@@ -73,9 +76,11 @@
 	">
 		<div id="loadingScreen">
 			<Icon name="Update"/>
-		</div> Waking Amy up...
+		</div> {$_("chat.loading")}
 	</div>
 {/if}
+
+<LingoWindow/>
 
 <style lang="scss">
 	@use '$lib/style/colors.scss' as c;

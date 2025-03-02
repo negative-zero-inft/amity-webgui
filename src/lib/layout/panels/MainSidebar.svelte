@@ -1,11 +1,13 @@
 <script lang="ts">
 	import SidebarTop from "$lib/layout/panels/mainSidebarElements/SidebarTop.svelte";
+	import ChatList from "$lib/layout/panels/mainSidebarElements/ChatList.svelte";
 
 </script>
 
 <div class="sidebar">
     <SidebarTop/>
     <hr class="separator"/>
+    <ChatList/>
 </div>
 
 <style lang="scss">

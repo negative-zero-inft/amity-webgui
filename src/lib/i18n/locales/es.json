@@ -1,0 +1,32 @@
+{
+    "loginBox": {
+        "signup": "Registrarse",
+        "signinwith": "O iniciar sesión con...",
+        "loginGreet": "Iniciar sesión en Amity",
+        "login": "Iniciar sesión",
+        "forgotpassword": "Has olvidado la contraseña?",
+        "password": "Contraseña",
+        "username": "Nombre de usuario",
+        "instanceURL": "URL de instancia",
+        "serverUnreachable": "Esta instancia está offline o no existe.",
+        "fillAllSpaces": "Por favor rellena todos los campos"
+    },
+    "signupBox": {
+        "username": "Nombre de usuario",
+        "instanceURL": "URL de instancia",
+        "usertag": "Tag de usuario",
+        "password": "Contraseña",
+        "confirmpassword": "Confirmar contraseña",
+        "fileserver": "Servidor de archivos",
+        "cancel": "Cancelar"
+    },
+    "sidebar": {
+        "newFolder": "Nueva carpeta",
+        "allChats": "Todos los chats",
+        "storiesButton": "Historias"
+    },
+    "start": {
+        "aboutAmity": "Amity es una aplicación de chat de código abierto y descentralizada, permitiendo a cualquiera conectar libremente con otros.",
+        "demo": "Explorar demo"
+    }
+}

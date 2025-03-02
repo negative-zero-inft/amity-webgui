@@ -1,0 +1,28 @@
+{
+    "loginBox": {
+        "signup": "neu kont jer doromior",
+        "signinwith": "lup mix to jer idior...",
+        "loginGreet": "by amity jer idior",
+        "login": "idior",
+        "forgotpassword": "znak jer neremberoj?",
+        "password": "nezynax znak",
+        "username": "nejm",
+        "instanceURL": "serwere url",
+        "serverUnreachable": "nehr to serwer je lup nehr jone internet werk",
+        "fillAllSpaces": "nenul znakei jer sitelenor"
+    },
+    "signupBox": {
+        "username": "nejm",
+        "instanceURL": "serwere url",
+        "usertag": "inax nejm",
+        "password": "nezynax znak",
+        "confirmpassword": "2e xas li nezynax znak",
+        "fileserver": "fajleie serwer",
+        "cancel": "nehr"
+    },
+    "sidebar": {
+        "newFolder": "neu kulup",
+        "allChats": "nenul xatei",
+        "storiesButton": "obrazei"
+    }
+}

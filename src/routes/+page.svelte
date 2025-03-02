@@ -3,6 +3,9 @@
 	import amy from '../lib/amy.svg';
 	import Button from '$lib/kit/gizmos/Button.svelte';
 	import Icon from '$lib/kit/decor/Icon.svelte';
+	import LingoWindow from '$lib/layout/devTools/DevWindow.svelte';
+	import {_} from 'svelte-i18n';
+
 </script>
 
 <div class="main">
@@ -15,8 +18,7 @@
 		<div class="slogan">
 			<div style="width: max-content; font-size: 36px;">The chat app for everyone</div>
 			<div class="underslogan">
-				Amity is an open-source and decentralized chat app, allowing for anyone to freely connect
-				with others.
+				{$_("start.aboutAmity")}
 			</div>
 		</div>
 		<div class="cta">
@@ -30,7 +32,7 @@
 			>
 				<div style="display: flex; gap: 10px; align-items: center;">
 					<Icon name="Window"></Icon>
-					View demo
+					{$_('start.demo')}
 				</div>
 				<Icon name="Direction/Right"></Icon>
 			</Button>
@@ -45,6 +47,8 @@
 	</div>
 	<img class="closeup" src={closeup} alt="ui closeup" />
 </div>
+
+<LingoWindow/>
 
 <style lang="scss">
 	@use '$lib/style/colors.scss' as c;

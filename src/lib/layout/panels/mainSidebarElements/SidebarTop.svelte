@@ -2,6 +2,7 @@
 	import Icon from "$lib/kit/decor/Icon.svelte";
 	import Button from "$lib/kit/gizmos/Button.svelte";
 	import StoriesButton from "$lib/kit/gizmos/StoriesButton.svelte";
+    import { isUserBar } from "$lib/scripts/chatViews";
     import { currentFolder, previousFolder } from "$lib/scripts/chatViews";
 	import { user } from "$lib/scripts/globalData";
     import { _ } from "svelte-i18n";
@@ -31,7 +32,9 @@
             justify-content: space-between;
         "
     >
-        <Button>
+        <Button
+            action={()=>{isUserBar.set(true)}}
+        >
             <Icon name="Hamburger"/>
         </Button>
         <StoriesButton/>

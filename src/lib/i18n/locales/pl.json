@@ -1,0 +1,37 @@
+{
+    "loginBox": {
+        "signup": "Zarejestruj się",
+        "signinwith": "Zaloguj się za pomocą...",
+        "loginGreet": "Zaloguj się do Amity",
+        "login": "Zaloguj się",
+        "forgotpassword": "Zapomniałeś hasła?",
+        "password": "Hasło",
+        "username": "Nazwa użytkownika",
+        "instanceURL": "URL serwera",
+        "serverUnreachable": "Ten serwer jest offline lub nie istnieje",
+        "fillAllSpaces": "Wypełnij wszystkie pola"
+    },
+    "signupBox": {
+        "username": "Nazwa użytkownika",
+        "instanceURL": "URL serwera",
+        "usertag": "Tag użytkownika",
+        "password": "Hasło",
+        "confirmpassword": "Powtórz hasło",
+        "fileserver": "Serwer plików",
+        "cancel": "Anuluj"
+    },
+    "sidebar": {
+        "newFolder": "Nowy folder",
+        "allChats": "Wszystkie czaty",
+        "storiesButton": "Storiesy",
+        "noChats": "Nikogo tu nie ma...",
+        "noChatsDesc": "Możesz założyć nową grupę lub dołączyć do istniejącej klikając przycisk \"więcej\" na górze"
+    },
+    "start": {
+        "aboutAmity": "Amity jest zdecentralizowaną aplikacją do rozmów z otwartym kodem źródłowym, pozwalającą komukolwiek rozmawiać z kimkolwiek.",
+        "demo": "Eksploruj demo"
+    },
+    "chat": {
+        "loading": "Amy się budzi..."
+    }
+}

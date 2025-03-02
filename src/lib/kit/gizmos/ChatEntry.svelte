@@ -46,8 +46,6 @@
 	setInterval(() => {
 		datenow = Date.now();
 	}, 1.5 * 1000);
-	
-	
 
 	const getData = async () => {
 		const url = `http${isHttps ? "s" : ""}://${data.id.server}:${$port}/group/${data.id.id}/info?token=${token}`;

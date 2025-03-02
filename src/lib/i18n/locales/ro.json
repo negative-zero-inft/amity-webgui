@@ -1,18 +1,32 @@
 {
     "loginBox": {
-        "signup": "Negru",
-        "signinwith": "Negru",
-        "loginGreet": "Negru",
-        "login": "Negru",
-        "forgotpassword": "Negru"
+        "signup": "Înscrie-te",
+        "signinwith": "Sau, înscrie-te with...",
+        "loginGreet": "Conectați-vă la Amity",
+        "login": "Conectați-vă",
+        "forgotpassword": "Ai uitat parolă?",
+        "password": "Parola",
+        "username": "Nume utilizatorului",
+        "instanceURL": "URI a instanței serverului",
+        "serverUnreachable": "Acest instanța este fie offline, fie nu există",
+        "fillAllSpaces": "Vă rugăm să completați toate spațiile"
     },
     "signupBox": {
-        "username": "Negru",
-        "instanceURL": "Negru",
-        "usertag": "Negru",
-        "password": "Negru",
-        "confirmpassword": "Negru",
-        "fileserver": "Negru",
-        "cancel": "Negru"
+        "username": "Nume utilizatorului",
+        "instanceURL": "URI a instanței serverului",
+        "usertag": "Utilizatorul Tag",
+        "password": "Parola",
+        "confirmpassword": "Confirma Parolă",
+        "fileserver": "Server de fișiere",
+        "cancel": "Anulează"
+    },
+    "sidebar": {
+        "newFolder": "Folder nou",
+        "allChats": "Toate conversație",
+        "storiesButton": "Povești"
+    },
+    "start": {
+        "aboutAmity": "Amity este o sursă deschisă şi descentralizată platformă de chat, permiţând oricui să se conecteze liber cu ceilalţi",
+        "demo": "Explorează demo"
     }
 }

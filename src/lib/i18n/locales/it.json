@@ -1,0 +1,28 @@
+{
+    "loginBox": {
+        "signup": "Registrati",
+        "signinwith": "Oppure accedi con...",
+        "loginGreet": "Effettuare il login su Amity",
+        "login": "Login",
+        "forgotpassword": "Hai dimenticato la password?",
+        "password": "Password",
+        "username": "Nome utente",
+        "instanceURL": "URL dell'istanza",
+        "serverUnreachable": "Questa istanza è offline o non esiste.",
+        "fillAllSpaces": "Si prega di compilare tutti gli spazi"
+    },
+    "signupBox": {
+        "username": "Nome utente",
+        "instanceURL": "URL dell'istanza",
+        "usertag": "Tag utente",
+        "password": "Password",
+        "confirmpassword": "Conferma password",
+        "fileserver": "Server dei file",
+        "cancel": "Annulla"
+    },
+    "sidebar": {
+        "newFolder": "Nuova cartella",
+        "allChats": "Tutti i chat",
+        "storiesButton": "Storie"
+    }
+}

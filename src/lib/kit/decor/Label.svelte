@@ -14,7 +14,10 @@
 <!-- svelte-ignore a11y_click_events_have_key_events -->
 <div 
 	class="fullLabel" 
-	style="width: {width};"
+	style="
+		width: {width};
+		cursor: {children ? 'pointer' : 'default'};
+	"
 	onclick={ () => isOpen = !isOpen }
 >
 	<div class="label">
@@ -37,13 +40,20 @@
 	@use '$lib/style/variables.scss' as v;
 	@use '$lib/style/colors.scss' as c;
 
+	.children{
+		margin-top: 10px;
+		min-width: 100%;
+	}
+
 	.fullLabel {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
+		gap: v.$spacing-def;
 	}
 
 	.label {
+		user-select: none;
 		display: flex;
 		align-items: center;
 		padding-left: 5px;

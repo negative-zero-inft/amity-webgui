@@ -1,0 +1,37 @@
+{
+    "loginBox": {
+        "signup": "o pali e sijelo",
+        "signinwith": "anu o lon sijelo kepeken...",
+        "loginGreet": "o kama lon Amity",
+        "login": "o lon e sijelo",
+        "forgotpassword": "weka e sona pi nimi len?",
+        "password": "nimi len",
+        "username": "nimi",
+        "instanceURL": "URL pi ilo linluwi",
+        "serverUnreachable": "ilo linluwi ni li pali ala anu li lon ala",
+        "fillAllSpaces": "o sitelen e nimi ale"
+    },
+    "signupBox": {
+        "username": "nimi",
+        "instanceURL": "URL pi ilo linluwi",
+        "usertag": "nimi sijelo",
+        "password": "nimi len",
+        "confirmpassword": "tenpo tu la nimi len",
+        "fileserver": "ilo linluwi lipu",
+        "cancel": "o weka"
+    },
+    "sidebar": {
+        "newFolder": "kulupu sin",
+        "allChats": "toki ale",
+        "storiesButton": "sitelen lili",
+        "noChats": "jan ala li lon...",
+        "noChatsDesc": "sina ken pali anu kama lon kulupu kepeken e tomo \"mute\" lon sewi"
+    },
+    "start": {
+        "aboutAmity": "ilo Amiti li ilo toki open pi ilo linluwi mute, sina ken toki tawa jan ale kepeken ona.",
+        "demo": "o lukin e ilo"
+    },
+    "chat": {
+        "loading": "jan Ami li weka tan lape..."
+    }
+}
