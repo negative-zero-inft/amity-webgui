@@ -29,10 +29,11 @@
 
 	const sendMessage = () => {
 		isTextboxInvalid = false;
-		if(message.length == 0){
+		if(message.trim().length == 0){
 			isTextboxInvalid = true;
 			return;
 		}
+		
 		console.log(message);
 		message = '';
 	}	
