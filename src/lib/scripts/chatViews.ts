@@ -17,8 +17,8 @@ export const currentFolder = writable<{
     elements: string[],
     index: number   
 }>({
-    name: "",
-    icon: "",
+    name: "All chats",
+    icon: "Chat",
     _id: "AC",
     elements: [],
     index: 0
