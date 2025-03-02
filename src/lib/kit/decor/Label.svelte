@@ -1,16 +1,47 @@
 <script lang="ts">
 	import Icon from '$lib/kit/decor/Icon.svelte';
-	let { icon = 'NegZero', label = 'label' } = $props();
+	let { 
+		icon = 'NegZero', 
+		label = 'label',
+		children = false,
+		width = '100%'
+	} = $props();
+
+	let isOpen = $state(false);
 </script>
 
-<div class="label">
-	<Icon name={icon}></Icon>
-	{label}
+<!-- svelte-ignore a11y_no_static_element_interactions -->
+<!-- svelte-ignore a11y_click_events_have_key_events -->
+<div 
+	class="fullLabel" 
+	style="width: {width};"
+	onclick={ () => isOpen = !isOpen }
+>
+	<div class="label">
+		<Icon name={icon}></Icon>
+		{label}
+	</div>
+	{#if children}
+		<span class="arrow" style="transform: rotate({isOpen ? '180deg' : '0deg'}); transition: transform 0.25s;">
+			<Icon name="Direction/Down"></Icon>
+		</span>
+	{/if}
 </div>
+{#if isOpen}
+	<div class="children">
+		{@render (children as any)?.()}
+	</div>
+{/if}
 
 <style lang="scss">
 	@use '$lib/style/variables.scss' as v;
 	@use '$lib/style/colors.scss' as c;
+
+	.fullLabel {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
 
 	.label {
 		display: flex;

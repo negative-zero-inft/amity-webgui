@@ -7,6 +7,7 @@
     import Avatar from '$lib/kit/decor/Avatar.svelte';
     import AvatarStack from '$lib/kit/decor/AvatarStack.svelte';
 	import Emoji from '$lib/kit/decor/Emoji.svelte';
+	import StoriesButton from '$lib/kit/StoriesButton.svelte';
     let isEvil = $state<boolean>(false);
     let isHover = $state<boolean>(false);
     let isActive = $state<boolean>(false);
@@ -15,28 +16,14 @@
 
 <div class="devView">
 
+    <Label icon="Eye" label="Hidden content" width="200px">
+        surprise
+    </Label>
     <Label icon="Image" label="Decorations"></Label>
     <div class="elem-horiz">
         <Icon name="Image" />
         <Avatar/>
-        <Button 
-            hoverAction={()=>{
-                isHover = true;
-            }}
-            leaveAction={()=>{
-                isHover = false;
-            }}
-            mdownAction={()=>{
-                isActive = true;
-            }}
-            mupAction={()=>{
-                isActive = false;
-            }}
-        >
-            <Icon name="Camera/Video" />
-            Stories
-            <AvatarStack isHover={isHover} isActive={isActive} />
-        </Button>
+        <StoriesButton/>
         <Emoji/>
     </div>
     <Label icon="Rename" label="Text inputs"></Label>
