@@ -130,12 +130,14 @@ body{
 }
 
 .elem-horiz{
+    align-items: center;
     display: flex;
     flex-direction: row;
     gap: v.$spacing-def;
 }
 
 .elem-vert{
+    align-items: center;
     display: flex;
     flex-direction: column;
     gap: v.$spacing-def;

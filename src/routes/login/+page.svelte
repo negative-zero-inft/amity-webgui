@@ -1,30 +1,30 @@
 <script lang="ts">
 	import Icon from "$lib/kit/decor/Icon.svelte";
 	import amy from "$lib/amy.svg"
-	import { isError, errorValue, view } from "$lib/scripts/loginWritables";
-	import { isHttps } from "$lib/scripts/globalData";
 	import LoginBox from "$lib/layout/windows/login/LoginBox.svelte";
 	import SignupBox from "$lib/layout/windows/login/SignupBox.svelte";
+	import { isError, errorValue, view } from "$lib/scripts/loginWritables";
+	import { isHttps } from "$lib/scripts/globalData";
 
 	$effect(()=>{
 		if(localStorage.getItem("token")) window.location.replace("/chat")
 	})
 
-	let loginHeight = $state(370);
-	let signupHeight = $state(370);
+	let loginHeight = $state(0);
+	let signupHeight = $state(0);
 </script>
 
 <div 
 	class="loginBg"
 >
-	<div class="error" style="
-		flex-direction: column;
-		align-items: flex-start;
-		width: max-content; 
-		top: {!$isHttps ? "10px" : "50vh"};
-		scale: {$isHttps ? "0" : "1"};
-		transition: 0.25s;
-	">	
+	<div 
+		id="idiotproofing"
+		class="error" 
+		style="
+			top: {!$isHttps ? "10px" : "50vh"};
+			scale: {$isHttps ? "0" : "1"};
+		"
+	>	
 		<div class="elem-horiz">
 			<Icon name="Warning"></Icon>You've enabled the developer backend mode!
 		</div>
@@ -63,6 +63,13 @@
 <style lang="scss">
 	@use '$lib/style/variables.scss' as v;
 	@use '$lib/style/colors.scss' as c;
+
+	#idiotproofing{
+		flex-direction: column;
+		align-items: flex-start;
+		width: max-content; 
+		transition: 0.25s;
+	}
 
 	#loginWindow{
 		width: 340px; 

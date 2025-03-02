@@ -1,15 +1,17 @@
 <script lang="ts">
+    // Importing necessary components and utilities
 	import Icon from "$lib/kit/decor/Icon.svelte";
 	import Textbox from "$lib/kit/text/Textbox.svelte";
     import Button from "$lib/kit/gizmos/Button.svelte";
     import { server, isHttps, port } from "$lib/scripts/globalData";
-    import OAuth from "$lib/kit/gizmos/OAuth.svelte";
     import { checkServerReachability } from "$lib/scripts/requests";
     import { isError, errorValue, view } from "$lib/scripts/loginWritables";
+
     let{
         height = $bindable(370)
     } = $props()
 
+    // State variables for user input
     let username = $state("");
     let password = $state("");
     let rePsword = $state("");
@@ -17,12 +19,14 @@
     let fileserver = $state("amity.neg-zero.com");
     let usertag = $state("");
 
+    // State variables for input validation
     let isUsernameInvalid = $state(false);
     let isPasswordInvalid = $state(false);
     let isInstanceInvalid = $state(false);
     let isRePswordInvalid = $state(false);
     let isTagInvalid = $state(false);
 
+    // Reset form state on "login" view
     view.subscribe((v)=>{
         if(v == "login"){
             isUsernameInvalid = false;
@@ -44,7 +48,7 @@
 
     const signUpProcedure = async () =>{
         try{
-
+            // Validate inputs
             if( !username || !password || !instance || !rePsword ){
                 if(!username) isUsernameInvalid = true;
                 if(!password) isPasswordInvalid = true;
@@ -56,6 +60,7 @@
                 return
             }
 
+            // Check server reachability
             const serverReachable = await checkServerReachability(`http${$isHttps ? "s" : ""}://${instance}:${$port}`);
             if (!serverReachable) {
                 isError.set(true);
@@ -63,6 +68,7 @@
                 return;
             }
 
+            // Create user object
             const user = {
                 tag: usertag,
                 password: password,
@@ -70,6 +76,7 @@
                 cdn: fileserver
             }
 
+            // Send registration request
             const response = await fetch(`http${$isHttps ? "s" : ""}://${instance}:${$port}/register`, {
                 method: "POST",
                 body: JSON.stringify(user),
@@ -79,6 +86,7 @@
                 }
             })
 
+            // Handle response
             if(await response.status != 200) {
                 console.log(await response)
                 isError.set(true);
@@ -86,9 +94,10 @@
                 return
             }
 
+            // Navigate to login view
             view.set("login");
         }catch(e: any){
-
+            // Handle errors
             isError.set(true);
             errorValue.set(e);
             return
@@ -108,6 +117,7 @@
     </div>
     <div class="form">
         <div class="elem-horiz">
+            <!-- Username input -->
             <Textbox
                 isError={isUsernameInvalid}
                 onkeydown={()=>{
@@ -119,12 +129,14 @@
                 placeholder="Username"
             />
             <Icon name="AtSign"/>
+            <!-- Instance URL input -->
             <Textbox
                 isError={isInstanceInvalid}
                 bind:value={instance}
                 width="100%; flex-shrink: 1;"
                 placeholder="Instance URL"
             />
+            <!-- Toggle dev mode -->
             <Button 
                 action={()=>{
                     isHttps.set(!$isHttps);
@@ -134,6 +146,7 @@
                 <Icon name="Code"/>
             </Button>
         </div>
+        <!-- User tag input -->
         <Textbox
             isError={isTagInvalid}
             bind:value={usertag}
@@ -141,6 +154,7 @@
             placeholder="User tag"
             icon="User"
         />
+        <!-- Password input -->
         <Textbox
             isError={isPasswordInvalid}
             bind:value={password}
@@ -149,6 +163,7 @@
             icon="Lock/Locked"
             isPassword
         />
+        <!-- Confirm password input -->
         <Textbox
             isError={isRePswordInvalid}
             bind:value={rePsword}
@@ -157,11 +172,13 @@
             icon="Lock/Locked"
             isPassword
         />
+        <!-- File server input -->
         <Button scaleClick={0.95} scaleHover={1.05} alignment="space-between" width="100%"
             ><div class="elem-horiz"><Icon name="Cloud"></Icon> File server <div style="opacity: 0.5;">{fileserver}</div></div>
             <Icon name="Direction/Right"></Icon>
         </Button>
     </div>
+    <!-- Cancel button -->
     <div class="elem-horiz">
         <Button
             style="default"
@@ -204,10 +221,6 @@
         display: flex;
         flex-direction: column;
         gap: v.$spacing-def;
-    }
-
-    .elem-horiz{
-        align-items: center;
     }
 
     .loginBox{

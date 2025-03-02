@@ -1,4 +1,5 @@
 <script lang="ts">
+	// Importing necessary components and utilities
 	import Icon from "$lib/kit/decor/Icon.svelte";
 	import Textbox from "$lib/kit/text/Textbox.svelte";
     import Button from "$lib/kit/gizmos/Button.svelte";
@@ -6,18 +7,23 @@
     import OAuth from "$lib/kit/gizmos/OAuth.svelte";
     import { checkServerReachability } from "$lib/scripts/requests";
     import { isError, errorValue, view } from "$lib/scripts/loginWritables";
+
+    // Bindable property for the height of the login box
     let{
         height = $bindable(370)
     } = $props()
 
+    // State variables for user input
     let username = $state("");
     let password = $state("");
     let instance = $state($server);
 
+    // State variables for input validation
     let isUsernameInvalid = $state(false);
     let isPasswordInvalid = $state(false);
     let isInstanceInvalid = $state(false);
 
+    // Subscribe to view changes to reset form state on "signup" view
     view.subscribe((v)=>{
         if(v == "signup"){
             isUsernameInvalid = false;
@@ -34,7 +40,7 @@
 
     const signInProcedure = async () =>{
         try{
-
+            // Validate inputs
             if( !username || !password || !instance ){
                 if(!username) isUsernameInvalid = true;
                 if(!password) isPasswordInvalid = true;
@@ -44,6 +50,7 @@
                 return
             }
 
+            // Check server reachability
             const serverReachable = await checkServerReachability(`http${$isHttps ? "s" : ""}://${instance}:${$port}`);
             if (!serverReachable) {
                 isError.set(true);
@@ -51,6 +58,7 @@
                 return;
             }
 
+            // Attempt to sign in
             const response = await fetch(`http${$isHttps ? "s" : ""}://${instance}:${$port}/signin`, {
                 method: "POST",
                 body: JSON.stringify({
@@ -62,18 +70,20 @@
                     "Access-Control-Allow-Origin": "*"
                 }
             })
+            // Handle response
             if(await response.status != 200) {
                 console.log(await response)
                 isError.set(true);
                 errorValue.set(await response.text())
                 return
             }
+            // Store token and server info on successful login
             localStorage.setItem("token", await response.text())
             localStorage.setItem("server", instance)
             isError.set(false);
             window.location.replace("/chat")
         }catch(e: any){
-
+            // Handle errors
             isError.set(true);
             errorValue.set(e);
             return
@@ -93,6 +103,7 @@
     </div>
     <div class="form">
         <div class="elem-horiz">
+            <!-- Username input -->
             <Textbox
                 isError={isUsernameInvalid}
                 onkeydown={()=>{
@@ -104,12 +115,16 @@
                 placeholder="Username"
             />
             <Icon name="AtSign"/>
+
+            <!-- Instance URL input -->
             <Textbox
                 isError={isInstanceInvalid}
                 bind:value={instance}
                 width="100%; flex-shrink: 1;"
                 placeholder="Instance URL"
             />
+
+            <!-- Toggle dev mode -->
             <Button 
                 action={()=>{
                     isHttps.set(!$isHttps);
@@ -119,6 +134,8 @@
                 <Icon name="Code"/>
             </Button>
         </div>
+
+        <!-- Password input -->
         <Textbox
             isError={isPasswordInvalid}
             bind:value={password}
@@ -128,6 +145,8 @@
             isPassword
         />
         <div class="elem-horiz">
+
+            <!-- Sign up button -->
             <Button
                 style="default"
                 width="100%; flex-shrink: 1;"
@@ -138,6 +157,8 @@
                 <Icon name="Plus"/>
                 Sign up
             </Button>
+
+            <!-- Log in button -->
             <Button
                 action={signInProcedure}
                 style="accent"
@@ -148,6 +169,8 @@
             </Button>
         </div>
     </div>
+    
+    <!-- Separator -->
     <div class="elem-horiz" style="width: 100%;">
         <hr class="separator"/>
         <div class="text">
@@ -155,6 +178,8 @@
         </div>
         <hr class="separator"/>
     </div>
+
+    <!-- OAuth options -->
     <div class="oauthGrid">
         <OAuth name="google"><Icon name="Google"></Icon></OAuth>
         <OAuth name="apple"><Icon name="Apple"></Icon></OAuth>
@@ -179,8 +204,8 @@
 		width: 100%;
 		display: grid;
 		gap: v.$spacing-def;
-		grid-template-columns: repeat(4, 1fr); /* 7 equal-width columns */
-		grid-template-rows: repeat(2, 1fr); /* 3 equal-height rows */
+		grid-template-columns: repeat(4, 1fr); 
+		grid-template-rows: repeat(2, 1fr); 
 	}
 
     .separator{
@@ -191,10 +216,6 @@
         display: flex;
         flex-direction: column;
         gap: v.$spacing-def;
-    }
-
-    .elem-horiz{
-        align-items: center;
     }
 
     .loginBox{
