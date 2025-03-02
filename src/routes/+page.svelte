@@ -2,7 +2,7 @@
 	import closeup from '../lib/closeup.png';
 	import amy from '../lib/amy.svg';
 	import Button from '$lib/kit/gizmos/Button.svelte';
-	import Icon from '$lib/kit/Icon.svelte';
+	import Icon from '$lib/kit/decor/Icon.svelte';
 </script>
 
 <div class="main">
@@ -26,7 +26,7 @@
 				}}
 				width="230px"
 				alignment="space-between"
-				style={1}
+				style="accent"
 			>
 				<div style="display: flex; gap: 10px; align-items: center;">
 					<Icon name="Window"></Icon>

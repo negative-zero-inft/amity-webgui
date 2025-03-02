@@ -29,3 +29,19 @@ export const fetchData = async (url: string) => {
         return null;
     }
 };
+
+export const checkServerReachability = async (url:string) => {
+    try {
+        const response = await fetch(url, {
+            cache: 'no-cache'
+        });
+
+        if (response.ok) {
+            return true;
+        } else {
+            return false;
+        }
+    } catch (error) {
+        return false;
+    }
+}

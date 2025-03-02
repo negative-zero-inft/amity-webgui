@@ -1,34 +1,48 @@
 <script lang="ts">
-	import Icon from "$lib/kit/Icon.svelte";
+	import Icon from "$lib/kit/decor/Icon.svelte";
 	import amy from "$lib/amy.svg"
-	import LoginBox from "$lib/kit/layout/login/LoginBox.svelte";
-	import SignupBox from "$lib/kit/layout/login/SignupBox.svelte";
-	import { writable } from "svelte/store";
-	import { errorValue, isError } from "$lib/scripts/loginWritables";
+	import { isError, errorValue, view } from "$lib/scripts/loginWritables";
 	import { isHttps } from "$lib/scripts/globalData";
-
-	let isLogin = writable<boolean>(true);
+	import LoginBox from "$lib/layout/windows/login/LoginBox.svelte";
+	import SignupBox from "$lib/layout/windows/login/SignupBox.svelte";
 
 	$effect(()=>{
 		if(localStorage.getItem("token")) window.location.replace("/chat")
 	})
 
+	let loginHeight = $state(370);
+	let signupHeight = $state(370);
 </script>
 
-<div class="loginBg">
+<div 
+	class="loginBg"
+>
 	{#if !$isHttps}
-		<div class="elements-horiz" style="gap: 10px;">
+		<div class="elem-horiz" style="gap: 10px; align-items: center;">
 			You've enabled the developer backend mode. Press the <Icon name="Code"></Icon> button to return to normal mode.
 		</div>
 	{/if}
-	<div class="window" style="width: 340px; height: 370px; flex-direction: row; padding: 0; gap: 0;">
-		<LoginBox isLogin={isLogin}></LoginBox>
-		<SignupBox isLogin={isLogin}></SignupBox>
+	<div 
+		id="loginWindow"
+		class="window" 
+		style="
+			height: {$view == "login" ? loginHeight : signupHeight}px;
+		"
+	>
+		<LoginBox bind:height={loginHeight}/>
+		<SignupBox bind:height={signupHeight}/>
 	</div>
 
 	<!-- svelte-ignore a11y_no_static_element_interactions -->
 	<!-- svelte-ignore a11y_click_events_have_key_events -->
-	<div onclick={()=>{isError.set(false)}} style="transform: scale({$isError ? "1" : "0"}); opacity: {$isError ? "1" : "0"};" class="error">
+	<div 
+		onclick={()=>{isError.set(false)}} 
+		style="
+			transform: scale({$isError ? "1" : "0"}); 
+			opacity: {$isError ? "1" : "0"};
+		" 
+		class="error"
+	>
 		<Icon name="Warning"></Icon>{$errorValue}
 	</div>
 
@@ -39,6 +53,12 @@
 <style lang="scss">
 	@use '$lib/style/variables.scss' as v;
 	@use '$lib/style/colors.scss' as c;
+
+	#loginWindow{
+		width: 340px; 
+		padding: 0; 
+		gap: 0;
+	}
 	
 	.error{
 		overflow: hidden;
@@ -71,6 +91,10 @@
 		&:hover{
 			background-color: c.$accent-t40;
 			scale: 1.1;
+		}
+		&:active{
+			scale: 0.9;
+			background-color: c.$accent-t80;
 		}
 	}
 
