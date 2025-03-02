@@ -83,6 +83,7 @@
 	z-index: 12837;
 	">
 		<Button
+			tooltip="Preview message"
 			width="36px"
 			style={isPreview ? 2 : 0}
 			action={(e: MouseEvent) => {
@@ -93,6 +94,7 @@
 			<Icon name={'Eye'} />
 		</Button>
 		<Button
+			tooltip="Emoji"
 			width="36px"
 			style={$isEmojiBar ? 2 : 0}
 			action={() => {
@@ -102,6 +104,7 @@
 			<Icon name={$isEmojiBar ? 'X' : 'Smile'} />
 		</Button>
 		<Button
+			tooltip="Send"
 			width="36px"
 			style={1}
 			action={() => {
@@ -129,6 +132,7 @@
 		z-index: 12837;
 	">
 		<Button
+			tooltip="Contacts"
 			width="36px"
 			style={$isContactsBar ? 2 : 0}
 			action={() => {
@@ -136,6 +140,7 @@
 		}}><Icon name={$isContactsBar ? 'X' : 'Users'} /></Button
 		>
 		<Button
+			tooltip="Location"
 			width="36px"
 			style={$isMapBar ? 2 : 0}
 			action={() => {
@@ -143,6 +148,7 @@
 			}}><Icon name={$isMapBar ? 'X' : 'Location'} /></Button
 		>
 		<Button
+			tooltip="Polls"
 			width="36px"
 			style={$isPollBar ? 2 : 0}
 			action={() => {
@@ -150,6 +156,7 @@
 			}}><Icon name={$isPollBar ? 'X' : 'Equalizer'} /></Button
 		>
 		<Button
+			tooltip="Apps & commands"
 			width="36px"
 			style={$isCommandBar ? 2 : 0}
 			action={() => {
@@ -157,6 +164,7 @@
 			}}><Icon name={$isCommandBar ? 'X' : 'Terminal'} /></Button
 		>
 		<Button
+			tooltip="Emoji"
 			width="36px"
 			style={$isEmojiBar ? 2 : 0}
 			action={() => {
@@ -164,6 +172,7 @@
 			}}><Icon name={$isEmojiBar ? 'X' : 'Smile'} /></Button
 		>
 		<Button
+			tooltip="Stickers"
 			width="36px"
 			style={$isStickerBar ? 2 : 0}
 			action={() => {
@@ -171,6 +180,7 @@
 			}}><Icon name={$isStickerBar ? 'X' : 'StickyNotes'} /></Button
 		>
 		<Button
+			tooltip="Gifs"
 			width="36px"
 			style={$isGifBar ? 2 : 0}
 			action={() => {
@@ -178,6 +188,7 @@
 			}}><Icon name={$isGifBar ? 'X' : 'GIF'} /></Button
 		>
 		<Button
+			tooltip="Record a voice message"
 			width="36px"
 			style={$isRecording ? 1 : 0}
 			action={() => {
