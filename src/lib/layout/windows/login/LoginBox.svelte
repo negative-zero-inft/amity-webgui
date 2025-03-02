@@ -144,6 +144,7 @@
             icon="Lock/Locked"
             isPassword
         />
+        <a href="/Dobby.png">Forgot password?</a>
         <div class="elem-horiz">
 
             <!-- Sign up button -->
