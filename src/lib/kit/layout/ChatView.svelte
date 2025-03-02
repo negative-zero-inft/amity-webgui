@@ -1,47 +1,51 @@
 <script lang="ts">
 	import Avatar from '$lib/kit/Avatar.svelte';
 	import Message from '$lib/kit/Message.svelte';
+	import { server, user } from '$lib/scripts/globalData';
 	import Cluster from './Cluster.svelte';
 
-	const mdExample = "# Welcome to My Markdown Playground! 🎨\n\nHey there! This is a *fun* example of mixing **Markdown** and <em>HTML</em> together.\n\n## Things I Love:\n1. Writing in <strong>bold</strong> and _italic_\n2. Making lists (like this one!)\n3. Using emojis 🚀 ✨ 🌈\n\n# help, they're keeping me here \n| Feature | Markdown | HTML |\n|---------|:--------:|-----:|\n| Bold | **text** | <strong>text</strong> |\n| Italic | *text* | <em>text</em> |\n| Links | [text](url) | <a href=\"url\">text</a> |\n\nHere's a quote for you:\n\n> \"The best of both worlds\" - <cite>Someone who loves markdown & HTML</cite>\n\nYou can even use <sup>superscript</sup> and <sub>subscript</sub> text!\n\n---\n\n<details>\n<summary>Want to see something cool?</summary>\nHere's a hidden surprise! 🎉\n</details>\n\nHappy coding! <span style=\"color: hotpink\">♥</span>";
+	const messages = [
+		[
+			{
+				id: {
+					id: $user.id.id,
+					server: $user.id.server
+				}
+			},
+			{
+				date: new Date(),
+				content: "testoid 2"
+			},
+			{
+				date: new Date(),
+				content: "testoid"
+			},
+
+		],
+		[
+			{
+				id: {
+					id: "2137420",
+					server: $server
+				}
+			},
+			{
+				date: new Date(),
+				content: "testoid 2"
+			},
+			{
+				date: new Date(),
+				content: "testoid"
+			},
+
+		],
+	]
 </script>
 
 <div class="chatView">
-	<Cluster
-		isForeign={true}
-		messages={['WHAT DA WEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE', 'skibidi toilet']}
-	/>
-	<Cluster messages={['skibidi toilet', 'moyay']} />
-	<Cluster
-		isForeign={true}
-		messages={['WHAT DA WEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE', 'skibidi toilet']}
-	/>
-	<Cluster messages={['skibidi toilet', 'moyay']} />
-	<Cluster
-		isForeign={true}
-		messages={['WHAT DA WEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE', 'skibidi toilet']}
-	/>
-	<Cluster messages={['skibidi toilet', 'moyay']} />
-	<Cluster
-		isForeign={true}
-		messages={['WHAT DA WEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE', '# skibidi toilet']}
-	/>
-	<Cluster messages={['skibidi toilet', 'moyay']} />
-	<Cluster
-		isForeign={true}
-		messages={['WHAT DA WEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE', 'skibidi toilet']}
-	/>
-	<Cluster messages={['skibidi toilet', 'moyay']} />
-	<Cluster
-		isForeign={true}
-		messages={['WHAT DA WEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE', 'skibidi toilet']}
-	/>
-	<Cluster messages={['skibidi toilet', 'moyay']} />
-	<Cluster
-		isForeign={true}
-		messages={['WHAT DA WEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE', 'skibidi toilet', mdExample]}
-	/>
-	<Cluster messages={['skibidi toilet', 'moyay']} />
+	{#each messages || [] as cluster}
+		<Cluster isForeign={!(cluster[0].id?.id != $user.id.id && cluster[0].id?.server == $user.id.server)} messages={cluster.slice(1).map((m: any) => m.content)}></Cluster>
+	{/each}
 </div>
 
 <style lang="scss">

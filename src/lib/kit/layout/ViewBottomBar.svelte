@@ -60,7 +60,7 @@
 		style="max-height: calc(100vh - 20px);"
 		onkeydown={(e: KeyboardEvent) => {
 			if(e.key === 'Enter' && e.shiftKey){
-				console.log('shift enter');
+				
 			}else if(e.key === 'Enter'){
 				e.preventDefault();
 				sendMessage()
