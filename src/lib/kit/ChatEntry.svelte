@@ -35,7 +35,8 @@
 			id: '',
 			server: ''
 		},
-		has_channels: false
+		has_channels: false,
+		channels: []
 	});
 	let isMultiGroup = $state(false);
 	let chatType = $state('');
@@ -57,8 +58,12 @@
 						}
 					})
 					tempData = await response.json()
-					if(tempData.has_channels) isMultiGroup = true;
-					chatType = "monogroup";
+					if(tempData.has_channels){
+						isMultiGroup = true;
+						chatType = "group";
+					}else{
+						chatType = "monogroup";
+					}
 				}catch(e){
 					console.log(e)
 				}
@@ -112,7 +117,7 @@
 			<div class="textPreview">{timeAgo(timestamp, datenow)}</div>
 		</div>
 		<div class="line">
-			<div class="textPreview">{preview}</div>
+			<div class="textPreview">{isMultiGroup ? tempData.channels.length + " channels" : preview}</div>
 			{#if isUnreads}
 				<div class="unreads">{unreads}</div>
 			{:else}
