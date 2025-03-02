@@ -22,7 +22,12 @@
 	oncontextmenu={(e)=>{contextmenu(e)}}
 	{id}
 	class="{style} {isChip ? 'chip' : ''}"
-	style="--w: {width}; --a: {alignment}; --sh: {scaleHover}; --sc: {scaleClick}"
+	style="
+		width: {width};
+		justify-content: {alignment};
+		--sh: {scaleHover};
+		--sc: {scaleClick}
+	"
 	onclick={(e) => {
 		action(e);
 	}}
@@ -45,8 +50,6 @@
 		user-select: none;
 		white-space: nowrap;
 		flex-direction: row !important;
-		width: var(--w);
-		justify-content: var(--a);
 		transition: 0.25s;
 		flex-shrink: 0;
 		border-radius: v.$corner-elem;
