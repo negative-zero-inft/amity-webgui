@@ -30,6 +30,7 @@
 		</span>
 	{/if}
 </div>
+
 {#if isOpen}
 	<div class="children">
 		{@render (children as any)?.()}
