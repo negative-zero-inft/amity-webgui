@@ -1,17 +1,10 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
 	import { goto } from '$app/navigation';
-	import Sidebar from '$lib/kit/layout/Sidebar.svelte';
-	import View from '$lib/kit/layout/View.svelte';
-	import Settings from '$lib/kit/layout/Settings.svelte';
-	import { user, server, isHttps, port } from '$lib/scripts/globalData';
-	import { token } from '$lib/scripts/globalData';
-	import { windowClickEvent } from '$lib/scripts/chatViews';
-	import FolderCtxMenu from '$lib/kit/layout/sidebarElems/FolderCtxMenu.svelte';
-	import Icon from '$lib/kit/Icon.svelte';
-	import MoreButtonCtxMenu from '$lib/kit/layout/sidebarElems/MoreButtonCtxMenu.svelte';
+	import { token, isHttps, server, port } from '$lib/scripts/globalData';
 	import { getUser } from '$lib/scripts/requests';
-	import { currentChat } from '$lib/scripts/chatViews';	
+	import { windowClickEvent } from '$lib/scripts/chatViews';
+	import Icon from '$lib/kit/decor/Icon.svelte';
 
 	$effect(() => {
 		if (!browser) return;
@@ -49,31 +42,10 @@
 </script>
 
 {#if $token}
-	<FolderCtxMenu></FolderCtxMenu>
-	<MoreButtonCtxMenu></MoreButtonCtxMenu>
 	<!-- svelte-ignore a11y_no_static_element_interactions -->
 	<!-- svelte-ignore a11y_click_events_have_key_events -->
 	<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
-	<div
-		class="main"
-		onclick={(e) => {
-			windowClickEvent.set(e);
-		}}
-		oncontextmenu={(e) => {
-			windowClickEvent.set(e);
-		}}
-	>
-		<Settings />
-		<Sidebar />
-		<hr class="separator" />
-		{#if $currentChat.id.id.length > 0}
-			<View />
-		{:else}
-			<div class="noChatSelected">
-				Select a chat
-			</div>
-		{/if}
-	</div>
+	yay you logged in
 {:else}
 	<div class="main" style="
 		display: flex;
@@ -84,7 +56,7 @@
 		background: radial-gradient(#300000, #000000 30%);
 	">
 		<div id="loadingScreen">
-			<Icon name="Update"></Icon>
+			<Icon name="Update"/>
 		</div> Waking Amy up...
 	</div>
 {/if}
