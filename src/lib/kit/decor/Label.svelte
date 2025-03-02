@@ -41,7 +41,7 @@
 	@use '$lib/style/colors.scss' as c;
 
 	.children{
-		margin-top: 10px;
+		margin-top: 5px;
 		min-width: 100%;
 	}
 
