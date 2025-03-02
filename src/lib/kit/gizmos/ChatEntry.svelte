@@ -82,7 +82,7 @@
 	<div class="info">
 		<div class="line">
 			<div class="horiz">
-				<div>{tempData?.name}</div>
+				<div class="name">{tempData?.name}</div>
 				{#if isFavorite}
 					<svg
 						width="11"
@@ -116,6 +116,13 @@
 <style lang="scss">
 	@use '$lib/style/variables.scss' as v;
 	@use '$lib/style/colors.scss' as c;
+
+	.name{
+		width: 100%;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
 	
 	.selected {
 		display: flex;
@@ -160,6 +167,7 @@
 		border-radius: v.$corner-elem;
 		border: none;
 		color: c.$text;
+		overflow: hidden;
 		@include v.standard-text();
 	
 		&:hover {
@@ -196,7 +204,9 @@
 	.horiz {
 		display: flex;
 		flex-direction: row;
-		gap: 7px;
+		gap: v.$spacing-def;
+		width: 100%;
+		overflow: hidden;
 		// mess
 		align-items: center;
 	}
@@ -208,6 +218,7 @@
 		flex-direction: row;
 		justify-content: space-between;
 		align-items: center;
+		gap: v.$spacing-def;
 	}
 	.info {
 		width: 100%;
@@ -215,6 +226,7 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
+		overflow: hidden;
 	}
 
 </style>
