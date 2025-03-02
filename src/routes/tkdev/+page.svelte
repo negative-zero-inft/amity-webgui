@@ -54,7 +54,7 @@
         [
             {
                 id: {
-                    id: "ZSTXMJ16VQ2OG2AIQF49YZZ8",
+                    id: $user?.id.id,
                     server: $server
                 }
             },

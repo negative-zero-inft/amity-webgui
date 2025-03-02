@@ -28,9 +28,9 @@
 
 		&.sender{
 			background-color: c.$accent-t40;
-			border-radius: 15px 15px 15px 5px;
+			border-radius: 15px 15px 5px 15px;
 			&.clustered{
-				border-radius: 15px 55px 5px 15px;
+				border-radius: 15px 5px 5px 15px;
 			}
 
 			&:hover{
