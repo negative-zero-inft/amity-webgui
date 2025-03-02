@@ -28,5 +28,8 @@
     "start": {
         "aboutAmity": "Amity este o sursă deschisă şi descentralizată platformă de chat, permiţând oricui să se conecteze liber cu ceilalţi",
         "demo": "Explorează demo"
+    },
+    "chat": {
+        "loading": "O trezesc pe Amy..."
     }
 }

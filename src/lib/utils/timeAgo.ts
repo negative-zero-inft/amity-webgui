@@ -5,6 +5,7 @@ export function timeAgo(timestamp: number, datenow: number = Date.now()) {
     let rtf: undefined | Intl.RelativeTimeFormat;
 
     locale.subscribe((l) => {
+        // fallback to English if the language is not "en" or "en-US"
         rtf = new Intl.RelativeTimeFormat(l ? l.split("-")[0].length > 2 ? "en" : l : "en", {
             numeric: "always",
             style: "short"

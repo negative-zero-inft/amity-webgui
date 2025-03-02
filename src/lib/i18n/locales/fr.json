@@ -1,0 +1,37 @@
+{
+    "loginBox": {
+        "signup": "S'inscrire",
+        "signinwith": "Ou bien, ouvrez une session avec...",
+        "loginGreet": "Connexion à Amity",
+        "login": "Se connecter",
+        "forgotpassword": "Mot de passe oublié ?",
+        "password": "Code secret",
+        "username": "Nom d’utilisateur",
+        "instanceURL": "Adresse de l’instance",
+        "serverUnreachable": "Cette instance est soit hors ligne, soit inexistante",
+        "fillAllSpaces": "Veuillez remplir tous les champs"
+    },
+    "signupBox": {
+        "username": "Nom d’utilisateur",
+        "instanceURL": "Adresse de l’instance",
+        "usertag": "Identifiant",
+        "password": "Code secret",
+        "confirmpassword": "Confirmez votre code secret",
+        "fileserver": "Serveur de fichiers",
+        "cancel": "Annuler"
+    },
+    "sidebar": {
+        "newFolder": "Nouveau dossier",
+        "allChats": "Toutes les discussions",
+        "storiesButton": "Histoires",
+        "noChats": "Personne avec qui discuter...",
+        "noChatsDesc": "Vous pouvez rejoindre ou créer un groupe en cliquant sur le bouton « Plus » en haut"
+    },
+    "start": {
+        "aboutAmity": "Amity est une application de messagerie libre et décentralisée, permettant à chacun de communiquer librement avec autrui.",
+        "demo": "Explorer la démonstration"
+    },
+    "chat": {
+        "loading": "Réveil d'Amy en cours..."
+    }
+}

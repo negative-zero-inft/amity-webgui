@@ -25,7 +25,24 @@
         "allChats": "All chats",
         "storiesButton": "Stories",
         "noChats": "There's nobody to chat with...",
-        "noChatsDesc": "You can join or create a group by clicking the \"more\" button at the top"
+        "noChatsDesc": "You can join or create a group by clicking the \"more\" button at the top",
+        "userbar": {
+            "settings": "Settings",
+            "logoutEntry": "Log out",
+            "changelogEntry": "Amity changelog",
+            "instanceEntry": "About this instance",
+            "archivedEntry": "Archived chats",
+            "savedEntry": "Saved messages",
+            "thingsEntry": "Your things",
+            "friendsEntry": "Your friends",
+            "profileEntry": "Your profile",
+            "tooltips": {
+                "copyTag": "Copy user tag",
+                "switchAccount": "Switch account",
+                "notifButton": "Notifications",
+                "backButton": "Close sidebar"
+            }
+        }
     },
     "start": {
         "aboutAmity": "Amity is an open-source and decentralized chat app, allowing for anyone to freely connect with others.",

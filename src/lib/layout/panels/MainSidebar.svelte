@@ -1,10 +1,21 @@
 <script lang="ts">
 	import SidebarTop from "$lib/layout/panels/mainSidebarElements/SidebarTop.svelte";
 	import ChatList from "$lib/layout/panels/mainSidebarElements/ChatList.svelte";
+	import Userbar from "$lib/layout/panels/Userbar.svelte";
+    import { isUserBar } from "$lib/scripts/chatViews";
 
 </script>
 
-<div class="sidebar">
+<Userbar/>
+<div 
+    class="sidebar"
+    style="
+        --u: {$isUserBar ? 0.9 : 1};
+		--o: {$isUserBar ? 0.25 : 1}; 
+		--r: {$isUserBar ? 1 : 0}; 
+		transition: width {$isUserBar ? 0.25 : 0}s, scale 0.25s, transform 0.25s, opacity 0.25s;
+    "
+>
     <SidebarTop/>
     <hr class="separator"/>
     <ChatList/>
@@ -19,5 +30,8 @@
         @include v.sidebar;
         width: 320px;
         height: 100vh;
+        opacity: var(--o);
+		scale: var(--u);
+		transform: rotate3d(0, var(--r), 0, 90deg);
     }
 </style>
