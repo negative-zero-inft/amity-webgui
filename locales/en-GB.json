@@ -1,4 +1,9 @@
 {
+    "login": {
+        "devMode0": "Oi mate, you've gone and enabled the dev backend mode!",
+        "devMode1": "If you're proper confused about this, just give",
+        "devMode2": "that button a tap to get back to normal, innit."
+    },
     "loginBox": {
         "signup": "Sign up, bruv",
         "signinwith": "Or, sign in wiv...",
@@ -9,7 +14,9 @@
         "username": "Username, geezer",
         "instanceURL": "Instance URL, bruv",
         "serverUnreachable": "Oi, this instance is either offline or don't exist, mate",
-        "fillAllSpaces": "Come on, fill in all the bloomin' spaces, yeah?"
+        "fillAllSpaces": "Come on, fill in all the bloomin' spaces, yeah?",
+        "switchAccount": "Switch accounts, innit",
+        "addAccount": "Chuck another account on"
     },
     "signupBox": {
         "username": "Pick a username, fam",
@@ -25,13 +32,40 @@
         "allChats": "All ya chats, mate",
         "storiesButton": "Stories, no drama",
         "noChats": "Ain't got no one to chat wiv, bruv...",
-        "noChatsDesc": "Sort it out, yeah? Join or make a group by smashin' the \"more\" button up top"
+        "noChatsDesc": "Sort it out, yeah? Join or make a group by smashin' the \"more\" button up top",
+        "folderCtx": {
+            "editButton": "Fix up this folder",
+            "deleteButton": "Bin this folder"
+        },
+        "userbar": {
+            "settings": "Sort ya settings",
+            "logoutEntry": "Do one (Log out)",
+            "changelogEntry": "What's new in Amity, innit",
+            "instanceEntry": "About this gaff",
+            "archivedEntry": "Old chats, innit",
+            "savedEntry": "Saved bits and bobs",
+            "thingsEntry": "Ya stuff",
+            "friendsEntry": "Ya mates",
+            "profileEntry": "Ya profile",
+            "tooltips": {
+                "copyTag": "Nick the user tag",
+                "switchAccount": "Switch ya account",
+                "notifButton": "Gimme a shout",
+                "backButton": "Do one with the sidebar"
+            }
+        }
     },
     "start": {
         "aboutAmity": "Amity's a proper open-source, decentralised chat app, so anyone can chinwag wiv mates, innit?",
-        "demo": " 'Ave a butcher’s at the demo"
+        "demo": "'Ave a butcher's at the demo",
+        "slogan": "The proper chat app for all you lot"
     },
     "chat": {
-        "loading": "Hang about... Wakin’ Amy up..."
+        "loading": "Hang about... Wakin' Amy up...",
+        "emptyView": "Pick summat to start chattin' about...",
+        "searchbox": "Ave a look for...",
+        "chatboxPlaceholder": "Type ya message, innit...",
+        "members": "geezers",
+        "member": "geezer"
     }
 }

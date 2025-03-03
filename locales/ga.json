@@ -1,7 +1,12 @@
 {
+    "login": {
+        "devMode0": "Tá mód forbróra an freastalaí gníomhachtaithe agat!",
+        "devMode1": "Mura bhfuil tú cinnte cad é seo, brúigh an",
+        "devMode2": "cnaipe chun filleadh ar an ngnáthmhód."
+    },
     "loginBox": {
         "signup": "Cláraigh",
-        "signinwith": "Nógit  logáil isteach le...",
+        "signinwith": "Nó logáil isteach le...",
         "loginGreet": "Logáil isteach le Amity",
         "login": "Logáil isteach",
         "forgotpassword": "Dearmad pasfhocal?",
@@ -9,46 +14,58 @@
         "username": "Ainm úsáideora",
         "instanceURL": "URL Freastalaí",
         "serverUnreachable": "Tá an freastalaí seo as líne nó níl sé ann",
-        "fillAllSpaces": "Líon isteach gach spás le do thoil"
+        "fillAllSpaces": "Líon isteach gach spás le do thoil",
+        "switchAccount": "Athraigh cuntas",
+        "addAccount": "Cuir cuntas leis"
     },
     "signupBox": {
         "username": "Ainm úsáideora",
         "instanceURL": "URL Freastalaí",
-        "usertag": "Chlib úsáideora",
+        "usertag": "Clib úsáideora",
         "password": "Pasfhocal",
         "confirmpassword": "Deimhnigh pasfhocal",
-        "fileserver": "Comhad Freastalaí",
-        "cancel": "Ceal"
+        "fileserver": "Freastalaí Comhad",
+        "cancel": "Cealaigh"
     },
     "sidebar": {
-        "newFolder": "New folder",
-        "allChats": "All chats",
-        "storiesButton": "Stories",
-        "noChats": "There's nobody to chat with...",
-        "noChatsDesc": "You can join or create a group by clicking the \"more\" button at the top",
+        "newFolder": "Fillteán nua",
+        "allChats": "Gach comhrá",
+        "storiesButton": "Scéalta",
+        "noChats": "Níl aon duine ann le comhrá a dhéanamh leo...",
+        "noChatsDesc": "Is féidir leat páirt a ghlacadh nó grúpa a chruthú trí chliceáil ar an gcnaipe \"tuilleadh\" ag an mbarr",
+        "folderCtx": {
+            "editButton": "Cuir fillteán in eagar",
+            "deleteButton": "Scrios fillteán"
+        },
         "userbar": {
-            "settings": "Settings",
-            "logoutEntry": "Log out",
-            "changelogEntry": "Amity changelog",
-            "instanceEntry": "About this instance",
-            "archivedEntry": "Archived chats",
-            "savedEntry": "Saved messages",
-            "thingsEntry": "Your things",
-            "friendsEntry": "Your friends",
-            "profileEntry": "Your profile",
+            "settings": "Socruithe",
+            "logoutEntry": "Logáil amach",
+            "changelogEntry": "Loga athruithe Amity",
+            "instanceEntry": "Maidir leis an bhfreastalaí seo",
+            "archivedEntry": "Comhráite cartlannaithe",
+            "savedEntry": "Teachtaireachtaí sábháilte",
+            "thingsEntry": "Do chuid rudaí",
+            "friendsEntry": "Do chairde",
+            "profileEntry": "Do phróifíl",
             "tooltips": {
-                "copyTag": "Copy user tag",
-                "switchAccount": "Switch account",
-                "notifButton": "Notifications",
-                "backButton": "Close sidebar"
+                "copyTag": "Cóipeáil clib úsáideora",
+                "switchAccount": "Athraigh cuntas",
+                "notifButton": "Fógraí",
+                "backButton": "Dún an taobhbharra"
             }
         }
     },
     "start": {
-        "aboutAmity": "Amity is an open-source and decentralized chat app, allowing for anyone to freely connect with others.",
-        "demo": "Explore demo"
+        "aboutAmity": "Is aip comhrá foinse oscailte agus díláraithe é Amity, a ligeann d'aon duine nascadh go saor le daoine eile.",
+        "demo": "Taiscéal an taispeántas",
+        "slogan": "An aip comhrá do gach duine"
     },
     "chat": {
-        "loading": "Aistrigh go Béarla."
+        "loading": "Ag dúiseacht Amy...",
+        "emptyView": "Roghnaigh rud éigin chun tús a chur le comhrá...",
+        "searchbox": "Cuardaigh...",
+        "chatboxPlaceholder": "Scríobh teachtaireacht...",
+        "members": "baill",
+        "member": "ball"
     }
 }

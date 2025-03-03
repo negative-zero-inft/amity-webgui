@@ -9,7 +9,7 @@
         "signinwith": "or, get rizzed by...",
         "loginGreet": "prepare your anus",
         "login": "skibidi",
-        "forgotpassword": "i forgor",
+        "forgotpassword": "i forgor 💀",
         "password": "W rizz",
         "username": "uwu",
         "instanceURL": "doxx",
@@ -51,7 +51,7 @@
                 "copyTag": "doxx yourself lol",
                 "switchAccount": "skinwalker",
                 "notifButton": "new shit",
-                "backButton": "GET THE FUCK OUT YOU FUCKING MONKEY RETARD ASS MOTHERFUCKER FUCKING RETARD AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                "backButton": "GTFO"
             }
         }
     },
@@ -61,6 +61,11 @@
         "slogan": "the official skibidi chat app"
     },
     "chat": {
-        "loading": "buttfucking amy until she wakes up..."
+        "loading": "buttfucking amy until she wakes up...",
+        "emptyView": "select something you dumbass...",
+        "searchbox": "find your dad...",
+        "chatboxPlaceholder": "type shit here...",
+        "members": "toilet defenders",
+        "member": "toilet defender"
     }
 }

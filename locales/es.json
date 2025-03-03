@@ -8,8 +8,10 @@
         "password": "Contraseña",
         "username": "Nombre de usuario",
         "instanceURL": "URL de instancia",
-        "serverUnreachable": "Esta instancia está offline o no existe.",
-        "fillAllSpaces": "Por favor rellena todos los campos"
+        "serverUnreachable": "Esta instancia está offline o no existe",
+        "fillAllSpaces": "Por favor rellena todos los campos",
+        "switchAccount": "Cambiar cuenta",
+        "addAccount": "Añadir cuenta"
     },
     "signupBox": {
         "username": "Nombre de usuario",
@@ -23,10 +25,42 @@
     "sidebar": {
         "newFolder": "Nueva carpeta",
         "allChats": "Todos los chats",
-        "storiesButton": "Historias"
+        "storiesButton": "Historias",
+        "noChats": "No hay nadie con quien chatear...",
+        "noChatsDesc": "Puedes unirte o crear un grupo haciendo clic en el botón \"más\" arriba",
+        "folderCtx": {
+            "editButton": "Editar carpeta",
+            "deleteButton": "Eliminar carpeta"
+        },
+        "userbar": {
+            "settings": "Ajustes",
+            "logoutEntry": "Cerrar sesión",
+            "changelogEntry": "Registro de cambios de Amity",
+            "instanceEntry": "Acerca de esta instancia",
+            "archivedEntry": "Chats archivados",
+            "savedEntry": "Mensajes guardados",
+            "thingsEntry": "Tus cosas",
+            "friendsEntry": "Tus amigos",
+            "profileEntry": "Tu perfil",
+            "tooltips": {
+                "copyTag": "Copiar tag de usuario",
+                "switchAccount": "Cambiar cuenta",
+                "notifButton": "Notificaciones",
+                "backButton": "Cerrar barra lateral"
+            }
+        }
     },
     "start": {
         "aboutAmity": "Amity es una aplicación de chat de código abierto y descentralizada, permitiendo a cualquiera conectar libremente con otros.",
-        "demo": "Explorar demo"
+        "demo": "Explorar demo",
+        "slogan": "La app de chat para todos"
+    },
+    "chat": {
+        "loading": "Despertando a Amy...",
+        "emptyView": "Selecciona algo para empezar a chatear...",
+        "searchbox": "Buscar...",
+        "chatboxPlaceholder": "Escribe un mensaje...",
+        "members": "miembros",
+        "member": "miembro"
     }
 }
