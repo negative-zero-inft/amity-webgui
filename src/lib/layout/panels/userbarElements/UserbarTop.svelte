@@ -27,7 +27,9 @@
 </script>
 
 <div class="userbar-top">
-	<img src={banner} class="banner" alt="banner" />
+	<img src={banner} class="banner" alt="banner" onerror={()=>{
+		banner = "/defaultBanner.png"
+	}} />
     <div
         id="top" 
         class="elem-horiz">
