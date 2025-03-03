@@ -87,33 +87,6 @@
 		text-overflow: ellipsis;
 	}
 	
-	.selected {
-		display: flex;
-		flex-direction: row;
-		padding: v.$spacing-def;
-		gap: v.$spacing-def;
-		width: 100%;
-		background-color: c.$accent-t50;
-		height: 56px;
-		border-radius: v.$corner-elem;
-		border-width: 1px !important;
-		border: solid;
-		border-color: c.$accent;
-		color: c.$text;
-		box-sizing: border-box;
-		@include v.standard-text();
-	
-		&:hover {
-			background-color: c.$accent-t80;
-		}
-		&:active {
-			background-color: c.$accent;
-		}
-		path {
-			fill: c.$text-80;
-		}
-	}
-	
 	button {
 		white-space: nowrap;
 		flex-direction: row !important;
@@ -141,37 +114,6 @@
 			background-color: c.$clicked;
 			transform: scale(0.95);
 		}
-	}
-
-	.unreads {
-		background-color: c.$accent-t80;
-		border-radius: v.$corner-elem;
-		padding-left: 6px;
-		padding-right: 6px;
-		height: 16px;
-		font-size: 11px !important;
-		display: flex;
-		align-items: center;
-		@include v.standard-text();
-	}
-	.noUnreads {
-		background-color: c.$text-50;
-		border-radius: v.$corner-elem;
-		padding-left: 6px;
-		padding-right: 6px;
-		height: 16px;
-		font-size: 10px;
-		display: flex;
-		align-items: center;
-	}
-	.horiz {
-		display: flex;
-		flex-direction: row;
-		gap: v.$spacing-def;
-		width: 100%;
-		overflow: hidden;
-		// mess
-		align-items: center;
 	}
 	.textPreview {
 		color: c.$text-50;

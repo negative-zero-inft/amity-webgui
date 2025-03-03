@@ -52,28 +52,6 @@
         gap: v.$spacing-def;
     }
 
-    .text{
-        white-space: nowrap;
-    }
-
-    .oauthGrid{
-		width: 100%;
-		display: grid;
-		gap: v.$spacing-def;
-		grid-template-columns: repeat(4, 1fr); 
-		grid-template-rows: repeat(2, 1fr); 
-	}
-
-    .separator{
-        width: 100%;
-    }
-
-    .form{
-        display: flex;
-        flex-direction: column;
-        gap: v.$spacing-def;
-    }
-
     .loginBox{
         transition: 0.25s;
         width: 340px; 
