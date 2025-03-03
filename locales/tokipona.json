@@ -33,9 +33,15 @@
         "storiesButton": "sitelen lili",
         "noChats": "jan ala li lon...",
         "noChatsDesc": "sina ken pali anu kama lon kulupu kepeken e tomo \"mute\" lon sewi",
+        "sadBillAlt": "jan Pi li pilin ike",
+        "emptyFolder": "kulupu li jo ala e ijo",
+        "emptyFolderDesc": "o luka ante e kulupu o luka e nena \"o ante e kulupu\" → \"toki\" la sina  pana e toki tawa kulupu",
         "folderCtx": {
             "editButton": "o ante e kulupu",
-            "deleteButton": "o weka e kulupu"
+            "deleteButton": "o weka e kulupu",
+            "iconButton": "sitelen",
+            "chatPickerButton": "toki",
+            "editSaveButton": "o awen"
         },
         "userbar": {
             "settings": "ilo ante",
@@ -61,6 +67,15 @@
         "slogan": "ilo toki tawa jan ale"
     },
     "chat": {
-        "loading": "jan Ami li weka tan lape..."
+        "loading": "jan Ami li weka tan lape...",
+        "emptyView": "o luka e ijo la sina ken toki...",
+        "searchbox": "o lukin...",
+        "chatboxPlaceholder": "o sitelen...",
+        "members": "jan",
+        "member": "jan"
+    },
+    "ctxMenus": {
+        "searchIcons": "o lukin e sitelen...",
+        "searchChats": "o lukin e toki..."
     }
 }

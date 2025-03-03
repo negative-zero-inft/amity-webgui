@@ -33,9 +33,14 @@
         "storiesButton": "obrazei",
         "noChats": "nehr xylei dyla xat je...",
         "noChatsDesc": "by kulup jer idi lup neu kulup jer doromi jer mix \"wielent\" baton moxex",
+        "sadBillAlt": "neuxiwy bill",
+        "emptyFolder": "nehr xexei to kulup jorn",
         "folderCtx": {
             "editButton": "kulup jer inaxor",
-            "deleteButton": "kulup jer nedoromior"
+            "deleteButton": "kulup jer nedoromior",
+            "iconButton": "symbol",
+            "chatPickerButton": "xatei",
+            "editSaveButton": "auenor"
         },
         "userbar": {
             "settings": "inaxei",

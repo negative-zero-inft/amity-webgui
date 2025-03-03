@@ -33,9 +33,15 @@
         "storiesButton": "Storiesy",
         "noChats": "Nikogo tu nie ma...",
         "noChatsDesc": "Możesz założyć nową grupę lub dołączyć do istniejącej klikając przycisk \"więcej\" na górze",
+        "sadBillAlt": "Smutny Bill",
+        "emptyFolder": "Ten folder jest pusty",
+        "emptyFolderDesc": "Kliknij prawym przyciskiem myszy na folder i wybierz \"Edytuj folder\" → \"Czaty\" aby dodać czaty",
         "folderCtx": {
             "editButton": "Edytuj folder",
-            "deleteButton": "Usuń folder"
+            "deleteButton": "Usuń folder",
+            "iconButton": "Ikona",
+            "chatPickerButton": "Czaty",
+            "editSaveButton": "Zapisz"
         },
         "userbar": {
             "settings": "Ustawienia",
@@ -61,6 +67,15 @@
         "slogan": "Aplikacja do rozmów dla wszystkich"
     },
     "chat": {
-        "loading": "Amy się budzi..."
+        "loading": "Amy się budzi...",
+        "emptyView": "Wybierz czat na pasku po lewej...",
+        "searchbox": "Szukaj...",
+        "chatboxPlaceholder": "Napisz wiadomość...",
+        "members": "członków",
+        "member": "członek"
+    },
+    "ctxMenus": {
+        "searchIcons": "Szukaj ikon...",
+        "searchChats": "Szukaj czatów..."
     }
 }

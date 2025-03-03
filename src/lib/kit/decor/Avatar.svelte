@@ -8,6 +8,9 @@
 <img 
 	
 	src={pfpLink} 
+	onerror={()=>{
+		pfpLink = "/mascots/Amy.png"
+	}}
 	alt="pfp" 
 	style="--w: {size}px;" 
 />
