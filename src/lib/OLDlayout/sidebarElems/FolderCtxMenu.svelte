@@ -8,7 +8,7 @@
 
     // Internal Imports
     import { isHttps, port, server, token, user } from "$lib/scripts/globalData";
-    import { windowClickEvent, isFolderCtxMenu, folderClickEvent, folder } from '$lib/scripts/chatViews';
+    import { windowClickEvent, isFolderCtxMenu, folderClickEvent, folderType } from '$lib/scripts/chatViews';
     import { getUser, iconList } from "$lib/scripts/requests";
     import { isFirefox } from '$lib/scripts/isFirefox';
 

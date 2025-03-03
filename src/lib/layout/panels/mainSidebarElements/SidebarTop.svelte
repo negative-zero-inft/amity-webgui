@@ -6,7 +6,7 @@
     import { currentFolder, previousFolder } from "$lib/scripts/chatViews";
 	import { user } from "$lib/scripts/globalData";
     import { _ } from "svelte-i18n";
-
+    import { folderCtxMenuView, folderClickEvent } from "$lib/scripts/chatViews";
     let scrollContainer: HTMLElement | null = null;
 
     function handleWheel(event: WheelEvent) {
@@ -68,6 +68,11 @@
         {#each $user?.chat_folders as folder}
             <Button
                 style={$currentFolder._id == folder._id ? "selected" : "default"}
+                contextmenu={(e: MouseEvent)=>{
+                    e.preventDefault()
+                    folderCtxMenuView.set("default")
+                    folderClickEvent.set(e)
+                }}
                 action={()=>{
                     previousFolder.set($currentFolder)
                     currentFolder.set({

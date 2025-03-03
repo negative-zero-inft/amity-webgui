@@ -3,7 +3,7 @@
 	import Button from '$lib/kit/gizmos/Button.svelte';
 	import Icon from '$lib/kit/Icon.svelte';
 	import NewFolder from './NewFolder.svelte';
-	import { isNewFolder, isUserBar, newFolderE, isFolderCtxMenu, folderClickEvent, folder, isMoreButtonCtxMenu, moreButtonClickEvent } from '$lib/scripts/chatViews';
+	import { isNewFolder, isUserBar, newFolderE, isFolderCtxMenu, folderClickEvent, folderType, isMoreButtonCtxMenu, moreButtonClickEvent } from '$lib/scripts/chatViews';
 	import { user } from '$lib/scripts/globalData';
 	import { currentFolder, previousFolder } from '$lib/scripts/chatViews';
 	let scrollContainer: HTMLDivElement | undefined;

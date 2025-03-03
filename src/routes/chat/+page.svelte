@@ -8,8 +8,8 @@
 	import Sidebar from '$lib/layout/panels/MainSidebar.svelte';
 	import Chatview from '$lib/layout/views/Chatview.svelte';
 	import Emptyview from '$lib/layout/views/Emptyview.svelte';
+	import FolderCtxMenu from '$lib/layout/windows/chat/folderCtxMenu.svelte';
 	import LingoWindow from '$lib/layout/devTools/DevWindow.svelte';
-	import ComboBox from '$lib/kit/gizmos/ComboBox.svelte';
 	import { _ } from 'svelte-i18n';
 
 	$effect(() => {
@@ -80,6 +80,7 @@
 	</div>
 {/if}
 
+<FolderCtxMenu/>
 <LingoWindow/>
 
 <style lang="scss">
