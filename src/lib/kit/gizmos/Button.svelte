@@ -151,9 +151,18 @@
 				transparent 35px,
 				transparent 55px /* added this so the pattern repeats seamlessly */
 			);
+			animation: shake 0.5s infinite;
 		}
 		&:active {
 			background-color: c.$accent;
 		}
+	}
+
+	@keyframes shake {
+		0% { transform: translateX(0); }
+		25% { transform: translateX(-5px); }
+		50% { transform: translateX(0px); }
+		75% { transform: translateX(5px); }
+		100% { transform: translateX(0px); }
 	}
 </style>

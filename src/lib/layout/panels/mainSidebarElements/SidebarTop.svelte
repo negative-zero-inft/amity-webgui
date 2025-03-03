@@ -74,6 +74,11 @@
                     folderClickEvent.set(e)
                     ctxFolder.set(folder as unknown as folderType)
                 }}
+                hoverAction={(e: MouseEvent)=>{
+                    if($folderCtxMenuView === "hidden"){
+                        folderClickEvent.set(e)
+                    }
+                }}
                 action={()=>{
                     previousFolder.set($currentFolder)
                     currentFolder.set({

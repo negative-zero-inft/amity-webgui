@@ -8,7 +8,7 @@
 	import Sidebar from '$lib/layout/panels/MainSidebar.svelte';
 	import Chatview from '$lib/layout/views/Chatview.svelte';
 	import Emptyview from '$lib/layout/views/Emptyview.svelte';
-	import FolderCtxMenu from '$lib/layout/windows/chat/folderCtxMenu.svelte';
+	import FolderCtxMenu from '$lib/layout/windows/chat/FolderCtxMenu.svelte';
 	import LingoWindow from '$lib/layout/devTools/DevWindow.svelte';
 	import { _ } from 'svelte-i18n';
 

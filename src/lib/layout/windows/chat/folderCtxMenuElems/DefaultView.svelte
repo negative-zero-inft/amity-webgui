@@ -15,13 +15,17 @@
     let ctxMenu: HTMLElement | null = $state(null);
 
     const left = ()=>{
-        if($folderCtxMenuView === "default"){
+        if($folderCtxMenuView === "default" || $folderCtxMenuView === "hidden"){
             return 10;
         }else if($prevFolderCtxMenuView === "default"){
             return -320;
         }else{
             return 320;
         }
+    }
+
+    const folderDelProc = ()=>{
+        console.log("folderDelProc")
     }
 </script>
 
@@ -51,6 +55,23 @@
             Edit folder
         </div>
         <Icon name="Direction/Right"/>
+    </Button>
+    <Button
+        action={()=>{
+            folderDelProc()
+            folderCtxMenuView.set("hidden")
+            prevFolderCtxMenuView.set("default")
+        }}
+        alignment="space-between"
+        scaleClick={0.95}
+        scaleHover={1.05}
+        width="100%"
+        style="destructive"
+    >
+        <div class="elem-horiz">
+            <Icon name="Trash"/>
+            Delete folder
+        </div>
     </Button>
 </div>
 

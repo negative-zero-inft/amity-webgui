@@ -50,7 +50,7 @@
         width: {numbers("width")}px;
         height: {numbers("height")}px;
         left: {left()}px;
-        top: {$folderCtxMenuView === "hidden" ? 56 : 36 + 25 + 32}px;
+        top: {$folderCtxMenuView === "hidden" ? 16 : 36 + 25 + 32}px;
         pointer-events: {$folderCtxMenuView === "hidden" ? "none" : "auto"};
     "
 >
