@@ -8,17 +8,17 @@
     import { isReLogin } from "$lib/scripts/chatViews";
 	import { view } from "$lib/scripts/loginWritables";
 
-    let banner:string | undefined = $state("/Jump.png")
+    let banner:string | undefined = $state("/defaultBanner.png")
 	let username:string | undefined = $state()
 	let tag:string | undefined = $state()
-	let avatar:string | undefined = $state("amity.png")
+	let avatar:string | undefined = $state("/mascots/Amy.png")
 
 	$effect(()=>{
 		try{
-			banner =  $user?.banner as string
+			banner =  $user?.banner || "/defaultBanner.png" as string
 			username =  $user?.name
 			tag =  `${$user?.tag}@${$user.id.server}`
-			avatar =  $user?.avatar as string
+			avatar =  $user?.avatar || "/mascots/Amy.png" as string
 		}catch(e){
 			// console.log(e)
 		}

@@ -1,6 +1,6 @@
 <script lang="ts">
 	let { 
-		pfpLink = 'amity.png',  
+		pfpLink = '/mascots/Amy.png',  
 		size = 36
 	} = $props();
 </script>
