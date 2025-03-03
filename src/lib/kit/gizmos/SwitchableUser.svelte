@@ -71,7 +71,7 @@
 			isDeleted = true
 		}}
 	>
-		<Icon name="Trash"/>
+		<Icon name="Exit"/>
 	</Button>
 </button>
 
