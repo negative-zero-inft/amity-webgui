@@ -1,7 +1,7 @@
 <script lang="ts">
-	let { name = 'NegZero' } = $props();
+	let { name = 'NegZero', size = 16 } = $props();
 </script>
 
-<svg style="width: 16px; height:16px; fill: none; flex-shrink: 0;">
+<svg style="width: {size}px; height: {size}px; fill: none; flex-shrink: 0;">
 	<use xlink:href="#svg--{name.replaceAll('/', '-')}" />
 </svg>

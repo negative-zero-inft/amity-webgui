@@ -1,11 +1,22 @@
 <script lang="ts">
     import { _ } from "svelte-i18n";
+    import Icon from "$lib/kit/decor/Icon.svelte";
+    import Button from "$lib/kit/gizmos/Button.svelte";
+    import { folderCtxMenuView } from "$lib/scripts/chatViews";
+
+    let {
+        isFolder = false
+    } = $props();
 </script>
 
 <div class="emptySidebar">
-    <img src="/billSad.svg" />
-    <div class="title" style="font-size: 18px;">{$_("sidebar.noChats")}</div>
-    <div class="desc">{$_("sidebar.noChatsDesc")}</div>
+    {#if isFolder}
+        <Icon size={64}  name="Folder/Default"/>
+    {:else}
+        <img alt={$_("sidebar.sadBill")} src="/billSad.svg" />
+    {/if}
+    <div class="title" style="font-size: 18px;">{isFolder ? $_("sidebar.emptyFolder") : $_("sidebar.noChats")}</div>
+    <div class="desc">{isFolder ? $_("sidebar.emptyFolderDesc") : $_("sidebar.noChatsDesc")}</div>
 </div>
 
 <style lang="scss">

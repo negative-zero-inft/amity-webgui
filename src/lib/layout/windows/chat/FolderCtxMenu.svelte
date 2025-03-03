@@ -15,7 +15,7 @@
                 e?.clientX > (ctxMenu?.offsetLeft as number) + (ctxMenu?.offsetWidth as number) ||
                 e?.clientY < (ctxMenu?.offsetTop as number) || 
                 e?.clientY > (ctxMenu?.offsetTop as number) + (ctxMenu?.offsetHeight as number)
-            ) && (e.target as HTMLElement)?.id != "folderButton"
+            ) && $folderCtxMenuView != "hidden"
         ) {
             folderCtxMenuView.set("hidden")
             prevFolderCtxMenuView.set("hidden")

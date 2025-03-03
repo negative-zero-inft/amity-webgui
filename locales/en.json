@@ -33,6 +33,9 @@
         "storiesButton": "Stories",
         "noChats": "There's nobody to chat with...",
         "noChatsDesc": "You can join or create a group by clicking the \"more\" button at the top",
+        "sadBillAlt": "Sad Bill",
+        "emptyFolder": "This folder is empty",
+        "emptyFolderDesc": "Right click on the folder and click \"Edit folder\" → \"Chats\" to add chats",
         "folderCtx": {
             "editButton": "Edit folder",
             "deleteButton": "Delete folder",

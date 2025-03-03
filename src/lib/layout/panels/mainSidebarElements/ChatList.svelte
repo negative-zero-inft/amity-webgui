@@ -43,9 +43,13 @@
                 0
             }
         ">
-            {#each child.elements || [] as chatentry} 
-                <ChatEntry isSidebar={true} data={chatentry}></ChatEntry>
-            {/each}
+            {#if child.elements.length > 0}
+                {#each child.elements || [] as chatentry} 
+                    <ChatEntry isSidebar={true} data={chatentry}></ChatEntry>
+                {/each}
+            {:else}
+                <EmptyFolderList isFolder/>
+            {/if}
         </div>
     {/each}
 </div>
