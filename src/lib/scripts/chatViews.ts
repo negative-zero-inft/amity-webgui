@@ -48,7 +48,8 @@ export const currentChat = writable<{
         server: string
     },
     icon: string,
-    name: string
+    name: string,
+    memberList: string[],
 }>({
     type: "empty",
     icon: "",
@@ -56,7 +57,8 @@ export const currentChat = writable<{
     id: {
         id: "",
         server: ""
-    }
+    },
+    memberList: []
 });
 
 export const isUserBar = writable<boolean>(false)

@@ -37,7 +37,8 @@
 			server: ''
 		},
 		has_channels: false,
-		channels: []
+		channels: [],
+		members: []
 	});
 	let isMultiGroup = $state(false);
 	let chatType = $state('');
@@ -73,7 +74,8 @@
 			id: {
 				id: tempData.id.id,
 				server: tempData.id.server
-			}
+			},
+			memberList: tempData.members
 		})
 	}} 
 	oncontextmenu={(e)=>{rightClick(e)}} 

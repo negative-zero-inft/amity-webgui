@@ -25,7 +25,12 @@
                 {$currentChat.name}
             </div>
             <div class="subtitle">
-                temp
+                {
+                    $currentChat.type == "dm" || $currentChat.type == "channel" ? "todo" : 
+                    $currentChat.memberList.length + " " + (
+                        $currentChat.memberList.length == 1 ? $_("chat.member") : $_("chat.members")
+                    )
+                }
             </div>
         </div>
     </div>

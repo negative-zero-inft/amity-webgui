@@ -64,6 +64,8 @@
         "loading": "Waking Amy up...",
         "emptyView": "Select something to start chatting...",
         "searchbox": "Search...",
-        "chatboxPlaceholder": "Type a message..."
+        "chatboxPlaceholder": "Type a message...",
+        "members": "members",
+        "member": "member"
     }
 }
