@@ -10,7 +10,7 @@ This project contains submodule so I recommend you to do this
 git clone --recurse-submodules -j8 https://github.com/negative-zero-inft/amity-webgui
 
 cd amity-webgui
-npm i
+npm i --force
 npm run dev
 ```
 
