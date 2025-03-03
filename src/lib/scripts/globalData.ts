@@ -6,7 +6,8 @@ export const server = writable<string>("amity.neg-zero.com");
 export const isHttps = writable<boolean>(true)
 export const port = writable<number>(3000)
 
-export let token = writable<string | null>();
+export const token = writable<string | null>();
+export const accountIndex = writable<number>(0);
 export const user = writable<{
     _id: string,
     id: {

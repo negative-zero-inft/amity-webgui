@@ -73,18 +73,30 @@
             })
             // Handle response
             if(await response.status != 200) {
-                console.log(await response)
+                console.error(await response)
                 isError.set(true);
                 errorValue.set(await response.text())
                 return
             }
+
+            const t = {
+                token: await response.text(),
+                server: instance
+            }
+
+            const tokens: {
+                token: string, server: string
+            }[] = JSON.parse(localStorage.getItem("tokens") || "[]")
             // Store token and server info on successful login
-            localStorage.setItem("token", await response.text())
-            localStorage.setItem("server", instance)
+            if(tokens.indexOf(t) == -1){
+                tokens.push(t)
+                localStorage.setItem("tokens", JSON.stringify(tokens))
+            }
             isError.set(false);
-            window.location.replace("/chat")
+            window.location.replace(`/chat?token=${tokens.indexOf(t)}`)
         }catch(e: any){
             // Handle errors
+            console.error(e)
             isError.set(true);
             errorValue.set(e);
             return
@@ -96,7 +108,7 @@
     bind:clientHeight={height}
     class="loginBox"
     style="
-        left: {$view == "login" ? "0" : "-340px"};
+        left: {$view == "login" ? 0 : $view == "accountList" ? 340 : -340}px;
     "
 >
     <div class="title">

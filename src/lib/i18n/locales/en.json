@@ -14,7 +14,9 @@
         "username": "Username",
         "instanceURL": "Instance URL",
         "serverUnreachable": "This instance is either offline or doesn't exist",
-        "fillAllSpaces": "Please fill in all spaces"
+        "fillAllSpaces": "Please fill in all spaces",
+        "switchAccount": "Switch account",
+        "addAccount": "Add account"
     },
     "signupBox": {
         "username": "Username",

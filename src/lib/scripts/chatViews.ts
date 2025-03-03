@@ -10,6 +10,7 @@ export interface folderType{
 
 export const windowClickEvent = writable<MouseEvent>();
 export const folderClickEvent = writable<MouseEvent>();
+export const isReLogin = writable<boolean>(false);
 
 export const isFolderCtxMenu = writable<boolean>(false)
 export const folderCtxMenuView = writable<"hidden" | "default" | "edit" | "icon">("hidden")

@@ -7,6 +7,7 @@
 	import { user } from "$lib/scripts/globalData";
     import { _ } from "svelte-i18n";
     import { folderCtxMenuView, folderClickEvent, type folderType } from "$lib/scripts/chatViews";
+	
     let scrollContainer: HTMLElement | null = null;
 
     function handleWheel(event: WheelEvent) {
@@ -19,7 +20,6 @@
 
 		scrollContainer.scrollLeft += delta * scrollSpeed;
 	}
-
 </script>
 
 <div class="sidebarTop">
@@ -114,6 +114,9 @@
         padding-top: 5px;
         overflow-x: auto;
         scroll-behavior: smooth;
+        &::-webkit-scrollbar{
+            display: none;
+        }
     }
     .sidebarTop{
         display: flex;

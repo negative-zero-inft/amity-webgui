@@ -5,6 +5,8 @@
     import Avatar from "$lib/kit/decor/Avatar.svelte";
     import { user } from "$lib/scripts/globalData";
     import { _ } from "svelte-i18n";
+    import { isReLogin } from "$lib/scripts/chatViews";
+	import { view } from "$lib/scripts/loginWritables";
 
     let banner:string | undefined = $state("/Jump.png")
 	let username:string | undefined = $state()
@@ -66,6 +68,10 @@
         </Button>
 		<Button
             tooltip={$_("sidebar.userbar.tooltips.switchAccount")}
+            action={()=>{
+                isReLogin.set(!$isReLogin)
+                view.set("accountList")
+            }}
         >
             <Icon name="Switch"/>
         </Button>

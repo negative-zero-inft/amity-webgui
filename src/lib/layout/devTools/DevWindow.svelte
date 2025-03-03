@@ -10,8 +10,6 @@
     
     let listLanguages = $state($locales);
 
-    let localeInput = $state($locale);
-
     function onclick(e: any) {
         locale.set(e.target.value)
         ilocale.set(e.target.value)
