@@ -33,6 +33,10 @@
         "storiesButton": "Stories",
         "noChats": "There's nobody to chat with...",
         "noChatsDesc": "You can join or create a group by clicking the \"more\" button at the top",
+        "folderCtx": {
+            "editButton": "Edit folder",
+            "deleteButton": "Delete folder"
+        },
         "userbar": {
             "settings": "Settings",
             "logoutEntry": "Log out",
@@ -53,7 +57,8 @@
     },
     "start": {
         "aboutAmity": "Amity is an open-source and decentralized chat app, allowing for anyone to freely connect with others.",
-        "demo": "Explore demo"
+        "demo": "Explore demo",
+        "slogan": "The chat app for everyone"
     },
     "chat": {
         "loading": "Waking Amy up..."

@@ -3,6 +3,7 @@
     import Icon from "$lib/kit/decor/Icon.svelte";
     import { folderCtxMenuView, prevFolderCtxMenuView, ctxFolder, type folderType } from "$lib/scripts/chatViews";
     import Label from "$lib/kit/decor/Label.svelte";
+    import { _ } from "svelte-i18n";
 
     let {
         height = $bindable(0),
@@ -52,7 +53,7 @@
     >
         <div class="elem-horiz">
             <Icon name="Pencil/Angled"/>
-            Edit folder
+            {$_("sidebar.folderCtx.editButton")}
         </div>
         <Icon name="Direction/Right"/>
     </Button>
@@ -70,7 +71,7 @@
     >
         <div class="elem-horiz">
             <Icon name="Trash"/>
-            Delete folder
+            {$_("sidebar.folderCtx.deleteButton")}
         </div>
     </Button>
 </div>

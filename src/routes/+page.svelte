@@ -16,7 +16,7 @@
 			Amity
 		</div>
 		<div class="slogan">
-			<div style="width: max-content; font-size: 36px;">The chat app for everyone</div>
+			<div style="width: max-content; font-size: 36px;">{$_("start.slogan")}</div>
 			<div class="underslogan">
 				{$_("start.aboutAmity")}
 			</div>

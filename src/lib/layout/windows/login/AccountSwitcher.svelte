@@ -1,12 +1,8 @@
 <script lang="ts">
 	// Importing necessary components and utilities
 	import Icon from "$lib/kit/decor/Icon.svelte";
-	import Textbox from "$lib/kit/text/Textbox.svelte";
     import Button from "$lib/kit/gizmos/Button.svelte";
-    import { server, isHttps, port } from "$lib/scripts/globalData";
-    import OAuth from "$lib/kit/gizmos/OAuth.svelte";
-    import { checkServerReachability } from "$lib/scripts/requests";
-    import { isError, errorValue, view } from "$lib/scripts/loginWritables";
+    import { view } from "$lib/scripts/loginWritables";
     import { _ } from 'svelte-i18n';
 	import SwitchableUser from "$lib/kit/gizmos/SwitchableUser.svelte";
 
