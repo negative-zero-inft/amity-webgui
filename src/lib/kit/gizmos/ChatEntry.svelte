@@ -67,7 +67,9 @@
 	onclick={(e)=>{
 		click(e, data, tempData)
 		if(isSidebar && !isMultiGroup) currentChat.set({
-			type: chatType as "group" | "dm" | "channel" | "monogroup" | "soapbox",
+			type: chatType as "empty" | "dm" | "channel" | "monogroup" | "soapbox",
+			name: tempData.name,
+			icon: tempData.icon,
 			id: {
 				id: tempData.id.id,
 				server: tempData.id.server

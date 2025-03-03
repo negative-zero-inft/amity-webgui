@@ -46,9 +46,13 @@ export const currentChat = writable<{
     id: {
         id: string,
         server: string
-    }
+    },
+    icon: string,
+    name: string
 }>({
     type: "empty",
+    icon: "",
+    name: "",
     id: {
         id: "",
         server: ""

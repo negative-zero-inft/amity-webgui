@@ -14,9 +14,19 @@
         locale.set(e.target.value)
         ilocale.set(e.target.value)
     }
+
+    let isVisible = $state(true)
 </script>
 
-<div class="window">
+<!-- svelte-ignore a11y_no_static_element_interactions -->
+<div 
+    class="window"
+    style="display: {isVisible ? 'flex' : 'none'}"
+    oncontextmenu={(e)=>{
+        e.preventDefault()
+        isVisible = false
+    }}
+>
     <code>LE EPIC DEV WINDOW</code>
     <Label icon="Translate" label="Lingo switcher">
         <select name="cars" {onclick}>

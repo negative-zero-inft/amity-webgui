@@ -156,13 +156,4 @@
 			transform: rotateZ(360deg);
 		}
 	}
-
-	.noChatSelected{
-		font-size: 24px;
-		height: 100%;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		width: 100%;
-	}
 </style>

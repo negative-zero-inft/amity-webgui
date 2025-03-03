@@ -1,9 +1,9 @@
 <script lang="ts">
-    import { _ } from "svelte-i18n";
+
 </script>
 
-<div class="emptyView">
-    {$_("chat.emptyView")}
+<div class="messageList">
+
 </div>
 
 <style lang="scss">
@@ -11,11 +11,11 @@
     @use '$lib/style/colors.scss' as c;
     @use "$lib/style/variables.scss" as v;
 
-    .emptyView{
+    .messageList{
         width: 100%;
         height: 100%;
+        box-sizing: border-box;
         display: flex;
-        align-items: center;
-        justify-content: center;
+        gap: v.$spacing-def;
     }
 </style>

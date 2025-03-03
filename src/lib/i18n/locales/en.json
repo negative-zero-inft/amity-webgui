@@ -61,6 +61,9 @@
         "slogan": "The chat app for everyone"
     },
     "chat": {
-        "loading": "Waking Amy up..."
+        "loading": "Waking Amy up...",
+        "emptyView": "Select something to start chatting...",
+        "searchbox": "Search...",
+        "chatboxPlaceholder": "Type a message..."
     }
 }
