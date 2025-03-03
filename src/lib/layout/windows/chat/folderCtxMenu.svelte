@@ -30,8 +30,8 @@
     }
 
     const left = ()=>{
-        if($folderClickEvent.clientX - 10 > (ctxMenu as HTMLElement)?.offsetWidth / 2){
-            return $folderClickEvent.clientX - (ctxMenu as HTMLElement)?.offsetWidth / 2;
+        if($folderClickEvent?.clientX - 10 > (ctxMenu as HTMLElement)?.offsetWidth / 2){
+            return $folderClickEvent?.clientX - (ctxMenu as HTMLElement)?.offsetWidth / 2;
         }else{
             return 10;
         }

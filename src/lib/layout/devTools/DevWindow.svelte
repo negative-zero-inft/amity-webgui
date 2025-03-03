@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Label from "$lib/kit/decor/Label.svelte";
 	import Textbox from "$lib/kit/text/Textbox.svelte";
-	import { currentFolder, folderClickEvent } from "$lib/scripts/chatViews";
+	import { currentFolder, folderClickEvent, ctxFolder } from "$lib/scripts/chatViews";
     import { locale } from "$lib/scripts/globalData";
     import { locale as ilocale, locales } from "svelte-i18n"; 
     import Icon from "$lib/kit/decor/Icon.svelte";
@@ -36,6 +36,10 @@
         <Button width="100%" action={()=>{console.log($folderClickEvent)}} scaleClick={0.95} scaleHover={1.05}>
             <Icon name="Folder/Default"/>
             view folder click event
+        </Button>
+        <Button width="100%" action={()=>{console.log($ctxFolder)}} scaleClick={0.95} scaleHover={1.05}>
+            <Icon name="Folder/Default"/>
+            view folder ctx menu
         </Button>
     </Label>
 </div>

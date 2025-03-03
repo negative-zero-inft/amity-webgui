@@ -2,11 +2,11 @@
 	import Icon from "$lib/kit/decor/Icon.svelte";
 	import Button from "$lib/kit/gizmos/Button.svelte";
 	import StoriesButton from "$lib/kit/gizmos/StoriesButton.svelte";
-    import { isUserBar } from "$lib/scripts/chatViews";
+    import { ctxFolder, isUserBar } from "$lib/scripts/chatViews";
     import { currentFolder, previousFolder } from "$lib/scripts/chatViews";
 	import { user } from "$lib/scripts/globalData";
     import { _ } from "svelte-i18n";
-    import { folderCtxMenuView, folderClickEvent } from "$lib/scripts/chatViews";
+    import { folderCtxMenuView, folderClickEvent, type folderType } from "$lib/scripts/chatViews";
     let scrollContainer: HTMLElement | null = null;
 
     function handleWheel(event: WheelEvent) {
@@ -72,6 +72,7 @@
                     e.preventDefault()
                     folderCtxMenuView.set("default")
                     folderClickEvent.set(e)
+                    ctxFolder.set(folder as unknown as folderType)
                 }}
                 action={()=>{
                     previousFolder.set($currentFolder)

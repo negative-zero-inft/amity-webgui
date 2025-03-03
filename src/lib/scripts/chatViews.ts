@@ -1,6 +1,6 @@
 import { writable } from "svelte/store";
 
-interface folderType{
+export interface folderType{
     name: string,
     icon: string,
     _id: string,
@@ -13,8 +13,9 @@ export const folderClickEvent = writable<MouseEvent>();
 
 export const isFolderCtxMenu = writable<boolean>(false)
 export const folderCtxMenuView = writable<"hidden" | "default" | "edit" | "icon">("hidden")
+export const prevFolderCtxMenuView = writable<"hidden" | "default" | "edit" | "icon">("hidden")
 
-export const folder = writable<folderType>({
+export const ctxFolder = writable<folderType>({
     name: "",
     icon: "",
     _id: "",
