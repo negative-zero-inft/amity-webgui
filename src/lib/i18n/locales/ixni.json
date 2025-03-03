@@ -14,7 +14,9 @@
         "username": "nejm",
         "instanceURL": "serwere url",
         "serverUnreachable": "nehr to serwer je lup nehr jone internet werk",
-        "fillAllSpaces": "nenul znakei jer sitelenor"
+        "fillAllSpaces": "nenul znakei jer sitelenor",
+        "switchAccount": "by inax kont jer idior",
+        "addAccount": "inax kont"
     },
     "signupBox": {
         "username": "nejm",

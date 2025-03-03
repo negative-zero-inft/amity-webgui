@@ -30,7 +30,7 @@
         {/each}
     </div>
     <Button
-        width="100%"
+        width="calc(100% - 20px); margin: 10px;"
         action={()=>{view.set("login")}}
         scaleClick={0.95}
         scaleHover={1.05}
@@ -52,6 +52,7 @@
         gap: v.$spacing-def;
         overflow-y: scroll;
         overflow-x: hidden;
+        padding: v.$spacing-def;
     }
 
     .loginBox{
@@ -59,7 +60,6 @@
         width: 340px; 
 		height: max-content; 
 		flex-direction: row; 
-		padding: v.$spacing-def; 
 		gap: 16px;
         box-sizing: border-box;
         display: flex;
@@ -68,8 +68,9 @@
     }
 
     .title{
+        margin: 10px;
         line-height: 1.2;
-		width: 100%;
+		width: calc(100% - 20px);
 		height: 46px;
 		font-size: 26px;
 		display: flex;
