@@ -10,7 +10,40 @@
     <Button>
         <Icon name="Plus"/>
     </Button>
-    <Textarea width="100%" icon="Chat" placeholder={$_("chat.chatboxPlaceholder")}/>
+    <Textarea 
+        width="100%" 
+        icon="Chat" 
+        placeholder={$_("chat.chatboxPlaceholder")}
+    />
+    <div 
+        id="defChatElements"
+        class="elem-horiz"
+    >
+        <Button>
+            <Icon name="Users"/>
+        </Button>
+        <Button>
+            <Icon name="Equalizer"/>
+        </Button>
+        <Button>
+            <Icon name="Terminal"/>
+        </Button>
+        <Button>
+            <Icon name="Location"/>
+        </Button>
+        <Button>
+            <Icon name="GIF"/>
+        </Button>
+        <Button>
+            <Icon name="StickyNotes"/>
+        </Button>
+        <Button>
+            <Icon name="Smile"/>
+        </Button>
+        <Button>
+            <Icon name="Microphone"/>
+        </Button>
+    </div>
 </div>
 
 <style lang="scss">
