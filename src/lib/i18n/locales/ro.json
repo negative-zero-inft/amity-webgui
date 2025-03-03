@@ -1,35 +1,71 @@
 {
+    "login": {
+        "devMode0": "Ai activat modul dezvoltator pentru backend!",
+        "devMode1": "Dacă nu ești sigur ce înseamnă asta, apasă",
+        "devMode2": "butonul pentru a reveni la modul normal."
+    },
     "loginBox": {
-        "signup": "Înscrie-te",
-        "signinwith": "Sau, înscrie-te with...",
-        "loginGreet": "Conectați-vă la Amity",
-        "login": "Conectați-vă",
-        "forgotpassword": "Ai uitat parolă?",
-        "password": "Parola",
-        "username": "Nume utilizatorului",
-        "instanceURL": "URI a instanței serverului",
-        "serverUnreachable": "Acest instanța este fie offline, fie nu există",
-        "fillAllSpaces": "Vă rugăm să completați toate spațiile"
+        "signup": "Înregistrare",
+        "signinwith": "Sau, conectează-te cu...",
+        "loginGreet": "Conectare la Amity",
+        "login": "Conectare",
+        "forgotpassword": "Ai uitat parola?",
+        "password": "Parolă",
+        "username": "Nume utilizator",
+        "instanceURL": "URL instanță",
+        "serverUnreachable": "Această instanță este offline sau nu există",
+        "fillAllSpaces": "Te rugăm să completezi toate formularul",
+        "switchAccount": "Schimbă contul",
+        "addAccount": "Adaugă cont"
     },
     "signupBox": {
-        "username": "Nume utilizatorului",
-        "instanceURL": "URI a instanței serverului",
-        "usertag": "Utilizatorul Tag",
-        "password": "Parola",
-        "confirmpassword": "Confirma Parolă",
-        "fileserver": "Server de fișiere",
+        "username": "Nume utilizator",
+        "instanceURL": "URL instanță",
+        "usertag": "Tag utilizator",
+        "password": "Parolă",
+        "confirmpassword": "Confirmă parola",
+        "fileserver": "Server fișiere",
         "cancel": "Anulează"
     },
     "sidebar": {
         "newFolder": "Folder nou",
-        "allChats": "Toate conversație",
-        "storiesButton": "Povești"
+        "allChats": "Toate conversațiile",
+        "storiesButton": "Povești",
+        "noChats": "Nu există nimeni cu care să conversezi...",
+        "noChatsDesc": "Poți să te alături sau să creezi un grup apăsând butonul \"mai mult\" de sus",
+        "folderCtx": {
+            "editButton": "Editează folder",
+            "deleteButton": "Șterge folder"
+        },
+        "userbar": {
+            "settings": "Setări",
+            "logoutEntry": "Deconectare",
+            "changelogEntry": "Jurnal modificări Amity",
+            "instanceEntry": "Despre această instanță",
+            "archivedEntry": "Conversații arhivate",
+            "savedEntry": "Mesaje salvate",
+            "thingsEntry": "Lucrurile tale",
+            "friendsEntry": "Prietenii tăi",
+            "profileEntry": "Profilul tău",
+            "tooltips": {
+                "copyTag": "Copiază tag-ul utilizatorului",
+                "switchAccount": "Schimbă contul",
+                "notifButton": "Notificări",
+                "backButton": "Închide bara laterală"
+            }
+        }
     },
     "start": {
-        "aboutAmity": "Amity este o sursă deschisă şi descentralizată platformă de chat, permiţând oricui să se conecteze liber cu ceilalţi",
-        "demo": "Explorează demo"
+        "aboutAmity": "Amity este o aplicație de chat open-source și descentralizată, permițând oricui să se conecteze liber cu alții.",
+        "demo": "Explorează demo",
+        "slogan": "Aplicația de chat pentru toată lumea"
     },
     "chat": {
-        "loading": "O trezesc pe Amy..."
+        "loading": "O trezim pe Amy...",
+        "emptyView": "Selectează ceva pentru a începe o conversație...",
+        "searchbox": "Caută...",
+        "chatboxPlaceholder": "Scrie un mesaj...",
+        "members": "membri",
+        "member": "membru"
     }
 }
