@@ -14,7 +14,9 @@
         "username": "uwu",
         "instanceURL": "doxx",
         "serverUnreachable": "this doxx is not skibidi or ohio",
-        "fillAllSpaces": "learn to write retard"
+        "fillAllSpaces": "learn to write retard",
+        "switchAccount": "groupies",
+        "addAccount": "find more sluts"
     },
     "signupBox": {
         "username": "uwu",
@@ -31,6 +33,10 @@
         "storiesButton": "tiktok",
         "noChats": "L RIZZ, NO BITCHES...",
         "noChatsDesc": "go touch grass",
+        "folderCtx": {
+            "editButton": "skibidify folder",
+            "deleteButton": "yeet folder"
+        },
         "userbar": {
             "settings": "thingamabob",
             "logoutEntry": "become a beta",
@@ -51,7 +57,8 @@
     },
     "start": {
         "aboutAmity": "something something amity is based 👍",
-        "demo": "lose 50 IQ points"
+        "demo": "lose 50 IQ points",
+        "slogan": "the official skibidi chat app"
     },
     "chat": {
         "loading": "buttfucking amy until she wakes up..."
