@@ -14,7 +14,9 @@
         "username": "Tag użytkownika",
         "instanceURL": "URL serwera",
         "serverUnreachable": "Ten serwer jest offline lub nie istnieje",
-        "fillAllSpaces": "Wypełnij wszystkie pola"
+        "fillAllSpaces": "Wypełnij wszystkie pola",
+        "switchAccount": "Zmień konto",
+        "addAccount": "Dodaj konto"
     },
     "signupBox": {
         "username": "Twój tag",
@@ -31,6 +33,10 @@
         "storiesButton": "Storiesy",
         "noChats": "Nikogo tu nie ma...",
         "noChatsDesc": "Możesz założyć nową grupę lub dołączyć do istniejącej klikając przycisk \"więcej\" na górze",
+        "folderCtx": {
+            "editButton": "Edytuj folder",
+            "deleteButton": "Usuń folder"
+        },
         "userbar": {
             "settings": "Ustawienia",
             "logoutEntry": "Wyloguj się",
@@ -51,7 +57,8 @@
     },
     "start": {
         "aboutAmity": "Amity jest zdecentralizowaną aplikacją do rozmów z otwartym kodem źródłowym, pozwalającą komukolwiek rozmawiać z kimkolwiek.",
-        "demo": "Eksploruj demo"
+        "demo": "Eksploruj demo",
+        "slogan": "Aplikacja do rozmów dla wszystkich"
     },
     "chat": {
         "loading": "Amy się budzi..."

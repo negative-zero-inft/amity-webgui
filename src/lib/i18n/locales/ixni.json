@@ -33,6 +33,10 @@
         "storiesButton": "obrazei",
         "noChats": "nehr xylei dyla xat je...",
         "noChatsDesc": "by kulup jer idi lup neu kulup jer doromi jer mix \"wielent\" baton moxex",
+        "folderCtx": {
+            "editButton": "kulup jer inaxor",
+            "deleteButton": "kulup jer nedoromior"
+        },
         "userbar": {
             "settings": "inaxei",
             "logoutEntry": "zy to kont jer idior",
@@ -53,7 +57,8 @@
     },
     "start": {
         "aboutAmity": "open-source tul xto wiel serwerei jon jorn are mix wiel xylei jer wyfoma jon dyla jer moxex amity je.",
-        "demo": "demo jer zejexor"
+        "demo": "demo jer zejexor",
+        "slogan": "xat app dyla nenul xylei"
     },
     "chat": {
         "loading": "amy nesenica..."
