@@ -50,6 +50,8 @@
         display: flex;
         flex-direction: column;
         gap: v.$spacing-def;
+        overflow-y: scroll;
+        overflow-x: hidden;
     }
 
     .loginBox{
