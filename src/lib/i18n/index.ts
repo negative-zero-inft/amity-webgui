@@ -10,7 +10,7 @@ const defaultLocale = 'en'
 // "en" and "en-US" are valid
 // "ixni" should fallback to English
 // don't shorten it to "ix" for "ixni" or "tp" for "tokipona"
-const locales = import.meta.glob("./locales/*.json");
+const locales = import.meta.glob("../../../locales/*.json");
 
 Object.entries(locales).forEach(([path, loader]) => {
   const locale = path.match(/\.\/locales\/(.+)\.json$/)?.[1];
@@ -21,6 +21,6 @@ Object.entries(locales).forEach(([path, loader]) => {
 
 
 init({
-	fallbackLocale: defaultLocale,
-	initialLocale: browser ? window.navigator.language : defaultLocale,
+  fallbackLocale: defaultLocale,
+  initialLocale: browser ? window.navigator.language : defaultLocale,
 })
