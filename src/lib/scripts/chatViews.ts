@@ -13,8 +13,8 @@ export const folderClickEvent = writable<MouseEvent>();
 export const isReLogin = writable<boolean>(false);
 
 export const isFolderCtxMenu = writable<boolean>(false)
-export const folderCtxMenuView = writable<"hidden" | "default" | "edit" | "icon">("hidden")
-export const prevFolderCtxMenuView = writable<"hidden" | "default" | "edit" | "icon">("hidden")
+export const folderCtxMenuView = writable<"hidden" | "default" | "edit" | "iconPicker" | "chatPicker">("hidden")
+export const prevFolderCtxMenuView = writable<"hidden" | "default" | "edit" | "iconPicker" | "chatPicker">("hidden")
 
 export const ctxFolder = writable<folderType>({
     name: "",

@@ -35,7 +35,10 @@
         "noChatsDesc": "You can join or create a group by clicking the \"more\" button at the top",
         "folderCtx": {
             "editButton": "Edit folder",
-            "deleteButton": "Delete folder"
+            "deleteButton": "Delete folder",
+            "iconButton": "Icon",
+            "chatPickerButton": "Chats",
+            "editSaveButton": "Save"
         },
         "userbar": {
             "settings": "Settings",
@@ -67,5 +70,9 @@
         "chatboxPlaceholder": "Type a message...",
         "members": "members",
         "member": "member"
+    },
+    "ctxMenus": {
+        "searchIcons": "Search icons...",
+        "searchChats": "Search chats..."
     }
 }

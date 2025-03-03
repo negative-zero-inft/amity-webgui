@@ -4,7 +4,8 @@
     import { folderCtxMenuView, prevFolderCtxMenuView, ctxFolder, type folderType } from "$lib/scripts/chatViews";
     import Label from "$lib/kit/decor/Label.svelte";
     import { _ } from "svelte-i18n";
-
+    import { getUser } from "$lib/scripts/requests";
+    import { isHttps, server, port, token } from "$lib/scripts/globalData";
     let {
         height = $bindable(0),
         width = $bindable(0)
@@ -21,12 +22,27 @@
         }else if($prevFolderCtxMenuView === "default"){
             return -320;
         }else{
-            return 320;
+            return -320;
         }
     }
 
-    const folderDelProc = ()=>{
-        console.log("folderDelProc")
+    const folderDelProc = async ()=>{
+        try {
+            const response = await fetch(`http${$isHttps ? "s" : ""}://${$server}:${$port}/user/me/chatfolders?token=${$token}`, {
+                method: "DELETE",
+                body: JSON.stringify({
+                    _id: $ctxFolder._id
+                }),
+                headers: {
+                    "Content-Type": "application/json",
+                    "Access-Control-Allow-Origin": "*"
+                }
+            });
+            console.log(response);
+            getUser($isHttps, $server, $port, ($token as string));
+        } catch (e) {
+            console.log(e);
+        }
     }
 </script>
 
@@ -40,7 +56,18 @@
         left: {left()}px;
     "
 >
-    <Label icon="Folder/Default" label={$ctxFolder.name.length > 0 ? $ctxFolder.name : $ctxFolder.icon}/>
+    <div 
+        class="elem-horiz"
+        style="
+            width: 100%;
+            justify-content: space-between;
+            padding-right: 5px;
+            box-sizing: border-box;
+        "
+    >
+        <Label icon="Folder/Default" label={$ctxFolder.name.length > 0 ? $ctxFolder.name : $ctxFolder.icon}/>
+        <Icon name={$ctxFolder.icon}/>
+    </div>
     <Button
         action={()=>{
             folderCtxMenuView.set("edit")

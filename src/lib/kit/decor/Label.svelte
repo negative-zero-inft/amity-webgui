@@ -31,7 +31,7 @@
 	{/if}
 </div>
 
-{#if isOpen}
+{#if isOpen && children}
 	<div class="children">
 		{@render (children as any)?.()}
 	</div>
