@@ -48,6 +48,9 @@ export const user = writable<{
             _id: string
         }]
     }[],
+    settings: {
+        shiftSend: boolean,
+    },
     password: string,
     cdn: string
 }>();
