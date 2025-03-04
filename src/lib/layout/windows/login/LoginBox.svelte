@@ -71,6 +71,8 @@
                     "Access-Control-Allow-Origin": "*"
                 }
             })
+
+            const res = JSON.parse(await response.text())
             // Handle response
             if(await response.status != 200) {
                 console.error(await response)
@@ -80,8 +82,8 @@
             }
 
             const t = {
-                token: JSON.parse(await response.text()).token,
-                authNumber: JSON.parse(await response.text()).authNumber,
+                token: res.token,
+                authNumber: res.authNumber,
                 server: instance,
                 isHttps: $isHttpsL
             }

@@ -52,7 +52,7 @@
     </Label>
     <Button
         action={()=>{
-            localStorage.removeItem("token")
+            localStorage.removeItem("tokens")
             localStorage.removeItem("isDev")
             localStorage.removeItem("server")
             window.location.replace("/login")
