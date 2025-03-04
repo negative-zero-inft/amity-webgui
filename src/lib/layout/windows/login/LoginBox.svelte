@@ -83,8 +83,12 @@
 
             const t = {
 <<<<<<< HEAD
+<<<<<<< HEAD
                 token: res.token,
                 authNumber: res.authNumber,
+=======
+                token: await response.text(),
+>>>>>>> parent of 0d386e6 (t)
 =======
                 token: await response.text(),
 >>>>>>> parent of 0d386e6 (t)
