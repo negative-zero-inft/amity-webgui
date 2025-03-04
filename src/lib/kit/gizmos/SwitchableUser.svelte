@@ -30,7 +30,6 @@
 		avatar: ""
 	});
 	let isCurrent = $token == data.token && $server == data.server;
-	console.log($token, data.token, $server, data.server, isCurrent)
 
 	const getData = async () => {
 		const url = `http${data.isHttps ? "s" : ""}://${data.server}:${$port}/user/me?token=${data.token}`;

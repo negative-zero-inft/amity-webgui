@@ -3,7 +3,7 @@
     import Button from "$lib/kit/gizmos/Button.svelte";
     import { isUserBar } from "$lib/scripts/chatViews";
     import Avatar from "$lib/kit/decor/Avatar.svelte";
-    import { user } from "$lib/scripts/globalData";
+    import { user, server } from "$lib/scripts/globalData";
     import { _ } from "svelte-i18n";
     import { isReLogin } from "$lib/scripts/chatViews";
 	import { view } from "$lib/scripts/loginWritables";
@@ -17,7 +17,7 @@
 		try{
 			banner =  $user?.banner || "/defaultBanner.png" as string
 			username =  $user?.name
-			tag =  `${$user?.tag}@${$user.id.server}`
+			tag =  `${$user?.tag}@${$server}`
 			avatar =  $user?.avatar || "/mascots/Amy.png" as string
 		}catch(e){
 			// console.log(e)
@@ -94,6 +94,7 @@
 	}
 
 	.username {
+        flex-grow: 1;
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
