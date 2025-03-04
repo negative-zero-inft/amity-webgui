@@ -1,11 +1,12 @@
 <script lang="ts">
-    import { isHttps, port, token } from "$lib/scripts/globalData";
+    import { isHttps, port, token, server } from "$lib/scripts/globalData";
 	import { currentChat } from "$lib/scripts/chatViews";
 	import { timeAgo } from '$lib/utils/timeAgo';
-	import { fetchData } from '$lib/scripts/requests';
+	import { checkServerReachability, fetchData } from '$lib/scripts/requests';
 	import check from '$lib/minicons/check.svg';
 	import Avatar from '$lib/kit/decor/Avatar.svelte';
-
+	import { _ } from 'svelte-i18n';
+	import Icon from "../decor/Icon.svelte";
 	let {
 		unreads = 0,
 		isUnreads = unreads != 0,
@@ -48,8 +49,17 @@
 		datenow = Date.now();
 	}, 1.5 * 1000);
 
+	let isReachable = $state(false);
+
 	const getData = async () => {
-		const url = `http${isHttps ? "s" : ""}://${data.id.server}:${$port}/group/${data.id.id}/info?token=${token}`;
+		
+		let url = `http${$isHttps ? "s" : ""}://${data.id.server}:${$port}/group/${data.id.id}/info?token=${$token}`;
+		isReachable = await checkServerReachability(`http${$isHttps ? "s" : ""}://${data.id.server}:${$port}`)
+		if(!isReachable){
+			isReachable = await checkServerReachability(`http${!$isHttps ? "s" : ""}://${data.id.server}:${$port}`)
+			if(!isReachable) return
+			url = `http${!$isHttps ? "s" : ""}://${data.id.server}:${$port}/group/${data.id.id}/info?token=${$token}`
+		}
 		const responseData = await fetchData(url);
 
 		if (responseData) {
@@ -67,7 +77,7 @@
 <button 
 	onclick={(e)=>{
 		click(e, data, tempData)
-		if(isSidebar && !isMultiGroup) currentChat.set({
+		if(isSidebar && !isMultiGroup && isReachable) currentChat.set({
 			type: chatType as "empty" | "dm" | "channel" | "monogroup" | "soapbox",
 			name: tempData.name,
 			icon: tempData.icon,
@@ -81,12 +91,18 @@
 	oncontextmenu={(e)=>{rightClick(e)}} 
 	onmouseenter={(e)=>{hover(e)}} 
 	onmouseleave={(e)=>{leave(e)}} 
-	class="chatEntry {isSelected ? 'selected' : ''}">
-	<Avatar {pfpLink} />
+	class="chatEntry {isSelected ? 'selected' : ''} {isReachable ? '' : 'unreachable'}">
+	{#if isReachable}
+		<Avatar {pfpLink} />
+	{:else}
+		<div class="icon">
+			<Icon name="Warning"/>
+		</div>
+	{/if}
 	<div class="info">
 		<div class="line">
 			<div class="horiz">
-				<div class="name">{tempData?.name}</div>
+				<div class="name">{isReachable ? tempData?.name : $_("sidebar.unreachable")}</div>
 				{#if isFavorite}
 					<svg
 						width="11"
@@ -104,22 +120,51 @@
 					</svg>
 				{/if}
 			</div>
-			<div class="textPreview">{timeAgo(timestamp, datenow)}</div>
-		</div>
-		<div class="line">
-			<div class="textPreview">{isMultiGroup ? tempData.channels.length + " channels" : preview}</div>
-			{#if isUnreads}
-				<div class="unreads">{unreads}</div>
-			{:else}
-				<div class="noUnreads"><img style="width: 12px" src={check} alt="#" /></div>
+			{#if isReachable}
+				<div class="textPreview">{timeAgo(timestamp, datenow)}</div>
 			{/if}
 		</div>
+		{#if isReachable}
+			<div class="line">
+				<div class="textPreview">{isMultiGroup ? tempData.channels.length + " channels" : preview}</div>
+				{#if isUnreads}
+					<div class="unreads">{unreads}</div>
+				{:else}
+					<div class="noUnreads"><img style="width: 12px" src={check} alt="#" /></div>
+				{/if}
+			</div>
+		{/if}
 	</div>
 </button>
 
 <style lang="scss">
 	@use '$lib/style/variables.scss' as v;
 	@use '$lib/style/colors.scss' as c;
+
+	.icon{
+		flex-shrink: 0;
+		height: 36px;
+		width: 36px;
+		box-sizing: border-box;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 50%;
+		border: 1px solid c.$accent;
+	}
+
+	.unreachable{
+		border: 1px solid c.$accent;
+		background-color: c.$accent-t10;
+		background-image: repeating-linear-gradient(
+			-45deg,
+			transparent 15px,
+			rgba(255, 0, 0, 0.25) 15px,
+			rgba(255, 0, 0, 0.25) 35px,
+			transparent 35px,
+			transparent 55px /* added this so the pattern repeats seamlessly */
+		);
+	}
 
 	.name{
 		text-align: left;

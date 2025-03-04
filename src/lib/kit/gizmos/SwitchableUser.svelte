@@ -15,7 +15,8 @@
 	}: {
 		data: {
 			token: string, 
-			server: "string"
+			server: "string",
+			isHttps: boolean
 		},
 		index: number,
 		tokens: []
@@ -29,7 +30,7 @@
 	});
 
 	const getData = async () => {
-		const url = `http${isHttps ? "s" : ""}://${data.server}:${$port}/user/me?token=${data.token}`;
+		const url = `http${data.isHttps ? "s" : ""}://${data.server}:${$port}/user/me?token=${data.token}`;
 		const responseData = await fetchData(url);
 
 		if (responseData) {
@@ -61,6 +62,11 @@
 			<div class="textPreview">{tempData.tag}@{data.server}</div>
 		</div>
 	</div>
+	{#if !data.isHttps}
+		<div class="isDev">
+			<Icon name="Code"/>
+		</div>
+	{/if}
 	<Button
 		id="del"
 		style="destructive"
@@ -79,6 +85,17 @@
 	@use '$lib/style/variables.scss' as v;
 	@use '$lib/style/colors.scss' as c;
 
+	.isDev {
+		background-color: c.$accent-t80;
+		border-radius: v.$corner-elem;
+		padding-left: 6px;
+		padding-right: 6px;
+		height: 16px;
+		font-size: 11px !important;
+		display: flex;
+		align-items: center;
+		@include v.standard-text();
+	}
 	.name{
 		text-align: left;
 		width: 100%;
@@ -88,6 +105,7 @@
 	}
 	
 	button {
+		align-items: center;
 		white-space: nowrap;
 		flex-direction: row !important;
 		width: var(--w);
@@ -124,6 +142,7 @@
 		justify-content: space-between;
 		align-items: center;
 		gap: v.$spacing-def;
+		height: 16px;
 	}
 	.info {
 		width: 100%;

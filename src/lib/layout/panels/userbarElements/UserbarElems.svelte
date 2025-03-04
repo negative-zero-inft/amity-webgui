@@ -84,13 +84,4 @@
 		height: calc(100vh - 150px);
 		padding-bottom: 66px;
 	}
-
-	.cluster {
-		display: flex;
-		flex-direction: column;
-		gap: v.$spacing-def;
-		padding-right: v.$spacing-def;
-		padding-left: v.$spacing-def;
-		overflow: visible;
-	}
 </style>;

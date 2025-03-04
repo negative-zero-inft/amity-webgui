@@ -3,9 +3,9 @@
 	import Icon from "$lib/kit/decor/Icon.svelte";
 	import Textbox from "$lib/kit/text/Textbox.svelte";
     import Button from "$lib/kit/gizmos/Button.svelte";
-    import { server, isHttps, port } from "$lib/scripts/globalData";
+    import { server, port } from "$lib/scripts/globalData";
     import { checkServerReachability } from "$lib/scripts/requests";
-    import { isError, errorValue, view } from "$lib/scripts/loginWritables";
+    import { isError, errorValue, view, isHttpsL } from "$lib/scripts/loginWritables";
     import { _, locales } from "svelte-i18n";
 
     let{
@@ -62,7 +62,7 @@
             }
 
             // Check server reachability
-            const serverReachable = await checkServerReachability(`http${$isHttps ? "s" : ""}://${instance}:${$port}`);
+            const serverReachable = await checkServerReachability(`http${$isHttpsL ? "s" : ""}://${instance}:${$port}`);
             if (!serverReachable) {
                 isError.set(true);
                 errorValue.set("Server is unreachable or doesn't exist");
@@ -78,7 +78,7 @@
             }
 
             // Send registration request
-            const response = await fetch(`http${$isHttps ? "s" : ""}://${instance}:${$port}/register`, {
+            const response = await fetch(`http${$isHttpsL ? "s" : ""}://${instance}:${$port}/register`, {
                 method: "POST",
                 body: JSON.stringify(user),
                 headers: {
@@ -144,9 +144,9 @@
             <!-- Toggle dev mode -->
             <Button 
                 action={()=>{
-                    isHttps.set(!$isHttps);
+                    isHttpsL.set(!$isHttpsL);
                 }}
-                style={!$isHttps ? "selected" : "default"}
+                style={!$isHttpsL ? "selected" : "default"}
             >
                 <Icon name="Code"/>
             </Button>

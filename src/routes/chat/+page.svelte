@@ -12,20 +12,19 @@
 	import LingoWindow from '$lib/layout/devTools/DevWindow.svelte';
 	import { _ } from 'svelte-i18n';
 	import { page } from '$app/state';
-    import { view } from "$lib/scripts/loginWritables";
 	import LoginBox from "$lib/layout/windows/login/LoginBox.svelte";
 	import SignupBox from "$lib/layout/windows/login/SignupBox.svelte";
 	import AccountSwitcher from '$lib/layout/windows/login/AccountSwitcher.svelte';
+	import { isError, errorValue, view } from "$lib/scripts/loginWritables";
+	import { checkServerReachability } from "$lib/scripts/requests";
 
-	$effect(() => {
+	const a = async () => {
 		if (!browser) return;
 		
 		try{
 			accountIndex.set(Number(page.url.searchParams.get("token")))
-			
-			if (localStorage.getItem('isDev') == 'true') isHttps.set(false);
 	
-			const tokens: {token: string, server: string}[] = JSON.parse(localStorage.getItem('tokens') || "")
+			const tokens: {token: string, server: string, isHttps: boolean}[] = JSON.parse(localStorage.getItem('tokens') || "")
 			const storedToken = tokens[$accountIndex].token;
 	
 			if (!storedToken) {
@@ -34,17 +33,25 @@
 				return;
 			}
 	
-			token.set(storedToken);
-	
-			if (localStorage.getItem('server')) {
-				server.set(localStorage.getItem('server') || '');
+			isHttps.set(tokens[$accountIndex].isHttps)
+			server.set(tokens[$accountIndex].server)
+			
+			const isReachable = await checkServerReachability(`http${$isHttps ? "s" : ""}://${$server}:${$port}`)
+			if(isReachable){
+				token.set(storedToken);
+			}else{
+				isError.set(true);
 			}
+
 			getUser($isHttps, $server, $port, ($token as string))
 		}catch(e){
 			clearLocalStorage()
 			token.set(null);
 			goto('/login', { replaceState: true });
 		}
+	}
+	$effect(()=>{
+		a()
 	});
 
 	const clearLocalStorage = ()=>{
@@ -88,6 +95,18 @@
 				}
 			}}
 		>
+			<!-- svelte-ignore a11y_no_static_element_interactions -->
+			<!-- svelte-ignore a11y_click_events_have_key_events -->
+			<div 
+				onclick={()=>{isError.set(false)}} 
+				style="
+					transform: scale({$isError ? "1" : "0"}); 
+					opacity: {$isError ? "1" : "0"};
+				" 
+				class="error"
+			>
+				<Icon name="Warning"></Icon>{$errorValue}
+			</div>
 			<div 
 				class="window"
 				style="
@@ -136,6 +155,7 @@
 
 <style lang="scss">
 	@use '$lib/style/colors.scss' as c;
+	@use '$lib/style/variables.scss' as v;
 	
 	.blurredReloginBg{
 		display: flex;
@@ -160,6 +180,43 @@
 		}
 		to {
 			transform: rotateZ(360deg);
+		}
+	}
+	.error{
+		overflow: hidden;
+		position: absolute;
+		bottom: 10px;
+		transition: 0.25s;
+		gap: v.$spacing-def;
+		font-size: 16px;
+		width: 320px;
+		height: max-content;
+		padding: 10px;
+		display: flex;
+		box-sizing: border-box;
+		align-items: center;
+		justify-content: center;
+		background-color: c.$accent-t10;
+		border-radius: v.$corner-window;
+		border: solid;
+		border-width: 1px;
+		z-index: 2137;
+		border-color: c.$accent;
+		background-image: repeating-linear-gradient(
+			-45deg,
+			transparent 15px,
+			rgba(255, 0, 0, 0.25) 15px,
+			rgba(255, 0, 0, 0.25) 35px,
+			transparent 35px,
+			transparent 55px /* added this so the pattern repeats seamlessly */
+		);
+		&:hover{
+			background-color: c.$accent-t40;
+			scale: 1.1;
+		}
+		&:active{
+			scale: 0.9;
+			background-color: c.$accent-t80;
 		}
 	}
 </style>

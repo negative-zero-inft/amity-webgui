@@ -3,10 +3,10 @@
 	import Icon from "$lib/kit/decor/Icon.svelte";
 	import Textbox from "$lib/kit/text/Textbox.svelte";
     import Button from "$lib/kit/gizmos/Button.svelte";
-    import { server, isHttps, port } from "$lib/scripts/globalData";
+    import { server, port } from "$lib/scripts/globalData";
     import OAuth from "$lib/kit/gizmos/OAuth.svelte";
     import { checkServerReachability } from "$lib/scripts/requests";
-    import { isError, errorValue, view } from "$lib/scripts/loginWritables";
+    import { isError, errorValue, view, isHttpsL } from "$lib/scripts/loginWritables";
     import { _ } from 'svelte-i18n';
 
     // Bindable property for the height of the login box
@@ -52,7 +52,7 @@
             }
 
             // Check server reachability
-            const serverReachable = await checkServerReachability(`http${$isHttps ? "s" : ""}://${instance}:${$port}`);
+            const serverReachable = await checkServerReachability(`http${$isHttpsL ? "s" : ""}://${instance}:${$port}`);
             if (!serverReachable) {
                 isError.set(true);
                 errorValue.set($_("loginBox.serverUnreachable"));
@@ -60,7 +60,7 @@
             }
 
             // Attempt to sign in
-            const response = await fetch(`http${$isHttps ? "s" : ""}://${instance}:${$port}/signin`, {
+            const response = await fetch(`http${$isHttpsL ? "s" : ""}://${instance}:${$port}/signin`, {
                 method: "POST",
                 body: JSON.stringify({
                     tag: `${username}@${instance}`,
@@ -81,12 +81,16 @@
 
             const t = {
                 token: await response.text(),
-                server: instance
+                server: instance,
+                isHttps: $isHttpsL
             }
 
+            console.log(t)
+
             const tokens: {
-                token: string, server: string
+                token: string, server: string, isHttps: boolean
             }[] = JSON.parse(localStorage.getItem("tokens") || "[]")
+
             // Store token and server info on successful login
             if(tokens.indexOf(t) == -1){
                 tokens.push(t)
@@ -140,9 +144,9 @@
             <!-- Toggle dev mode -->
             <Button 
                 action={()=>{
-                    isHttps.set(!$isHttps);
+                    isHttpsL.set(!$isHttpsL);
                 }}
-                style={!$isHttps ? "selected" : "default"}
+                style={!$isHttpsL ? "selected" : "default"}
             >
                 <Icon name="Code"/>
             </Button>

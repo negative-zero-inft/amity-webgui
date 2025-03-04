@@ -21,7 +21,7 @@
 		if(!author.server) return
 		if(!author.id) return
 		try{
-			const response = await fetch(`http${isHttps ? "s" : ""}://${author.server}:${$port}/user/${author.id}/info?token=${token}`, {
+			const response = await fetch(`http${$isHttps ? "s" : ""}://${author.server}:${$port}/user/${author.id}/info?token=${$token}`, {
 				method: "GET",
 				headers: {
 					"Content-Type": "application/json",

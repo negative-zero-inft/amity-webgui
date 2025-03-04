@@ -36,6 +36,7 @@
         "sadBillAlt": "Sad Bill",
         "emptyFolder": "This folder is empty",
         "emptyFolderDesc": "Right click on the folder and click \"Edit folder\" → \"Chats\" to add chats",
+        "unreachable": "Server unreachable",
         "folderCtx": {
             "editButton": "Edit folder",
             "deleteButton": "Delete folder",
