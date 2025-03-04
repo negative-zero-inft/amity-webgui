@@ -2,7 +2,7 @@
 	import Avatar from '$lib/kit/decor/Avatar.svelte';
 
 	let { 
-		avatars = [ "amity.png", "guitar.png", "Jump.png" ],
+		avatars = [ "mascots/Amy.png", "mascots/Dobby.png", "mascots/Bill.png" ],
 		isHover = false,
 		isActive = false
 	} = $props();

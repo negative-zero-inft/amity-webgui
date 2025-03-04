@@ -39,7 +39,7 @@
         </Button>
         <StoriesButton/>
         <Button>
-            <Icon name="More"/>
+            <Icon name="Search"/>
         </Button>
     </div>
     <div
