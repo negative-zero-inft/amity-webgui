@@ -76,7 +76,7 @@
 				backdrop-filter: blur({$isReLogin ? 80 : 0}px);
 				pointer-events: {$isReLogin ? "auto" : "none"};
 				background-color: #{$isReLogin ? "00000040" : "00000000"};
-				transition: 0.25s;
+				transition: backdrop-filter 0.25s;
 			"
 			onclick={(e: MouseEvent)=>{
 				if(JSON.parse(localStorage.getItem("tokens") || "").length == 0){
@@ -94,6 +94,12 @@
 					scale: {$isReLogin ? 1 : 0};
 					width: 340px;
 					padding: 0;
+					position: absolute;
+					left: {$isReLogin ? "calc(50vw - 170px)" : (320 / 2) - 36 + "px"};
+					top: {$isReLogin ?
+						"calc(50vh - " + ($view == "login" ? loginHeight : $view == "accountList" ? switcherHeight : signupHeight) / 2 + "px)" : 
+						(150 - 28) - ($view == "login" ? loginHeight : $view == "accountList" ? switcherHeight : signupHeight) / 2 + "px"
+					};
 					height: {$view == "login" ? loginHeight : $view == "accountList" ? switcherHeight : signupHeight}px;
 				"
 			>
