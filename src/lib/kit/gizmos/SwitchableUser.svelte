@@ -6,6 +6,7 @@
 	import { goto } from "$app/navigation";
 	import Button from "./Button.svelte";
 	import Icon from "../decor/Icon.svelte";
+	import { token, server } from "$lib/scripts/globalData";
 
 	let isDeleted = $state(false)
 	let {
@@ -28,6 +29,8 @@
 		server: data.server,
 		avatar: ""
 	});
+	let isCurrent = $token == data.token && $server == data.server;
+	console.log($token, data.token, $server, data.server, isCurrent)
 
 	const getData = async () => {
 		const url = `http${data.isHttps ? "s" : ""}://${data.server}:${$port}/user/me?token=${data.token}`;
@@ -50,7 +53,7 @@
 	id="chatEntry"
 	class="chatEntry"
 	style="
-		display: {isDeleted ? "none" : "auto"}
+		display: {isDeleted || isCurrent ? "none" : "auto"}
 	"
 >
 	<Avatar pfpLink={tempData.avatar} />
