@@ -49,7 +49,7 @@
 		datenow = Date.now();
 	}, 1.5 * 1000);
 
-	let isReachable = $state(false);
+	let isReachable = $state(true);
 
 	const getData = async () => {
 		
