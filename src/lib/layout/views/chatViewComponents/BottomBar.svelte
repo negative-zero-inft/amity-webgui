@@ -5,12 +5,17 @@
 	import Textarea from "$lib/kit/text/Textarea.svelte";
 	import { user } from "$lib/scripts/globalData";
     import { _ } from "svelte-i18n";
+    import { fetchData } from "$lib/scripts/requests";
+    import { currentChat } from "$lib/scripts/chatViews";
+    import { isHttps, server, port, token } from "$lib/scripts/globalData";
 
     let defChatElements: HTMLDivElement | null = $state(null);
     let typingChatElements: HTMLDivElement | null = $state(null);
     let msg = $state("");
     
-    const sendMessage = () => {
+    const sendMessage = async () => {
+        const a = await fetchData(`http${$isHttps ? "s" : ""}://${$server}:${$port}/group/${$currentChat.id.id}/messages?token=${$token}`)
+        console.log(a)
         msg = "";
         console.log("sendMessage");
     }

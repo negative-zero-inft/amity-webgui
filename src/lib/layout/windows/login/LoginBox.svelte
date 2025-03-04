@@ -60,7 +60,7 @@
             }
 
             // Attempt to sign in
-            const response = await fetch(`http${$isHttpsL ? "s" : ""}://${instance}:${$port}/signin`, {
+            const response = await fetch(`http${$isHttpsL ? "s" : ""}://${instance}:${$port}/auth/login`, {
                 method: "POST",
                 body: JSON.stringify({
                     tag: `${username}@${instance}`,
@@ -80,7 +80,8 @@
             }
 
             const t = {
-                token: await response.text(),
+                token: JSON.parse(await response.text()).token,
+                authNumber: JSON.parse(await response.text()).authNumber,
                 server: instance,
                 isHttps: $isHttpsL
             }
@@ -88,7 +89,7 @@
             console.log(t)
 
             const tokens: {
-                token: string, server: string, isHttps: boolean
+                token: string, authNumber: string, server: string, isHttps: boolean
             }[] = JSON.parse(localStorage.getItem("tokens") || "[]")
 
             // Store token and server info on successful login

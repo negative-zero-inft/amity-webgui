@@ -62,7 +62,8 @@
             }
 
             // Check server reachability
-            const serverReachable = await checkServerReachability(`http${$isHttpsL ? "s" : ""}://${instance}:${$port}`);
+            const serverReachable = checkServerReachability(`http${$isHttpsL ? "s" : ""}://${instance}:${$port}`);
+            console.log(serverReachable)
             if (!serverReachable) {
                 isError.set(true);
                 errorValue.set("Server is unreachable or doesn't exist");
@@ -78,7 +79,7 @@
             }
 
             // Send registration request
-            const response = await fetch(`http${$isHttpsL ? "s" : ""}://${instance}:${$port}/register`, {
+            const response = await fetch(`http${$isHttpsL ? "s" : ""}://${instance}:${$port}/auth/register`, {
                 method: "POST",
                 body: JSON.stringify(user),
                 headers: {
