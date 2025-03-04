@@ -72,7 +72,6 @@
                 }
             })
 
-            const res = JSON.parse(await response.text())
             // Handle response
             if(await response.status != 200) {
                 console.error(await response)
@@ -81,21 +80,10 @@
                 return
             }
 
+            const res = await response.text()
+
             const t = {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-                token: res.token,
-                authNumber: res.authNumber,
-=======
-                token: await response.text(),
->>>>>>> parent of 0d386e6 (t)
-=======
-                token: await response.text(),
->>>>>>> parent of 0d386e6 (t)
-=======
-                token: await response.text(),
->>>>>>> parent of 0d386e6 (t)
+                token: res,
                 server: instance,
                 isHttps: $isHttpsL
             }
