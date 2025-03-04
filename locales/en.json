@@ -78,7 +78,8 @@
         "searchbox": "Search...",
         "chatboxPlaceholder": "Type a message...",
         "members": "members",
-        "member": "member"
+        "member": "member",
+        "previewMessage": "Preview message"
     },
     "ctxMenus": {
         "searchIcons": "Search icons...",

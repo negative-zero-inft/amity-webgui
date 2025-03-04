@@ -4,7 +4,9 @@
 	import Textarea from "$lib/kit/text/Textarea.svelte";
 	import { user } from "$lib/scripts/globalData";
     import { _ } from "svelte-i18n";
-    
+    import { isPreview, previewButtonEvent } from "$lib/scripts/chatViews";
+    let defChatElements: HTMLDivElement | null = $state(null);
+    let typingChatElements: HTMLDivElement | null = $state(null);
     let msg = $state("");
     
     const sendMessage = () => {
@@ -12,6 +14,11 @@
         console.log("sendMessage");
     }
 
+    $effect(()=>{
+        if(msg.length == 0){
+            isPreview.set(false);
+        }
+    })
 </script>
 
 <div class="bottomBar">
@@ -36,7 +43,7 @@
                 }
             }
         }}
-        width="100%" 
+        width="100%"
         height={msg.split("\n").length > 1 ? 20 + msg.split("\n").length * 15 + "px" : "36px"}
         style="
             max-height: calc(100vh - 20px);
@@ -48,8 +55,14 @@
         placeholder={$_("chat.chatboxPlaceholder")}
     />
     <div 
+        bind:this={defChatElements}
         id="defChatElements"
         class="elem-horiz"
+        style="
+            position: {msg.length > 0 ? "absolute" : "relative"};
+            right: {msg.length > 0 ? 0 - (defChatElements?.offsetWidth || 0) : 0}px;
+            transition: 0.25s;
+        "
     >
         <Button>
             <Icon name="Users"/>
@@ -76,6 +89,37 @@
             <Icon name="Microphone"/>
         </Button>
     </div>
+    <div 
+        bind:this={typingChatElements}
+        id="typingChatElements"
+        class="elem-horiz"
+        style="
+            position: {msg.length > 0 ? "relative" : "absolute"};
+            right: {msg.length > 0 ? 0 : 0 - (typingChatElements?.offsetWidth || 0)}px;
+            transition: 0.25s;
+        "
+    >
+        <Button
+            tooltip={$_("chat.previewMessage")}
+            width="36px"
+            style={$isPreview ? "selected" : "default"}
+            action={(e: MouseEvent) => {
+                isPreview.set(!$isPreview);
+                previewButtonEvent.set(e);
+            }}
+        >
+            <Icon name="Eye"/>
+        </Button>
+        <Button>
+            <Icon name="Smile"/>
+        </Button>
+        <Button
+            style="accent"
+            action={sendMessage}
+        >
+            <Icon name="Send"/>
+        </Button>
+    </div>
 </div>
 
 <style lang="scss">
@@ -92,5 +136,6 @@
         padding: v.$spacing-def;
         flex-direction: row;
         align-items: flex-end;
+        position: relative;
     }
 </style>
