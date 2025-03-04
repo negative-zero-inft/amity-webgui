@@ -8,8 +8,6 @@ export interface folderType{
     index: number   
 }
 
-export const isPreview = writable<boolean>(false);
-export const previewButtonEvent = writable<MouseEvent>();
 export const windowClickEvent = writable<MouseEvent>();
 export const folderClickEvent = writable<MouseEvent>();
 export const isReLogin = writable<boolean>(false);

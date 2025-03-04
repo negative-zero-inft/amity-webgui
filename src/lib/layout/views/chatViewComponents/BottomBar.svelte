@@ -1,10 +1,11 @@
 <script lang="ts">
 	import Icon from "$lib/kit/decor/Icon.svelte";
 	import Button from "$lib/kit/gizmos/Button.svelte";
+	import Message from "$lib/kit/messages/Message.svelte";
 	import Textarea from "$lib/kit/text/Textarea.svelte";
 	import { user } from "$lib/scripts/globalData";
     import { _ } from "svelte-i18n";
-    import { isPreview, previewButtonEvent } from "$lib/scripts/chatViews";
+
     let defChatElements: HTMLDivElement | null = $state(null);
     let typingChatElements: HTMLDivElement | null = $state(null);
     let msg = $state("");
@@ -14,13 +15,33 @@
         console.log("sendMessage");
     }
 
+    let isPreview = $state(false);
+    let previewButtonEvent: MouseEvent | null = $state(null);
+
     $effect(()=>{
         if(msg.length == 0){
-            isPreview.set(false);
+            isPreview = false;
         }
     })
 </script>
 
+<div 
+    id="previewWindow"
+    class="window"
+    style="
+        scale: {isPreview ? 1 : 0};
+        position: absolute;
+        right: {isPreview ? 10 : (36 * 2) + 10}px;
+        bottom: {isPreview ? 10 + 56 : 10}px;
+        transition: 0.25s;
+        border-radius: 25px 25px 15px 25px;
+    "
+>
+    <Message
+        isSender
+        content={msg}
+    />
+</div>
 <div class="bottomBar">
     <Button>
         <Icon name="Plus"/>
@@ -102,10 +123,10 @@
         <Button
             tooltip={$_("chat.previewMessage")}
             width="36px"
-            style={$isPreview ? "selected" : "default"}
+            style={isPreview ? "selected" : "default"}
             action={(e: MouseEvent) => {
-                isPreview.set(!$isPreview);
-                previewButtonEvent.set(e);
+                isPreview = !isPreview;
+                previewButtonEvent = e;
             }}
         >
             <Icon name="Eye"/>
