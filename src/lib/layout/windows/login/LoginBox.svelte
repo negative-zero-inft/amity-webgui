@@ -126,8 +126,11 @@
             <!-- Username input -->
             <Textbox
                 isError={isUsernameInvalid}
-                onkeydown={()=>{
+                onkeydown={(e: KeyboardEvent)=>{
                     isUsernameInvalid = false;
+                    if(e.key == "Enter"){
+                        signInProcedure();
+                    }
                 }}
                 bind:value={username}
                 width="100%; flex-shrink: 1;"
@@ -137,8 +140,14 @@
             <Icon name="AtSign"/>
 
             <!-- Instance URL input -->
-            <Textbox
+            <Textbox    
                 isError={isInstanceInvalid}
+                onkeydown={(e: KeyboardEvent)=>{
+                    isInstanceInvalid = false;
+                    if(e.key == "Enter"){
+                        signInProcedure();
+                    }
+                }}
                 bind:value={instance}
                 width="100%; flex-shrink: 1;"
                 placeholder={$_("loginBox.instanceURL")}
@@ -146,8 +155,11 @@
 
             <!-- Toggle dev mode -->
             <Button 
-                action={()=>{
+                action={(e: KeyboardEvent)=>{
                     isHttpsL.set(!$isHttpsL);
+                    if(e.key == "Enter"){
+                        signInProcedure();
+                    }
                 }}
                 style={!$isHttpsL ? "selected" : "default"}
             >
@@ -158,6 +170,12 @@
         <!-- Password input -->
         <Textbox
             isError={isPasswordInvalid}
+            onkeydown={(e: KeyboardEvent)=>{
+                isPasswordInvalid = false;
+                if(e.key == "Enter"){
+                    signInProcedure();
+                }
+            }}
             bind:value={password}
             width="100%;"
             placeholder={$_("loginBox.password")}

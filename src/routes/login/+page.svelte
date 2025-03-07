@@ -9,7 +9,7 @@
 	import { _ } from "svelte-i18n";
 
 	$effect(()=>{
-		if(localStorage.getItem("token")) window.location.replace("/chat")
+		if(localStorage.getItem("tokens")) window.location.replace("/chat")
 	})
 
 	let loginHeight = $state(0);

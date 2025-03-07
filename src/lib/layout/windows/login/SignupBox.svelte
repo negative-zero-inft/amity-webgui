@@ -125,8 +125,11 @@
             <!-- Username input -->
             <Textbox
                 isError={isUsernameInvalid}
-                onkeydown={()=>{
+                onkeydown={(e: KeyboardEvent)=>{
                     isUsernameInvalid = false;
+                    if(e.key == "Enter"){
+                        signUpProcedure();
+                    }
                 }}
                 bind:value={username}
                 width="100%; flex-shrink: 1;"
@@ -136,6 +139,12 @@
             <Icon name="AtSign"/>
             <!-- Instance URL input -->
             <Textbox
+                onkeydown={(e: KeyboardEvent)=>{
+                    isInstanceInvalid = false;
+                    if(e.key == "Enter"){
+                        signUpProcedure();
+                    }
+                }}
                 isError={isInstanceInvalid}
                 bind:value={instance}
                 width="100%; flex-shrink: 1;"
@@ -153,6 +162,12 @@
         </div>
         <!-- User tag input -->
         <Textbox
+            onkeydown={(e: KeyboardEvent)=>{
+                isTagInvalid = false;
+                if(e.key == "Enter"){
+                    signUpProcedure();
+                }
+            }}
             isError={isTagInvalid}
             bind:value={usertag}
             width="100%;"
@@ -162,6 +177,12 @@
         <!-- Password input -->
         <Textbox
             isError={isPasswordInvalid}
+            onkeydown={(e: KeyboardEvent)=>{
+                isPasswordInvalid = false;
+                if(e.key == "Enter"){
+                    signUpProcedure();
+                }
+            }}
             bind:value={password}
             width="100%;"
             placeholder={$_("signupBox.password")}
@@ -170,6 +191,12 @@
         />
         <!-- Confirm password input -->
         <Textbox
+            onkeydown={(e: KeyboardEvent)=>{
+                isRePswordInvalid = false;
+                if(e.key == "Enter"){
+                    signUpProcedure();
+                }
+            }}
             isError={isRePswordInvalid}
             bind:value={rePsword}
             width="100%;"

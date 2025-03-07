@@ -32,7 +32,7 @@ export const fetchData = async (url: string) => {
 
 export const checkServerReachability = async (url:string) => {
     try {
-        const response = await fetch(url, {
+        const response = await fetch(url + "/heartbeat", {
             cache: 'no-cache'
         });
 
