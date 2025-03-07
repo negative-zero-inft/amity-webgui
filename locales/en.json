@@ -16,7 +16,9 @@
         "serverUnreachable": "This instance is either offline or doesn't exist",
         "fillAllSpaces": "Please fill in all spaces",
         "switchAccount": "Switch account",
-        "addAccount": "Add account"
+        "addAccount": "Add account",
+        "noAccounts": "No other accounts",
+        "noAccountsDesc": "You can add an extra account by clicking the \"Add account\" button"
     },
     "signupBox": {
         "username": "Username",
@@ -85,5 +87,10 @@
     "ctxMenus": {
         "searchIcons": "Search icons...",
         "searchChats": "Search chats..."
+    },
+    "newGroup": {
+        "createButton": "Create",
+        "namePlaceholder": "Group name",
+        "descPlaceholder": "Group description"
     }
 }

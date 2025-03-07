@@ -3,6 +3,8 @@
     import Icon from "$lib/kit/decor/Icon.svelte";
     import { _ } from 'svelte-i18n';
 	import Label from "$lib/kit/decor/Label.svelte";
+    import { isNewGroup } from "$lib/scripts/chatViews";
+    import { newGCE } from "$lib/scripts/newGCWritables";
 </script>
 
 <div class="options">
@@ -21,13 +23,28 @@
         ><div class="elem-horiz"><Icon name="Announcement"></Icon> {$_("sidebar.userbar.newSoapboxEntry")}</div>
             <Icon name="Direction/Right"></Icon></Button
             >
-        <Button scaleClick={0.95} scaleHover={1.05} alignment="space-between" width="100%"
+        <Button 
+            scaleClick={0.95} 
+            scaleHover={1.05} 
+            alignment="space-between" 
+            width="100%"
+            hoverAction={(e: MouseEvent)=>{
+                newGCE.set(e)
+            }}
+            action={(e: MouseEvent)=>{
+                newGCE.set(e)
+                isNewGroup.set(true)
+            }}
         ><div class="elem-horiz"><Icon name="Users"></Icon> {$_("sidebar.userbar.newGroupEntry")}</div>
         <Icon name="Direction/Right"></Icon></Button
         >
     </Label>
     <Label isOpen label={$_("sidebar.userbar.archiveEntries")} icon="Clock">
-        <Button scaleClick={0.95} scaleHover={1.05} alignment="space-between" width="100%"
+        <Button 
+            scaleClick={0.95} 
+            scaleHover={1.05} 
+            alignment="space-between" 
+            width="100%"
             ><div class="elem-horiz"><Icon name="Library"></Icon> {$_("sidebar.userbar.thingsEntry")}</div>
             <Icon name="Direction/Right"></Icon></Button
         >

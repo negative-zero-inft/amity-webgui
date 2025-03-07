@@ -8,6 +8,8 @@ export interface folderType{
     index: number   
 }
 
+export const isNewGroup = writable<boolean>(false);
+
 export const windowClickEvent = writable<MouseEvent>();
 export const folderClickEvent = writable<MouseEvent>();
 export const isReLogin = writable<boolean>(false);

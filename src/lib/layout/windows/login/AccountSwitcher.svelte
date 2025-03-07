@@ -24,10 +24,16 @@
     <div class="title">
         {$_("loginBox.switchAccount")}
     </div>
-    <div class="switcherList">
+    <div class="switcherList" style={tokenList.length < 2 ? "justify-content: center;" : ""}>
         {#each tokenList as token}
             <SwitchableUser tokens={tokenList} data={token} index={tokenList.indexOf(token)}/>
         {/each}
+        {#if tokenList.length < 2}
+
+            <Icon size={64} name="X"/>
+            <div class="noAccsTitle" style="font-size: 18px;">{$_("loginBox.noAccounts")}</div>
+            <div class="noAccsDesc"> {$_("loginBox.noAccountsDesc")}</div>
+        {/if}
     </div>
     <Button
         width="calc(100% - 20px); margin: 10px;"
@@ -44,7 +50,13 @@
     @use '$lib/style/variables.scss' as v;
     @use '$lib/style/colors.scss' as c;
 
+    .noAccsDesc{
+        width: 100%;
+        text-align: center;
+    }
+
     .switcherList{
+        align-items: center;
         height: 300px;
         width: 320px;
         display: flex;
