@@ -1,12 +1,22 @@
+:root{
+    --accent: #D20000
+}
+
 $text: #ffffff;
 $text-25: #ffffff40;
 $text-50: #ffffff80;
 $text-80: #ffffffcc;
-$accent: #D20000;
-$accent-t80: #d20000cc;
-$accent-t50: #d2000080;
-$accent-t40: #d2000066;
-$accent-t10: #d200001a;
+$accent: var(--accent);
+$accent-t80: color-mix(in srgb, var(--accent) 80%, transparent);
+$accent-t50: color-mix(in srgb, var(--accent) 50%, transparent);
+$accent-t40: color-mix(in srgb, var(--accent) 40%, transparent);
+$accent-t10: color-mix(in srgb, var(--accent) 10%, transparent);
+$dest: #D20000;
+$dest-t80: #d20000cc;
+$dest-t50: #d2000080;
+$dest-t40: #d2000066;
+$dest-t25: #d2000040;
+$dest-t10: #d200001a;
 $clickable: #1A1A1A;
 $hover: #242424;
 $clicked: #414141;

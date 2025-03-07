@@ -126,35 +126,35 @@
 	}
 
 	.destructive {
-		background-color: c.$accent-t10;
+		background-color: c.$dest-t10;
 		border: solid;
 		color: c.$text;
-		border-color: c.$accent;
+		border-color: c.$dest;
 		border-width: 1px;
 		box-sizing: border-box;
 		background-image: repeating-linear-gradient(
 			-45deg,
 			transparent 15px,
-			rgba(255, 0, 0, 0.25) 15px,
-			rgba(255, 0, 0, 0.25) 35px,
+			c.$dest-t25 15px,
+			c.$dest-t25 35px,
 			transparent 35px,
 			transparent 55px /* added this so the pattern repeats seamlessly */
 		);
 
 		&:hover {
-			background-color: c.$accent-t40;
+			background-color: c.$dest-t40;
 			background-image: repeating-linear-gradient(
 				-45deg,
 				transparent 15px,
-				rgba(255, 0, 0, 0.5) 15px,
-				rgba(255, 0, 0, 0.5) 35px,
+				c.$dest-t50 15px,
+				c.$dest-t50 35px,
 				transparent 35px,
 				transparent 55px /* added this so the pattern repeats seamlessly */
 			);
 			animation: shake 0.2s ease-in infinite;
 		}
 		&:active {
-			background-color: c.$accent;
+			background-color: c.$dest;
 		}
 	}
 
