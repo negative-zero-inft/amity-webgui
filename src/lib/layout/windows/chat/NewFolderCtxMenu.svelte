@@ -17,8 +17,12 @@
                 e?.clientY > (ctxMenu?.offsetTop as number) + (ctxMenu?.offsetHeight as number)
             ) && $view != "hidden"
         ) {
-            view.set("hidden")
-            prevView.set("hidden")
+            if(isSafe){
+                view.set("hidden")
+                prevView.set("hidden")
+            }else{
+                isSafe = true
+            }
         }
     })
 

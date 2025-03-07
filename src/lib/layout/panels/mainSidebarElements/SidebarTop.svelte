@@ -105,6 +105,9 @@
                 if(!scrollContainer) return
                 scrollContainer.scrollLeft = scrollContainer.scrollWidth
             }}
+            hoverAction={(e: MouseEvent)=>{
+                if($view == "hidden") newFolderE.set(e)
+            }}
             style={$view == "hidden" ? "default" : "selected"}
         >
             <Icon name={$view == "hidden" ? "Plus" : "X"}/>
