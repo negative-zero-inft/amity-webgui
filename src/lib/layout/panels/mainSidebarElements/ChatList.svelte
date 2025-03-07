@@ -60,6 +60,7 @@
     @use "$lib/style/variables.scss" as v;
 
     .chatEntries{
+        top: 0;
         width: 100%;
         height: calc(100vh - 99px);
         display: flex;
@@ -72,6 +73,7 @@
     }
 
     .chatEntriesContainer{
+        position: relative;
         width: 100%;
         height: calc(100vh - 99px);
         display: flex;
