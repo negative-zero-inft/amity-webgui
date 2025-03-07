@@ -1,0 +1,71 @@
+{
+    "login": {
+        "devMode0": "doromiert tryp jer silenoj!",
+        "devMode1": "nehr xto jon wyxotar jer zynax li",
+        "devMode2": "baton jer lukanor."
+    },
+    "loginBox": {
+        "signup": "neu kont jer doromior",
+        "signinwith": "lup mix to jer idior...",
+        "loginGreet": "by amity jer idior",
+        "login": "idior",
+        "forgotpassword": "znak jer neremberoj?",
+        "password": "nezynax znak",
+        "username": "nejm",
+        "instanceURL": "serwere url",
+        "serverUnreachable": "nehr to serwer je lup nehr jone internet werk",
+        "fillAllSpaces": "nenul znakei jer sitelenor",
+        "switchAccount": "by inax kont jer idior",
+        "addAccount": "inax kont"
+    },
+    "signupBox": {
+        "username": "nejm",
+        "instanceURL": "serwere url",
+        "usertag": "inax nejm",
+        "password": "nezynax znak",
+        "confirmpassword": "2e xas li nezynax znak",
+        "fileserver": "fajleie serwer",
+        "cancel": "nehr"
+    },
+    "sidebar": {
+        "newFolder": "neu kulup",
+        "allChats": "nenul xatei",
+        "storiesButton": "obrazei",
+        "noChats": "nehr xylei dyla xat je...",
+        "noChatsDesc": "by kulup jer idi lup neu kulup jer doromi jer mix \"wielent\" baton moxex",
+        "sadBillAlt": "neuxiwy bill",
+        "emptyFolder": "nehr xexei to kulup jorn",
+        "folderCtx": {
+            "editButton": "kulup jer inaxor",
+            "deleteButton": "kulup jer nedoromior",
+            "iconButton": "symbol",
+            "chatPickerButton": "xatei",
+            "editSaveButton": "auenor"
+        },
+        "userbar": {
+            "settings": "inaxei",
+            "logoutEntry": "zy to kont jer idior",
+            "changelogEntry": "neu wy amity",
+            "instanceEntry": "o to serwer",
+            "archivedEntry": "neneu xatei",
+            "savedEntry": "auenort mesaxei",
+            "thingsEntry": "jere xexei",
+            "friendsEntry": "jere pyxaxerei",
+            "profileEntry": "jere profil",
+            "tooltips": {
+                "copyTag": "jere tag jer kopior",
+                "switchAccount": "by inax kont jer idior",
+                "notifButton": "neu xexei",
+                "backButton": "zy tu jer idior"
+            }
+        }
+    },
+    "start": {
+        "aboutAmity": "open-source tul xto wiel serwerei jon jorn are mix wiel xylei jer wyfoma jon dyla jer moxex amity je.",
+        "demo": "demo jer zejexor",
+        "slogan": "xat app dyla nenul xylei"
+    },
+    "chat": {
+        "loading": "amy nesenica..."
+    }
+}

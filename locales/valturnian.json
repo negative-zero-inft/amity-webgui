@@ -1,0 +1,32 @@
+{
+    "loginBox": {
+        "signup": "Budsugnn",
+        "signinwith": "Od n'sugnn mund...",
+        "loginGreet": "Tur Amity n'sugnn",
+        "login": "N'sugnn",
+        "forgotpassword": "Hutzinn do aur password?",
+        "password": "Password",
+        "username": "Usuärnöm",
+        "instanceURL": "URL aurs instänzes",
+        "serverUnreachable": "Aurst instänz sinn offline od nutt blibnn.",
+        "fillAllSpaces": "Axgräi, cumpletnn tut irn kämpern."
+    },
+    "signupBox": {
+        "username": "Usuärnöm",
+        "instanceURL": "URL aurs instänzes",
+        "usertag": "Usuär-Tag",
+        "password": "Password",
+        "confirmpassword": "Asicurnn password",
+        "fileserver": "Filärnserver",
+        "cancel": "Funnulnn"
+    },
+    "sidebar": {
+        "newFolder": "Novi füldär",
+        "allChats": "Tut irn chatärn",
+        "storiesButton": "Storirn"
+    },
+    "start": {
+        "aboutAmity": "Amity sinn a open-source und decentralenni chatapplicaziuni, pervedenn tur kulschevol libergli cunnectnn mund alturn.",
+        "demo": "Demo explornn"
+    }
+}

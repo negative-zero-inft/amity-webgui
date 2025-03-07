@@ -1,0 +1,71 @@
+{
+    "login": {
+        "devMode0": "mrow meow meow mrrrr!",
+        "devMode1": "mew mrow meow mrr, meow mrr",
+        "devMode2": "meow mrr meow mrrr."
+    },
+    "loginBox": {
+        "signup": "meow",
+        "signinwith": "mew meow",
+        "loginGreet": "mow meow mrr",
+        "login": "meow mrr",
+        "forgotpassword": "meow meow?",
+        "password": "meow morr",
+        "username": "meow",
+        "instanceURL": "mrow meow",
+        "serverUnreachable": "meow mrrow mrr meow meow",
+        "fillAllSpaces": "meow meow mrr meow",
+        "switchAccount": "mrow meow mrr",
+        "addAccount": "meow mrrow purr"
+    },
+    "signupBox": {
+        "username": "meow",
+        "instanceURL": "meow mrr",
+        "usertag": "meow mroe",
+        "password": "meow morr",
+        "confirmpassword": "miau meow morr",
+        "fileserver": "meow mrow",
+        "cancel": "meow"
+    },
+    "sidebar": {
+        "newFolder": "meow mow",
+        "allChats": "meow mrrow",
+        "storiesButton": "meow purr",
+        "noChats": "mrrrow meow meow...",
+        "noChatsDesc": "meow purr mrow meow \"mrow\" meow mrrr",
+        "folderCtx": {
+            "editButton": "mrow meow mow",
+            "deleteButton": "mrr meow mow"
+        },
+        "userbar": {
+            "settings": "meow mrow",
+            "logoutEntry": "meow mrr",
+            "changelogEntry": "meow mrow mrr",
+            "instanceEntry": "mrow meow mrr",
+            "archivedEntry": "mrow meow purr",
+            "savedEntry": "meow mrrow purr",
+            "thingsEntry": "mrow meow",
+            "friendsEntry": "purr meow",
+            "profileEntry": "mrow purr",
+            "tooltips": {
+                "copyTag": "mrow meow mroe",
+                "switchAccount": "mrow meow mrr",
+                "notifButton": "meow mrrow",
+                "backButton": "mrr meow mrow"
+            }
+        }
+    },
+    "start": {
+        "aboutAmity": "meow mrrow purr mrow meow mrr, meow purr mrow meow mrrow purr meow.",
+        "demo": "mrow meow purr",
+        "slogan": "meow mrrow purr meow"
+    },
+    "chat": {
+        "loading": "mrow Amy meow...",
+        "emptyView": "meow mrow purr meow mrrow...",
+        "searchbox": "mrow meow...",
+        "chatboxPlaceholder": "meow mrrow purr...",
+        "members": "meows",
+        "member": "meow"
+    }
+}

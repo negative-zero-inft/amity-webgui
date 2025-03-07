@@ -89,18 +89,8 @@ pre{
     flex-direction: column;
     overflow: hidden;
     transition: 0.25s;
+    position: relative;
 }
-
-// this prevents svelte compoments from modifying body
-// #body{
-//     background-color: c.$bg;
-//     margin-top: 0px;
-//     margin-right: 0px;
-//     margin-bottom: 0px;
-//     margin-left: 0px;
-//     width: 100vw;
-//     height: 100vh;
-// }
 
 body{
     
@@ -139,16 +129,41 @@ body{
     overflow: hidden;
 }
 
-.elements-horiz{
+.elem-horiz{
+    align-items: center;
     display: flex;
     flex-direction: row;
+    gap: v.$spacing-def;
 }
 
-.elements-vert{
+.elem-vert{
+    align-items: center;
     display: flex;
     flex-direction: column;
+    gap: v.$spacing-def;
 }
 
+select{
+    @include v.standard-text();
+    height: v.$elem-height;
+    width: 100%;
+    border: none;
+    background-color: c.$clickable;
+    color: c.$text;
+    border-radius: v.$corner-elem;
+    padding: v.$spacing-def;
+
+    &:hover {
+        background-color: c.$hover;
+        transform: scale(1.1);
+        cursor: pointer;
+    }
+    &:active {
+        background-color: c.$clicked;
+        transform: scale(0.9);
+    }
+    transition: 0.25s;
+}
 
 ::-webkit-scrollbar {
     width: 5px;
@@ -162,13 +177,13 @@ body{
 
 ::-webkit-scrollbar-track {
     background: transparent;
-    width: 10px;
+    width: 5px;
 }
 
 ::-webkit-scrollbar-thumb {
     background: rgba(100, 100, 100, 0.4);
     border-radius: 5px;
-    width: 10px;
+    width: 5px;
     &:hover {
         background: rgba(100, 100, 100, 0.6);
     }

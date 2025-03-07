@@ -1,0 +1,81 @@
+{
+    "login": {
+        "devMode0": "sina lon e nasin pi jan pali!",
+        "devMode1": "sina sona ala e pali ona, la o luka e nena",
+        "devMode2": "la sina lon ala e ona."
+    },
+    "loginBox": {
+        "signup": "o pali e sijelo",
+        "signinwith": "anu o lon sijelo kepeken...",
+        "loginGreet": "o kama lon Amity",
+        "login": "o lon e sijelo",
+        "forgotpassword": "weka e sona pi nimi len?",
+        "password": "nimi len",
+        "username": "nimi",
+        "instanceURL": "URL pi ilo linluwi",
+        "serverUnreachable": "ilo linluwi ni li pali ala anu li lon ala",
+        "fillAllSpaces": "o sitelen e nimi ale",
+        "switchAccount": "o tawa sijelo ante",
+        "addAccount": "sijelo ante"
+    },
+    "signupBox": {
+        "username": "nimi",
+        "instanceURL": "URL pi ilo linluwi",
+        "usertag": "nimi sijelo",
+        "password": "nimi len",
+        "confirmpassword": "tenpo tu la nimi len",
+        "fileserver": "ilo linluwi lipu",
+        "cancel": "o weka"
+    },
+    "sidebar": {
+        "newFolder": "kulupu sin",
+        "allChats": "toki ale",
+        "storiesButton": "sitelen lili",
+        "noChats": "jan ala li lon...",
+        "noChatsDesc": "sina ken pali anu kama lon kulupu kepeken e tomo \"mute\" lon sewi",
+        "sadBillAlt": "jan Pi li pilin ike",
+        "emptyFolder": "kulupu li jo ala e ijo",
+        "emptyFolderDesc": "o luka ante e kulupu o luka e nena \"o ante e kulupu\" → \"toki\" la sina  pana e toki tawa kulupu",
+        "folderCtx": {
+            "editButton": "o ante e kulupu",
+            "deleteButton": "o weka e kulupu",
+            "iconButton": "sitelen",
+            "chatPickerButton": "toki",
+            "editSaveButton": "o awen"
+        },
+        "userbar": {
+            "settings": "ilo ante",
+            "logoutEntry": "o weka sijelo",
+            "changelogEntry": "sin lon ilo Amiti",
+            "instanceEntry": "ilo linluwi ni li seme?",
+            "archivedEntry": "toki pi tenpo pini",
+            "savedEntry": "sitelen awen",
+            "thingsEntry": "ijo sina",
+            "friendsEntry": "jan pona sina",
+            "profileEntry": "sina",
+            "tooltips": {
+                "copyTag": "o lanpan e nimi sijelo",
+                "switchAccount": "o ante e sijelo",
+                "notifButton": "ijo sin",
+                "backButton": "o weka e ilo palisa"
+            }
+        }
+    },
+    "start": {
+        "aboutAmity": "ilo Amiti li ilo toki open pi ilo linluwi mute, sina ken toki tawa jan ale kepeken ona.",
+        "demo": "o lukin e ilo",
+        "slogan": "ilo toki tawa jan ale"
+    },
+    "chat": {
+        "loading": "jan Ami li weka tan lape...",
+        "emptyView": "o luka e ijo la sina ken toki...",
+        "searchbox": "o lukin...",
+        "chatboxPlaceholder": "o sitelen...",
+        "members": "jan",
+        "member": "jan"
+    },
+    "ctxMenus": {
+        "searchIcons": "o lukin e sitelen...",
+        "searchChats": "o lukin e toki..."
+    }
+}

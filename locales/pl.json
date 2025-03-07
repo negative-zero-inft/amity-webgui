@@ -1,0 +1,81 @@
+{
+    "login": {
+        "devMode0": "Włączyłeś tryb deweloperski!",
+        "devMode1": "Jeśli nie wiesz co to jest, naciśnij przycisk",
+        "devMode2": "żeby wrócić do trybu normalnego."
+    },
+    "loginBox": {
+        "signup": "Zarejestruj się",
+        "signinwith": "Zaloguj się za pomocą...",
+        "loginGreet": "Zaloguj się do Amity",
+        "login": "Zaloguj się",
+        "forgotpassword": "Zapomniałeś hasła?",
+        "password": "Hasło",
+        "username": "Tag użytkownika",
+        "instanceURL": "URL serwera",
+        "serverUnreachable": "Ten serwer jest offline lub nie istnieje",
+        "fillAllSpaces": "Wypełnij wszystkie pola",
+        "switchAccount": "Zmień konto",
+        "addAccount": "Dodaj konto"
+    },
+    "signupBox": {
+        "username": "Twój tag",
+        "instanceURL": "URL serwera",
+        "usertag": "Tag użytkownika",
+        "password": "Hasło",
+        "confirmpassword": "Powtórz hasło",
+        "fileserver": "Serwer plików",
+        "cancel": "Anuluj"
+    },
+    "sidebar": {
+        "newFolder": "Nowy folder",
+        "allChats": "Wszystkie czaty",
+        "storiesButton": "Storiesy",
+        "noChats": "Nikogo tu nie ma...",
+        "noChatsDesc": "Możesz założyć nową grupę lub dołączyć do istniejącej klikając przycisk \"więcej\" na górze",
+        "sadBillAlt": "Smutny Bill",
+        "emptyFolder": "Ten folder jest pusty",
+        "emptyFolderDesc": "Kliknij prawym przyciskiem myszy na folder i wybierz \"Edytuj folder\" → \"Czaty\" aby dodać czaty",
+        "folderCtx": {
+            "editButton": "Edytuj folder",
+            "deleteButton": "Usuń folder",
+            "iconButton": "Ikona",
+            "chatPickerButton": "Czaty",
+            "editSaveButton": "Zapisz"
+        },
+        "userbar": {
+            "settings": "Ustawienia",
+            "logoutEntry": "Wyloguj się",
+            "changelogEntry": "Nowości w Amity",
+            "instanceEntry": "O tym serwerze",
+            "archivedEntry": "Archiwowane czaty",
+            "savedEntry": "Zapisane wiadomości",
+            "thingsEntry": "Twoje rzeczy",
+            "friendsEntry": "Twoi znajomi",
+            "profileEntry": "Twój profil",
+            "tooltips": {
+                "copyTag": "Skopiuj swój tag",
+                "switchAccount": "Zmień konto",
+                "notifButton": "Powiadomienia",
+                "backButton": "Zamknij pasek"
+            }
+        }
+    },
+    "start": {
+        "aboutAmity": "Amity jest zdecentralizowaną aplikacją do rozmów z otwartym kodem źródłowym, pozwalającą komukolwiek rozmawiać z kimkolwiek.",
+        "demo": "Eksploruj demo",
+        "slogan": "Aplikacja do rozmów dla wszystkich"
+    },
+    "chat": {
+        "loading": "Amy się budzi...",
+        "emptyView": "Wybierz czat na pasku po lewej...",
+        "searchbox": "Szukaj...",
+        "chatboxPlaceholder": "Napisz wiadomość...",
+        "members": "członków",
+        "member": "członek"
+    },
+    "ctxMenus": {
+        "searchIcons": "Szukaj ikon...",
+        "searchChats": "Szukaj czatów..."
+    }
+}

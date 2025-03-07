@@ -33,10 +33,12 @@
 	},
 	"dependencies": {
 		"@castlenine/svelte-qrcode": "^2.3.0",
+		"@neodrag/svelte": "^2.3.1",
 		"@poppanator/sveltekit-svg": "^5.0.0",
 		"@svelte-plugins/tooltips": "^3.0.3",
 		"@sveltejs/adapter-static": "^3.0.8",
 		"sass-embedded": "^1.85.0",
+		"svelte-i18n": "^4.0.1",
 		"svelte-markdown": "^0.4.1"
 	}
 }

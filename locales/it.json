@@ -1,0 +1,71 @@
+{
+    "login": {
+        "devMode0": "Hai attivato la modalità sviluppatore!",
+        "devMode1": "Se non sai cosa significa, premi il",
+        "devMode2": "pulsante per tornare alla modalità normale."
+    },
+    "loginBox": {
+        "signup": "Registrati",
+        "signinwith": "Oppure accedi con...",
+        "loginGreet": "Accedi ad Amity",
+        "login": "Accedi",
+        "forgotpassword": "Hai dimenticato la password?",
+        "password": "Password",
+        "username": "Nome utente",
+        "instanceURL": "URL dell'istanza",
+        "serverUnreachable": "Questa istanza è offline o non esiste",
+        "fillAllSpaces": "Compila tutti i campi",
+        "switchAccount": "Cambia account",
+        "addAccount": "Aggiungi account"
+    },
+    "signupBox": {
+        "username": "Nome utente",
+        "instanceURL": "URL dell'istanza",
+        "usertag": "Tag utente",
+        "password": "Password",
+        "confirmpassword": "Conferma password",
+        "fileserver": "Server dei file",
+        "cancel": "Annulla"
+    },
+    "sidebar": {
+        "newFolder": "Nuova cartella",
+        "allChats": "Tutte le conversazioni",
+        "storiesButton": "Storie",
+        "noChats": "Non c'è nessuno con cui chattare...",
+        "noChatsDesc": "Puoi unirti o creare un gruppo cliccando sul pulsante \"altro\" in alto",
+        "folderCtx": {
+            "editButton": "Modifica cartella",
+            "deleteButton": "Elimina cartella"
+        },
+        "userbar": {
+            "settings": "Impostazioni",
+            "logoutEntry": "Esci",
+            "changelogEntry": "Registro modifiche di Amity",
+            "instanceEntry": "Informazioni sull'istanza",
+            "archivedEntry": "Conversazioni archiviate",
+            "savedEntry": "Messaggi salvati",
+            "thingsEntry": "I tuoi elementi",
+            "friendsEntry": "I tuoi amici",
+            "profileEntry": "Il tuo profilo",
+            "tooltips": {
+                "copyTag": "Copia tag utente",
+                "switchAccount": "Cambia account",
+                "notifButton": "Notifiche",
+                "backButton": "Chiudi barra laterale"
+            }
+        }
+    },
+    "start": {
+        "aboutAmity": "Amity è un'applicazione di messaggistica open-source e decentralizzata, che permette a chiunque di connettersi liberamente con gli altri.",
+        "demo": "Esplora la demo",
+        "slogan": "L'app di messaggistica per tutti"
+    },
+    "chat": {
+        "loading": "Svegliando Amy...",
+        "emptyView": "Seleziona qualcosa per iniziare a chattare...",
+        "searchbox": "Cerca...",
+        "chatboxPlaceholder": "Scrivi un messaggio...",
+        "members": "membri",
+        "member": "membro"
+    }
+}

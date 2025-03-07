@@ -1,44 +1,60 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
 	import { goto } from '$app/navigation';
-	import Sidebar from '$lib/kit/layout/Sidebar.svelte';
-	import View from '$lib/kit/layout/View.svelte';
-	import Settings from '$lib/kit/layout/Settings.svelte';
-	import { user, server, isHttps, port } from '$lib/scripts/globalData';
-	import { token } from '$lib/scripts/globalData';
-	import { windowClickEvent } from '$lib/scripts/chatViews';
-	import FolderCtxMenu from '$lib/kit/layout/sidebarElems/FolderCtxMenu.svelte';
-	import Icon from '$lib/kit/Icon.svelte';
-	import MoreButtonCtxMenu from '$lib/kit/layout/sidebarElems/MoreButtonCtxMenu.svelte';
+	import { token, isHttps, server, port, accountIndex } from '$lib/scripts/globalData';
 	import { getUser } from '$lib/scripts/requests';
-	import { currentChat } from '$lib/scripts/chatViews';	
-
-	$effect(() => {
+	import { currentChat, windowClickEvent, isReLogin } from '$lib/scripts/chatViews';
+	import Icon from '$lib/kit/decor/Icon.svelte';
+	import Sidebar from '$lib/layout/panels/MainSidebar.svelte';
+	import Chatview from '$lib/layout/views/Chatview.svelte';
+	import Emptyview from '$lib/layout/views/Emptyview.svelte';
+	import FolderCtxMenu from '$lib/layout/windows/chat/FolderCtxMenu.svelte';
+	import LingoWindow from '$lib/layout/devTools/DevWindow.svelte';
+	import { _ } from 'svelte-i18n';
+	import { page } from '$app/state';
+	import LoginBox from "$lib/layout/windows/login/LoginBox.svelte";
+	import SignupBox from "$lib/layout/windows/login/SignupBox.svelte";
+	import AccountSwitcher from '$lib/layout/windows/login/AccountSwitcher.svelte';
+	import { isError, errorValue, view } from "$lib/scripts/loginWritables";
+	import { checkServerReachability } from "$lib/scripts/requests";
+	import ReLoginWindow from '$lib/layout/windows/ReLoginWindow.svelte';
+	import NewGroupWindow from "$lib/layout/windows/NewGroupWindow.svelte";
+	import NewFolderCtxMenu from '$lib/layout/windows/chat/NewFolderCtxMenu.svelte';
+	
+	const a = async () => {
 		if (!browser) return;
 		
-		if (localStorage.getItem('isDev') == 'true') isHttps.set(false);
-
-		const storedToken = localStorage.getItem('token');
-
-		if (!storedToken) {
-			clearLocalStorage()
-			goto('/login', { replaceState: true });
-			return;
-		}
-
-		token.set(storedToken);
-
-		if (localStorage.getItem('server')) {
-			server.set(localStorage.getItem('server') || '');
-		}
-
 		try{
+			accountIndex.set(Number(page.url.searchParams.get("token")))
+	
+			const tokens: {token: string, server: string, isHttps: boolean}[] = JSON.parse(localStorage.getItem('tokens') || "")
+			const storedToken = tokens[$accountIndex].token;
+	
+			if (!storedToken) {
+				clearLocalStorage()
+				goto('/login', { replaceState: true });
+				return;
+			}
+	
+			isHttps.set(tokens[$accountIndex].isHttps)
+			server.set(tokens[$accountIndex].server)
+			
+			const isReachable = await checkServerReachability(`http${$isHttps ? "s" : ""}://${$server}:${$port}`)
+			if(isReachable){
+				token.set(storedToken);
+			}else{
+				isError.set(true);
+			}
+
 			getUser($isHttps, $server, $port, ($token as string))
 		}catch(e){
 			clearLocalStorage()
 			token.set(null);
 			goto('/login', { replaceState: true });
 		}
+	}
+	$effect(()=>{
+		a()
 	});
 
 	const clearLocalStorage = ()=>{
@@ -46,32 +62,27 @@
 		localStorage.removeItem('server');
 		localStorage.removeItem('isDev');
 	}
+
 </script>
 
 {#if $token}
-	<FolderCtxMenu></FolderCtxMenu>
-	<MoreButtonCtxMenu></MoreButtonCtxMenu>
 	<!-- svelte-ignore a11y_no_static_element_interactions -->
 	<!-- svelte-ignore a11y_click_events_have_key_events -->
 	<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
-	<div
+	<div 
 		class="main"
-		onclick={(e) => {
-			windowClickEvent.set(e);
-		}}
-		oncontextmenu={(e) => {
-			windowClickEvent.set(e);
+		onclick={(e)=>{
+			windowClickEvent.set(e)
 		}}
 	>
-		<Settings />
-		<Sidebar />
-		<hr class="separator" />
-		{#if $currentChat.id.id.length > 0}
-			<View />
+		<ReLoginWindow/>
+		<NewGroupWindow/>
+		<Sidebar/>
+		<hr class="separator"/>
+		{#if $currentChat.type == "empty"}
+			<Emptyview/>
 		{:else}
-			<div class="noChatSelected">
-				Select a chat
-			</div>
+			<Chatview/>
 		{/if}
 	</div>
 {:else}
@@ -84,13 +95,18 @@
 		background: radial-gradient(#300000, #000000 30%);
 	">
 		<div id="loadingScreen">
-			<Icon name="Update"></Icon>
-		</div> Waking Amy up...
+			<Icon name="Update"/>
+		</div> {$_("chat.loading")}
 	</div>
 {/if}
 
+<NewFolderCtxMenu/>
+<FolderCtxMenu/>
+<LingoWindow/>
+
 <style lang="scss">
 	@use '$lib/style/colors.scss' as c;
+	@use '$lib/style/variables.scss' as v;
 
 	#loadingScreen{
 		animation: spin 2s linear infinite; 
@@ -105,13 +121,5 @@
 			transform: rotateZ(360deg);
 		}
 	}
-
-	.noChatSelected{
-		font-size: 24px;
-		height: 100%;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		width: 100%;
-	}
+	
 </style>

@@ -1,10 +1,13 @@
 import { writable } from "svelte/store";
 
+export const locale = writable<string>("en");
+
 export const server = writable<string>("amity.neg-zero.com");
 export const isHttps = writable<boolean>(true)
 export const port = writable<number>(3000)
 
-export let token = writable<string | null>();
+export const token = writable<string | null>();
+export const accountIndex = writable<number>(0);
 export const user = writable<{
     _id: string,
     id: {
@@ -45,6 +48,9 @@ export const user = writable<{
             _id: string
         }]
     }[],
+    settings: {
+        shiftSend: boolean,
+    },
     password: string,
     cdn: string
 }>();

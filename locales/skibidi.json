@@ -1,0 +1,71 @@
+{
+    "login": {
+        "devMode0": "yuo enabled the skibidi sigma mode!",
+        "devMode1": "if yuo known't wtf this is, slap the",
+        "devMode2": "button to go back to being a beta."
+    },
+    "loginBox": {
+        "signup": "mew",
+        "signinwith": "or, get rizzed by...",
+        "loginGreet": "prepare your anus",
+        "login": "skibidi",
+        "forgotpassword": "i forgor 💀",
+        "password": "W rizz",
+        "username": "uwu",
+        "instanceURL": "doxx",
+        "serverUnreachable": "this doxx is not skibidi or ohio",
+        "fillAllSpaces": "learn to write retard",
+        "switchAccount": "groupies",
+        "addAccount": "find more sluts"
+    },
+    "signupBox": {
+        "username": "uwu",
+        "instanceURL": "doxx",
+        "usertag": "uwu++",
+        "password": "W rizz",
+        "confirmpassword": "W sigma rizz",
+        "fileserver": "porn folder",
+        "cancel": "cringe"
+    },
+    "sidebar": {
+        "newFolder": "new \"homework\" folder",
+        "allChats": "all sigmas",
+        "storiesButton": "tiktok",
+        "noChats": "L RIZZ, NO BITCHES...",
+        "noChatsDesc": "go touch grass",
+        "folderCtx": {
+            "editButton": "skibidify folder",
+            "deleteButton": "yeet folder"
+        },
+        "userbar": {
+            "settings": "thingamabob",
+            "logoutEntry": "become a beta",
+            "changelogEntry": "new shit",
+            "instanceEntry": "get groomed",
+            "archivedEntry": "boomer shit idgaf",
+            "savedEntry": "your porn",
+            "thingsEntry": "your slop",
+            "friendsEntry": "your fuckbuddies",
+            "profileEntry": "retard",
+            "tooltips": {
+                "copyTag": "doxx yourself lol",
+                "switchAccount": "skinwalker",
+                "notifButton": "new shit",
+                "backButton": "GTFO"
+            }
+        }
+    },
+    "start": {
+        "aboutAmity": "something something amity is based 👍",
+        "demo": "lose 50 IQ points",
+        "slogan": "the official skibidi chat app"
+    },
+    "chat": {
+        "loading": "buttfucking amy until she wakes up...",
+        "emptyView": "select something you dumbass...",
+        "searchbox": "find your dad...",
+        "chatboxPlaceholder": "type shit here...",
+        "members": "toilet defenders",
+        "member": "toilet defender"
+    }
+}
