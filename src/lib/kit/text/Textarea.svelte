@@ -111,13 +111,13 @@
 		}
 
 		&.error{
-		background-color: c.$accent-t10 !important; 
-		border-color: c.$accent !important; 
+		background-color: c.$dest-t10 !important; 
+		border-color: c.$dest !important; 
 		background-image: repeating-linear-gradient(
 			-45deg, 
 			transparent 15px, 
-			rgba(255, 0, 0, 0.25) 15px, 
-			rgba(255, 0, 0, 0.25) 35px, 
+			c.$dest-t25 15px, 
+			c.$dest-t25 35px, 
 			transparent 35px, 
 			transparent 55px 
 		);
