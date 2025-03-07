@@ -88,8 +88,8 @@
 			});
 
 			// Handle response
-			if ((await response.status) != 200) {
-				console.log(await response);
+			if (response.status != 200) {
+				console.log(response);
 				isError.set(true);
 				errorValue.set(await response.text());
 				return;
