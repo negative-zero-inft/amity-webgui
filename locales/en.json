@@ -91,6 +91,24 @@
     "newGroup": {
         "createButton": "Create",
         "namePlaceholder": "Group name",
-        "descPlaceholder": "Group description"
+        "descPlaceholder": "Group description",
+        "privacy": {
+            "button": "Privacy",
+            "private": "Private",
+            "public": "Public"
+        },
+        "channels": {
+            "toggleButton": "Channels",
+            "enabled": "Enabled",
+            "disabled": "Disabled",
+            "createButton": "Create channel",
+            "namePlaceholder": "Channel name",
+            "descPlaceholder": "Channel description",
+            "editButton": "Edit channels",
+            "channelCount": "{count} channel{plural}"
+        },
+        "errors": {
+            "noName": "Please enter a group name"
+        }
     }
 }

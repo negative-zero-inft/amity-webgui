@@ -7,13 +7,20 @@
 
     let windowRef: HTMLElement | null = $state(null);
     let windowHeight: number = $state(0);
+    let windowWidth: number = $state(0);
     $effect(()=>{
         switch($view){
             case "default":
                 windowHeight = defaultHeight;
+                windowWidth = defaultWidth;
                 break;
             default:
-                windowHeight = 400;
+                windowHeight = defaultHeight;
+                windowWidth = defaultWidth;
+                break;
+        }
+        if(!$isNewGroup){
+            view.set("default");
         }
     })
     
@@ -57,7 +64,7 @@
             scale: {$isNewGroup ? 1 : 0};
             padding: 0;
             position: absolute;
-            left: {$isNewGroup ? "calc(50vw - 170px)" : (320 / 2) - 36 + "px"};
+            left: {$isNewGroup ? `calc(50vw - ${windowWidth / 2}px)` : (320 / 2) - 36 + "px"};
             top: {$isNewGroup ? `calc(50vh - ${windowHeight / 2}px)` : ($newGCE?.y - (windowHeight / 2)) + "px"};
             height: {$view == "default" ? defaultHeight : defaultHeight}px;
             width: {$view == "default" ? defaultWidth : defaultWidth}px;
@@ -80,7 +87,8 @@
 		left: 0;
 		width: 100vw;
 		height: 100vh;
-		z-index: 2137198237198237198371293871239817239817239817389217;
+        // dobra robota
+		z-index: 2137198237198237198371293871239817239817239817389217; 
 	}
 
     .error{

@@ -7,6 +7,7 @@
 		placeholder = 'placeholder', 
 		value = $bindable<string>(), 
 		maxlength = 4000, 
+		minlength = 0,
 		isPassword = false, 
 		onkeydown = ()=>{}, 
 		style = "", 
@@ -30,6 +31,7 @@
 		</span>
 	{/if}
 	<input 
+		minlength={minlength}
 		readonly={isImmutable} 
 		class="{isError ? 'error' : ''}" 
 		onkeydown={(e)=>{onkeydown(e)}} 
