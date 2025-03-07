@@ -36,6 +36,7 @@
             return viewWidth;
         }
     }
+
     const opacity = ()=>{
         if($view == "iconPicker"){
             return 1;
@@ -48,6 +49,12 @@
 
     let iconSearchQuery = $state("");
     let icons = iconList();
+    
+    view.subscribe((e: string)=>{
+        if(e != "iconPicker"){
+            iconSearchQuery = ""
+        }
+    })
 
     const filteredIcons = () => {
 		if (!iconSearchQuery) return icons;
