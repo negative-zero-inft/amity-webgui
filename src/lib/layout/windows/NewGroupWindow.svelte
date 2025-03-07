@@ -1,31 +1,38 @@
 <script lang="ts">
-    import { isError, errorValue, view } from "$lib/scripts/newGCWritables";
+    import { isError, errorValue, view, prevView, channels } from "$lib/scripts/newGCWritables";
     import { isNewGroup } from "$lib/scripts/chatViews";
     import Icon from "$lib/kit/decor/Icon.svelte";
     import { newGCE } from "$lib/scripts/newGCWritables";
 	import DefaultView from "./newGC/DefaultView.svelte";
+	import ChannelsView from "./newGC/ChannelsView.svelte";
 
     let windowRef: HTMLElement | null = $state(null);
+
+    let defaultHeight: number = $state(0);
+    let defaultWidth: number = $state(0);
+    
+    let channelsHeight: number = $state(0);
+    let channelsWidth: number = $state(0);
+    
     let windowHeight: number = $state(0);
     let windowWidth: number = $state(0);
+
     $effect(()=>{
         switch($view){
             case "default":
                 windowHeight = defaultHeight;
                 windowWidth = defaultWidth;
                 break;
+            case "channelView":
+                windowHeight = channelsHeight;
+                windowWidth = channelsWidth;
+                break;
             default:
                 windowHeight = defaultHeight;
                 windowWidth = defaultWidth;
                 break;
         }
-        if(!$isNewGroup){
-            view.set("default");
-        }
     })
-    
-    let defaultHeight: number = $state(0);
-    let defaultWidth: number = $state(0);
 </script>
 
 <!-- svelte-ignore a11y_no_static_element_interactions -->
@@ -41,6 +48,8 @@
     "
     onclick={(e: MouseEvent)=>{
         if((e.target as HTMLElement).id == "hhhh"){
+            view.set("default")
+            prevView.set("default")
             isNewGroup.set(false);
         }
     }}
@@ -66,11 +75,16 @@
             position: absolute;
             left: {$isNewGroup ? `calc(50vw - ${windowWidth / 2}px)` : (320 / 2) - 36 + "px"};
             top: {$isNewGroup ? `calc(50vh - ${windowHeight / 2}px)` : ($newGCE?.y - (windowHeight / 2)) + "px"};
-            height: {$view == "default" ? defaultHeight : defaultHeight}px;
-            width: {$view == "default" ? defaultWidth : defaultWidth}px;
+            height: {windowHeight}px;
+            width: {windowWidth}px;
         "
     >
         <DefaultView bind:height={defaultHeight} bind:width={defaultWidth}/>
+        <ChannelsView bind:height={channelsHeight} bind:width={channelsWidth}/>
+        <!-- copy one of the ones i made already and look inside -->
+        <!-- too braindead to figure out shit -->
+        <!-- ok but i still couldn't figure out what values to use o see -->
+        <!-- ok so make a new component (based off one of these) and in one of them put a channel list, then a component to add a new channel to the list -->
     </div>
 </div>
 

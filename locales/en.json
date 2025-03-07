@@ -31,6 +31,7 @@
     },
     "sidebar": {
         "newFolder": "New folder",
+        "closeNewFolder": "Close",
         "allChats": "All chats",
         "storiesButton": "Stories",
         "noChats": "There's nobody to chat with...",

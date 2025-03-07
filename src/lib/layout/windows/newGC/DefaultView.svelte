@@ -5,7 +5,7 @@
     import Button from "$lib/kit/gizmos/Button.svelte";
 	import Icon from "$lib/kit/decor/Icon.svelte";
     import { _ } from 'svelte-i18n';
-    import { errorValue, isError, view } from "$lib/scripts/newGCWritables";
+    import { errorValue, isError, prevView, view } from "$lib/scripts/newGCWritables";
 	import Switch from "$lib/kit/gizmos/Switch.svelte";
     import { channels } from "$lib/scripts/newGCWritables";
 	import { isHttps, port, server, token } from "$lib/scripts/globalData";
@@ -24,6 +24,20 @@
     let isPublic = $state(false);
 
     let isNameError = $state(false)
+
+    isNewGroup.subscribe((v)=>{
+        if(!v){
+            view.set("default");
+            prevView.set("default");
+            gcName = "";
+            gcDesc = "";
+            isChannels = false;
+            isPublic = false;
+            channels.set([]);
+            isNewGroup.set(false);
+            isUserBar.set(false);
+        }
+    })
 
     const newGroupProc = async () =>{
         if(gcName.length < 2){
@@ -51,15 +65,8 @@
                 isError.set(true);
                 errorValue.set(await res.text());
             }else{
-                view.set("default");
                 getUser($isHttps, $server, $port, $token as string);
-                gcName = "";
-                gcDesc = "";
-                isChannels = false;
-                isPublic = false;
-                channels.set([]);
                 isNewGroup.set(false);
-                isUserBar.set(false);
             }
         }catch(e: any){
             isError.set(true);
@@ -72,6 +79,14 @@
     class="newGCWindow"
     bind:offsetHeight={height} 
     bind:offsetWidth={width}
+    style="
+        left: {
+            $view == "default" ? 0 : 
+            0 - width
+        }px;
+        transition: 0.25s;
+        position: absolute;
+    "
 >
     <Label icon="Users" label="New group" />
     <Textbox 
@@ -130,6 +145,7 @@
         <Button
             action={()=>{
                 view.set("channelView")
+                prevView.set($view)
             }}
             alignment="space-between"
             scaleClick={0.95}

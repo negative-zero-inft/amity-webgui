@@ -9,6 +9,7 @@ export interface folderType{
 }
 
 export const isNewGroup = writable<boolean>(false);
+export const isNewChannel = writable<boolean>(false);
 
 export const windowClickEvent = writable<MouseEvent>();
 export const folderClickEvent = writable<MouseEvent>();

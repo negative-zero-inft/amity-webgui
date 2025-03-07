@@ -126,10 +126,9 @@
     }
 
     .iconPickerTop {
-        top: 0;
-        left: 0;
+        top: -10px;
+        left: -10px;
         width: inherit;
-        box-sizing: border-box;
         flex-shrink: 0;
         background: linear-gradient(to bottom, #000000ff 50%, #00000000);
         display: flex;
@@ -137,7 +136,7 @@
         gap: v.$spacing-def;
         position: absolute;
         z-index: 21374;
-        padding-bottom: v.$spacing-def;
+        padding: v.$spacing-def;
     }
 
 </style>

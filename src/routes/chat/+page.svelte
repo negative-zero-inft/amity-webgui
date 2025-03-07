@@ -19,6 +19,8 @@
 	import { checkServerReachability } from "$lib/scripts/requests";
 	import ReLoginWindow from '$lib/layout/windows/ReLoginWindow.svelte';
 	import NewGroupWindow from "$lib/layout/windows/NewGroupWindow.svelte";
+	import NewFolderCtxMenu from '$lib/layout/windows/chat/NewFolderCtxMenu.svelte';
+	
 	const a = async () => {
 		if (!browser) return;
 		
@@ -98,6 +100,7 @@
 	</div>
 {/if}
 
+<NewFolderCtxMenu/>
 <FolderCtxMenu/>
 <LingoWindow/>
 

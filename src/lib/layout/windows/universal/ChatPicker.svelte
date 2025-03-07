@@ -93,9 +93,9 @@
 		{#each $user?.chats || [] as child}
 			<ChatEntry
 				click={() => {
-					if ($elements.find((e) => e.id.id == child.id.id && e.id.server == child.id.server)) {
+					if ($elements.find((e: any) => e.id.id == child.id.id && e.id.server == child.id.server)) {
 						elements.set(
-							$elements.filter((e) => e.id.id + e.id.server != child.id.id + child.id.server)
+							$elements.filter((e: any) => e.id.id + e.id.server != child.id.id + child.id.server)
 						);
 					} else {
 						elements.set([
@@ -111,7 +111,7 @@
 						]);
 					}
 				}}
-				isSelected={$elements.find((e) => e.id.id == child.id.id && e.id.server == child.id.server)
+				isSelected={$elements.find((e: any) => e.id.id == child.id.id && e.id.server == child.id.server)
 					? true
 					: false}
 				data={child}
@@ -135,17 +135,6 @@
 		overflow: visible;
 	}
 
-	.chatPicker {
-		width: 100%;
-		height: 400px;
-		display: flex;
-		flex-direction: column;
-		gap: v.$spacing-def;
-		transition: 0.25s;
-		position: absolute;
-		top: 0;
-	}
-
 	.chatEntries {
 		width: 300px;
 		position: relative;
@@ -165,17 +154,16 @@
 	}
 
 	.chatPickerTop {
-		top: 0;
-		left: 0;
+		top: -10px;
+		left: -10px;
 		width: inherit;
-		box-sizing: border-box;
 		flex-shrink: 0;
 		background: linear-gradient(to bottom, #000000ff 50%, #00000000);
 		display: flex;
 		flex-direction: row;
 		gap: v.$spacing-def;
 		position: absolute;
-		padding-bottom: v.$spacing-def;
+		padding: v.$spacing-def;
 		z-index: 21374;
 	}
 </style>

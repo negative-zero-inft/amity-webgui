@@ -7,6 +7,7 @@
 	import { user } from "$lib/scripts/globalData";
     import { _ } from "svelte-i18n";
     import { folderCtxMenuView, folderClickEvent, type folderType } from "$lib/scripts/chatViews";
+    import { newFolderE, prevView, view } from "$lib/scripts/newFolderWritables";
 	
     let scrollContainer: HTMLElement | null = null;
 
@@ -97,9 +98,17 @@
         {/each}
         <Button
             isChip    
+            action={(e: MouseEvent)=>{
+                newFolderE.set(e)
+                view.set("default")
+                prevView.set("default")
+                if(!scrollContainer) return
+                scrollContainer.scrollLeft = scrollContainer.scrollWidth
+            }}
+            style={$view == "hidden" ? "default" : "selected"}
         >
-            <Icon name="Plus"/>
-            {$_("sidebar.newFolder")}
+            <Icon name={$view == "hidden" ? "Plus" : "X"}/>
+            {$view == "hidden" ? $_("sidebar.newFolder") : $_("sidebar.closeNewFolder")}
         </Button>
     </div>
 </div>

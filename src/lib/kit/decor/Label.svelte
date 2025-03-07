@@ -25,7 +25,7 @@
 			{label}
 		</div>
 		{#if children}
-			<span class="arrow" style="transform: rotate({isOpen ? '180deg' : '0deg'}); transition: transform 0.25s;">
+			<span class="arrow" style="height: 16px; width: 16px; transform: rotate({isOpen ? '180deg' : '0deg'}); transition: transform 0.25s;">
 				<Icon name="Direction/Down"></Icon>
 			</span>
 		{/if}

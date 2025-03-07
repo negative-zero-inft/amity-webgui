@@ -202,6 +202,7 @@
 	}
 	
 	button {
+		flex-shrink: 0;
 		white-space: nowrap;
 		flex-direction: row !important;
 		width: var(--w);
