@@ -55,8 +55,8 @@
 		justify-content: space-between;
 		box-sizing: border-box;
 		gap: v.$spacing-def;
-		padding-left: 5px;
-		padding-right: 5px;
+		padding-left: v.$spacing-def;
+		padding-right: v.$spacing-def;
 	}
 
 	.label {
