@@ -15,8 +15,10 @@
         "instanceURL": "serwere url",
         "serverUnreachable": "nehr to serwer je lup nehr jone internet werk",
         "fillAllSpaces": "nenul znakei jer sitelenor",
-        "switchAccount": "by inax kont jer idior",
-        "addAccount": "inax kont"
+        "switchAccount": "by inax kont jer idior",        
+        "addAccount": "inax kont",
+        "noAccounts": "nehr inax kontei",
+        "noAccountsDesc": "\"neu kont\" baton jer wyxotar li neu kont jer panaom"
     },
     "signupBox": {
         "username": "nejm",
@@ -29,12 +31,14 @@
     },
     "sidebar": {
         "newFolder": "neu kulup",
+        "closeNewFolder": "nedoromior",
         "allChats": "nenul xatei",
         "storiesButton": "obrazei",
         "noChats": "nehr xylei dyla xat je...",
         "noChatsDesc": "by kulup jer idi lup neu kulup jer doromi jer mix \"wielent\" baton moxex",
         "sadBillAlt": "neuxiwy bill",
         "emptyFolder": "nehr xexei to kulup jorn",
+        "unreachable": "nehr serwer werk",
         "folderCtx": {
             "editButton": "kulup jer inaxor",
             "deleteButton": "kulup jer nedoromior",
