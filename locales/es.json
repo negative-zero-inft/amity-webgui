@@ -1,17 +1,24 @@
 {
+    "login": {
+        "devMode0": "¡Has activado el modo de backend de desarrollador!",
+        "devMode1": "Si no estás seguro de qué es esto, pulsa el",
+        "devMode2": "botón para regresar al modo normal."
+    },
     "loginBox": {
         "signup": "Registrarse",
         "signinwith": "O iniciar sesión con...",
         "loginGreet": "Iniciar sesión en Amity",
         "login": "Iniciar sesión",
-        "forgotpassword": "Has olvidado la contraseña?",
+        "forgotpassword": "¿Has olvidado la contraseña?",
         "password": "Contraseña",
         "username": "Nombre de usuario",
         "instanceURL": "URL de instancia",
-        "serverUnreachable": "Esta instancia está offline o no existe",
+        "serverUnreachable": "Esta instancia está desconectada o no existe",
         "fillAllSpaces": "Por favor rellena todos los campos",
-        "switchAccount": "Cambiar cuenta",
-        "addAccount": "Añadir cuenta"
+        "switchAccount": "Cambiar de cuenta",
+        "addAccount": "Añadir cuenta",
+        "noAccounts": "No hay otras cuentas",
+        "noAccountsDesc": "Puedes añadir una cuenta extra clicando el botón de \"Añadir cuenta\""
     },
     "signupBox": {
         "username": "Nombre de usuario",
@@ -24,15 +31,27 @@
     },
     "sidebar": {
         "newFolder": "Nueva carpeta",
+        "closeNewFolder": "Cerrar",
         "allChats": "Todos los chats",
         "storiesButton": "Historias",
         "noChats": "No hay nadie con quien chatear...",
         "noChatsDesc": "Puedes unirte o crear un grupo haciendo clic en el botón \"más\" arriba",
+        "sadBillAlt": "Bill Triste",
+        "emptyFolder": "Esta carpeta está vacía",
+        "emptyFolderDesc": "Haz clic derecho en una carpeta y clic en \"Editar carpeta\" → \"Chats\" para añadir chats",
+        "unreachable": "Servidor inalcanzable",
         "folderCtx": {
             "editButton": "Editar carpeta",
-            "deleteButton": "Eliminar carpeta"
+            "deleteButton": "Eliminar carpeta",
+            "iconButton": "Icono",
+            "chatPickerButton": "Chats",
+            "editSaveButton": "Guardar"
         },
         "userbar": {
+            "yourEntries": "Tu & tus amigos",
+            "newEntries": "Crear",
+            "archiveEntries": "Libreria",
+            "aboutEntries": "Sobre",
             "settings": "Ajustes",
             "logoutEntry": "Cerrar sesión",
             "changelogEntry": "Registro de cambios de Amity",
@@ -47,7 +66,9 @@
                 "switchAccount": "Cambiar cuenta",
                 "notifButton": "Notificaciones",
                 "backButton": "Cerrar barra lateral"
-            }
+            },
+            "newGroupEntry": "Nuevo grupo",
+            "newSoapboxEntry": "Nueva soapbox"
         }
     },
     "start": {
@@ -61,6 +82,34 @@
         "searchbox": "Buscar...",
         "chatboxPlaceholder": "Escribe un mensaje...",
         "members": "miembros",
-        "member": "miembro"
+        "member": "miembro",
+        "previewMessage": "Previsualizar mensaje"
+    },
+    "ctxMenus": {
+        "searchIcons": "Buscar iconos...",
+        "searchChats": "Buscar chats..."
+    },
+    "newGroup": {
+        "createButton": "Crear",
+        "namePlaceholder": "Nombre del grupo",
+        "descPlaceholder": "Descripción del grupo",
+        "privacy": {
+            "button": "Privacidad",
+            "private": "Privado",
+            "public": "Público"
+        },
+        "channels": {
+            "toggleButton": "Canales",
+            "enabled": "Habilitados",
+            "disabled": "Deshabilitados",
+            "createButton": "Crear canal",
+            "namePlaceholder": "Nombre del canal",
+            "descPlaceholder": "Descripción del canal",
+            "editButton": "Editar canales",
+            "channelCount": "{count} canal{plural}"
+        },
+        "errors": {
+            "noName": "Por favor, introduce un nombre de grupo"
+        }
     }
 }
