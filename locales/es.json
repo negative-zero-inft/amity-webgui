@@ -37,7 +37,7 @@
         "noChats": "No hay nadie con quien chatear...",
         "noChatsDesc": "Puedes unirte o crear un grupo haciendo clic en el botón \"más\" arriba",
         "sadBillAlt": "Bill Triste",
-        "emptyFolder": "Esta carpeta está vacia",
+        "emptyFolder": "Esta carpeta está vacía",
         "emptyFolderDesc": "Haz clic derecho en una carpeta y clic en \"Editar carpeta\" → \"Chats\" para añadir chats",
         "unreachable": "Servidor inalcanzable",
         "folderCtx": {
@@ -80,7 +80,7 @@
         "loading": "Despertando a Amy...",
         "emptyView": "Selecciona algo para empezar a chatear...",
         "searchbox": "Buscar...",
-        "chatboxPlaceholder": "Escribe un mensage...",
+        "chatboxPlaceholder": "Escribe un mensaje...",
         "members": "miembros",
         "member": "miembro",
         "previewMessage": "Previsualizar mensaje"
