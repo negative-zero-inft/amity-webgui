@@ -46,7 +46,7 @@
     const folderEditProc = async ()=>{
         console.log(name)
         try {
-            const response = await fetch(`http${$isHttps ? "s" : ""}://${$server}:${$port}/user/me/chatfolders?token=${$token}`, {
+            const response = await fetch(`http${$isHttps ? "s" : ""}://${$server}:${$port}/folders?token=${$token}`, {
                 method: "PUT",
                 body: JSON.stringify({
                     name: name,

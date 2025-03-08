@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { isHttps, port, token, server } from "$lib/scripts/globalData";
+    import { isHttps, port, token, server, authNumber, user } from "$lib/scripts/globalData";
 	import { currentChat } from "$lib/scripts/chatViews";
 	import { timeAgo } from '$lib/utils/timeAgo';
 	import { checkServerReachability, fetchData } from '$lib/scripts/requests';
@@ -7,6 +7,7 @@
 	import Avatar from '$lib/kit/decor/Avatar.svelte';
 	import { _ } from 'svelte-i18n';
 	import Icon from "../decor/Icon.svelte";
+	import { auther } from "lib/scripts/utils";
 	let {
 		unreads = 0,
 		isUnreads = unreads != 0,
@@ -53,14 +54,23 @@
 
 	const getData = async () => {
 		
-		let url = `http${$isHttps ? "s" : ""}://${data.id.server}:${$port}/group/${data.id.id}/info?token=${$token}`;
+		let isHttp = $isHttps
 		isReachable = await checkServerReachability(`http${$isHttps ? "s" : ""}://${data.id.server}:${$port}`)
 		if(!isReachable){
 			isReachable = await checkServerReachability(`http${!$isHttps ? "s" : ""}://${data.id.server}:${$port}`)
 			if(!isReachable) return
-			url = `http${!$isHttps ? "s" : ""}://${data.id.server}:${$port}/group/${data.id.id}/info?token=${$token}`
+			isHttp = !$isHttps
 		}
-		const responseData = await fetchData(url);
+		let url = `http${!isHttp ? "" : "s"}://${data.id.server}:${$port}/group/${data.id.id}/info?totp=${auther($authNumber)}&uid=${$user.id.id}&homeserver=${$user.id.server}`;
+		const res = await fetch(url, {
+			method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*"
+            },
+			
+		});
+		const responseData = await res.json()
 
 		if (responseData) {
 			tempData = responseData;

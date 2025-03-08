@@ -30,7 +30,7 @@
 
     const makeFolder = async () =>{
         try {
-			const response = await fetch(`http${$isHttps ? "s" : ""}://${$server}:${$port}/user/me/chatfolders/add?token=${$token}`, {
+			const response = await fetch(`http${$isHttps ? "s" : ""}://${$server}:${$port}/folders/new?token=${$token}`, {
 				method: "POST",
 				body: JSON.stringify({ name, icon: $icon, elements: $chats }),
 				headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" }

@@ -8,7 +8,7 @@
     } = $props();
 
     function oauth() {
-        window.location.replace(`http${$isHttps ? "s" : ""}://${$server}:${$port}/auth/${name}`);
+        window.location.replace(`http${$isHttps ? "s" : ""}://${$server}:${$port}/oauth/${name}`);
     }
 </script>
 <Button width="100%; flex-shrink: 1;" action={oauth}>{@render children?.()}</Button>

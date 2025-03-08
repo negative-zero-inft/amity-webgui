@@ -7,6 +7,7 @@ export const isHttps = writable<boolean>(true)
 export const port = writable<number>(3000)
 
 export const token = writable<string | null>();
+export const authNumber = writable<number>(0);
 export const accountIndex = writable<number>(0);
 export const user = writable<{
     _id: string,

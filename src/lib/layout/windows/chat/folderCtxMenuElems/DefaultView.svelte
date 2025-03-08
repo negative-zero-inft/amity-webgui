@@ -28,7 +28,7 @@
 
     const folderDelProc = async ()=>{
         try {
-            const response = await fetch(`http${$isHttps ? "s" : ""}://${$server}:${$port}/user/me/chatfolders?token=${$token}`, {
+            const response = await fetch(`http${$isHttps ? "s" : ""}://${$server}:${$port}/folders?token=${$token}`, {
                 method: "DELETE",
                 body: JSON.stringify({
                     _id: $ctxFolder._id

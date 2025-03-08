@@ -60,7 +60,7 @@
 			}
 
 			// Attempt to sign in
-			const response = await fetch(`http${$isHttpsL ? 's' : ''}://${instance}:${$port}/signin`, {
+			const response = await fetch(`http${$isHttpsL ? 's' : ''}://${instance}:${$port}/auth/login`, {
 				method: 'POST',
 				body: JSON.stringify({
 					tag: `${username}@${instance}`,
@@ -80,20 +80,19 @@
 				return;
 			}
 
-			const res = await response.text();
-
+			const res = await response.json();
 			const t = {
-				token: res,
+				token: res.token,
 				server: instance,
-				isHttps: $isHttpsL
+				isHttps: $isHttpsL,
+				authNumber: res.authNumber
 			};
-
-			console.log(t);
 
 			const tokens: {
 				token: string;
 				server: string;
 				isHttps: boolean;
+				authNumber: number;
 			}[] = JSON.parse(localStorage.getItem('tokens') || '[]');
 
 			// Store token and server info on successful login
@@ -157,6 +156,7 @@
 
 			<!-- Toggle dev mode -->
 			<Button
+				width="36px"
 				action={(e: KeyboardEvent) => {
 					isHttpsL.set(!$isHttpsL);
 					if (e.key == 'Enter') {
