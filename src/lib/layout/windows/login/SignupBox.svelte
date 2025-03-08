@@ -78,7 +78,7 @@
 			};
 
 			// Send registration request
-			const response = await fetch(`http${$isHttpsL ? 's' : ''}://${instance}:${$port}/register`, {
+			const response = await fetch(`http${$isHttpsL ? 's' : ''}://${instance}:${$port}/auth/register`, {
 				method: 'POST',
 				body: JSON.stringify(user),
 				headers: {

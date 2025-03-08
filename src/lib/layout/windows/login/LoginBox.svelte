@@ -60,7 +60,7 @@
 			}
 
 			// Attempt to sign in
-			const response = await fetch(`http${$isHttpsL ? 's' : ''}://${instance}:${$port}/signin`, {
+			const response = await fetch(`http${$isHttpsL ? 's' : ''}://${instance}:${$port}/auth/login`, {
 				method: 'POST',
 				body: JSON.stringify({
 					tag: `${username}@${instance}`,
@@ -157,6 +157,7 @@
 
 			<!-- Toggle dev mode -->
 			<Button
+				width="36px"
 				action={(e: KeyboardEvent) => {
 					isHttpsL.set(!$isHttpsL);
 					if (e.key == 'Enter') {
