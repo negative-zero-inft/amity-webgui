@@ -6,7 +6,7 @@
     import ChatPicker from "../universal/ChatPicker.svelte";
     let ctxMenu: HTMLElement | null = $state(null);
 
-    let isSafe: boolean = false;
+    let isSafe: boolean = true;
 
     windowClickEvent.subscribe((e: MouseEvent)=>{
         if (
