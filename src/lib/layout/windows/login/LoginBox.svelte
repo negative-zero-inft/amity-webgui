@@ -80,20 +80,19 @@
 				return;
 			}
 
-			const res = await response.text();
-
+			const res = await response.json();
 			const t = {
-				token: res,
+				token: res.token,
 				server: instance,
-				isHttps: $isHttpsL
+				isHttps: $isHttpsL,
+				authNumber: res.authNumber
 			};
-
-			console.log(t);
 
 			const tokens: {
 				token: string;
 				server: string;
 				isHttps: boolean;
+				authNumber: number;
 			}[] = JSON.parse(localStorage.getItem('tokens') || '[]');
 
 			// Store token and server info on successful login
