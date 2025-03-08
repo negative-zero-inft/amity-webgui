@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
 	import { goto } from '$app/navigation';
-	import { token, isHttps, server, port, accountIndex } from '$lib/scripts/globalData';
+	import { token, isHttps, server, port, accountIndex, authNumber, user } from '$lib/scripts/globalData';
 	import { getUser } from '$lib/scripts/requests';
 	import { currentChat, windowClickEvent, isReLogin } from '$lib/scripts/chatViews';
 	import Icon from '$lib/kit/decor/Icon.svelte';
@@ -27,8 +27,8 @@
 		try{
 			accountIndex.set(Number(page.url.searchParams.get("token")))
 	
-			const tokens: {token: string, server: string, isHttps: boolean}[] = JSON.parse(localStorage.getItem('tokens') || "")
-			const storedToken = tokens[$accountIndex].token;
+			const tokens: {token: string, server: string, isHttps: boolean, authNumber: number}[] = JSON.parse(localStorage.getItem('tokens') || "")
+			const storedToken = tokens[$accountIndex];
 	
 			if (!storedToken) {
 				clearLocalStorage()
@@ -41,18 +41,21 @@
 			
 			const isReachable = await checkServerReachability(`http${$isHttps ? "s" : ""}://${$server}:${$port}`)
 			if(isReachable){
-				token.set(storedToken);
+				token.set(storedToken.token);
+				authNumber.set(storedToken.authNumber)
 			}else{
-				isError.set(true);
+				console.log("fuck")
 			}
 
-			getUser($isHttps, $server, $port, ($token as string))
+			await getUser($isHttps, $server, $port, ($token as string))
+			console.log($user)
 		}catch(e){
 			clearLocalStorage()
 			token.set(null);
 			goto('/login', { replaceState: true });
 		}
 	}
+
 	$effect(()=>{
 		a()
 	});
