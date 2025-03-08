@@ -32,5 +32,7 @@
 		opacity: 0.25;
 		right: -200px;
 		bottom: -200px;
+        z-index: 0;
+        // todo: make amy not on top of everything else
 	}
 </style>

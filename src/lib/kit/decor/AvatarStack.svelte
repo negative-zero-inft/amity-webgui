@@ -1,21 +1,21 @@
 <script>
 	import Avatar from '$lib/kit/decor/Avatar.svelte';
 
-	let { 
-		avatars = [ "mascots/Amy.png", "mascots/Dobby.png", "mascots/Bill.png" ],
+	let {
+		avatars = ['mascots/Amy.png', 'mascots/Dobby.png', 'mascots/Bill.png'],
 		isHover = false,
 		isActive = false
 	} = $props();
 </script>
 
-<div 
+<div
 	class="avatars"
 	style="
-		width: {16 + (avatars.length - 1) * (16 - 2)}px;
+		width: {16 + (avatars.length - 1) * (16) + 1}px;
 	"
 >
 	{#each avatars as avatar}
-		<span 
+		<span
 			class="
 				avatar
 				{isHover ? 'hover' : ''} 
@@ -35,35 +35,44 @@
 	@use '$lib/style/colors.scss' as c;
 	@use '$lib/style/variables.scss' as v;
 
-	.avatars {
-		display: inline-flex;
-		flex-direction: row-reverse;
-		width: min-content;
-		align-items: center;
-		height: 16px;
+	@property --h {
+		syntax: '<length-percentage>';
+		initial-value: 0%;
+		inherits: true;
 	}
-	
-	.avatar {
-		flex-shrink: 0;
-		width: 16px;
-		height: 16px;
-		position: relative;
-		border-radius: 50%;
-		overflow: hidden;
-		height: 16px;
-		left: calc(var(--i) * 2px);
-		outline-width: 2px;
-		outline: solid;
-		outline-color: c.$clickable;
-		outline-offset: -0.5px;
+	@property --t {
+		syntax: '<length-percentage>';
+		initial-value: 0%;
+		inherits: true;
+	}
 
-		&.hover {
-			outline-color: c.$hover;
-		}
-		
-		&.active {
-			outline-color: c.$clicked;
-		}
-		transition: 0.25s;
+	.avatars {
+		--s: 16px; /* image size*/
+		--o: 2px; /* the overlap */
+		--g: 2px; /* the gap */
+
+		display: flex;
+		gap: var(--g);
+		clip-path: inset(0);
+		min-height: var(--s);
+		height: var(--s);
+		max-height: var(--s);
+	}
+	.avatars .avatar {
+		height: var(--s);
+		aspect-ratio: 1;
+		border-radius: 50%;
+		border-block: var(--s) solid #0000;
+		margin-block: calc(-1 * var(--s));
+		translate: 0 var(--t);
+	}
+	.avatars .avatar:not(:last-child) {
+		margin-right: calc(-1 * var(--o));
+		mask: radial-gradient(
+				50% 50% at calc(150% + var(--g) - var(--o)) calc(50% - var(--h)),
+				#0000 calc(100% + var(--g)),
+				#000 calc(101% + var(--g))
+			)
+			padding-box;
 	}
 </style>
