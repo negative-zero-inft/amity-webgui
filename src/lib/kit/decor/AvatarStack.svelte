@@ -48,8 +48,8 @@
 
 	.avatars {
 		--s: 16px; /* image size*/
-		--o: 2px; /* the overlap */
-		--g: 2px; /* the gap */
+		--o: 4px; /* the overlap */
+		--g: 4px; /* the gap */
 
 		display: flex;
 		gap: var(--g);
