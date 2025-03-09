@@ -111,5 +111,6 @@
         "errors": {
             "noName": "Please enter a group name"
         }
-    }
+    },
+    "loading": "loading..."
 }

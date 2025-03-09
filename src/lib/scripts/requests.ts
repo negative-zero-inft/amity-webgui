@@ -15,6 +15,7 @@ export const iconList = ()=>{
 }
 
 export const fetchData = async (url: string) => {
+    console.log(`attempting to fetch ${url}`)
     try {
         const response = await fetch(url, {
             method: "GET",
@@ -23,6 +24,7 @@ export const fetchData = async (url: string) => {
                 "Access-Control-Allow-Origin": "*"
             }
         });
+        console.log(await response)
         return await response.json();
     } catch (error) {
         console.error(error);
@@ -31,17 +33,16 @@ export const fetchData = async (url: string) => {
 };
 
 export const checkServerReachability = async (url:string) => {
-    try {
+    try{
+        console.log(`checking reachability for ${url}`)
         const response = await fetch(url + "/heartbeat", {
             cache: 'no-cache'
         });
-
-        if (response.ok) {
-            return true;
-        } else {
-            return false;
-        }
-    } catch (error) {
-        return false;
+        console.log(await response)
+    }catch(err){
+        console.log('AOSUJDHNIUASJH')
+        return false
     }
+
+    return true
 }

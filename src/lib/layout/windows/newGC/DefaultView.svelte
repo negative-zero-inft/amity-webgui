@@ -36,14 +36,16 @@
             channels.set([]);
             isNewGroup.set(false);
             isUserBar.set(false);
+            isError.set(false)
         }
     })
 
     const newGroupProc = async () =>{
-        if(gcName.length < 2){
+        if(gcName.length < 1){
             isNameError = true;
             errorValue.set($_("newGroup.errors.noName"));
             isError.set(true);
+            return
         }
         
         try{

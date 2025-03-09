@@ -54,33 +54,32 @@
 
 	const getData = async () => {
 		
-		try{
-			let isHttp = $isHttps
-			isReachable = await checkServerReachability(`http${$isHttps ? "s" : ""}://${data.id.server}:${$port}`)
-			if(!isReachable){
-				isReachable = await checkServerReachability(`http${!$isHttps ? "s" : ""}://${data.id.server}:${$port}`)
-				if(!isReachable) return
-				isHttp = !$isHttps
-			}
-			let url = `http${!isHttp ? "" : "s"}://${data.id.server}:${$port}/group/${data.id.id}/info?totp=${auther($authNumber)}&uid=${$user.id.id}&homeserver=${$user.id.server}`;
-			const res = await fetch(url, {
-				method: "GET",
-				headers: {
-					"Content-Type": "application/json",
-					"Access-Control-Allow-Origin": "*"
-				},
-				
-			});
+		let isHttp = $isHttps
 
-			const responseData = await res.json()
+		isReachable = await checkServerReachability(`http${$isHttps ? "s" : ""}://${data.id.server}:${$port}`)
+		if(!isReachable){
+			isReachable = await checkServerReachability(`http${!$isHttps ? "s" : ""}://${data.id.server}:${$port}`)
+			if(!isReachable) return
+			isHttp = !$isHttps
+		}
+		console.log("server reached")
 
-			if (responseData) {
-				tempData = responseData;
-				isMultiGroup = tempData.has_channels;
-				chatType = isMultiGroup ? "group" : "monogroup";
-			}
-		}catch(err){
-			console.error(err)
+		let url = `http${!isHttp ? "" : "s"}://${data.id.server}:${$port}/group/${data.id.id}/info?totp=${auther($authNumber)}&uid=${$user.id.id}&homeserver=${$user.id.server}`;
+		const res = await fetch(url, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+				"Access-Control-Allow-Origin": "*"
+			},
+			
+		});
+
+		const responseData = await res.json()
+
+		if (responseData) {
+			tempData = responseData;
+			isMultiGroup = tempData.has_channels;
+			chatType = isMultiGroup ? "group" : "monogroup";
 		}
 	};
 
@@ -117,7 +116,7 @@
 	<div class="info">
 		<div class="line">
 			<div class="horiz">
-				<div class="name">{isReachable ? tempData?.name : $_("sidebar.unreachable")}</div>
+				<div class="name">{isReachable ? tempData?.name || $_("loading") : $_("sidebar.unreachable")}</div>
 				{#if isFavorite}
 					<svg
 						width="11"

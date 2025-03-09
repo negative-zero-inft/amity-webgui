@@ -40,11 +40,10 @@
 			server.set(tokens[$accountIndex].server)
 			
 			const isReachable = await checkServerReachability(`http${$isHttps ? "s" : ""}://${$server}:${$port}`)
+			console.log(isReachable)
 			if(isReachable){
 				token.set(storedToken.token);
 				authNumber.set(storedToken.authNumber)
-			}else{
-				console.log("fuck")
 			}
 
 			await getUser($isHttps, $server, $port, ($token as string))

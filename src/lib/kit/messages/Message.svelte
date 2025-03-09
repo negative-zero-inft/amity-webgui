@@ -1,19 +1,27 @@
 <script lang="ts">
 
 	import SvelteMarkdown from 'svelte-markdown';
+	import Icon from '../decor/Icon.svelte';
 
 	let { 
 		isSender = false, 
 		isClustered = false, 
-		content 
+		content,
+		type = "text"
 	} = $props();
 </script>
 
-<div  
-	class="message {isSender ? 'sender' : 'foreign'} {isClustered ? 'clustered' : ''}"
->
-	<SvelteMarkdown source={content} />
-</div>
+{#if type == "text"}
+	<div  
+		class="message {isSender ? 'sender' : 'foreign'} {isClustered ? 'clustered' : ''}"
+	>
+		<SvelteMarkdown source={content} />
+	</div>
+{:else}
+	<div class="message {isSender ? 'sender' : 'foreign'} {isClustered ? 'clustered' : ''} unsupported">
+		<Icon name="Warning"/> unsupported message
+	</div>
+{/if}
 
 <style lang="scss">
 	@use '$lib/style/variables.scss' as v;
@@ -48,6 +56,39 @@
 
 			&:hover{
 				background-color: c.$hover;
+			}
+		}
+
+		&.unsupported{
+			user-select: none;
+			align-items: center; 
+			display: flex; 
+			gap: 10px;
+			background-color: c.$dest-t10;
+			border: solid;
+			color: c.$text;
+			border-color: c.$dest;
+			border-width: 1px;
+			box-sizing: border-box;
+			background-image: repeating-linear-gradient(
+				-45deg,
+				transparent 15px,
+				c.$dest-t25 15px,
+				c.$dest-t25 35px,
+				transparent 35px,
+				transparent 55px /* added this so the pattern repeats seamlessly */
+			);
+
+			&:hover {
+				background-color: c.$dest-t40;
+				background-image: repeating-linear-gradient(
+					-45deg,
+					transparent 15px,
+					c.$dest-t50 15px,
+					c.$dest-t50 35px,
+					transparent 35px,
+					transparent 55px /* added this so the pattern repeats seamlessly */
+				);
 			}
 		}
 	}

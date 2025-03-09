@@ -3,7 +3,14 @@
 	import Message from '$lib/kit/messages/Message.svelte';
 	import { isHttps, port, token, user } from '$lib/scripts/globalData';
 
-	let { author = {id: "", server: ""}, messages = [], isGroup = false } = $props();
+	let { 
+		author = {
+			id: "", 
+			server: ""
+		}, 
+		messages = [], 
+		isGroup = false 
+	} = $props();
 
 	let authorInfo = $state({
 		name: "",
@@ -44,7 +51,8 @@
 			<Message 
 				isClustered={messages.findIndex((m) => m === message) >= 1} 
 				isSender={!isForeign}
-				content={message}
+				content={message.content}
+				type={message.type}
 			>
 			</Message>
 		{/each}

@@ -3,16 +3,32 @@
 	import Button from "$lib/kit/gizmos/Button.svelte";
 	import Message from "$lib/kit/messages/Message.svelte";
 	import Textarea from "$lib/kit/text/Textarea.svelte";
-	import { user } from "$lib/scripts/globalData";
+	import { authNumber, isHttps, port, server, user } from "$lib/scripts/globalData";
+	import { currentChat } from "lib/scripts/chatViews";
+	import { auther } from "lib/scripts/utils";
     import { _ } from "svelte-i18n";
 
     let defChatElements: HTMLDivElement | null = $state(null);
     let typingChatElements: HTMLDivElement | null = $state(null);
     let msg = $state("");
     
-    const sendMessage = () => {
+    const sendMessage = async () => {
+        try{
+            const response = await fetch(`http${$isHttps ? "s" : ""}://${$server}:${$port}/group/${$currentChat.id.id}/messages?totp=${auther($authNumber)}&uid=${$user.id.id}&homeserver=${$user.id.server}`, {
+                method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+					"Access-Control-Allow-Origin": "*"
+				},
+                body: JSON.stringify({
+                    content: msg
+                })
+            })
+            console.log(await response)
+        }catch(e){
+            console.error(e)
+        }
         msg = "";
-        console.log("sendMessage");
     }
 
     let isPreview = $state(false);

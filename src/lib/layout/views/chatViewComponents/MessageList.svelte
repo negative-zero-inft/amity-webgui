@@ -1,62 +1,39 @@
 <script lang="ts">
-    import { user, server } from "$lib/scripts/globalData";
     import MsgCluster from "$lib/kit/messages/MsgCluster.svelte";
 	import { currentChat } from "$lib/scripts/chatViews";
+	import { authNumber, isHttps, port, server, user } from "$lib/scripts/globalData";
+    import { auther } from "lib/scripts/utils";
 
-    const exampleMessages = [
-        [
-            {
-                id: {
-                    id: $user?.id.id,
-                    server: $server
-                }
-            },
-            {
-                date: new Date(),
-                content: "testoid 2"
-            },
-            {
-                date: new Date(),
-                content: "testoid"
-            },
+    const fetchMessages = async () =>{
+        try{
+            const response = await fetch(`http${$isHttps ? "s" : ""}://${$server}:${$port}/group/${$currentChat.id.id}/messages?totp=${auther($authNumber)}&uid=${$user.id.id}&homeserver=${$user.id.server}`, {
+                method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+					"Access-Control-Allow-Origin": "*"
+				}
+            })
+            console.log(await response)
+        }catch(e){
+            console.error(e)
+        }
+    }
 
-        ],
-        [
-            {
-                id: {
-                    id: "ZSTXMJ16VQ2OG2AIQF49YZZ8",
-                    server: $server
-                }
-            },
-            {
-                date: new Date(),
-                content: "testoid 2"
-            },
-            {
-                date: new Date(),
-                content: "testoid"
-            },
-            {
-                date: new Date(),
-                content: "testoid"
-            },
-            {
-                date: new Date(),
-                content: "# testoid"
-            }
-        ]
-    ]   
+    currentChat.subscribe((e) =>{
+        fetchMessages()
+    })
 </script>
 
 <div class="view">
     <div class="messageList">
-        {#each exampleMessages as cluster}
+        temp
+        <!-- {#each exampleMessages as cluster}
             <MsgCluster
                 isGroup={$currentChat.type != "dm"}
-                author={cluster[0].id}
-                messages={cluster.slice(1).map((m: any) => m.content)}
+                author={cluster.author}
+                messages={cluster.messages.map((m: any) => m)}
             />
-        {/each}
+        {/each} -->
     </div>
 </div>
 
