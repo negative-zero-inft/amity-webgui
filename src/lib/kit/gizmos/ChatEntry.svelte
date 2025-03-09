@@ -54,28 +54,33 @@
 
 	const getData = async () => {
 		
-		let isHttp = $isHttps
-		isReachable = await checkServerReachability(`http${$isHttps ? "s" : ""}://${data.id.server}:${$port}`)
-		if(!isReachable){
-			isReachable = await checkServerReachability(`http${!$isHttps ? "s" : ""}://${data.id.server}:${$port}`)
-			if(!isReachable) return
-			isHttp = !$isHttps
-		}
-		let url = `http${!isHttp ? "" : "s"}://${data.id.server}:${$port}/group/${data.id.id}/info?totp=${auther($authNumber)}&uid=${$user.id.id}&homeserver=${$user.id.server}`;
-		const res = await fetch(url, {
-			method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                "Access-Control-Allow-Origin": "*"
-            },
-			
-		});
-		const responseData = await res.json()
+		try{
+			let isHttp = $isHttps
+			isReachable = await checkServerReachability(`http${$isHttps ? "s" : ""}://${data.id.server}:${$port}`)
+			if(!isReachable){
+				isReachable = await checkServerReachability(`http${!$isHttps ? "s" : ""}://${data.id.server}:${$port}`)
+				if(!isReachable) return
+				isHttp = !$isHttps
+			}
+			let url = `http${!isHttp ? "" : "s"}://${data.id.server}:${$port}/group/${data.id.id}/info?totp=${auther($authNumber)}&uid=${$user.id.id}&homeserver=${$user.id.server}`;
+			const res = await fetch(url, {
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+					"Access-Control-Allow-Origin": "*"
+				},
+				
+			});
 
-		if (responseData) {
-			tempData = responseData;
-			isMultiGroup = tempData.has_channels;
-			chatType = isMultiGroup ? "group" : "monogroup";
+			const responseData = await res.json()
+
+			if (responseData) {
+				tempData = responseData;
+				isMultiGroup = tempData.has_channels;
+				chatType = isMultiGroup ? "group" : "monogroup";
+			}
+		}catch(err){
+			console.error(err)
 		}
 	};
 
