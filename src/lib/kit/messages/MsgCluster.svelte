@@ -1,7 +1,8 @@
 <script lang="ts">
 	import Avatar from '$lib/kit/decor/Avatar.svelte';
 	import Message from '$lib/kit/messages/Message.svelte';
-	import { isHttps, port, token, user } from '$lib/scripts/globalData';
+	import { isHttps, port, token, user, authNumber } from '$lib/scripts/globalData';
+	import { auther } from 'lib/scripts/utils';
 
 	let { 
 		author = {
@@ -28,7 +29,7 @@
 		if(!author.server) return
 		if(!author.id) return
 		try{
-			const response = await fetch(`http${$isHttps ? "s" : ""}://${author.server}:${$port}/user/${author.id}/info?token=${$token}`, {
+			const response = await fetch(`http${$isHttps ? "s" : ""}://${author.server}:${$port}/user/${author.id}/info?totp=${auther($authNumber)}&uid=${$user.id.id}&homeserver=${$user.id.server}`, {
 				method: "GET",
 				headers: {
 					"Content-Type": "application/json",

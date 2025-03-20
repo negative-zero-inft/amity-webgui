@@ -5,42 +5,57 @@
 	import Button from "lib/kit/gizmos/Button.svelte";
 	import ChatEntry from "lib/kit/gizmos/ChatEntry.svelte";
     import { auther } from "lib/scripts/utils";
+    import { writable } from "svelte/store";
 
-    let messages: any[] = $state([]);
-    const fetchMessages = async () =>{
+    let messages = writable<any[]>([]);
+    const fetchMessages = async (chat: typeof $currentChat) =>{
         try{
-            const response = await fetch(`http${$isHttps ? "s" : ""}://${$server}:${$port}/group/${$currentChat.id.id}/messages?totp=${auther($authNumber)}&uid=${$user.id.id}&homeserver=${$user.id.server}`, {
+            const response = await fetch(`http${$isHttps ? "s" : ""}://${$server}:${$port}/group/${chat.id.id}/messages?totp=${auther($authNumber)}&uid=${$user.id.id}&homeserver=${$user.id.server}`, {
                 method: "GET",
 				headers: {
 					"Content-Type": "application/json",
 					"Access-Control-Allow-Origin": "*"
 				}
             })
-            messages = await response.json()
+            messages.set(await response.json())
+            console.log($messages)
         }catch(e){
             console.error(e)
         }
     }
 
     currentChat.subscribe((e) =>{
-        fetchMessages()
+        messages.set([])
+        fetchMessages(e)
+        console.log("egg")
     })
 </script>
 
 <div class="view">
     <div class="messageList">
-        <!-- enjoy the button :3
-        <Button isWaiting>
-            a
-        </Button>
-        <ChatEntry data={{}}/> -->
-        {#each messages as cluster}
-            <MsgCluster
-                isGroup={$currentChat.type != "dm"}
-                author={cluster.author}
-                messages={cluster.messages.map((m: any) => m)}
-            />
-        {/each}
+        {#if $messages.length == 0}
+            <div style="
+                display: flex;
+                flex-align: center;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+                height: 100%;
+                width: 100%;
+            ">
+                <Button isWaiting>
+                    a
+                </Button>
+            </div>
+        {:else}
+            {#each $messages as cluster}
+                <MsgCluster
+                    isGroup={$currentChat.type != "dm"}
+                    author={cluster.author}
+                    messages={cluster.messages.map((m: any) => m)}
+                />
+            {/each}
+        {/if}
     </div>
 </div>
 

@@ -25,6 +25,7 @@
                 })
             })
             console.log(await response)
+            currentChat.set($currentChat)
         }catch(e){
             console.error(e)
         }
