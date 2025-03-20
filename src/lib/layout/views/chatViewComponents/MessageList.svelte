@@ -6,6 +6,7 @@
 	import ChatEntry from "lib/kit/gizmos/ChatEntry.svelte";
     import { auther } from "lib/scripts/utils";
 
+    let messages: any[] = $state([]);
     const fetchMessages = async () =>{
         try{
             const response = await fetch(`http${$isHttps ? "s" : ""}://${$server}:${$port}/group/${$currentChat.id.id}/messages?totp=${auther($authNumber)}&uid=${$user.id.id}&homeserver=${$user.id.server}`, {
@@ -15,7 +16,7 @@
 					"Access-Control-Allow-Origin": "*"
 				}
             })
-            console.log(await response.json())
+            messages = await response.json()
         }catch(e){
             console.error(e)
         }
@@ -28,18 +29,18 @@
 
 <div class="view">
     <div class="messageList">
-        enjoy the button :3
+        <!-- enjoy the button :3
         <Button isWaiting>
             a
         </Button>
-        <ChatEntry data={{}}/>
-        <!-- {#each exampleMessages as cluster}
+        <ChatEntry data={{}}/> -->
+        {#each messages as cluster}
             <MsgCluster
                 isGroup={$currentChat.type != "dm"}
                 author={cluster.author}
                 messages={cluster.messages.map((m: any) => m)}
             />
-        {/each} -->
+        {/each}
     </div>
 </div>
 
