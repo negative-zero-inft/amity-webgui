@@ -44,6 +44,8 @@
 			if(isReachable){
 				token.set(storedToken.token);
 				authNumber.set(storedToken.authNumber)
+			}else{
+				throw("unreachable")
 			}
 
 			await getUser($isHttps, $server, $port, ($token as string))
