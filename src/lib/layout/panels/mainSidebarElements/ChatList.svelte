@@ -29,7 +29,7 @@
         {/if}
     </div>
     {#each $user?.chat_folders || [] as child}
-        <div id="allChats" class="chatEntries" style="
+        <div class="chatEntries" style="
             padding-right: {isFirefox() ? 10 : 5}px;
             left: {
                 $currentFolder._id == child._id ? 0 : 
@@ -70,6 +70,7 @@
         position: absolute;
         gap: v.$spacing-def;
         transition: left 0.25s;
+        overflow-y: scroll;
     }
 
     .chatEntriesContainer{

@@ -22,6 +22,7 @@
 
     let isChannels = $state(false);
     let isPublic = $state(false);
+    let isNewGcWaiting = $state(false)
 
     let isNameError = $state(false)
 
@@ -49,6 +50,7 @@
         }
         
         try{
+            isNewGcWaiting = true
             const res = await fetch(`http${$isHttps ? "s" : ""}://${$server}:${$port}/group/create?token=${$token}`, {
                 method: "POST",
                 headers: {
@@ -73,7 +75,9 @@
         }catch(e: any){
             isError.set(true);
             errorValue.set(e as string);
+            isNewGcWaiting = false
         }
+        isNewGcWaiting = false
     }
 </script>
 
@@ -168,6 +172,7 @@
         scaleHover={1.05}
         width="100%"
         style="accent"
+        isWaiting={isNewGcWaiting}
     >
         <Icon name="Plus"/>
         {$_("newGroup.createButton")}

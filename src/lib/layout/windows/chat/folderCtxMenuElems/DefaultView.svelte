@@ -14,6 +14,7 @@
         width: number
     } = $props();
 
+    let isWaiting = $state(false)
     let ctxMenu: HTMLElement | null = $state(null);
 
     const left = ()=>{
@@ -27,6 +28,7 @@
     }
 
     const folderDelProc = async ()=>{
+        isWaiting = true
         try {
             const response = await fetch(`http${$isHttps ? "s" : ""}://${$server}:${$port}/folders?token=${$token}`, {
                 method: "DELETE",
@@ -42,7 +44,9 @@
             getUser($isHttps, $server, $port, ($token as string));
         } catch (e) {
             console.log(e);
+            isWaiting = false
         }
+        isWaiting = false
     }
 </script>
 
@@ -95,6 +99,7 @@
         scaleHover={1.05}
         width="100%"
         style="destructive"
+        isWaiting={isWaiting}
     >
         <div class="elem-horiz">
             <Icon name="Trash"/>

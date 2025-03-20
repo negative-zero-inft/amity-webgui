@@ -1,4 +1,7 @@
 <script lang="ts">
+	import Icon from "../decor/Icon.svelte";
+	import { _ } from "svelte-i18n";
+
 	let {
 		style = "default" as "default" | "accent" | "destructive" | "selected",
 		isChip = false,
@@ -15,6 +18,7 @@
 		tooltip = "",
 		mdownAction = ()=>{},
 		mupAction = ()=>{},
+		isWaiting = false
 	} = $props();
 
 </script>
@@ -24,7 +28,7 @@
 	title={tooltip}
 	oncontextmenu={(e)=>{contextmenu(e)}}
 	{id}
-	class="{style} {isChip ? 'chip' : ''}"
+	class="{style} {isChip ? 'chip' : ''} {isWaiting ? 'waiting' : ''}"
 	style="
 		width: {width};
 		justify-content: {alignment};
@@ -32,28 +36,81 @@
 		--sc: {scaleClick}
 	"
 	onclick={(e) => {
+		if(isWaiting) return
 		action(e);
 	}}
 	onmousedown={(e) =>{
+		if(isWaiting) return
 		mdownAction(e)
 	}}
 	onmouseup={(e) =>{
+		if(isWaiting) return
 		mupAction(e)
 	}}
 	onmouseover={(e) =>{
+		if(isWaiting) return
 		hoverAction(e)
 	}}
 	onmouseout={(e) =>{
+		if(isWaiting) return
 		leaveAction(e)
 	}}
 >
-	{@render children?.()}
+	{#if isWaiting}
+		<div id="waitingSpinner">
+			<Icon name="Update"/>
+		</div> {$_("button.waiting")}
+	{:else}
+		{@render children?.()}
+	{/if}
 </button>
 
 <style lang="scss">
 	@use '$lib/style/variables.scss' as v;
 	@use '$lib/style/colors.scss' as c;
+
+	.waiting{
+		border-color: c.$accent !important;
+		border-width: 1px !important;
+		background-color: c.$bg !important;
+		background: linear-gradient(90deg, c.$accent-t40, c.$accent-t10, c.$accent-t40, c.$accent-t10, c.$accent-t40);
+		background-size: 200% 100%; // Make the gradient twice the width for smooth animation
+		animation: horizontalGradient 1s linear infinite; // Adjust duration and easing as needed
+	}
+
+	@keyframes horizontalGradient {
+		0% {
+			background-position: 0% 50%;
+		}
+		100% {
+			background-position: 100% 50%;
+		}
+	}
+
+	@keyframes waitingGradient {
+		from {
+			background: linear-gradient();
+		}
+		to {
+			transform: rotateZ(360deg);
+		}
+	}
+
+	#waitingSpinner{
+		animation: spin 2s linear infinite; 
+		width: 16px;
+		height: 16px;
+	}
 	
+	@keyframes spin {
+		from {
+			transform: rotateZ(0deg);
+		}
+		to {
+			transform: rotateZ(360deg);
+		}
+	}
+
 	button {
 		@include v.standard-text();
 		padding: v.$spacing-def;

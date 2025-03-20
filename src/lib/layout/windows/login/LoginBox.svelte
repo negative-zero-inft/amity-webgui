@@ -22,6 +22,8 @@
 	let isPasswordInvalid = $state(false);
 	let isInstanceInvalid = $state(false);
 
+	let isWaiting = $state(false)
+
 	// Subscribe to view changes to reset form state on "signup" view
 	view.subscribe((v) => {
 		if (v == 'signup') {
@@ -38,6 +40,7 @@
 	});
 
 	const signInProcedure = async () => {
+		isWaiting = true
 		try {
 			// Validate inputs
 			if (!username || !password || !instance) {
@@ -46,6 +49,7 @@
 				if (!instance) isInstanceInvalid = true;
 				isError.set(true);
 				errorValue.set($_('loginBox.fillAllSpaces'));
+				isWaiting = false
 				return;
 			}
 
@@ -56,6 +60,7 @@
 			if (!serverReachable) {
 				isError.set(true);
 				errorValue.set($_('loginBox.serverUnreachable'));
+				isWaiting = false
 				return;
 			}
 
@@ -77,6 +82,7 @@
 				console.error(await response);
 				isError.set(true);
 				errorValue.set(await response.text());
+				isWaiting = false
 				return;
 			}
 
@@ -107,8 +113,10 @@
 			console.error(e);
 			isError.set(true);
 			errorValue.set(e);
+			isWaiting = false;
 			return;
 		}
+		isWaiting = false
 	};
 </script>
 
@@ -199,7 +207,7 @@
 			</Button>
 
 			<!-- Log in button -->
-			<Button action={signInProcedure} style="accent" width="100%; flex-shrink: 1;">
+			<Button action={signInProcedure} style="accent" width="100%; flex-shrink: 1;" isWaiting={isWaiting}>
 				<Icon name="Login" />
 				{$_('loginBox.login')}
 			</Button>

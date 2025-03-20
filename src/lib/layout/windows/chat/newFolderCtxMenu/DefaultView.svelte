@@ -27,8 +27,10 @@
     }
 
     let name = $state("")
+    let isWaiting = $state(false)
 
     const makeFolder = async () =>{
+        isWaiting = true
         try {
 			const response = await fetch(`http${$isHttps ? "s" : ""}://${$server}:${$port}/folders/new?token=${$token}`, {
 				method: "POST",
@@ -37,8 +39,10 @@
 			});
 			getUser($isHttps, $server, $port, ($token as string));
 		} catch (e) {
+            isWaiting = false
 			throw e;
 		}
+        isWaiting = false
         view.set("hidden")
     }
 
@@ -78,7 +82,7 @@
         <div class="elem-horiz"><Icon name="Chat"></Icon> Add chats<div style="opacity: 0.5">{$chats.length}</div></div>
         <Icon name="Direction/Right"/>
     </Button>
-    <Button action={makeFolder} scaleClick={0.95} scaleHover={1.05} style="accent" width="100%">
+    <Button action={makeFolder} scaleClick={0.95} scaleHover={1.05} style="accent" width="100%" isWaiting={isWaiting}>
         <Icon name="Plus"/>Add folder
     </Button>
 </div>

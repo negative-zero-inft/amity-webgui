@@ -24,6 +24,8 @@
         name = $ctxFolder?.name
     })
 
+    let isWaiting = $state(false)
+
     const left = ()=>{
         if($folderCtxMenuView == "edit"){
             return 10;
@@ -44,6 +46,7 @@
     }
 
     const folderEditProc = async ()=>{
+        isWaiting = true
         console.log(name)
         try {
             const response = await fetch(`http${$isHttps ? "s" : ""}://${$server}:${$port}/folders?token=${$token}`, {
@@ -62,10 +65,12 @@
             console.log(response);
             getUser($isHttps, $server, $port, ($token as string));
         }catch(e){
+            isWaiting = false
             console.error(e);
         }
         folderCtxMenuView.set("hidden")
         prevFolderCtxMenuView.set("default")
+        isWaiting = false
     }
 
 </script>
@@ -145,6 +150,7 @@
         scaleHover={1.05}
         width="100%"
         style="accent"
+        isWaiting={isWaiting}
     >
         <Icon name="Save"/>
         {$_("sidebar.folderCtx.editSaveButton")}
