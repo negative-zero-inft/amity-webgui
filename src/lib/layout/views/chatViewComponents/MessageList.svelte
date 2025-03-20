@@ -2,6 +2,8 @@
     import MsgCluster from "$lib/kit/messages/MsgCluster.svelte";
 	import { currentChat } from "$lib/scripts/chatViews";
 	import { authNumber, isHttps, port, server, user } from "$lib/scripts/globalData";
+	import Button from "lib/kit/gizmos/Button.svelte";
+	import ChatEntry from "lib/kit/gizmos/ChatEntry.svelte";
     import { auther } from "lib/scripts/utils";
 
     const fetchMessages = async () =>{
@@ -13,7 +15,7 @@
 					"Access-Control-Allow-Origin": "*"
 				}
             })
-            console.log(await response)
+            console.log(await response.json())
         }catch(e){
             console.error(e)
         }
@@ -26,7 +28,11 @@
 
 <div class="view">
     <div class="messageList">
-        temp
+        enjoy the button :3
+        <Button isWaiting>
+            a
+        </Button>
+        <ChatEntry data={{}}/>
         <!-- {#each exampleMessages as cluster}
             <MsgCluster
                 isGroup={$currentChat.type != "dm"}

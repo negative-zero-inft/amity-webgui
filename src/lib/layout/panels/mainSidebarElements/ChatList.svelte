@@ -1,7 +1,7 @@
 <script lang="ts">
     import { isFirefox } from "$lib/scripts/isFirefox";
     import { user } from "$lib/scripts/globalData";
-    import { currentFolder, previousFolder } from "$lib/scripts/chatViews";
+    import { currentChat, currentFolder, previousFolder } from "$lib/scripts/chatViews";
     import ChatEntry from "$lib/kit/gizmos/ChatEntry.svelte";
 	import EmptyFolderList from "./EmptyFolderList.svelte";
 
@@ -22,7 +22,7 @@
     >
         {#if $user?.chats.length > 0}
             {#each $user?.chats || [] as child} 
-                <ChatEntry isSidebar={true} data={child}></ChatEntry>
+                <ChatEntry isSelected={$currentChat.id.id == child.id.id && $currentChat.id.server == child.id.server} isSidebar={true} data={child}></ChatEntry>
             {/each}
         {:else}
             <EmptyFolderList/>
@@ -45,7 +45,7 @@
         ">
             {#if child.elements.length > 0}
                 {#each child.elements || [] as chatentry} 
-                    <ChatEntry isSidebar={true} data={chatentry}></ChatEntry>
+                    <ChatEntry isSelected={$currentChat.id.id == chatentry.id.id && $currentChat.id.server == chatentry.id.server} isSidebar={true} data={chatentry}></ChatEntry>
                 {/each}
             {:else}
                 <EmptyFolderList isFolder/>
