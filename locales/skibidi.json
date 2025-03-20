@@ -16,7 +16,9 @@
         "serverUnreachable": "this doxx is not skibidi or ohio",
         "fillAllSpaces": "learn to write retard",
         "switchAccount": "groupies",
-        "addAccount": "find more sluts"
+        "addAccount": "find more sluts",
+        "noAccounts": "this is your only account you retard",
+        "noAccountsDesc": "you've been naughty, only one account for you"
     },
     "signupBox": {
         "username": "uwu",
@@ -29,15 +31,27 @@
     },
     "sidebar": {
         "newFolder": "new \"homework\" folder",
+        "closeNewFolder": "fuck off dude",
         "allChats": "all sigmas",
         "storiesButton": "tiktok",
         "noChats": "L RIZZ, NO BITCHES...",
         "noChatsDesc": "go touch grass",
+        "sadBillAlt": "sigma bill",
+        "emptyFolder": "no chats?",
+        "emptyFolderDesc": "no fucking chats lmfao what a fucking loser",
+        "unreachable": "servar ded",        
         "folderCtx": {
             "editButton": "skibidify folder",
-            "deleteButton": "yeet folder"
+            "deleteButton": "yeet folder",
+            "iconButton": "porn",
+            "chatPickerButton": "erps",
+            "editSaveButton": "sayve"
         },
         "userbar": {
+            "yourEntries": "you and your fuckbuddies",
+            "newEntries": "new free cool",
+            "archiveEntries": "old shit",
+            "aboutEntries": "rapeland",
             "settings": "thingamabob",
             "logoutEntry": "become a beta",
             "changelogEntry": "new shit",
@@ -52,7 +66,9 @@
                 "switchAccount": "skinwalker",
                 "notifButton": "new shit",
                 "backButton": "GTFO"
-            }
+            },
+            "newGroupEntry": "new groupie",
+            "newSoapboxEntry": "new twitter account"
         }
     },
     "start": {
@@ -66,6 +82,38 @@
         "searchbox": "find your dad...",
         "chatboxPlaceholder": "type shit here...",
         "members": "toilet defenders",
-        "member": "toilet defender"
+        "member": "toilet defender",
+        "previewMessage": "it's a bad message anyways"
+    },
+    "ctxMenus": {
+        "searchIcons": "search porn...",
+        "searchChats": "search erps..."
+    },
+    "newGroup": {
+        "createButton": "mayk",
+        "namePlaceholder": "groupie name",
+        "descPlaceholder": "what the fuck is this groupie supposed to be",
+        "privacy": {
+            "button": "1984?",
+            "private": "jk, it's still public :3!",
+            "public": "microsoft"
+        },
+        "channels": {
+            "toggleButton": "furry shit?",
+            "enabled": "YES PLEASE I LOVE YIFF",
+            "disabled": "huh",
+            "createButton": "create yiff",
+            "namePlaceholder": "yiff name",
+            "descPlaceholder": "yiff description",
+            "editButton": "edit yiff",
+            "channelCount": "{count} yiff{plural}"
+        },
+        "errors": {
+            "noName": "what's this groupie supposed to be called bruh"
+        }
+    },
+    "loading": "fuck you nah...",
+    "button": {
+        "waiting": "attention span test..."
     }
 }
