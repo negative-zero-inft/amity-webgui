@@ -45,6 +45,7 @@
 	let isMultiGroup = $state(false);
 	let chatType = $state('');
 	let datenow = $state(Date.now());
+	let isWaiting = $state()
 
 	setInterval(() => {
 		datenow = Date.now();
@@ -53,7 +54,7 @@
 	let isReachable = $state(true);
 
 	const getData = async () => {
-		
+		isWaiting = true
 		let isHttp = $isHttps
 
 		isReachable = await checkServerReachability(`http${$isHttps ? "s" : ""}://${data.id.server}:${$port}`)
@@ -81,6 +82,7 @@
 			isMultiGroup = tempData.has_channels;
 			chatType = isMultiGroup ? "group" : "monogroup";
 		}
+		isWaiting = false
 	};
 
 	$effect(() => {
@@ -105,7 +107,7 @@
 	oncontextmenu={(e)=>{rightClick(e)}} 
 	onmouseenter={(e)=>{hover(e)}} 
 	onmouseleave={(e)=>{leave(e)}} 
-	class="chatEntry {isSelected ? 'selected' : ''} {isReachable ? '' : 'unreachable'}">
+	class="chatEntry {isSelected ? 'selected' : ''} {isReachable ? '' : 'unreachable'} {isWaiting ? "waiting" : ""}">
 	{#if isReachable}
 		<Avatar {pfpLink} />
 	{:else}
@@ -154,6 +156,24 @@
 <style lang="scss">
 	@use '$lib/style/variables.scss' as v;
 	@use '$lib/style/colors.scss' as c;
+
+	.waiting{
+		border-color: c.$accent !important;
+		border-width: 1px !important;
+		background-color: c.$bg !important;
+		background: linear-gradient(90deg, c.$accent-t40, c.$accent-t10, c.$accent-t40, c.$accent-t10, c.$accent-t40);
+		background-size: 200% 100%; // Make the gradient twice the width for smooth animation
+		animation: horizontalGradient 1s linear infinite; // Adjust duration and easing as needed
+	}
+
+	@keyframes horizontalGradient {
+		0% {
+			background-position: 0% 50%;
+		}
+		100% {
+			background-position: 100% 50%;
+		}
+	}
 
 	.icon{
 		flex-shrink: 0;

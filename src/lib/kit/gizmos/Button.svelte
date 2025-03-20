@@ -87,15 +87,6 @@
 		}
 	}
 
-	@keyframes waitingGradient {
-		from {
-			background: linear-gradient();
-		}
-		to {
-			transform: rotateZ(360deg);
-		}
-	}
-
 	#waitingSpinner{
 		animation: spin 2s linear infinite; 
 		width: 16px;
