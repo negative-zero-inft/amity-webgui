@@ -39,18 +39,22 @@
             isPreview = false;
         }
     })
+
+    let previewWidth = $state(0)
 </script>
 
 <div 
     id="previewWindow"
     class="window"
+    bind:clientWidth={previewWidth}
     style="
         scale: {isPreview ? 1 : 0};
         position: absolute;
-        right: {isPreview ? 10 : (36 * 2) + 10}px;
-        bottom: {isPreview ? 10 + 56 : 10}px;
+        right: {isPreview ? 10 : (36 * 3) + 10 - (previewWidth / 2)}px;
+        bottom: {isPreview ? 10 + 56 : 0}px;
         transition: 0.25s;
         border-radius: 25px 25px 15px 25px;
+        z-index: 23817392871382;
     "
 >
     <Message

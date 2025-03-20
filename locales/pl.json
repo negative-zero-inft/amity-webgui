@@ -16,7 +16,9 @@
         "serverUnreachable": "Ten serwer jest offline lub nie istnieje",
         "fillAllSpaces": "Wypełnij wszystkie pola",
         "switchAccount": "Zmień konto",
-        "addAccount": "Dodaj konto"
+        "addAccount": "Dodaj konto",
+        "noAccounts": "Nie ma innych kont",
+        "noAccountsDesc": "Możesz dodać więcej kont klikając przycisk \"dodaj konto\""
     },
     "signupBox": {
         "username": "Twój tag",
@@ -29,6 +31,7 @@
     },
     "sidebar": {
         "newFolder": "Nowy folder",
+        "closeNewFolder": "Zamknij",
         "allChats": "Wszystkie czaty",
         "storiesButton": "Storiesy",
         "noChats": "Nikogo tu nie ma...",
@@ -36,6 +39,7 @@
         "sadBillAlt": "Smutny Bill",
         "emptyFolder": "Ten folder jest pusty",
         "emptyFolderDesc": "Kliknij prawym przyciskiem myszy na folder i wybierz \"Edytuj folder\" → \"Czaty\" aby dodać czaty",
+        "unreachable": "Serwer niedostępny",
         "folderCtx": {
             "editButton": "Edytuj folder",
             "deleteButton": "Usuń folder",
@@ -44,7 +48,11 @@
             "editSaveButton": "Zapisz"
         },
         "userbar": {
-            "settings": "Ustawienia",
+            "yourEntries": "Ty i przyjaciele",
+            "newEntries": "Nowe",
+            "archiveEntries": "Biblioteka",
+            "aboutEntries": "O Amity",
+            "settings": "Settings",
             "logoutEntry": "Wyloguj się",
             "changelogEntry": "Nowości w Amity",
             "instanceEntry": "O tym serwerze",
@@ -58,7 +66,9 @@
                 "switchAccount": "Zmień konto",
                 "notifButton": "Powiadomienia",
                 "backButton": "Zamknij pasek"
-            }
+            },
+            "newGroupEntry": "Nowa grupa",
+            "newSoapboxEntry": "Nowe podium"
         }
     },
     "start": {
@@ -72,10 +82,38 @@
         "searchbox": "Szukaj...",
         "chatboxPlaceholder": "Napisz wiadomość...",
         "members": "członków",
-        "member": "członek"
+        "member": "członek",
+        "previewMessage": "Podejrzyj wiadomość"
     },
     "ctxMenus": {
         "searchIcons": "Szukaj ikon...",
         "searchChats": "Szukaj czatów..."
+    },
+    "newGroup": {
+        "createButton": "Stwórz",
+        "namePlaceholder": "Nazwa grupy",
+        "descPlaceholder": "Opis grupy",
+        "privacy": {
+            "button": "Prywatność",
+            "private": "Prywatna",
+            "public": "Publiczna"
+        },
+        "channels": {
+            "toggleButton": "Kanały",
+            "enabled": "Włączone",
+            "disabled": "Wyłączone",
+            "createButton": "Stwórz kanał",
+            "namePlaceholder": "Nazwa kanału",
+            "descPlaceholder": "Opis kanału",
+            "editButton": "Edytuj kanały",
+            "channelCount": "{count} kanał{plural}"
+        },
+        "errors": {
+            "noName": "Nazwij tą grupę"
+        }
+    },
+    "loading": "Ładowanie...",
+    "button": {
+        "waiting": "Zaczekaj..."
     }
 }

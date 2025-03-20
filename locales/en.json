@@ -112,7 +112,7 @@
             "noName": "Please enter a group name"
         }
     },
-    "loading": "loading...",
+    "loading": "Loading...",
     "button": {
         "waiting": "Please wait..."
     }
