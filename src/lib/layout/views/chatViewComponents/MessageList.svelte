@@ -12,7 +12,7 @@
 
     const messages = writable<any[]>([]);
     const fetchMessages = async (chat: typeof $currentChat) =>{
-        isLoading = true
+        console.log($cachedMessages)
         if($cachedMessages.find(e=>{
             if(e.id.id != $currentChat.id.id) return 
             if(e.id.server != $currentChat.id.server) return
@@ -26,8 +26,6 @@
             if(!msglist) return
             messages.set(msglist.messages)
             isLoading = false
-        }else{
-            console.log("a")
         }
         try{
             const response = await fetch(`http${$isHttps ? "s" : ""}://${$server}:${$port}/group/${chat.id.id}/messages?totp=${auther($authNumber)}&uid=${$user.id.id}&homeserver=${$user.id.server}`, {
@@ -37,6 +35,7 @@
 					"Access-Control-Allow-Origin": "*"
 				}
             })
+            const prevMessages = $messages
             messages.set(await response.json())
             if(!$cachedMessages.find(e=>{
                 if(e.id.id != $currentChat.id.id) return
@@ -48,7 +47,16 @@
                     messages: $messages
                 })
             }else{
-                $cachedMessages.splice($cachedMessages.indexOf({id: $currentChat.id, messages: $messages}), 1)
+                console.log($cachedMessages.findIndex(e=>{
+                    if(e.id.id != $currentChat.id.id) return
+                    if(e.id.server != $currentChat.id.server) return
+                    return e
+                }))
+                $cachedMessages.splice($cachedMessages.findIndex(e=>{
+                    if(e.id.id != $currentChat.id.id) return
+                    if(e.id.server != $currentChat.id.server) return
+                    return e
+                }), 1)
                 $cachedMessages.push({
                     id: $currentChat.id,
                     messages: $messages

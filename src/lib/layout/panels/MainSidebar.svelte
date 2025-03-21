@@ -12,9 +12,9 @@
     style="
         --u: {$isUserBar ? 0.9 : 1};
 		--o: {$isUserBar ? 0.25 : 1}; 
-		--r: {$isUserBar ? 1 : 0}; 
+		left: {$isUserBar ? -50 : 0}px;
         width: {$isUserBar ? 320 : 320}px;
-		transition: width {$isUserBar ? 0.25 : 0}s, scale 0.25s, transform 0.25s, opacity 0.25s;
+		transition: width {$isUserBar ? 0.25 : 0}s, scale 0.25s, transform 0.25s, opacity 0.25s, left 0.25s;
     "
 >
     <SidebarTop/>
@@ -34,7 +34,7 @@
         height: 100vh;
         opacity: var(--o);
 		scale: var(--u);
-		transform: rotate3d(0, var(--r), 0, 90deg);
         resize: horizontal;
+        position: relative;
     }
 </style>
