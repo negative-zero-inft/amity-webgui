@@ -7,8 +7,11 @@
     import { auther } from "lib/scripts/utils";
     import { writable } from "svelte/store";
 
+    let isLoading = $state(true)
+
     let messages = writable<any[]>([]);
     const fetchMessages = async (chat: typeof $currentChat) =>{
+        isLoading = true
         try{
             const response = await fetch(`http${$isHttps ? "s" : ""}://${$server}:${$port}/group/${chat.id.id}/messages?totp=${auther($authNumber)}&uid=${$user.id.id}&homeserver=${$user.id.server}`, {
                 method: "GET",
@@ -18,8 +21,9 @@
 				}
             })
             messages.set(await response.json())
-            console.log($messages)
+            isLoading = false
         }catch(e){
+            isLoading = false
             console.error(e)
         }
     }
@@ -33,7 +37,7 @@
 
 <div class="view">
     <div class="messageList">
-        {#if $messages.length == 0}
+        {#if isLoading}
             <div style="
                 display: flex;
                 flex-align: center;
