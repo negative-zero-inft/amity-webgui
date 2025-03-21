@@ -7,7 +7,9 @@
 	import Avatar from '$lib/kit/decor/Avatar.svelte';
 	import { _ } from 'svelte-i18n';
 	import Icon from "../decor/Icon.svelte";
-	import { auther } from "lib/scripts/utils";
+	import { auther } from "$lib/scripts/utils";
+	import { chatEntries } from "$lib/scripts/cache"
+
 	let {
 		unreads = 0,
 		isUnreads = unreads != 0,
@@ -57,13 +59,26 @@
 		isWaiting = true
 		let isHttp = $isHttps
 
+		if($chatEntries.find(e =>{
+			if(e.id.id != data.id.id) return
+			if(e.id.server != data.id.server) return
+			return true
+		})){
+			tempData = $chatEntries.find(e =>{
+				if(e.id.id != data.id.id) return
+				if(e.id.server != data.id.server) return
+				return e
+			})
+			isWaiting = false
+			return
+		}
+
 		isReachable = await checkServerReachability(`http${$isHttps ? "s" : ""}://${data.id.server}:${$port}`)
 		if(!isReachable){
 			isReachable = await checkServerReachability(`http${!$isHttps ? "s" : ""}://${data.id.server}:${$port}`)
 			if(!isReachable) return
 			isHttp = !$isHttps
 		}
-		console.log("server reached")
 
 		let url = `http${!isHttp ? "" : "s"}://${data.id.server}:${$port}/group/${data.id.id}/info?totp=${auther($authNumber)}&uid=${$user.id.id}&homeserver=${$user.id.server}`;
 		const res = await fetch(url, {
@@ -79,6 +94,7 @@
 
 		if (responseData) {
 			tempData = responseData;
+			$chatEntries.push(responseData)
 			isMultiGroup = tempData.has_channels;
 			chatType = isMultiGroup ? "group" : "monogroup";
 		}
