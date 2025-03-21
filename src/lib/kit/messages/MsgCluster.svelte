@@ -26,20 +26,20 @@
 	})
 
 	export const getAuthor = async () =>{
-		if(!author.server) return
-		if(!author.id) return
-		try{
-			const response = await fetch(`http${$isHttps ? "s" : ""}://${author.server}:${$port}/user/${author.id}/info?totp=${auther($authNumber)}&uid=${$user.id.id}&homeserver=${$user.id.server}`, {
-				method: "GET",
-				headers: {
-					"Content-Type": "application/json",
-					"Access-Control-Allow-Origin": "*"
-				}
-			})
-			authorInfo = JSON.parse(await response.text())
-		}catch(e){
-			throw e
-		}
+		// if(!author.server) return
+		// if(!author.id) return
+		// try{
+		// 	const response = await fetch(`http${$isHttps ? "s" : ""}://${author.server}:${$port}/user/${author.id}/info?totp=${auther($authNumber)}&uid=${$user.id.id}&homeserver=${$user.id.server}`, {
+		// 		method: "GET",
+		// 		headers: {
+		// 			"Content-Type": "application/json",
+		// 			"Access-Control-Allow-Origin": "*"
+		// 		}
+		// 	})
+		// 	authorInfo = JSON.parse(await response.text())
+		// }catch(e){
+		// 	throw e
+		// }
 	}
 </script>
 

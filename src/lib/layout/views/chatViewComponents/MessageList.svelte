@@ -6,12 +6,28 @@
 	import ChatEntry from "lib/kit/gizmos/ChatEntry.svelte";
     import { auther } from "lib/scripts/utils";
     import { writable } from "svelte/store";
+    import { messages as cachedMessages } from "lib/scripts/cache";
 
-    let isLoading = $state(true)
+    let isLoading = $state(false)
 
-    let messages = writable<any[]>([]);
+    const messages = writable<any[]>([]);
     const fetchMessages = async (chat: typeof $currentChat) =>{
+        console.log($cachedMessages)
         isLoading = true
+        if($cachedMessages.find(e=>{
+            if(e.id.id != $currentChat.id.id) return
+            if(e.id.server != $currentChat.id.server) return
+            return true
+        })){
+            const msglist = $cachedMessages.find(e=>{
+                if(e.id.id != $currentChat.id.id) return
+                if(e.id.server != $currentChat.id.server) return
+                return e.messages
+            })
+            if(!msglist) return
+            messages.set(msglist.messages)
+            isLoading = false
+        }
         try{
             const response = await fetch(`http${$isHttps ? "s" : ""}://${$server}:${$port}/group/${chat.id.id}/messages?totp=${auther($authNumber)}&uid=${$user.id.id}&homeserver=${$user.id.server}`, {
                 method: "GET",
@@ -21,6 +37,16 @@
 				}
             })
             messages.set(await response.json())
+            if(!$cachedMessages.find(e=>{
+                if(e.id.id != $currentChat.id.id) return
+                if(e.id.server != $currentChat.id.server) return
+                return true
+            })){
+                $cachedMessages.push({
+                    id: $currentChat.id,
+                    messages: $messages
+                })
+            }
             isLoading = false
         }catch(e){
             isLoading = false
@@ -29,9 +55,7 @@
     }
 
     currentChat.subscribe((e) =>{
-        messages.set([])
         fetchMessages(e)
-        console.log("egg")
     })
 </script>
 
