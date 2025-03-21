@@ -47,6 +47,12 @@
                     id: $currentChat.id,
                     messages: $messages
                 })
+            }else{
+                $cachedMessages.splice($cachedMessages.indexOf({id: $currentChat.id, messages: $messages}), 1)
+                $cachedMessages.push({
+                    id: $currentChat.id,
+                    messages: $messages
+                })
             }
             isLoading = false
         }catch(e){
