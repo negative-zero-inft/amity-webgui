@@ -12,10 +12,9 @@
 
     const messages = writable<any[]>([]);
     const fetchMessages = async (chat: typeof $currentChat) =>{
-        console.log($cachedMessages)
         isLoading = true
         if($cachedMessages.find(e=>{
-            if(e.id.id != $currentChat.id.id) return
+            if(e.id.id != $currentChat.id.id) return 
             if(e.id.server != $currentChat.id.server) return
             return true
         })){
@@ -27,6 +26,8 @@
             if(!msglist) return
             messages.set(msglist.messages)
             isLoading = false
+        }else{
+            console.log("a")
         }
         try{
             const response = await fetch(`http${$isHttps ? "s" : ""}://${$server}:${$port}/group/${chat.id.id}/messages?totp=${auther($authNumber)}&uid=${$user.id.id}&homeserver=${$user.id.server}`, {
