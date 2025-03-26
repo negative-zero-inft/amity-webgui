@@ -76,7 +76,10 @@
 		isReachable = await checkServerReachability(`http${$isHttps ? "s" : ""}://${data.id.server}:${$port}`)
 		if(!isReachable){
 			isReachable = await checkServerReachability(`http${!$isHttps ? "s" : ""}://${data.id.server}:${$port}`)
-			if(!isReachable) return
+			if(!isReachable){
+				isWaiting = false
+				return
+			}
 			isHttp = !$isHttps
 		}
 
@@ -214,6 +217,9 @@
 			transparent 35px,
 			transparent 55px /* added this so the pattern repeats seamlessly */
 		);
+		&:hover{
+			background-color: c.$accent-t40;
+		}
 	}
 
 	.name{
